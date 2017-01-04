@@ -44,13 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Misc\ST_Array.cs" />
     <Compile Include="Source\Class1.cs" />
-=======
     <Compile Include="CommHandler.cs" />
     <Compile Include="ST_register.cs" />
->>>>>>> origin/master
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
