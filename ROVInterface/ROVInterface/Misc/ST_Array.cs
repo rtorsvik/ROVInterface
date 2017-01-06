@@ -12,6 +12,7 @@ public class ST_Array {
 	public ST_Array(int sizemax) {
 		this.sizemax = sizemax;
 		sizecur = 0;
+		arr = new arrelement[sizemax];
 	}
 
 	// Indexer, so this array instance can be used as a[i];
@@ -32,7 +33,19 @@ public class ST_Array {
 			arr[found].value = v;
 		else {
 			// If did not find the value, insert the new value
-			// ----------
+			if (sizecur == sizemax) {
+				// If the array is full, create a new array
+				sizemax = sizemax << 2;
+				arrelement[] temp = new arrelement[sizemax];
+				for (int x = 0; x < sizecur; x++)
+					temp[x] = arr[x];
+				arr = temp;
+			}
+
+			for (int x = sizemax - 1; x > sizecur; x--)
+				arr[x] = arr[x - 1];
+			arr[found] = new arrelement(i, v);
+			sizecur++;
 		}
 	}
 
@@ -44,15 +57,26 @@ public class ST_Array {
 			return i;
 
 		// If v is not found in arr
-		if (i == l)
-			return i;
+		if (i == l) {
+			if (arr[i].index < v)
+				return i;
+			else
+				return i + 1;
+		}
 
 		if (arr[i].index < v)
 			return BinarySearchAlgorithm(v, l, i);
 		return BinarySearchAlgorithm(v, i, h);
 	}
 
-	private class arrelement {
+	public arrelement[] GetAllValues() {
+		arrelement[] temp = new arrelement[sizecur];
+		for (int i = 0; i < sizecur; i++)
+			temp[i] = arr[i];
+		return temp;
+	}
+
+	public class arrelement {
 		public int index;
 		public float value;
 
@@ -63,6 +87,10 @@ public class ST_Array {
 		public arrelement(int index, float value) {
 			this.index = index;
 			this.value = value;
+		}
+
+		public override string ToString() {
+			return "(" + index + ", " + value + ")";
 		}
 	}
 }
