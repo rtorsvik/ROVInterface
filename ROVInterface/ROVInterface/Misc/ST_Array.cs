@@ -29,6 +29,8 @@ public class ST_Array {
 	// Takes an index and insert it into arr
 	private void SearchAndSet(int i, float v) {
 		int found = BinarySearchAlgorithm(i, 0, sizecur);
+		if (found < 0)
+			found = (found + 1) * -1;
 		if (arr[found].index == i)
 			arr[found].value = v;
 		else {
@@ -59,9 +61,9 @@ public class ST_Array {
 		// If v is not found in arr
 		if (i == l) {
 			if (arr[i].index < v)
-				return i;
+				return i * -1 - 1;
 			else
-				return i + 1;
+				return (i + 1) * -1 - 1;
 		}
 
 		if (arr[i].index < v)
