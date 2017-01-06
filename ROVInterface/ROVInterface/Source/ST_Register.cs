@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /*
 	ST_Register
@@ -22,12 +19,16 @@ class ST_Register {
 		commands = new ST_Array();
 	}
 
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="index">The index you want to set the value of</param>
-	/// <param name="value">The value</param>
-	public void set(int index, int value) {
-        commands[index] = value;
-    }
+	public void SendCommands() {
+		ST_Array.arrelement[] data = commands.GetAllValues();
+		for (int i = 0, j = data.Length; i < j; i++)
+			CommHandler.Send(data[i].index, data[i].value);
+
+		// Reset the command array
+		commands.ResetArray();
+	}
+
+	public void SendSingleCommand(ST_Array.arrelement data) {
+		CommHandler.Send(data.index, data.value);
+	}
 }

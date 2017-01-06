@@ -82,6 +82,12 @@ public class ST_Array {
 		return temp;
 	}
 
+	public void ResetArray() {
+		for (int i = 0; i < sizecur; i++)
+			arr[i] = null;
+		sizecur = 0;
+	}
+
 	public class arrelement {
 		public int index;
 		public float value;
