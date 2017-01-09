@@ -7,3 +7,5 @@ C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\ROVInterface.pdb
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.exe
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.pdb
+C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.exe
+C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.pdb
