@@ -21,9 +21,13 @@ namespace ROVInterface
             //  1, secondary screen
             int scrn = 1;
 
-            //this.Location = Screen.AllScreens[scrn].WorkingArea.Location;
+			//Show window on screen scrn only if the computer has this many screens 
+			if(scrn < Screen.AllScreens.Length)
+				this.Location = Screen.AllScreens[scrn].WorkingArea.Location;
 
         }
+
+
 
         private void WindowCamera_Load(object sender, EventArgs e)
         {
@@ -32,5 +36,24 @@ namespace ROVInterface
         }
 
 
-    }
+
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+
+			//Update debug field
+			JoystickHandler jh = Program.jh;
+			jh.update();
+
+			try { txt_debug_1.Text = "Joystick 0, axis 23: " + jh.joystick[0].axis[23]; } catch { }
+			try { txt_debug_2.Text = "Joystick 1, axis 23: " + jh.joystick[1].axis[23]; } catch { }
+			try { txt_debug_3.Text = "Joystick 1, button 1: " + jh.joystick[1].button[0]; } catch { }
+
+		}
+
+		private void btn_debug_1_Click(object sender, EventArgs e)
+		{
+			//reinitialize joysticks
+			Program.jh.Init();
+		}
+	}
 }
