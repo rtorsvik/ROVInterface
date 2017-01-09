@@ -25,10 +25,10 @@ namespace ROVInterface
             //Test field
             //#############################################################################
             String[] sl = SerialConnection.GetPortList();
-            foreach(string s in sl)
-            {
-                Console.Write(s);
-            }
+			foreach (string s in sl)
+			{
+				Console.Write(s);
+			}
             //#############################################################################
 
             new WindowCamera().Show();

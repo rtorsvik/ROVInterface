@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SlimDX, Version=2.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=AMD64" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,14 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\CANPort.cs" />
-    <Compile Include="Source\ComPort.cs" />
-    <Compile Include="Source\EthernetPort.cs" />
+    <Compile Include="Source\Communication\CANPort.cs" />
+    <Compile Include="Source\JoystickHandler.cs" />
+    <Compile Include="Source\Communication\ComPort.cs" />
+    <Compile Include="Source\Communication\EthernetPort.cs" />
     <Compile Include="Misc\ST_Array.cs" />
     <Compile Include="Source\IndexSettings.cs" />
     <Compile Include="Source\Port.cs" />
     <Compile Include="Source\ST_Register.cs" />
-    <Compile Include="Source\CommHandler.cs" />
+    <Compile Include="Source\Communication\CommHandler.cs" />
     <Compile Include="WindowCamera.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,9 +96,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Source\Communication\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
