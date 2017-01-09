@@ -31,7 +31,8 @@ namespace ROVInterface
             }
             //#############################################################################
 
-            Application.Run(new WindowCamera());
+            new WindowCamera().Show();
+            Application.Run(new WindowStatus());
 
         }
     }

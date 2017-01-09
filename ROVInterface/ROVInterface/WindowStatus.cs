@@ -27,6 +27,11 @@ namespace ROVInterface
         private void WindowStatus_Load(object sender, EventArgs e)
         {
 
+
+            //Test
+            //add elements to com port combobox
+            cbox_comports.Items.AddRange(SerialConnection.GetPortList());
+
         }
     }
 }
