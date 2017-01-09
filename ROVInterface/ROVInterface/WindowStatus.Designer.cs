@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -53,6 +54,7 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.tabControl1.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
@@ -191,17 +193,20 @@
 			// btn_connect_serial
 			// 
 			this.btn_connect_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_connect_serial.Location = new System.Drawing.Point(467, 56);
+			this.btn_connect_serial.Location = new System.Drawing.Point(458, 56);
+			this.btn_connect_serial.Margin = new System.Windows.Forms.Padding(3, 3, 12, 3);
 			this.btn_connect_serial.Name = "btn_connect_serial";
 			this.btn_connect_serial.Size = new System.Drawing.Size(121, 56);
 			this.btn_connect_serial.TabIndex = 5;
 			this.btn_connect_serial.Text = "Connect";
 			this.btn_connect_serial.UseVisualStyleBackColor = true;
+			this.btn_connect_serial.Click += new System.EventHandler(this.btn_connect_serial_Click);
 			// 
 			// btn_send_serial
 			// 
 			this.btn_send_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_send_serial.Location = new System.Drawing.Point(467, 45);
+			this.btn_send_serial.Location = new System.Drawing.Point(458, 51);
+			this.btn_send_serial.Margin = new System.Windows.Forms.Padding(3, 3, 12, 3);
 			this.btn_send_serial.Name = "btn_send_serial";
 			this.btn_send_serial.Size = new System.Drawing.Size(121, 42);
 			this.btn_send_serial.TabIndex = 6;
@@ -329,6 +334,10 @@
 			this.textBox2.Size = new System.Drawing.Size(257, 22);
 			this.textBox2.TabIndex = 13;
 			// 
+			// timer1
+			// 
+			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+			// 
 			// WindowStatus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -384,5 +393,6 @@
 		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.Timer timer1;
 	}
 }
