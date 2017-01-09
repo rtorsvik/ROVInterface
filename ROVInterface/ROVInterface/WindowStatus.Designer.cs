@@ -53,11 +53,14 @@
 			this.btn_send_serial = new System.Windows.Forms.Button();
 			this.txt_serial_index = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.panel_IndexSettings = new System.Windows.Forms.FlowLayoutPanel();
 			this.btn_InsertIndexSetting = new System.Windows.Forms.Button();
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.panel_IndexStats = new System.Windows.Forms.FlowLayoutPanel();
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.button1 = new System.Windows.Forms.Button();
+			this.btn_AddIndexStat = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
@@ -67,6 +70,8 @@
 			this.groupBox1.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			this.panel_IndexSettings.SuspendLayout();
+			this.panel_IndexStats.SuspendLayout();
+			this.flowLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -77,7 +82,7 @@
 			this.tabControl1.Controls.Add(this.tabPage4);
 			this.tabControl1.ItemSize = new System.Drawing.Size(72, 21);
 			this.tabControl1.Location = new System.Drawing.Point(9, 10);
-			this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(1408, 611);
@@ -87,9 +92,9 @@
 			// 
 			this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.tabPage1.Location = new System.Drawing.Point(4, 25);
-			this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
 			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
 			this.tabPage1.Size = new System.Drawing.Size(1400, 582);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "tabPage1";
@@ -98,9 +103,9 @@
 			// 
 			this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.tabPage2.Location = new System.Drawing.Point(4, 25);
-			this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
 			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
 			this.tabPage2.Size = new System.Drawing.Size(1400, 582);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
@@ -110,9 +115,9 @@
 			this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
 			this.tabPage3.Controls.Add(this.tableLayoutPanel1);
 			this.tabPage3.Location = new System.Drawing.Point(4, 25);
-			this.tabPage3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
 			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
 			this.tabPage3.Size = new System.Drawing.Size(1400, 582);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Connection";
@@ -125,10 +130,10 @@
 			this.tableLayoutPanel1.ColumnCount = 3;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 447F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 448F));
 			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 5);
-			this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 1;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -145,7 +150,7 @@
 			this.panel1.Controls.Add(this.groupBox1);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Location = new System.Drawing.Point(2, 2);
-			this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panel1.Margin = new System.Windows.Forms.Padding(2);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(469, 574);
 			this.panel1.TabIndex = 0;
@@ -158,9 +163,9 @@
 			this.groupBox3.Controls.Add(this.textBox1);
 			this.groupBox3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.groupBox3.Location = new System.Drawing.Point(8, 446);
-			this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
 			this.groupBox3.Size = new System.Drawing.Size(446, 124);
 			this.groupBox3.TabIndex = 12;
 			this.groupBox3.TabStop = false;
@@ -191,7 +196,7 @@
 			// textBox2
 			// 
 			this.textBox2.Location = new System.Drawing.Point(16, 42);
-			this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.textBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(194, 20);
 			this.textBox2.TabIndex = 13;
@@ -199,7 +204,7 @@
 			// textBox1
 			// 
 			this.textBox1.Location = new System.Drawing.Point(16, 79);
-			this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.textBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(194, 20);
 			this.textBox1.TabIndex = 14;
@@ -213,9 +218,9 @@
 			this.groupBox2.Controls.Add(this.cmb_baudrate);
 			this.groupBox2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.groupBox2.Location = new System.Drawing.Point(8, 68);
-			this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
 			this.groupBox2.Size = new System.Drawing.Size(446, 177);
 			this.groupBox2.TabIndex = 11;
 			this.groupBox2.TabStop = false;
@@ -236,7 +241,7 @@
 			// 
 			this.cmb_comport.FormattingEnabled = true;
 			this.cmb_comport.Location = new System.Drawing.Point(16, 46);
-			this.cmb_comport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cmb_comport.Margin = new System.Windows.Forms.Padding(2);
 			this.cmb_comport.Name = "cmb_comport";
 			this.cmb_comport.Size = new System.Drawing.Size(92, 21);
 			this.cmb_comport.TabIndex = 0;
@@ -272,7 +277,7 @@
             "9600",
             "115200"});
 			this.cmb_baudrate.Location = new System.Drawing.Point(122, 46);
-			this.cmb_baudrate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cmb_baudrate.Margin = new System.Windows.Forms.Padding(2);
 			this.cmb_baudrate.Name = "cmb_baudrate";
 			this.cmb_baudrate.Size = new System.Drawing.Size(92, 21);
 			this.cmb_baudrate.TabIndex = 2;
@@ -287,9 +292,9 @@
 			this.groupBox1.Controls.Add(this.txt_serial_index);
 			this.groupBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.groupBox1.Location = new System.Drawing.Point(8, 250);
-			this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Size = new System.Drawing.Size(446, 191);
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
@@ -320,7 +325,7 @@
 			// txt_serial_value
 			// 
 			this.txt_serial_value.Location = new System.Drawing.Point(122, 41);
-			this.txt_serial_value.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.txt_serial_value.Margin = new System.Windows.Forms.Padding(2);
 			this.txt_serial_value.Name = "txt_serial_value";
 			this.txt_serial_value.Size = new System.Drawing.Size(88, 20);
 			this.txt_serial_value.TabIndex = 10;
@@ -339,7 +344,7 @@
 			// txt_serial_index
 			// 
 			this.txt_serial_index.Location = new System.Drawing.Point(16, 41);
-			this.txt_serial_index.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.txt_serial_index.Margin = new System.Windows.Forms.Padding(2);
 			this.txt_serial_index.Name = "txt_serial_index";
 			this.txt_serial_index.Size = new System.Drawing.Size(88, 20);
 			this.txt_serial_index.TabIndex = 9;
@@ -355,20 +360,6 @@
 			this.label1.Size = new System.Drawing.Size(262, 37);
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Serial connection";
-			// 
-			// statusStrip1
-			// 
-			this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-			this.statusStrip1.Location = new System.Drawing.Point(0, 752);
-			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
-			this.statusStrip1.Size = new System.Drawing.Size(1426, 22);
-			this.statusStrip1.TabIndex = 1;
-			this.statusStrip1.Text = "statusStrip1";
-			// 
-			// timer1
-			// 
-			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
 			// tabPage4
 			// 
@@ -404,15 +395,55 @@
 			this.btn_InsertIndexSetting.UseVisualStyleBackColor = true;
 			this.btn_InsertIndexSetting.Click += new System.EventHandler(this.btn_InsertIndexSetting_Click);
 			// 
+			// timer1
+			// 
+			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+			// 
+			// panel_IndexStats
+			// 
+			this.panel_IndexStats.Controls.Add(this.flowLayoutPanel1);
+			this.panel_IndexStats.Location = new System.Drawing.Point(13, 626);
+			this.panel_IndexStats.Name = "panel_IndexStats";
+			this.panel_IndexStats.Size = new System.Drawing.Size(1398, 136);
+			this.panel_IndexStats.TabIndex = 2;
+			// 
+			// flowLayoutPanel1
+			// 
+			this.flowLayoutPanel1.Controls.Add(this.button1);
+			this.flowLayoutPanel1.Controls.Add(this.btn_AddIndexStat);
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(1391, 28);
+			this.flowLayoutPanel1.TabIndex = 0;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(3, 3);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 0;
+			this.button1.Text = "Edit Mode";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// btn_AddIndexStat
+			// 
+			this.btn_AddIndexStat.Location = new System.Drawing.Point(84, 3);
+			this.btn_AddIndexStat.Name = "btn_AddIndexStat";
+			this.btn_AddIndexStat.Size = new System.Drawing.Size(75, 23);
+			this.btn_AddIndexStat.TabIndex = 1;
+			this.btn_AddIndexStat.Text = "New";
+			this.btn_AddIndexStat.UseVisualStyleBackColor = true;
+			this.btn_AddIndexStat.Click += new System.EventHandler(this.btn_AddIndexStat_Click);
+			// 
 			// WindowStatus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
 			this.ClientSize = new System.Drawing.Size(1426, 774);
-			this.Controls.Add(this.statusStrip1);
+			this.Controls.Add(this.panel_IndexStats);
 			this.Controls.Add(this.tabControl1);
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "WindowStatus";
 			this.Text = "Status";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -430,8 +461,9 @@
 			this.groupBox1.PerformLayout();
 			this.tabPage4.ResumeLayout(false);
 			this.panel_IndexSettings.ResumeLayout(false);
+			this.panel_IndexStats.ResumeLayout(false);
+			this.flowLayoutPanel1.ResumeLayout(false);
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
         }
 
@@ -455,7 +487,6 @@
         private System.Windows.Forms.TextBox txt_serial_value;
         private System.Windows.Forms.Button btn_send_serial;
         private System.Windows.Forms.TextBox txt_serial_index;
-        private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label7;
@@ -466,5 +497,9 @@
 		private System.Windows.Forms.TabPage tabPage4;
 		private System.Windows.Forms.FlowLayoutPanel panel_IndexSettings;
 		private System.Windows.Forms.Button btn_InsertIndexSetting;
+		private System.Windows.Forms.FlowLayoutPanel panel_IndexStats;
+		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btn_AddIndexStat;
 	}
 }
