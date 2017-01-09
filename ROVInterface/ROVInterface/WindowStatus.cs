@@ -30,7 +30,7 @@ namespace ROVInterface
 
             //Test
             //add elements to com port combobox
-            cbox_comports.Items.AddRange(SerialConnection.GetPortList());
+            cmb_comport.Items.AddRange(SerialConnection.GetPortList());
 
         }
     }
