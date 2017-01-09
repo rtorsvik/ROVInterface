@@ -11,8 +11,8 @@ class IndexSettings {
 		// Create size and parent it to temp
 		// Create color and parent it to temp
 		// Create delete button and parent it to temp, add event for click to Delete(parent)
-		TextBox tbx = new TextBox();
-		tbx.Parent = temp;
+		NumericUpDown nud = new NumericUpDown();
+		nud.Parent = temp;
 
 
 		return temp;
