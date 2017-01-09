@@ -21,7 +21,7 @@ namespace ROVInterface
             //  1, secondary screen
             int scrn = 1;
 
-            this.Location = Screen.AllScreens[scrn].WorkingArea.Location;
+            //this.Location = Screen.AllScreens[scrn].WorkingArea.Location;
 
         }
 

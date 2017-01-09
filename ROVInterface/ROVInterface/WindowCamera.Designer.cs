@@ -42,10 +42,10 @@
 			// maskedTextBox1
 			// 
 			this.maskedTextBox1.Location = new System.Drawing.Point(472, 448);
-			this.maskedTextBox1.Mask = "012345678";
 			this.maskedTextBox1.Name = "maskedTextBox1";
 			this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
 			this.maskedTextBox1.TabIndex = 1;
+			this.maskedTextBox1.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
 			// 
 			// WindowCamera
 			// 
@@ -55,7 +55,7 @@
 			this.ClientSize = new System.Drawing.Size(1426, 774);
 			this.Controls.Add(this.maskedTextBox1);
 			this.Controls.Add(this.textBox1);
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "WindowCamera";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Camera";
