@@ -33,5 +33,17 @@ namespace ROVInterface
             cmb_comport.Items.AddRange(SerialConnection.GetPortList());
 
         }
-    }
+
+		private void btn_connect_serial_Click(object sender, EventArgs e)
+		{
+			//temp, should be replaced with comm handler later
+			SerialConnection serialConnection = new SerialConnection(cmb_comport.SelectedItem.ToString(), int.Parse(cmb_baudrate.SelectedItem.ToString()));
+			serialConnection.Open();
+		}
+
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+
+		}
+	}
 }
