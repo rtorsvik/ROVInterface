@@ -48,6 +48,7 @@
     <Compile Include="Source\ComPort.cs" />
     <Compile Include="Source\EthernetPort.cs" />
     <Compile Include="Misc\ST_Array.cs" />
+    <Compile Include="Source\IndexSettings.cs" />
     <Compile Include="Source\Port.cs" />
     <Compile Include="Source\ST_Register.cs" />
     <Compile Include="Source\CommHandler.cs" />
