@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Management;
+using System.IO.Ports;
+
 namespace ROVInterface
 {
     static class Program
@@ -16,7 +19,20 @@ namespace ROVInterface
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Console.Write("Red five, standing by\n");
+
+
+            //Test field
+            //#############################################################################
+            String[] sl = SerialConnection.GetPortList();
+            foreach(string s in sl)
+            {
+                Console.Write(s);
+            }
+            //#############################################################################
+
+            Application.Run(new WindowCamera());
+
         }
     }
 }

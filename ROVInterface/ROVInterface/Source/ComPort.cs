@@ -1,6 +1,6 @@
 using System;
 using System.IO.Ports;
-
+using System.Windows.Forms;
 
 class SerialConnection
 {
@@ -8,7 +8,7 @@ class SerialConnection
 
 
 
-    private SeriaPort port;
+    private SerialPort port;
 
     //Initialize a new serial connection with the given port number and baud rate
     //ref.: https://msdn.microsoft.com/en-us/library/system.io.ports.serialport(v=vs.110).aspx?cs-save-lang=1&cs-lang=csharp#code-snippet-1
@@ -23,7 +23,7 @@ class SerialConnection
             //TODO
             //Write error messaage/dialog
             //ref.: https://msdn.microsoft.com/en-us/library/8bt1b81c(v=vs.110).aspx
-            MessageBox.Show("The specified port could not be found or opened", "Error", MessageBoxIcon.Error);
+            MessageBox.Show("The specified port could not be found or opened", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             Console.Write(e);
         }   
     }
@@ -32,6 +32,7 @@ class SerialConnection
     public bool Open()
     {
         port.Open();
+        return false;
     }
 
 
@@ -39,12 +40,13 @@ class SerialConnection
     {
         //TODO
         //close com port
+        return false;
     }
 
 
     public bool IsOpen()
     {
-        return port.IsOpen();
+        return port.IsOpen;
     }
 
 
@@ -53,7 +55,7 @@ class SerialConnection
 
     public String GetPortName()
     {
-        return port.PortName();
+        return port.PortName;
     }
 
 
@@ -63,23 +65,26 @@ class SerialConnection
     public static string[] GetPortList()
     {
         String[] list = SerialPort.GetPortNames();
+        return list;
     }
 
 
 
-    public bool send(int intdex, float value)
+    public bool send(int index, float value)
     {
         //TODO
-        //Send value according to which port/output channel to use 
-        byte i1 = (index & 0x00f0) >> 8;
-        byte i0 = (index & 0x000f) >> 0;
-        
-        byte v3 = (value & 0xf000) >> 24;
-        byte v2 = (value & 0x0f00) >> 16;
-        byte v1 = (value & 0x00f0) >> 8;
-        byte v0 = (value & 0x000f) >> 0;
+        //Send value according to which port/output channel to use
+        byte[] packet = new byte[6];
 
-        port.Write([i1,i0,v3,v2,v1,v0], 0, 6);
+        packet[0] = (byte)((index & 0x00f0) >>  8);
+        packet[1] = (byte)((index & 0x000f) >>  0);
+
+        //packet[2] = (byte)((value & 0xf000) >> 24);
+        //packet[3] = (byte)((value & 0x0f00) >> 16);
+        //packet[4] = (byte)((value & 0x00f0) >>  8);
+        //packet[5] = (byte)((value & 0x000f) >>  0);
+
+        port.Write(packet, 0, 6);
 
         return true;
     }

@@ -1,6 +1,6 @@
 ﻿namespace ROVInterface
 {
-    partial class Form1
+    partial class WindowStatus
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // WindowStatus
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.ClientSize = new System.Drawing.Size(1902, 953);
+            this.Name = "WindowStatus";
+            this.Text = "Status";
+            this.Load += new System.EventHandler(this.WindowStatus_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
     }
 }
-
