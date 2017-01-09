@@ -13,7 +13,8 @@ namespace ROVInterface
     public partial class WindowStatus : Form
     {
 
-		IndexSettings indexSettings;
+		private IndexSettings indexSettings;
+		private IndexStats indexStats;
 
 		public WindowStatus()
         {
@@ -30,6 +31,7 @@ namespace ROVInterface
         private void WindowStatus_Load(object sender, EventArgs e)
         {
 			indexSettings = new IndexSettings(panel_IndexSettings);
+			indexStats = new IndexStats(panel_IndexStats);
 
 			//Test
 			//add elements to com port combobox
@@ -51,6 +53,10 @@ namespace ROVInterface
 
 		private void btn_InsertIndexSetting_Click(object sender, EventArgs e) {
 			indexSettings.CreateElement();
+		}
+
+		private void btn_AddIndexStat_Click(object sender, EventArgs e) {
+			indexStats.CreateElement();
 		}
 	}
 }
