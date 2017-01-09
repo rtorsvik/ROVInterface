@@ -12,7 +12,10 @@ namespace ROVInterface
 {
     public partial class WindowStatus : Form
     {
-        public WindowStatus()
+
+		IndexSettings indexSettings;
+
+		public WindowStatus()
         {
             InitializeComponent();
 
@@ -21,16 +24,16 @@ namespace ROVInterface
             //  1, secondary screen
             int scrn = 0;
 
-            this.Location = Screen.AllScreens[scrn].WorkingArea.Location;
+			this.Location = Screen.AllScreens[scrn].WorkingArea.Location;
         }
 
         private void WindowStatus_Load(object sender, EventArgs e)
         {
+			indexSettings = new IndexSettings(panel_IndexSettings);
 
-
-            //Test
-            //add elements to com port combobox
-            cmb_comport.Items.AddRange(SerialConnection.GetPortList());
+			//Test
+			//add elements to com port combobox
+			cmb_comport.Items.AddRange(SerialConnection.GetPortList());
 
         }
 
@@ -44,6 +47,10 @@ namespace ROVInterface
 		private void timer1_Tick(object sender, EventArgs e)
 		{
 
+		}
+
+		private void btn_InsertIndexSetting_Click(object sender, EventArgs e) {
+			indexSettings.CreateElement();
 		}
 	}
 }

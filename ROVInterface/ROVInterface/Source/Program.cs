@@ -11,6 +11,8 @@ namespace ROVInterface
 {
     static class Program
     {
+		public static WindowStatus windowStatus;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -32,7 +34,7 @@ namespace ROVInterface
             //#############################################################################
 
             new WindowCamera().Show();
-            Application.Run(new WindowStatus());
+            Application.Run(windowStatus = new WindowStatus());
 
         }
     }
