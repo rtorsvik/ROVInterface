@@ -31,7 +31,7 @@ namespace ROVInterface
         private void WindowStatus_Load(object sender, EventArgs e)
         {
 			indexSettings = new IndexSettings(panel_IndexSettings);
-			indexStats = new IndexStats(panel_IndexStats);
+			indexStats = new IndexStats(indexSettings, panel_IndexStats);
 
 			//Test
 			//add elements to com port combobox

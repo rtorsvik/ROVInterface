@@ -61,6 +61,7 @@
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.button1 = new System.Windows.Forms.Button();
 			this.btn_AddIndexStat = new System.Windows.Forms.Button();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
@@ -379,6 +380,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel_IndexSettings.AutoScroll = true;
 			this.panel_IndexSettings.Controls.Add(this.btn_InsertIndexSetting);
+			this.panel_IndexSettings.Controls.Add(this.comboBox1);
 			this.panel_IndexSettings.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.panel_IndexSettings.Location = new System.Drawing.Point(6, 6);
 			this.panel_IndexSettings.Name = "panel_IndexSettings";
@@ -434,6 +436,14 @@
 			this.btn_AddIndexStat.Text = "New";
 			this.btn_AddIndexStat.UseVisualStyleBackColor = true;
 			this.btn_AddIndexStat.Click += new System.EventHandler(this.btn_AddIndexStat_Click);
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(3, 32);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(121, 21);
+			this.comboBox1.TabIndex = 1;
 			// 
 			// WindowStatus
 			// 
@@ -501,5 +511,6 @@
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button btn_AddIndexStat;
+		private System.Windows.Forms.ComboBox comboBox1;
 	}
 }

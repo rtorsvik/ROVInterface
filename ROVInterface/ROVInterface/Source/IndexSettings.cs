@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
+// FIX DELETION IN FOREACH WITH USING A FOR LOOP
+
 public class IndexSettings {
 	
 	private FlowLayoutPanel panelIndexSettings;
@@ -131,20 +133,25 @@ public class IndexSettings {
 			foreach (IndexStats.Stats s in linkedStats)
 				s.Update();
 		}
+
+		public override string ToString() {
+			return "{" + index.Value.ToString() + "} " + name.Text;
+		}
 	}
 }
 
 public class IndexStats {
 
 	private FlowLayoutPanel flowLayoutPanel;
+	private IndexSettings indexSettings;
 
-	public IndexStats (FlowLayoutPanel pan) {
+	public IndexStats (IndexSettings s, FlowLayoutPanel pan) {
+		indexSettings = s;
 		flowLayoutPanel = pan;
 	}
 
-
 	public void CreateElement() {
-		Stats stats = new Stats();
+		Stats stats = new Stats(indexSettings);
 
 		FlowLayoutPanel panel = new FlowLayoutPanel();
 		panel.Parent = flowLayoutPanel;
@@ -152,6 +159,7 @@ public class IndexStats {
 
 		ComboBox cmb = new ComboBox();
 		cmb.Click += stats.UpdateIndexList;
+		cmb.TextChanged += stats.UpdateIndex;
 		cmb.Parent = panel;
 		stats.index = cmb;
 
@@ -172,8 +180,10 @@ public class IndexStats {
 		public Button delete;
 		public IndexSettings.Setting setting { get { return _setting; } set { SetSettings(value); } }
 		private IndexSettings.Setting _setting;
+		public IndexSettings indexSettings;
 
-		public Stats () {
+		public Stats (IndexSettings s) {
+			indexSettings = s;
 			_setting = null;
 		}
 
@@ -197,6 +207,7 @@ public class IndexStats {
 				_setting.linkedStats.Remove(this);
 
 			index.Click -= this.UpdateIndexList;
+			index.TextChanged -= this.UpdateIndex;
 			delete.Click -= this.Delete;
 
 			ROVInterface.Program.windowStatus.Controls.Remove(index);
@@ -213,8 +224,12 @@ public class IndexStats {
 		public void UpdateIndexList(object sender, EventArgs e) {
 			// Update the combobox showing all the index settings
 			index.Items.Clear();
-			foreach (IndexSettings.Setting s in _setting.handler.allSettings)
-				index.Items.Add("{" + s.index.ToString() + "} " + s.name);
+			foreach (IndexSettings.Setting s in indexSettings.allSettings)
+				index.Items.Add(s);
+		}
+
+		public void UpdateIndex(object sender, EventArgs e) {
+			setting = (IndexSettings.Setting)index.SelectedItem;
 		}
 	}
 }
