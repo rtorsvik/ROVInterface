@@ -62,5 +62,9 @@ namespace ROVInterface
 		private void btn_AddIndexStat_Click(object sender, EventArgs e) {
 			indexStats.CreateElement();
 		}
+
+		private void btn_EditMode_Click(object sender, EventArgs e) {
+			indexStats.ChangeEditMode();
+		}
 	}
 }
