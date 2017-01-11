@@ -52,7 +52,8 @@ namespace ROVInterface
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-
+			//Update Joystick Status fields
+			joystickSettings.Update();
 		}
 
 		private void btn_InsertIndexSetting_Click(object sender, EventArgs e) {
