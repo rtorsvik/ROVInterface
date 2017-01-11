@@ -25,36 +25,28 @@ public class IndexSettings {
 		temp.Height = 20;
 		setting.panel = temp;
 
-		Label lab = new Label();
-		lab.Text = "Index:";
-		setting.labels[0] = lab;
+		setting.labels[0] = CreateLabel("Index:", temp);
 		// Index handler
 		NumericUpDown nud = new NumericUpDown();
 		nud.Parent = temp;
 		nud.ValueChanged += setting.UpdateIndex;
 		setting.index = nud;
 
-		lab = new Label();
-		lab.Text = "Name:";
-		setting.labels[1] = lab;
+		setting.labels[1] = CreateLabel("Name:", temp);
 		// Name handler
 		TextBox txtbox = new TextBox();
 		txtbox.Parent = temp;
 		txtbox.TextChanged += setting.UpdateStats;
 		setting.name = txtbox;
 
-		lab = new Label();
-		lab.Text = "Digits:";
-		setting.labels[2] = lab;
+		setting.labels[2] = CreateLabel("Digits:", temp);
 		// Digit handler
 		nud = new NumericUpDown();
 		nud.Parent = temp;
 		nud.ValueChanged += setting.UpdateStats;
 		setting.digit = nud;
 
-		lab = new Label();
-		lab.Text = "Size:";
-		setting.labels[3] = lab;
+		setting.labels[3] = CreateLabel("Size:", temp);
 		// Size handler
 		nud = new NumericUpDown();
 		nud.Parent = temp;
@@ -73,6 +65,19 @@ public class IndexSettings {
 
 		allSettings.Add(setting);
 		return temp;
+	}
+
+	private Label CreateLabel(string name, Control parent) {
+		Label lab = new Label();
+		lab.Text = name;
+		lab.Parent = parent;
+		lab.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+		lab.AutoSize = true;
+		lab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+		lab.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
+		lab.Margin = new Padding(2, 2, 2, 0);
+
+		return lab;
 	}
 
 	public class Setting {
