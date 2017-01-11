@@ -5,32 +5,34 @@ using System.Text;
 using System.Threading.Tasks;
 using SlimDX.DirectInput;
 
+
+
 /// <summary>
 /// Class handles input from one or more joysticks,
 /// Get state of joystick by for instance calling JoystickHandler.joystick[1].axis[1] 
 /// </summary>
-class JoystickHandler
+static class JoystickHandler
 {
 	//public static Joystick[] joystick;
-	public TJoystick[] joystick;
+	public static TJoystick[] joystick;
+
+
 
 	/// <summary>
-	/// Constructor
+	/// Initialize joystickhandler (Acquire joysticks)
 	/// </summary>
-	public JoystickHandler()
+	public static void Init()
 	{
 		joystick = GetSticks();
+		TJoystick.JOYSTICKNUM = 0;	//Reset joystick counter		
 	}
 
-	public void Init()
-	{
-		joystick = GetSticks();
-	}
+
 
 	/// <summary>
 	/// Call this method to update the state of all the joysticks
 	/// </summary>
-	public void update()
+	public static void update()
 	{
 		foreach(TJoystick j in joystick)
 		{
@@ -38,9 +40,11 @@ class JoystickHandler
 		}
 	}
 
+
+
 	//initializing connected joysticks and collecting them into a Jaystick-array
 	//ref.: Chris Charitidis https://www.youtube.com/watch?v=rtnLGfAj7W0
-	public TJoystick[] GetSticks()
+	public static TJoystick[] GetSticks()
 	{
 		DirectInput input = new DirectInput();
 
@@ -75,15 +79,24 @@ class JoystickHandler
 public class TJoystick
 {
 	private Joystick joystick;
+	private int joystickNumber;
 	public int[] axis;
 	public bool[] button;
+
+	public static int JOYSTICKNUM = 0;
+
+
 
 	public TJoystick(Joystick joystick)
 	{
 		this.joystick = joystick;
 		axis = new int[24];
 		button = new bool[128];
+
+		joystickNumber = JOYSTICKNUM++;
 	}
+
+
 
 	/// <summary>
 	/// Update state of joystick
@@ -121,6 +134,17 @@ public class TJoystick
 
 		//Update button values
 		button = state.GetButtons();
+	}
+
+
+
+	/// <summary>
+	/// Returns the joystick number
+	/// </summary>
+	/// <returns></returns>
+	public override string ToString()
+	{
+		return "Joystick " + joystickNumber;
 	}
 }
 

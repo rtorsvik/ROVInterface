@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using jh = JoystickHandler;
+
+//using jh = JoystickHandler;
+
 namespace ROVInterface
 {
     public partial class WindowCamera : Form
@@ -41,7 +45,7 @@ namespace ROVInterface
 		{
 
 			//Update debug field
-			JoystickHandler jh = Program.jh;
+			//JoystickHandler jh = Program.jh;
 			jh.update();
 
 			try { txt_debug_1.Text = "Joystick 0, axis 23: " + jh.joystick[0].axis[23]; } catch { }
@@ -53,7 +57,7 @@ namespace ROVInterface
 		private void btn_debug_1_Click(object sender, EventArgs e)
 		{
 			//reinitialize joysticks
-			Program.jh.Init();
+			jh.Init();
 		}
 	}
 }

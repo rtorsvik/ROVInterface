@@ -16,6 +16,8 @@ namespace ROVInterface
 		private IndexSettings indexSettings;
 		private IndexStats indexStats;
 
+		private JoystickSettings joystickSettings;
+
 		public WindowStatus()
         {
             InitializeComponent();
@@ -33,8 +35,10 @@ namespace ROVInterface
 			indexSettings = new IndexSettings(panel_IndexSettings);
 			indexStats = new IndexStats(panel_IndexStats);
 
-			//Test
-			//add elements to com port combobox
+			joystickSettings = new JoystickSettings();
+
+			
+			//add all available com port elements to com port combobox
 			cmb_comport.Items.AddRange(SerialConnection.GetPortList());
 
         }

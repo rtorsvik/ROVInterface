@@ -51,7 +51,8 @@
     <Compile Include="Source\Communication\EthernetPort.cs" />
     <Compile Include="Misc\ST_Array.cs" />
     <Compile Include="Source\IndexSettings.cs" />
-    <Compile Include="Source\Port.cs" />
+    <Compile Include="Source\Communication\Port.cs" />
+    <Compile Include="Source\JoystickSettings.cs" />
     <Compile Include="Source\ST_Register.cs" />
     <Compile Include="Source\Communication\CommHandler.cs" />
     <Compile Include="WindowCamera.cs">

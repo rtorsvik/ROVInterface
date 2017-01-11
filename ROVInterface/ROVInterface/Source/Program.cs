@@ -12,7 +12,6 @@ namespace ROVInterface
     static class Program
     {
 		public static WindowStatus windowStatus;
-		public static JoystickHandler jh;
 
         /// <summary>
         /// The main entry point for the application.
@@ -33,7 +32,7 @@ namespace ROVInterface
 				Console.Write(s);
 			}
 
-			jh = new JoystickHandler();
+			JoystickHandler.Init();
             //#############################################################################
 
             new WindowCamera().Show();
