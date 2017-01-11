@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-// FIX DELETION IN FOREACH WITH USING A FOR LOOP
-
 public class IndexSettings {
 	
 	private FlowLayoutPanel panelIndexSettings;
@@ -30,6 +28,8 @@ public class IndexSettings {
 		NumericUpDown nud = new NumericUpDown();
 		nud.Parent = temp;
 		nud.ValueChanged += setting.UpdateIndex;
+		nud.Width = 70;
+		nud.Maximum = (int)Math.Pow(2, 15) - 1;
 		setting.index = nud;
 
 		setting.labels[1] = CreateLabel("Name:", temp);
@@ -37,6 +37,7 @@ public class IndexSettings {
 		TextBox txtbox = new TextBox();
 		txtbox.Parent = temp;
 		txtbox.TextChanged += setting.UpdateStats;
+		txtbox.Width = 200;
 		setting.name = txtbox;
 
 		setting.labels[2] = CreateLabel("Digits:", temp);
@@ -44,6 +45,8 @@ public class IndexSettings {
 		nud = new NumericUpDown();
 		nud.Parent = temp;
 		nud.ValueChanged += setting.UpdateStats;
+		nud.Width = 40;
+		nud.Maximum = 12;
 		setting.digit = nud;
 
 		setting.labels[3] = CreateLabel("Size:", temp);
@@ -51,6 +54,9 @@ public class IndexSettings {
 		nud = new NumericUpDown();
 		nud.Parent = temp;
 		nud.ValueChanged += setting.UpdateStats;
+		nud.Width = 40;
+		nud.Minimum = 8;
+		nud.Maximum = 25;
 		setting.size = nud;
 
 		// Color handler
@@ -123,20 +129,20 @@ public class IndexSettings {
 				labels[i].Dispose();
 			panel.Dispose();
 
-			foreach (IndexStats.Stats s in linkedStats)
-				s.Delete(null, null);
+			for (int i = 0, j = linkedStats.Count; i < j; i++)
+				linkedStats[i].Delete(null, null);
 		}
 		
 		public void UpdateIndex(object sender, EventArgs e) {
 			// Delete all stats which were using the old index
-			foreach (IndexStats.Stats s in linkedStats)
-				s.Delete(null, null);
+			for (int i = 0, j = linkedStats.Count; i < j; i++)
+				linkedStats[i].Delete(null, null);
 		}
 
 		public void UpdateStats(object sender, EventArgs e) {
 			// Update all stats if there are any, with the new settings
-			foreach (IndexStats.Stats s in linkedStats)
-				s.Update();
+			for (int i = 0, j = linkedStats.Count; i < j; i++)
+				linkedStats[i].Update();
 		}
 
 		public override string ToString() {
@@ -149,27 +155,50 @@ public class IndexStats {
 
 	private FlowLayoutPanel flowLayoutPanel;
 	private IndexSettings indexSettings;
+	private bool editMode = true;
+	private List<Stats> allStats;
 
 	public IndexStats (IndexSettings s, FlowLayoutPanel pan) {
 		indexSettings = s;
 		flowLayoutPanel = pan;
+		allStats = new List<Stats>();
+	}
+
+	public void ChangeEditMode() {
+		editMode = !editMode;
+
+		if (editMode) {
+			foreach(Stats s in allStats) {
+				s.index.Visible = true;
+				s.delete.Visible = true;
+			}
+		} else {
+			foreach (Stats s in allStats) {
+				s.index.Visible = false;
+				s.delete.Visible = false;
+			}
+		}
 	}
 
 	public void CreateElement() {
 		Stats stats = new Stats(indexSettings);
+		allStats.Add(stats);
 
 		FlowLayoutPanel panel = new FlowLayoutPanel();
 		panel.Parent = flowLayoutPanel;
+		panel.AutoSize = true;
 		stats.panel = panel;
 
 		ComboBox cmb = new ComboBox();
 		cmb.Click += stats.UpdateIndexList;
-		cmb.TextChanged += stats.UpdateIndex;
+		cmb.SelectedValueChanged += stats.UpdateIndex;
 		cmb.Parent = panel;
 		stats.index = cmb;
 
 		Label lab = new Label();
 		lab.Parent = panel;
+		lab.AutoSize = true;
+		lab.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 		stats.name = lab;
 
 		Button btn = new Button();
@@ -204,6 +233,8 @@ public class IndexStats {
 
 		public void Update() {
 			// Update everything from settings
+			name.Text = _setting.ToString() + "--temp value--";
+			name.Font = new System.Drawing.Font("Microsoft Sans Serif", (int)_setting.size.Value);
 		}
 
 		public void Delete(object sender, EventArgs e) {
@@ -212,7 +243,7 @@ public class IndexStats {
 				_setting.linkedStats.Remove(this);
 
 			index.Click -= this.UpdateIndexList;
-			index.TextChanged -= this.UpdateIndex;
+			index.SelectedValueChanged -= this.UpdateIndex;
 			delete.Click -= this.Delete;
 
 			ROVInterface.Program.windowStatus.Controls.Remove(index);
@@ -235,6 +266,7 @@ public class IndexStats {
 
 		public void UpdateIndex(object sender, EventArgs e) {
 			setting = (IndexSettings.Setting)index.SelectedItem;
+			Update();
 		}
 	}
 }
