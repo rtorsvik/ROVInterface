@@ -22,6 +22,11 @@ class JoystickHandler
 		joystick = GetSticks();
 	}
 
+	public void Init()
+	{
+		joystick = GetSticks();
+	}
+
 	/// <summary>
 	/// Call this method to update the state of all the joysticks
 	/// </summary>
@@ -30,7 +35,6 @@ class JoystickHandler
 		foreach(TJoystick j in joystick)
 		{
 			j.update();
-			Console.WriteLine(j.ToString());
 		}
 	}
 
@@ -72,13 +76,13 @@ public class TJoystick
 {
 	private Joystick joystick;
 	public int[] axis;
-	public bool[] buttons;
+	public bool[] button;
 
 	public TJoystick(Joystick joystick)
 	{
 		this.joystick = joystick;
 		axis = new int[24];
-		buttons = new bool[128];
+		button = new bool[128];
 	}
 
 	/// <summary>
@@ -116,7 +120,7 @@ public class TJoystick
 		axis[23] = state.Z; //z
 
 		//Update button values
-		buttons = state.GetButtons();
+		button = state.GetButtons();
 	}
 }
 
