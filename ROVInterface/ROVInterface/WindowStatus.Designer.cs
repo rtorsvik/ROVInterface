@@ -57,6 +57,15 @@
 			this.panel_IndexSettings = new System.Windows.Forms.FlowLayoutPanel();
 			this.btn_InsertIndexSetting = new System.Windows.Forms.Button();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+			this.label8 = new System.Windows.Forms.Label();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.progressBar1 = new System.Windows.Forms.ProgressBar();
+			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
 			this.label18 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
@@ -71,15 +80,8 @@
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.button1 = new System.Windows.Forms.Button();
 			this.btn_AddIndexStat = new System.Windows.Forms.Button();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.progressBar1 = new System.Windows.Forms.ProgressBar();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-			this.label8 = new System.Windows.Forms.Label();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
 			this.tabControl1.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
@@ -90,11 +92,13 @@
 			this.tabPage4.SuspendLayout();
 			this.panel_IndexSettings.SuspendLayout();
 			this.tabPage5.SuspendLayout();
-			this.panel_IndexStats.SuspendLayout();
-			this.flowLayoutPanel1.SuspendLayout();
 			this.flowLayoutPanel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+			this.panel_IndexStats.SuspendLayout();
+			this.flowLayoutPanel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -437,6 +441,89 @@
 			this.tabPage5.TabIndex = 4;
 			this.tabPage5.Text = "Joystick Settings";
 			// 
+			// flowLayoutPanel2
+			// 
+			this.flowLayoutPanel2.Controls.Add(this.label8);
+			this.flowLayoutPanel2.Controls.Add(this.comboBox1);
+			this.flowLayoutPanel2.Controls.Add(this.comboBox2);
+			this.flowLayoutPanel2.Controls.Add(this.progressBar1);
+			this.flowLayoutPanel2.Controls.Add(this.textBox3);
+			this.flowLayoutPanel2.Controls.Add(this.checkBox1);
+			this.flowLayoutPanel2.Controls.Add(this.numericUpDown1);
+			this.flowLayoutPanel2.Controls.Add(this.numericUpDown2);
+			this.flowLayoutPanel2.Controls.Add(this.numericUpDown3);
+			this.flowLayoutPanel2.Controls.Add(this.numericUpDown4);
+			this.flowLayoutPanel2.Location = new System.Drawing.Point(20, 142);
+			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+			this.flowLayoutPanel2.Size = new System.Drawing.Size(1241, 31);
+			this.flowLayoutPanel2.TabIndex = 21;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label8.Location = new System.Drawing.Point(3, 0);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(166, 25);
+			this.label8.TabIndex = 21;
+			this.label8.Text = "##############";
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(175, 3);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(70, 24);
+			this.comboBox1.TabIndex = 18;
+			// 
+			// comboBox2
+			// 
+			this.comboBox2.FormattingEnabled = true;
+			this.comboBox2.Location = new System.Drawing.Point(251, 3);
+			this.comboBox2.Name = "comboBox2";
+			this.comboBox2.Size = new System.Drawing.Size(70, 24);
+			this.comboBox2.TabIndex = 22;
+			// 
+			// progressBar1
+			// 
+			this.progressBar1.Location = new System.Drawing.Point(344, 3);
+			this.progressBar1.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+			this.progressBar1.Name = "progressBar1";
+			this.progressBar1.Size = new System.Drawing.Size(100, 23);
+			this.progressBar1.TabIndex = 19;
+			// 
+			// textBox3
+			// 
+			this.textBox3.Location = new System.Drawing.Point(450, 3);
+			this.textBox3.Name = "textBox3";
+			this.textBox3.Size = new System.Drawing.Size(49, 23);
+			this.textBox3.TabIndex = 20;
+			this.textBox3.Text = "65535";
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(505, 3);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(98, 21);
+			this.checkBox1.TabIndex = 25;
+			this.checkBox1.Text = "checkBox1";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			// 
+			// numericUpDown1
+			// 
+			this.numericUpDown1.Location = new System.Drawing.Point(609, 3);
+			this.numericUpDown1.Name = "numericUpDown1";
+			this.numericUpDown1.Size = new System.Drawing.Size(40, 23);
+			this.numericUpDown1.TabIndex = 23;
+			// 
+			// numericUpDown2
+			// 
+			this.numericUpDown2.Location = new System.Drawing.Point(655, 3);
+			this.numericUpDown2.Name = "numericUpDown2";
+			this.numericUpDown2.Size = new System.Drawing.Size(50, 23);
+			this.numericUpDown2.TabIndex = 24;
+			// 
 			// label18
 			// 
 			this.label18.AutoSize = true;
@@ -571,85 +658,19 @@
 			this.btn_AddIndexStat.UseVisualStyleBackColor = true;
 			this.btn_AddIndexStat.Click += new System.EventHandler(this.btn_AddIndexStat_Click);
 			// 
-			// comboBox1
+			// numericUpDown3
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(175, 3);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(70, 24);
-			this.comboBox1.TabIndex = 18;
+			this.numericUpDown3.Location = new System.Drawing.Point(711, 3);
+			this.numericUpDown3.Name = "numericUpDown3";
+			this.numericUpDown3.Size = new System.Drawing.Size(50, 23);
+			this.numericUpDown3.TabIndex = 26;
 			// 
-			// progressBar1
+			// numericUpDown4
 			// 
-			this.progressBar1.Location = new System.Drawing.Point(327, 3);
-			this.progressBar1.Name = "progressBar1";
-			this.progressBar1.Size = new System.Drawing.Size(100, 23);
-			this.progressBar1.TabIndex = 19;
-			// 
-			// textBox3
-			// 
-			this.textBox3.Location = new System.Drawing.Point(433, 3);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(49, 23);
-			this.textBox3.TabIndex = 20;
-			this.textBox3.Text = "65535";
-			// 
-			// flowLayoutPanel2
-			// 
-			this.flowLayoutPanel2.Controls.Add(this.label8);
-			this.flowLayoutPanel2.Controls.Add(this.comboBox1);
-			this.flowLayoutPanel2.Controls.Add(this.comboBox2);
-			this.flowLayoutPanel2.Controls.Add(this.progressBar1);
-			this.flowLayoutPanel2.Controls.Add(this.textBox3);
-			this.flowLayoutPanel2.Controls.Add(this.checkBox1);
-			this.flowLayoutPanel2.Controls.Add(this.numericUpDown1);
-			this.flowLayoutPanel2.Controls.Add(this.numericUpDown2);
-			this.flowLayoutPanel2.Location = new System.Drawing.Point(20, 50);
-			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-			this.flowLayoutPanel2.Size = new System.Drawing.Size(1241, 31);
-			this.flowLayoutPanel2.TabIndex = 21;
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.Location = new System.Drawing.Point(3, 0);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(166, 25);
-			this.label8.TabIndex = 21;
-			this.label8.Text = "##############";
-			// 
-			// comboBox2
-			// 
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(251, 3);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(70, 24);
-			this.comboBox2.TabIndex = 22;
-			// 
-			// numericUpDown1
-			// 
-			this.numericUpDown1.Location = new System.Drawing.Point(592, 3);
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(55, 23);
-			this.numericUpDown1.TabIndex = 23;
-			// 
-			// numericUpDown2
-			// 
-			this.numericUpDown2.Location = new System.Drawing.Point(653, 3);
-			this.numericUpDown2.Name = "numericUpDown2";
-			this.numericUpDown2.Size = new System.Drawing.Size(55, 23);
-			this.numericUpDown2.TabIndex = 24;
-			// 
-			// checkBox1
-			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(488, 3);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(98, 21);
-			this.checkBox1.TabIndex = 25;
-			this.checkBox1.Text = "checkBox1";
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.numericUpDown4.Location = new System.Drawing.Point(767, 3);
+			this.numericUpDown4.Name = "numericUpDown4";
+			this.numericUpDown4.Size = new System.Drawing.Size(50, 23);
+			this.numericUpDown4.TabIndex = 27;
 			// 
 			// WindowStatus
 			// 
@@ -679,12 +700,14 @@
 			this.panel_IndexSettings.ResumeLayout(false);
 			this.tabPage5.ResumeLayout(false);
 			this.tabPage5.PerformLayout();
-			this.panel_IndexStats.ResumeLayout(false);
-			this.flowLayoutPanel1.ResumeLayout(false);
 			this.flowLayoutPanel2.ResumeLayout(false);
 			this.flowLayoutPanel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+			this.panel_IndexStats.ResumeLayout(false);
+			this.flowLayoutPanel1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -742,5 +765,7 @@
 		private System.Windows.Forms.NumericUpDown numericUpDown1;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.NumericUpDown numericUpDown2;
+		private System.Windows.Forms.NumericUpDown numericUpDown3;
+		private System.Windows.Forms.NumericUpDown numericUpDown4;
 	}
 }
