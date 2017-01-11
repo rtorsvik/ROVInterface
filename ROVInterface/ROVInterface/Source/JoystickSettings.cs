@@ -72,32 +72,43 @@ class JoystickSettings
 
 			inValue_bar = new ProgressBar();
 			inValue_bar.Maximum = 65535;
+			inValue_bar.Size = new System.Drawing.Size(100, 20);
+			inValue_bar.Margin = new Padding(30, 3, 3, 3);
 
 			inValue = new TextBox();
 			inValue.Size = new System.Drawing.Size(50, 24);
 
 			reverse = new CheckBox();
+			reverse.Text = "";
+			reverse.AutoSize = true;
+			reverse.Margin = new Padding(30, 3, 3, 3);
 
 			expo = new NumericUpDown();
 			expo.DecimalPlaces = 1;
 			expo.Increment = 0.1m;
 			expo.Minimum = 1;
 			expo.Maximum = 3;
-			expo.Size = new System.Drawing.Size(55, 22);
+			expo.Size = new System.Drawing.Size(40, 22);
 
 			deadband = new NumericUpDown();
 			deadband.Maximum = 100;
+			deadband.Size = new System.Drawing.Size(50, 22);
 
 			offset = new NumericUpDown();
 			offset.Maximum = 100;
+			offset.Size = new System.Drawing.Size(50, 22);
 
 			max = new NumericUpDown();
 			max.Maximum = 100;
+			max.Size = new System.Drawing.Size(50, 22);
 
 			outValue_bar = new ProgressBar();
 			outValue_bar.Maximum = 65535;
+			outValue_bar.Size = new System.Drawing.Size(100, 20);
+			outValue_bar.Margin = new Padding(30, 3, 3, 3);
 
 			outValue = new TextBox();
+			outValue.Size = new System.Drawing.Size(50, 24);
 
 
 			DrawItems();
