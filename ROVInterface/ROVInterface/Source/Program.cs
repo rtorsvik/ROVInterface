@@ -33,6 +33,7 @@ namespace ROVInterface
 			}
 
 			JoystickHandler.Init();
+			ST_Register.Init();
             //#############################################################################
 
             new WindowCamera().Show();

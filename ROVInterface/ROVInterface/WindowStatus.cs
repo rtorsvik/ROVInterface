@@ -33,7 +33,7 @@ namespace ROVInterface
         private void WindowStatus_Load(object sender, EventArgs e)
         {
 			indexSettings = new IndexSettings(panel_IndexSettings);
-			indexStats = new IndexStats(indexSettings, panel_IndexStats);
+			indexStats = new IndexStats(indexSettings, panel_IndexStats, btn_EditMode);
 
 			joystickSettings = new JoystickSettings();
 
@@ -54,6 +54,7 @@ namespace ROVInterface
 		{
 			//Update Joystick Status fields
 			joystickSettings.Update();
+			indexStats.UpdateAllValues();
 		}
 
 		private void btn_InsertIndexSetting_Click(object sender, EventArgs e) {

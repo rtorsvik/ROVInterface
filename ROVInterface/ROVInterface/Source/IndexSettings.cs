@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
+/*	BUGS:
+	- Update the indexstats index combobox with the new name while editing the same index name in indexsetting
+	- Do not lose the current index when clicking the indexstats index combobox, while refreshing the indexlist
+*/
+
 public class IndexSettings {
 	
 	private FlowLayoutPanel panelIndexSettings;
@@ -20,7 +25,7 @@ public class IndexSettings {
 		FlowLayoutPanel temp = new FlowLayoutPanel();
 		temp.Parent = panelIndexSettings;
 		temp.Width = temp.Parent.Width - 6;
-		temp.Height = 20;
+		temp.Height = 22;
 		setting.panel = temp;
 
 		setting.labels[0] = CreateLabel("Index:", temp);
@@ -66,6 +71,10 @@ public class IndexSettings {
 		Button btn = new Button();
 		btn.BackColor = System.Drawing.Color.White;
 		btn.Parent = temp;
+		btn.Text = "X";
+		btn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+		btn.Size = new System.Drawing.Size(22, 22);
+		btn.Margin = new Padding(2);
 		btn.Click += setting.Delete;
 		setting.delete = btn;
 
@@ -142,7 +151,7 @@ public class IndexSettings {
 		public void UpdateStats(object sender, EventArgs e) {
 			// Update all stats if there are any, with the new settings
 			for (int i = 0, j = linkedStats.Count; i < j; i++)
-				linkedStats[i].Update();
+				linkedStats[i].UpdateSettings();
 		}
 
 		public override string ToString() {
@@ -154,13 +163,15 @@ public class IndexSettings {
 public class IndexStats {
 
 	private FlowLayoutPanel flowLayoutPanel;
+	private Button btnEditMode;
 	private IndexSettings indexSettings;
 	private bool editMode = true;
 	private List<Stats> allStats;
 
-	public IndexStats (IndexSettings s, FlowLayoutPanel pan) {
+	public IndexStats (IndexSettings s, FlowLayoutPanel pan, Button btnEditMode) {
 		indexSettings = s;
 		flowLayoutPanel = pan;
+		this.btnEditMode = btnEditMode;
 		allStats = new List<Stats>();
 	}
 
@@ -168,16 +179,25 @@ public class IndexStats {
 		editMode = !editMode;
 
 		if (editMode) {
+			btnEditMode.Text = "Edit Mode";
 			foreach(Stats s in allStats) {
 				s.index.Visible = true;
 				s.delete.Visible = true;
+				s.name.Visible = false;
 			}
 		} else {
+			btnEditMode.Text = "Display Mode";
 			foreach (Stats s in allStats) {
 				s.index.Visible = false;
 				s.delete.Visible = false;
+				s.name.Visible = true;
 			}
 		}
+	}
+
+	public void UpdateAllValues() {
+		foreach (Stats s in allStats)
+			s.UpdateValue();
 	}
 
 	public void CreateElement() {
@@ -193,6 +213,8 @@ public class IndexStats {
 		cmb.Click += stats.UpdateIndexList;
 		cmb.SelectedValueChanged += stats.UpdateIndex;
 		cmb.Parent = panel;
+		cmb.Width = 200;
+		cmb.DropDownStyle = ComboBoxStyle.DropDownList;
 		stats.index = cmb;
 
 		Label lab = new Label();
@@ -203,8 +225,23 @@ public class IndexStats {
 
 		Button btn = new Button();
 		btn.Parent = panel;
+		btn.BackColor = System.Drawing.Color.White;
+		btn.Text = "X";
+		btn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+		btn.Size = new System.Drawing.Size(22, 22);
 		stats.delete = btn;
 		btn.Click += stats.Delete;
+
+		if (editMode) {
+			stats.index.Visible = true;
+			stats.delete.Visible = true;
+			stats.name.Visible = false;
+
+		} else {
+			stats.index.Visible = false;
+			stats.delete.Visible = false;
+			stats.name.Visible = true;
+		}
 	}
 
 	public class Stats {
@@ -216,9 +253,12 @@ public class IndexStats {
 		private IndexSettings.Setting _setting;
 		public IndexSettings indexSettings;
 
+		private float value;
+
 		public Stats (IndexSettings s) {
 			indexSettings = s;
 			_setting = null;
+			value = float.MinValue;
 		}
 
 		private void SetSettings(IndexSettings.Setting s) {
@@ -231,10 +271,30 @@ public class IndexStats {
 			_setting.linkedStats.Add(this);
 		}
 
-		public void Update() {
+		public void UpdateSettings() {
 			// Update everything from settings
-			name.Text = _setting.ToString() + "--temp value--";
 			name.Font = new System.Drawing.Font("Microsoft Sans Serif", (int)_setting.size.Value);
+
+			// Update the value
+			UpdateValue();
+		}
+
+		public void UpdateValue() {
+			if (_setting == null)
+				return;
+			// Find new value
+			bool found = true;
+			float v = 0.0f;
+			try { value = ST_Register.status[(int)_setting.index.Value]; }
+			catch (Exception e) { found = false; }
+
+			if (found) {
+				if (value != v) {
+					value = v;
+					name.Text = _setting.ToString() + ": " + value;
+				}
+			} else
+				name.Text = _setting.ToString() + ": " + "NaN";
 		}
 
 		public void Delete(object sender, EventArgs e) {
@@ -266,7 +326,7 @@ public class IndexStats {
 
 		public void UpdateIndex(object sender, EventArgs e) {
 			setting = (IndexSettings.Setting)index.SelectedItem;
-			Update();
+			UpdateSettings();
 		}
 	}
 }

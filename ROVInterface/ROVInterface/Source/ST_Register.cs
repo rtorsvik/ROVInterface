@@ -6,20 +6,20 @@ using System.Collections.Generic;
 	Used when setting values and sending them. And used when getting values from the robot.
 */
 
-class ST_Register {
+public static class ST_Register {
 
-	private ST_Array values;
-	private ST_Array commands;
+	public static ST_Array status;
+	public static ST_Array commands;
 
 	/// <summary>
 	/// 
 	/// </summary>
-	public ST_Register() {
-		values = new ST_Array();
+	public static void Init() {
+		status = new ST_Array();
 		commands = new ST_Array();
 	}
 
-	public void SendCommands() {
+	public static void SendCommands() {
 		ST_Array.arrelement[] data = commands.GetAllValues();
 		for (int i = 0, j = data.Length; i < j; i++)
 			CommHandler.Send(data[i].index, data[i].value);
@@ -28,7 +28,7 @@ class ST_Register {
 		commands.ResetArray();
 	}
 
-	public void SendSingleCommand(ST_Array.arrelement data) {
+	public static void SendSingleCommand(ST_Array.arrelement data) {
 		CommHandler.Send(data.index, data.value);
 	}
 }
