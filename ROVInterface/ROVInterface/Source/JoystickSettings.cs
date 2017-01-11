@@ -55,11 +55,12 @@ class JoystickSettings
 		{
 			container = new FlowLayoutPanel();
 			container.Size = new System.Drawing.Size(1500, 30);
+			container.Font = new System.Drawing.Font("Microsoft Sans Serif", 8);
 			container.Location = new System.Drawing.Point(20, SNUM * SSPACE + SOFF);
 
 			description = new Label();
 			description.Text = descr;
-			description.Font = new System.Drawing.Font("Microsoft Sans Serif", 12);
+			description.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
 
 			joystick = new ComboBox();
 			joystick.Size = new System.Drawing.Size(70, 24);
@@ -82,6 +83,7 @@ class JoystickSettings
 			expo.Increment = 0.1m;
 			expo.Minimum = 1;
 			expo.Maximum = 3;
+			expo.Size = new System.Drawing.Size(55, 22);
 
 			deadband = new NumericUpDown();
 			deadband.Maximum = 100;

@@ -59,5 +59,10 @@ namespace ROVInterface
 			//reinitialize joysticks
 			jh.Init();
 		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			webBrowser1.Url = new System.Uri("http://explore.org/live-cams/player/shark-cam", System.UriKind.Absolute);
+		}
 	}
 }
