@@ -34,11 +34,13 @@ namespace ROVInterface
 
 			JoystickHandler.Init();
 			ST_Register.Init();
+			ProgramSaverLoader.Init();
             //#############################################################################
 
             new WindowCamera().Show();
             Application.Run(windowStatus = new WindowStatus());
-
+			windowStatus.FormClosing += ProgramSaverLoader.Save;
+			ProgramSaverLoader.Load();
         }
     }
 }

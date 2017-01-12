@@ -48,9 +48,9 @@ namespace ROVInterface
 			//JoystickHandler jh = Program.jh;
 			jh.update();
 
-			try { txt_debug_1.Text = "Joystick 0, axis 23: " + jh.joystick[0].axis[23]; } catch { }
-			try { txt_debug_2.Text = "Joystick 1, axis 23: " + jh.joystick[1].axis[23]; } catch { }
-			try { txt_debug_3.Text = "Joystick 1, button 1: " + jh.joystick[1].button[0]; } catch { }
+			//try { txt_debug_1.Text = "Joystick 0, axis 23: " + jh.joystick[0].axis[23]; } catch { }
+			//try { txt_debug_2.Text = "Joystick 1, axis 23: " + jh.joystick[1].axis[23]; } catch { }
+			//try { txt_debug_3.Text = "Joystick 1, button 1: " + jh.joystick[1].button[0]; } catch { }
 
 		}
 
