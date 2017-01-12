@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using jh = JoystickHandler;
+
 class JoystickSettings
 {
 	AxisSetting as0;
@@ -137,6 +139,7 @@ class JoystickSettings
 			c_offset.Margin = new Padding(8, 3, 8, 3);
 
 			c_max = new NumericUpDown();
+			c_max.Value = 100;
 			c_max.Maximum = 100;
 			c_max.Size = new System.Drawing.Size(50, 22);
 			c_max.Margin = new Padding(8, 3, 8, 3);
@@ -188,9 +191,40 @@ class JoystickSettings
 		{
 			try
 			{
-				c_inValue_bar.Value = ((TJoystick)c_joystick.SelectedItem).axis[c_axis.SelectedIndex];
-				c_inValue.Text = (((TJoystick)c_joystick.SelectedItem).axis[c_axis.SelectedIndex]).ToString();
+				joystick = c_joystick.SelectedIndex;
+				axis = c_axis.SelectedIndex;
+
+				inValue = jh.joystick[joystick].axis[axis];
+				
+				reverse = c_reverse.Checked ? -1 : 1;
+				expo = (float)c_expo.Value;
+				deadband = (int)c_deadband.Value;
+				offset = (int)c_deadband.Value;
+				max = (int)c_max.Value;
+
+				c_inValue_bar.Value = inValue + 32768;
+				c_inValue.Text = inValue.ToString();
+
+				//outValue = rescale()
+				outValue = (int)(inValue*(float)(reverse*(max/100.0))); //temporary
+
+				c_outValue_bar.Value = outValue + 32768;
+				c_outValue.Text = outValue.ToString();
+
+				//c_inValue_bar.Value = ((TJoystick)c_joystick.SelectedItem).axis[c_axis.SelectedIndex];
+				//c_inValue.Text = (((TJoystick)c_joystick.SelectedItem).axis[c_axis.SelectedIndex]).ToString();
 			} catch { }
+		}
+
+
+		public int rescale()
+		{
+			//Do math
+
+
+
+
+			return 0;
 		}
 
 

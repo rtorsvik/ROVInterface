@@ -48,25 +48,32 @@ static class JoystickHandler
 	{
 		DirectInput input = new DirectInput();
 
-		//List<SlimDX.DirectInput.Joystick> temp_sticks = new List<SlimDX.DirectInput.Joystick>();
+		//For each connected device of type GameController, get the device and add it to a list of joysticks
 		List<TJoystick> temp_sticks = new List<TJoystick>();
 		foreach (DeviceInstance device in input.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
 		{
 			try
 			{
+				//get joystick device
 				Joystick stick = new SlimDX.DirectInput.Joystick(input, device.InstanceGuid);
 				stick.Acquire();
 
-				TJoystick tstick = new TJoystick(stick);
+				
+				//set max and min values of each axis
+                foreach (DeviceObjectInstance deviceObject in stick.GetObjects())
+                {
+                    if ((deviceObject.ObjectType & ObjectDeviceType.Axis) != 0)
+                    {
+                        stick.GetObjectPropertiesById((int)deviceObject.ObjectType).SetRange(-32768, 32767);
+                    }
 
-                //temp_sticks.Add(stick);
+                }
+                
+				//add joystick to list    
+				TJoystick tstick = new TJoystick(stick);
 				temp_sticks.Add(tstick);
 
-			}
-			catch (DirectInputException)
-			{
-				throw;
-			}
+			} catch (DirectInputException) { throw;	}
 		}
 
 		return temp_sticks.ToArray();
