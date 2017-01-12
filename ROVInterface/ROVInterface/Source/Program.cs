@@ -40,9 +40,11 @@ namespace ROVInterface
             //#############################################################################
 
             new WindowCamera().Show();
-            Application.Run(windowStatus = new WindowStatus());
+			windowStatus = new WindowStatus();
 			windowStatus.FormClosing += ProgramSaverLoader.Save;
 			ProgramSaverLoader.Load();
+			Application.Run(windowStatus);
+			
         }
     }
 }
