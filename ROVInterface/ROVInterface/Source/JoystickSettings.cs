@@ -213,7 +213,7 @@ class JoystickSettings
 
 				//c_inValue_bar.Value = ((TJoystick)c_joystick.SelectedItem).axis[c_axis.SelectedIndex];
 				//c_inValue.Text = (((TJoystick)c_joystick.SelectedItem).axis[c_axis.SelectedIndex]).ToString();
-			} catch { }
+			} catch (Exception e) { }
 		}
 
 

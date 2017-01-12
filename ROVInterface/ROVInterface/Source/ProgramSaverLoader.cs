@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ public static class ProgramSaverLoader {
 	}
 
 	public static void Load() {
-		Console.WriteLine("Test write line");
+		Debug.WriteLine("Test write line");
 		if (!reader.FindFileFromPath()) {
 			// If the file was not found, print out a message and quit loading
 			return;
