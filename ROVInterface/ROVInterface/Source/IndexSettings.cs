@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-/*	BUGS:
-	- Update the indexstats index combobox with the new name while editing the same index name in indexsetting
-	- Do not lose the current index when clicking the indexstats index combobox, while refreshing the indexlist
-*/
-
 public class IndexSettings {
 	
 	private FlowLayoutPanel panelIndexSettings;
@@ -232,6 +227,8 @@ public class IndexStats {
 		stats.delete = btn;
 		btn.Click += stats.Delete;
 
+		stats.Init();
+
 		if (editMode) {
 			stats.index.Visible = true;
 			stats.delete.Visible = true;
@@ -254,11 +251,18 @@ public class IndexStats {
 		public IndexSettings indexSettings;
 
 		private float value;
+		private BindingSource bind;
 
 		public Stats (IndexSettings s) {
 			indexSettings = s;
 			_setting = null;
 			value = float.MinValue;
+		}
+
+		public void Init() {
+			bind = new BindingSource();
+			bind.DataSource = indexSettings.allSettings;
+			index.DataSource = bind;
 		}
 
 		private void SetSettings(IndexSettings.Setting s) {
@@ -274,7 +278,7 @@ public class IndexStats {
 		public void UpdateSettings() {
 			// Update everything from settings
 			name.Font = new System.Drawing.Font("Microsoft Sans Serif", (int)_setting.size.Value);
-
+			bind.ResetCurrentItem();
 			// Update the value
 			UpdateValue();
 		}
@@ -319,12 +323,16 @@ public class IndexStats {
 
 		public void UpdateIndexList(object sender, EventArgs e) {
 			// Update the combobox showing all the index settings
-			index.Items.Clear();
-			foreach (IndexSettings.Setting s in indexSettings.allSettings)
-				index.Items.Add(s);
+			bind.ResetBindings(true);
 		}
 
+		private bool skip = false;
 		public void UpdateIndex(object sender, EventArgs e) {
+			if (skip) {
+				skip = false;
+				return;
+			}
+			skip = true;
 			setting = (IndexSettings.Setting)index.SelectedItem;
 			UpdateSettings();
 		}
