@@ -45,7 +45,6 @@ namespace ROVInterface
 		{
 
 			//Update debug field
-			//JoystickHandler jh = Program.jh;
 			jh.update();
 
 			//try { txt_debug_1.Text = "Joystick 0, axis 23: " + jh.joystick[0].axis[23]; } catch { }

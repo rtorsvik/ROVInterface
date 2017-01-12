@@ -199,14 +199,14 @@ class JoystickSettings
 				reverse = c_reverse.Checked ? -1 : 1;
 				expo = (float)c_expo.Value;
 				deadband = (int)c_deadband.Value;
-				offset = (int)c_deadband.Value;
+				offset = (int)c_offset.Value;
 				max = (int)c_max.Value;
 
 				c_inValue_bar.Value = inValue + 32768;
 				c_inValue.Text = inValue.ToString();
 
-				//outValue = rescale()
-				outValue = (int)(inValue*(float)(reverse*(max/100.0))); //temporary
+				outValue = (int)Rescale(inValue);
+				//outValue = (int)(inValue*(float)(reverse*(max/100.0))); //temporary
 
 				c_outValue_bar.Value = outValue + 32768;
 				c_outValue.Text = outValue.ToString();
@@ -217,14 +217,39 @@ class JoystickSettings
 		}
 
 
-		public int rescale()
+
+		/// <summary>
+		/// rescale the input value
+		/// </summary>
+		/// <returns></returns>
+		public double Rescale(double x)
 		{
 			//Do math
+			double x0 = 32767 * (deadband / 100d);
+			double y0 = 32767 * (offset / 100d);
 
+			double x1 = 32767;
+			double y1 = 32767 * (max / 100d);
 
+			double e = expo;
 
+			double y;
+			if (-x0 < x && x < x0)
+			{
+				y = 0;
+			}
+			else
+			{
+				//Function might not have real solutins for negative values of x, 
+				//so calculate only for asolute values of x, and convert later
+				y = (int)(reverse * (Math.Pow((Math.Abs(x) - x0), e)) * (y1 - y0) / (Math.Pow((x1 - x0), e)) + y0);
+			}
 
-			return 0;
+			//for negative values of x, invert y value 
+			if (x < 0)
+				y = -y;
+			
+			return y;
 		}
 
 
