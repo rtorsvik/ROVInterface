@@ -46,7 +46,9 @@ public class IndexSettings {
 		nud.Parent = temp;
 		nud.ValueChanged += setting.UpdateStats;
 		nud.Width = 40;
+		nud.Minimum = 0;
 		nud.Maximum = 12;
+		nud.Value = 2;
 		setting.digit = nud;
 
 		setting.labels[3] = CreateLabel("Size:", temp);
@@ -57,6 +59,7 @@ public class IndexSettings {
 		nud.Width = 40;
 		nud.Minimum = 8;
 		nud.Maximum = 25;
+		nud.Value = 12;
 		setting.size = nud;
 
 		// Color handler
