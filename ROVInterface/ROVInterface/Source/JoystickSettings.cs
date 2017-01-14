@@ -205,6 +205,12 @@ class JoystickSettings
 				c_inValue_bar.Value = inValue + 32768;
 				c_inValue.Text = inValue.ToString();
 
+				if (offset > max)   //offset can't be greater than max
+				{
+					offset = max;
+					c_offset.Value = c_max.Value;  
+				}
+
 				outValue = (int)Rescale(inValue);
 				//outValue = (int)(inValue*(float)(reverse*(max/100.0))); //temporary
 
@@ -233,6 +239,7 @@ class JoystickSettings
 
 			double e = expo;
 
+			//in the "dead" zone of the deadband, y = 0, else, calculate y value
 			double y;
 			if (-x0 < x && x < x0)
 			{
@@ -242,7 +249,7 @@ class JoystickSettings
 			{
 				//Function might not have real solutins for negative values of x, 
 				//so calculate only for asolute values of x, and convert later
-				y = (int)(reverse * (Math.Pow((Math.Abs(x) - x0), e)) * (y1 - y0) / (Math.Pow((x1 - x0), e)) + y0);
+				y = (reverse * (Math.Pow((Math.Abs(x) - x0), e)) * (y1 - y0) / (Math.Pow((x1 - x0), e)) + y0);
 			}
 
 			//for negative values of x, invert y value 

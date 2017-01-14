@@ -81,6 +81,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="WindowCamera.resx">
       <DependentUpon>WindowCamera.cs</DependentUpon>
@@ -102,7 +103,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\joystickrescale dark.jpg" />
     <Content Include="Misc\Settings.xml" />
+    <None Include="Resources\joystickrescale dark 3.jpg" />
+    <None Include="Resources\joystickrescale dark 2.jpg" />
+    <None Include="Resources\joystickrescale dark.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

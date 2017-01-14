@@ -55,8 +55,12 @@
 			this.txt_serial_index = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.panel_IndexSettings = new System.Windows.Forms.FlowLayoutPanel();
 			this.btn_InsertIndexSetting = new System.Windows.Forms.Button();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+			this.label8 = new System.Windows.Forms.Label();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
 			this.label18 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
@@ -73,10 +77,8 @@
 			this.btn_EditMode = new System.Windows.Forms.Button();
 			this.btn_AddIndexStat = new System.Windows.Forms.Button();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-			this.label8 = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
@@ -85,18 +87,22 @@
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabPage4.SuspendLayout();
+			this.tableLayoutPanel2.SuspendLayout();
 			this.panel_IndexSettings.SuspendLayout();
+			this.groupBox5.SuspendLayout();
+			this.flowLayoutPanel2.SuspendLayout();
 			this.tabPage5.SuspendLayout();
 			this.panel_IndexStats.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
-			this.tableLayoutPanel2.SuspendLayout();
-			this.groupBox5.SuspendLayout();
-			this.flowLayoutPanel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabControl1
 			// 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Controls.Add(this.tabPage3);
@@ -395,6 +401,22 @@
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "Index Settings";
 			// 
+			// tableLayoutPanel2
+			// 
+			this.tableLayoutPanel2.ColumnCount = 2;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.Controls.Add(this.panel_IndexSettings, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.groupBox5, 1, 0);
+			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(1394, 576);
+			this.tableLayoutPanel2.TabIndex = 1;
+			// 
 			// panel_IndexSettings
 			// 
 			this.panel_IndexSettings.AutoScroll = true;
@@ -402,7 +424,7 @@
 			this.panel_IndexSettings.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel_IndexSettings.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.panel_IndexSettings.Location = new System.Drawing.Point(0, 0);
-			this.panel_IndexSettings.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+			this.panel_IndexSettings.Margin = new System.Windows.Forms.Padding(0);
 			this.panel_IndexSettings.Name = "panel_IndexSettings";
 			this.panel_IndexSettings.Size = new System.Drawing.Size(697, 576);
 			this.panel_IndexSettings.TabIndex = 0;
@@ -417,9 +439,44 @@
 			this.btn_InsertIndexSetting.UseVisualStyleBackColor = true;
 			this.btn_InsertIndexSetting.Click += new System.EventHandler(this.btn_InsertIndexSetting_Click);
 			// 
+			// groupBox5
+			// 
+			this.groupBox5.Controls.Add(this.flowLayoutPanel2);
+			this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.groupBox5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox5.Location = new System.Drawing.Point(697, 0);
+			this.groupBox5.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(692, 571);
+			this.groupBox5.TabIndex = 1;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Instructions";
+			// 
+			// flowLayoutPanel2
+			// 
+			this.flowLayoutPanel2.Controls.Add(this.label8);
+			this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+			this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 16);
+			this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+			this.flowLayoutPanel2.Size = new System.Drawing.Size(686, 552);
+			this.flowLayoutPanel2.TabIndex = 0;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(3, 0);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(640, 91);
+			this.label8.TabIndex = 0;
+			this.label8.Text = resources.GetString("label8.Text");
+			// 
 			// tabPage5
 			// 
 			this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+			this.tabPage5.Controls.Add(this.label17);
+			this.tabPage5.Controls.Add(this.pictureBox1);
 			this.tabPage5.Controls.Add(this.label18);
 			this.tabPage5.Controls.Add(this.label16);
 			this.tabPage5.Controls.Add(this.label15);
@@ -596,61 +653,35 @@
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Index Stats";
 			// 
-			// tableLayoutPanel2
+			// label17
 			// 
-			this.tableLayoutPanel2.ColumnCount = 2;
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.Controls.Add(this.panel_IndexSettings, 0, 0);
-			this.tableLayoutPanel2.Controls.Add(this.groupBox5, 1, 0);
-			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 1;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(1394, 576);
-			this.tableLayoutPanel2.TabIndex = 1;
+			this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label17.AutoSize = true;
+			this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label17.Location = new System.Drawing.Point(1110, 15);
+			this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(202, 17);
+			this.label17.TabIndex = 19;
+			this.label17.Text = "Function parameters explained";
 			// 
-			// groupBox5
+			// pictureBox1
 			// 
-			this.groupBox5.Controls.Add(this.flowLayoutPanel2);
-			this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBox5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox5.Location = new System.Drawing.Point(697, 0);
-			this.groupBox5.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(692, 571);
-			this.groupBox5.TabIndex = 1;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "Instructions";
-			// 
-			// flowLayoutPanel2
-			// 
-			this.flowLayoutPanel2.Controls.Add(this.label8);
-			this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 16);
-			this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-			this.flowLayoutPanel2.Size = new System.Drawing.Size(686, 552);
-			this.flowLayoutPanel2.TabIndex = 0;
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(3, 0);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(640, 91);
-			this.label8.TabIndex = 0;
-			this.label8.Text = resources.GetString("label8.Text");
+			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox1.Image = global::ROVInterface.Properties.Resources.joystickrescale_dark_3;
+			this.pictureBox1.Location = new System.Drawing.Point(1015, 35);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(368, 378);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 18;
+			this.pictureBox1.TabStop = false;
 			// 
 			// WindowStatus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-			this.ClientSize = new System.Drawing.Size(1426, 839);
+			this.ClientSize = new System.Drawing.Size(1426, 837);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.tabControl1);
 			this.Margin = new System.Windows.Forms.Padding(2);
@@ -670,16 +701,17 @@
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.tabPage4.ResumeLayout(false);
+			this.tableLayoutPanel2.ResumeLayout(false);
 			this.panel_IndexSettings.ResumeLayout(false);
+			this.groupBox5.ResumeLayout(false);
+			this.flowLayoutPanel2.ResumeLayout(false);
+			this.flowLayoutPanel2.PerformLayout();
 			this.tabPage5.ResumeLayout(false);
 			this.tabPage5.PerformLayout();
 			this.panel_IndexStats.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
-			this.tableLayoutPanel2.ResumeLayout(false);
-			this.groupBox5.ResumeLayout(false);
-			this.flowLayoutPanel2.ResumeLayout(false);
-			this.flowLayoutPanel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -733,5 +765,7 @@
 		private System.Windows.Forms.GroupBox groupBox5;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
 		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.Label label17;
 	}
 }
