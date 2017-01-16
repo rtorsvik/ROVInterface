@@ -81,8 +81,6 @@ class JoystickSettings
 		private ProgressBar c_outValue_bar;
 		private TextBox c_outValue;
 
-		
-
 		//Settings
 		public int joystick;	//index of the selected joystick
 		public int axis;        //index of the selected axis
@@ -284,6 +282,31 @@ class JoystickSettings
 			
 			return y;
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="joystickIndex"></param>
+		/// <param name="axisIndex"></param>
+		/// <param name="reverse">{-1,1} -1 when reversed</param>
+		/// <param name="expo">1,0...3,0</param>
+		/// <param name="deadband">0...100</param>
+		/// <param name="offset">0...100</param>
+		/// <param name="max">0...100</param>
+		public void setSettings(int joystickIndex, int axisIndex, int reverse, decimal expo, int deadband, int offset, int max)
+		{
+			c_joystick.SelectedIndex = joystickIndex;
+			c_axis.SelectedIndex = axisIndex;
+
+			if (reverse == -1)
+				c_reverse.Checked = true;
+
+			c_expo.Value = expo;
+			c_deadband.Value = deadband;
+			c_offset.Value = offset;
+			c_max.Value = max;
+		}
+
 
 
 		/// <summary>
