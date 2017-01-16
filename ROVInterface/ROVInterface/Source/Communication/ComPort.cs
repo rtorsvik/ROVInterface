@@ -5,9 +5,6 @@ using System.Windows.Forms;
 class SerialConnection
 {
 
-
-
-
     private SerialPort port;
 
     //Initialize a new serial connection with the given port number and baud rate
@@ -38,11 +35,9 @@ class SerialConnection
 
     public bool Close()
     {
-        //TODO
-        //close com port
+		port.Close();
         return false;
     }
-
 
     public bool IsOpen()
     {
@@ -79,10 +74,12 @@ class SerialConnection
         packet[0] = (byte)((index & 0x00f0) >>  8);
         packet[1] = (byte)((index & 0x000f) >>  0);
 
-        //packet[2] = (byte)((value & 0xf000) >> 24);
-        //packet[3] = (byte)((value & 0x0f00) >> 16);
-        //packet[4] = (byte)((value & 0x00f0) >>  8);
-        //packet[5] = (byte)((value & 0x000f) >>  0);
+		//packet[2] = (byte)((value & 0xf000) >> 24);
+		//packet[3] = (byte)((value & 0x0f00) >> 16);
+		//packet[4] = (byte)((value & 0x00f0) >>  8);
+		//packet[5] = (byte)((value & 0x000f) >>  0);
+
+		Array.Copy(BitConverter.GetBytes(value), 0, packet, 2, 4);
 
         port.Write(packet, 0, 6);
 
@@ -91,7 +88,7 @@ class SerialConnection
 
     private bool recieve()
     {
-        return true;
+        return false;
     }
 
 

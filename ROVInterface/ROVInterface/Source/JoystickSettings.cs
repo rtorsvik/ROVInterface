@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,14 +8,26 @@ using System.Windows.Forms;
 
 using jh = JoystickHandler;
 
+//BUG FIXES
+//make autodetect functions to a separate thread so that it does not frees the entire program
+//autodetect removes already detected selected axis if a new axis is not detected, might not be a problem
+
+
 class JoystickSettings
 {
+	private static int SNUM = 0;	//Setting number
+	private const int SSPACE = 30;  //pixels, spacing between AxisSetting elements
+	private const int SOFF = 40;    //pixels, offset from top
+
+
 	AxisSetting as0;
 	AxisSetting as1;
 	AxisSetting as2;
 	AxisSetting as3;
 	AxisSetting as4;
 	AxisSetting as5;
+
+	ButtonSetting bs6;
 
 	public JoystickSettings()
 	{
@@ -24,6 +37,8 @@ class JoystickSettings
 		as3 = new AxisSetting("Pitch");
 		as4 = new AxisSetting("Roll");
 		as5 = new AxisSetting("Yaw");
+
+		bs6 = new ButtonSetting("Lights on/off");
 	}
 
 	public void Update()
@@ -34,6 +49,8 @@ class JoystickSettings
 		as3.Update();
 		as4.Update();
 		as5.Update();
+
+		bs6.Update();
 	}
 
 
@@ -42,10 +59,6 @@ class JoystickSettings
 	/// </summary>
 	private class AxisSetting
 	{
-		private static int SNUM = 0;
-		private const int SSPACE = 30;	//pixels, spacing between AxisSetting elements
-		private const int SOFF = 40;    //pixels, offset from top
-
 		//Controls
 		private FlowLayoutPanel c_container;
 
@@ -53,6 +66,8 @@ class JoystickSettings
 
 		private ComboBox c_joystick;
 		private ComboBox c_axis;
+
+		private Button c_autoDetect;
 
 		private ProgressBar c_inValue_bar;
 		private TextBox c_inValue;
@@ -65,6 +80,8 @@ class JoystickSettings
 
 		private ProgressBar c_outValue_bar;
 		private TextBox c_outValue;
+
+		
 
 		//Settings
 		public int joystick;	//index of the selected joystick
@@ -104,7 +121,7 @@ class JoystickSettings
 
 			c_axis = new ComboBox();
 			c_axis.DropDownStyle = ComboBoxStyle.DropDownList;
-			c_axis.Size = new System.Drawing.Size(70, 24);
+			c_axis.Size = new System.Drawing.Size(50, 24);
 			c_axis.Items.AddRange(axes_list);
 
 			c_inValue_bar = new ProgressBar();
@@ -152,6 +169,11 @@ class JoystickSettings
 			c_outValue = new TextBox();
 			c_outValue.Size = new System.Drawing.Size(50, 24);
 
+			c_autoDetect = new Button();
+			c_autoDetect.Click += this.AutoDetect;
+			c_autoDetect.Text = "A";
+			c_autoDetect.Size = new System.Drawing.Size(24, 24);
+
 			DrawItems();
 			SNUM++;
 
@@ -167,6 +189,8 @@ class JoystickSettings
 			c_container.Controls.Add(c_joystick);
 			c_container.Controls.Add(c_axis);
 
+			c_container.Controls.Add(c_autoDetect);
+
 			c_container.Controls.Add(c_inValue_bar);
 			c_container.Controls.Add(c_inValue);
 
@@ -178,6 +202,8 @@ class JoystickSettings
 
 			c_container.Controls.Add(c_outValue_bar);
 			c_container.Controls.Add(c_outValue);
+
+			
 
 			page.Controls.Add(c_container);
 		}
@@ -193,8 +219,6 @@ class JoystickSettings
 			{
 				joystick = c_joystick.SelectedIndex;
 				axis = c_axis.SelectedIndex;
-
-				inValue = jh.joystick[joystick].axis[axis];
 				
 				reverse = c_reverse.Checked ? -1 : 1;
 				expo = (float)c_expo.Value;
@@ -202,23 +226,25 @@ class JoystickSettings
 				offset = (int)c_offset.Value;
 				max = (int)c_max.Value;
 
-				c_inValue_bar.Value = inValue + 32768;
-				c_inValue.Text = inValue.ToString();
-
 				if (offset > max)   //offset can't be greater than max
 				{
 					offset = max;
-					c_offset.Value = c_max.Value;  
+					c_offset.Value = c_max.Value;
 				}
 
+				if (joystick == -1 || axis == -1)
+					return;
+
+				inValue = jh.joystick[joystick].axis[axis];
+
+				c_inValue_bar.Value = inValue + 32768;
+				c_inValue.Text = inValue.ToString();
+
 				outValue = (int)Rescale(inValue);
-				//outValue = (int)(inValue*(float)(reverse*(max/100.0))); //temporary
 
 				c_outValue_bar.Value = outValue + 32768;
 				c_outValue.Text = outValue.ToString();
 
-				//c_inValue_bar.Value = ((TJoystick)c_joystick.SelectedItem).axis[c_axis.SelectedIndex];
-				//c_inValue.Text = (((TJoystick)c_joystick.SelectedItem).axis[c_axis.SelectedIndex]).ToString();
 			} catch (Exception e) { }
 		}
 
@@ -260,6 +286,51 @@ class JoystickSettings
 		}
 
 
+		/// <summary>
+		/// Autodetect axis
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		public void AutoDetect(object sender, EventArgs e) //(object sender, EventArgs e) ??? make this function run when hitting button
+		{
+			//if there is no joystick selected, sop auto detecting
+			if (this.joystick == -1)
+				return;
+
+			TJoystick joystick = jh.joystick[this.joystick];
+
+			int index = -1;
+			int axisValue = 0;
+
+			//Change color of button to indicate that autotedect is running
+			System.Drawing.Color originalColor = c_autoDetect.BackColor;
+			c_autoDetect.BackColor = System.Drawing.Color.Aquamarine;
+			c_autoDetect.Update();
+
+			Stopwatch stopWatch = new Stopwatch();
+			stopWatch.Start();
+
+			//if none of the axes changes enough within 3 seconds, stop this autodetect processs and use -1 as index
+			while (stopWatch.ElapsedMilliseconds < 3000 && index == -1)
+			{
+				jh.update();
+
+				for (int i = 0; i < joystick.axis.Length; i++)
+				{
+					axisValue = joystick.axis[i];
+					if (axisValue < -32767 * 0.5 || axisValue > 32767 * 0.5)
+						index = i;
+				}
+
+			}
+
+			c_axis.SelectedIndex = index;
+			c_autoDetect.BackColor = originalColor;
+			c_autoDetect.Update();
+
+		}
+
+
 
 		private string[] axes_list = {
 			"ARx",	"ARy",	"ARz",
@@ -271,6 +342,157 @@ class JoystickSettings
 			"VX",	"VY",	"VZ",
 			"X",	"Y",	"Z"};
 
+
+	}
+
+
+
+	private class ButtonSetting
+	{
+		//Controls
+		private FlowLayoutPanel c_container;
+
+		private Label c_description;
+
+		private ComboBox c_joystick;
+		private NumericUpDown c_button;
+
+		private Button c_autoDetect;
+
+		private CheckBox c_inValue;
+
+		//Settings
+		public int joystick;    //index of the selected joystick
+		public int button;        //index of the selected axis
+
+		public bool inValue;     //Value of the axis on the joystick
+
+		public bool outValue;     //Value of the axis on the joystick
+
+		/// <summary>
+		/// Create new set of settings for a joystick button
+		/// </summary>
+		/// <param name="description">Description of what this joystick axis controls</param>
+		public ButtonSetting(string descr)
+		{
+			c_container = new FlowLayoutPanel();
+			c_container.Size = new System.Drawing.Size(1500, 30);
+			c_container.Font = new System.Drawing.Font("Microsoft Sans Serif", 8);
+			c_container.Location = new System.Drawing.Point(20, SNUM * SSPACE + SOFF);
+
+			c_description = new Label();
+			c_description.Text = descr;
+			c_description.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
+			c_description.Size = new System.Drawing.Size(130, 24);
+
+			c_joystick = new ComboBox();
+			c_joystick.DropDownStyle = ComboBoxStyle.DropDownList;
+			c_joystick.Size = new System.Drawing.Size(70, 24);
+			c_joystick.Items.AddRange(JoystickHandler.joystick);
+
+			c_button = new NumericUpDown();
+			c_button.Minimum = 0;
+			c_button.Maximum = 127;
+			c_button.Size = new System.Drawing.Size(50, 24);
+
+			c_autoDetect = new Button();
+			c_autoDetect.Click += this.AutoDetect;
+			c_autoDetect.Text = "A";
+			c_autoDetect.Size = new System.Drawing.Size(24, 24);
+
+			c_inValue = new CheckBox();
+			c_inValue.Text = "";
+			c_inValue.AutoSize = true;
+			c_inValue.Margin = new Padding(30, 3, 30, 3);
+
+			DrawItems();
+			SNUM++;
+		}
+
+		private void DrawItems()
+		{
+			ROVInterface.WindowStatus window = ROVInterface.Program.windowStatus;
+			TabPage page = window.tabPage5;
+
+			c_container.Controls.Add(c_description);
+
+			c_container.Controls.Add(c_joystick);
+			c_container.Controls.Add(c_button);
+
+			c_container.Controls.Add(c_autoDetect);
+
+			c_container.Controls.Add(c_inValue);
+
+			page.Controls.Add(c_container);
+		}
+
+		/// <summary>
+		/// Update values in 
+		/// </summary>
+		public void Update()
+		{
+			try
+			{
+				joystick = c_joystick.SelectedIndex;
+				button = (int)c_button.Value;
+
+				if (joystick == -1 || button == -1)
+					return;
+
+				inValue = jh.joystick[joystick].button[button];
+
+				c_inValue.Checked = inValue;
+
+				outValue = inValue;
+			}
+			catch (Exception e) { }
+		}
+
+		/// <summary>
+		/// Autodetect axis
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		public void AutoDetect(object sender, EventArgs e) //(object sender, EventArgs e) ??? make this function run when hitting button
+		{
+			//if there is no joystick selected, sop auto detecting
+			if (this.joystick == -1)
+				return;
+
+			TJoystick joystick = jh.joystick[this.joystick];
+
+			int index = -1;
+			bool buttonValue = false;
+
+			//Change color of button to indicate that autotedect is running
+			System.Drawing.Color originalColor = c_autoDetect.BackColor;
+			c_autoDetect.BackColor = System.Drawing.Color.Aquamarine;
+			c_autoDetect.Update();
+
+			Stopwatch stopWatch = new Stopwatch();
+			stopWatch.Start();
+
+			//if none of the axes changes enough within 3 seconds, stop this autodetect processs and use -1 as index
+			while (stopWatch.ElapsedMilliseconds < 3000 && index == -1)
+			{
+				jh.update();
+
+				for (int i = 0; i < joystick.axis.Length; i++)
+				{
+					buttonValue = joystick.button[i];
+					if (buttonValue)
+						index = i;
+				}
+
+			}
+
+			if (index == -1) index = 0;
+
+			c_button.Value = index;
+			c_autoDetect.BackColor = originalColor;
+			c_autoDetect.Update();
+
+		}
 
 	}
 
