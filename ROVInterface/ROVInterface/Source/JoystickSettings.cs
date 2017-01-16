@@ -13,19 +13,19 @@ using jh = JoystickHandler;
 //autodetect removes already detected selected axis if a new axis is not detected, might not be a problem
 
 
-class JoystickSettings
+public class JoystickSettings
 {
 	private static int SNUM = 0;	//Setting number
 	private const int SSPACE = 30;  //pixels, spacing between AxisSetting elements
 	private const int SOFF = 40;    //pixels, offset from top
 
 
-	AxisSetting as0;
-	AxisSetting as1;
-	AxisSetting as2;
-	AxisSetting as3;
-	AxisSetting as4;
-	AxisSetting as5;
+	public AxisSetting as0;
+	public AxisSetting as1;
+	public AxisSetting as2;
+	public AxisSetting as3;
+	public AxisSetting as4;
+	public AxisSetting as5;
 
 	ButtonSetting bs6;
 
@@ -57,7 +57,7 @@ class JoystickSettings
 	/// <summary>
 	/// Setings for an axis on a joystick
 	/// </summary>
-	private class AxisSetting
+	public class AxisSetting
 	{
 		//Controls
 		private FlowLayoutPanel c_container;

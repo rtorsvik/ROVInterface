@@ -16,7 +16,7 @@ namespace ROVInterface
 		public IndexSettings indexSettings;
 		public IndexStats indexStats;
 
-		private JoystickSettings joystickSettings;
+		public JoystickSettings joystickSettings;
 
 		public WindowStatus()
         {
