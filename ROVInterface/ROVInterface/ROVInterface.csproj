@@ -105,6 +105,7 @@
   <ItemGroup>
     <Content Include="Images\joystickrescale dark.jpg" />
     <Content Include="Misc\Settings.xml" />
+    <None Include="Resources\joystickscale dark test.png" />
     <None Include="Resources\joystickrescale dark 3.jpg" />
     <None Include="Resources\joystickrescale dark 2.jpg" />
     <None Include="Resources\joystickrescale dark.jpg" />

@@ -35,7 +35,6 @@
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.panel1 = new System.Windows.Forms.Panel();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
@@ -53,7 +52,6 @@
 			this.txt_serial_value = new System.Windows.Forms.TextBox();
 			this.btn_send_serial = new System.Windows.Forms.Button();
 			this.txt_serial_index = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.panel_IndexSettings = new System.Windows.Forms.FlowLayoutPanel();
@@ -62,6 +60,8 @@
 			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label8 = new System.Windows.Forms.Label();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.label17 = new System.Windows.Forms.Label();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.label18 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
@@ -77,12 +77,14 @@
 			this.btn_EditMode = new System.Windows.Forms.Button();
 			this.btn_AddIndexStat = new System.Windows.Forms.Button();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.label17 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.progressBar1 = new System.Windows.Forms.ProgressBar();
+			this.label19 = new System.Windows.Forms.Label();
+			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.groupBox8 = new System.Windows.Forms.GroupBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
-			this.panel1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -92,10 +94,11 @@
 			this.groupBox5.SuspendLayout();
 			this.flowLayoutPanel2.SuspendLayout();
 			this.tabPage5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.panel_IndexStats.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.groupBox8.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -141,7 +144,9 @@
 			// tabPage3
 			// 
 			this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+			this.tabPage3.Controls.Add(this.groupBox3);
 			this.tabPage3.Controls.Add(this.tableLayoutPanel1);
+			this.tabPage3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.tabPage3.Location = new System.Drawing.Point(4, 25);
 			this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
 			this.tabPage3.Name = "tabPage3";
@@ -159,42 +164,34 @@
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 448F));
-			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.groupBox8, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.groupBox7, 1, 0);
+			this.tableLayoutPanel1.Controls.Add(this.groupBox6, 2, 0);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 5);
 			this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 1;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(1394, 578);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(1394, 434);
 			this.tableLayoutPanel1.TabIndex = 2;
-			// 
-			// panel1
-			// 
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.panel1.Controls.Add(this.groupBox3);
-			this.panel1.Controls.Add(this.groupBox2);
-			this.panel1.Controls.Add(this.groupBox1);
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(2, 2);
-			this.panel1.Margin = new System.Windows.Forms.Padding(2);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(469, 574);
-			this.panel1.TabIndex = 0;
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox3.Controls.Add(this.label19);
+			this.groupBox3.Controls.Add(this.progressBar1);
 			this.groupBox3.Controls.Add(this.label6);
 			this.groupBox3.Controls.Add(this.label7);
 			this.groupBox3.Controls.Add(this.textBox2);
 			this.groupBox3.Controls.Add(this.textBox1);
+			this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox3.Location = new System.Drawing.Point(8, 446);
+			this.groupBox3.Location = new System.Drawing.Point(4, 443);
 			this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox3.Size = new System.Drawing.Size(446, 124);
+			this.groupBox3.Size = new System.Drawing.Size(1384, 124);
 			this.groupBox3.TabIndex = 12;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Status";
@@ -206,7 +203,7 @@
 			this.label6.Location = new System.Drawing.Point(14, 63);
 			this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(94, 13);
+			this.label6.Size = new System.Drawing.Size(123, 17);
 			this.label6.TabIndex = 16;
 			this.label6.Text = "Message recieved";
 			// 
@@ -217,7 +214,7 @@
 			this.label7.Location = new System.Drawing.Point(14, 26);
 			this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(79, 13);
+			this.label7.Size = new System.Drawing.Size(104, 17);
 			this.label7.TabIndex = 15;
 			this.label7.Text = "Message sendt";
 			// 
@@ -226,7 +223,7 @@
 			this.textBox2.Location = new System.Drawing.Point(16, 42);
 			this.textBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(194, 20);
+			this.textBox2.Size = new System.Drawing.Size(194, 23);
 			this.textBox2.TabIndex = 13;
 			// 
 			// textBox1
@@ -234,7 +231,7 @@
 			this.textBox1.Location = new System.Drawing.Point(16, 79);
 			this.textBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(194, 20);
+			this.textBox1.Size = new System.Drawing.Size(194, 23);
 			this.textBox1.TabIndex = 14;
 			// 
 			// groupBox2
@@ -244,13 +241,13 @@
 			this.groupBox2.Controls.Add(this.btn_connect_serial);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.cmb_baudrate);
-			this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox2.Location = new System.Drawing.Point(8, 68);
+			this.groupBox2.Location = new System.Drawing.Point(15, 71);
 			this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox2.Size = new System.Drawing.Size(446, 177);
+			this.groupBox2.Size = new System.Drawing.Size(426, 117);
 			this.groupBox2.TabIndex = 11;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Connection";
@@ -262,7 +259,7 @@
 			this.label2.Location = new System.Drawing.Point(14, 29);
 			this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(26, 13);
+			this.label2.Size = new System.Drawing.Size(34, 17);
 			this.label2.TabIndex = 3;
 			this.label2.Text = "Port";
 			// 
@@ -272,14 +269,14 @@
 			this.cmb_comport.Location = new System.Drawing.Point(16, 46);
 			this.cmb_comport.Margin = new System.Windows.Forms.Padding(2);
 			this.cmb_comport.Name = "cmb_comport";
-			this.cmb_comport.Size = new System.Drawing.Size(92, 21);
+			this.cmb_comport.Size = new System.Drawing.Size(92, 24);
 			this.cmb_comport.TabIndex = 0;
 			this.cmb_comport.Text = "COM port";
 			// 
 			// btn_connect_serial
 			// 
 			this.btn_connect_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_connect_serial.Location = new System.Drawing.Point(344, 46);
+			this.btn_connect_serial.Location = new System.Drawing.Point(324, 46);
 			this.btn_connect_serial.Margin = new System.Windows.Forms.Padding(2, 2, 9, 2);
 			this.btn_connect_serial.Name = "btn_connect_serial";
 			this.btn_connect_serial.Size = new System.Drawing.Size(91, 46);
@@ -295,7 +292,7 @@
 			this.label3.Location = new System.Drawing.Point(120, 29);
 			this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(53, 13);
+			this.label3.Size = new System.Drawing.Size(70, 17);
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Baud rate";
 			// 
@@ -308,7 +305,7 @@
 			this.cmb_baudrate.Location = new System.Drawing.Point(122, 46);
 			this.cmb_baudrate.Margin = new System.Windows.Forms.Padding(2);
 			this.cmb_baudrate.Name = "cmb_baudrate";
-			this.cmb_baudrate.Size = new System.Drawing.Size(92, 21);
+			this.cmb_baudrate.Size = new System.Drawing.Size(92, 24);
 			this.cmb_baudrate.TabIndex = 2;
 			this.cmb_baudrate.Text = "Baud rate";
 			// 
@@ -319,12 +316,13 @@
 			this.groupBox1.Controls.Add(this.txt_serial_value);
 			this.groupBox1.Controls.Add(this.btn_send_serial);
 			this.groupBox1.Controls.Add(this.txt_serial_index);
+			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox1.Location = new System.Drawing.Point(8, 250);
+			this.groupBox1.Location = new System.Drawing.Point(15, 192);
 			this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox1.Size = new System.Drawing.Size(446, 191);
+			this.groupBox1.Size = new System.Drawing.Size(426, 128);
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Advanced";
@@ -336,7 +334,7 @@
 			this.label5.Location = new System.Drawing.Point(120, 25);
 			this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(34, 13);
+			this.label5.Size = new System.Drawing.Size(44, 17);
 			this.label5.TabIndex = 12;
 			this.label5.Text = "Value";
 			// 
@@ -347,7 +345,7 @@
 			this.label4.Location = new System.Drawing.Point(14, 25);
 			this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(33, 13);
+			this.label4.Size = new System.Drawing.Size(41, 17);
 			this.label4.TabIndex = 11;
 			this.label4.Text = "Index";
 			// 
@@ -356,13 +354,13 @@
 			this.txt_serial_value.Location = new System.Drawing.Point(122, 41);
 			this.txt_serial_value.Margin = new System.Windows.Forms.Padding(2);
 			this.txt_serial_value.Name = "txt_serial_value";
-			this.txt_serial_value.Size = new System.Drawing.Size(88, 20);
+			this.txt_serial_value.Size = new System.Drawing.Size(88, 23);
 			this.txt_serial_value.TabIndex = 10;
 			// 
 			// btn_send_serial
 			// 
 			this.btn_send_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_send_serial.Location = new System.Drawing.Point(344, 41);
+			this.btn_send_serial.Location = new System.Drawing.Point(324, 41);
 			this.btn_send_serial.Margin = new System.Windows.Forms.Padding(2, 2, 9, 2);
 			this.btn_send_serial.Name = "btn_send_serial";
 			this.btn_send_serial.Size = new System.Drawing.Size(91, 34);
@@ -375,20 +373,8 @@
 			this.txt_serial_index.Location = new System.Drawing.Point(16, 41);
 			this.txt_serial_index.Margin = new System.Windows.Forms.Padding(2);
 			this.txt_serial_index.Name = "txt_serial_index";
-			this.txt_serial_index.Size = new System.Drawing.Size(88, 20);
+			this.txt_serial_index.Size = new System.Drawing.Size(88, 23);
 			this.txt_serial_index.TabIndex = 9;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label1.Location = new System.Drawing.Point(2, 0);
-			this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(262, 37);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Serial connection";
 			// 
 			// tabPage4
 			// 
@@ -494,6 +480,29 @@
 			this.tabPage5.Size = new System.Drawing.Size(1400, 582);
 			this.tabPage5.TabIndex = 4;
 			this.tabPage5.Text = "Joystick Settings";
+			// 
+			// label17
+			// 
+			this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label17.AutoSize = true;
+			this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label17.Location = new System.Drawing.Point(1110, 15);
+			this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(202, 17);
+			this.label17.TabIndex = 19;
+			this.label17.Text = "Function parameters explained";
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox1.Image = global::ROVInterface.Properties.Resources.joystickscale_dark_test;
+			this.pictureBox1.Location = new System.Drawing.Point(1015, 35);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(368, 378);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 18;
+			this.pictureBox1.TabStop = false;
 			// 
 			// label18
 			// 
@@ -644,6 +653,8 @@
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox4.Controls.Add(this.panel_IndexStats);
 			this.groupBox4.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.groupBox4.Location = new System.Drawing.Point(13, 626);
@@ -653,28 +664,71 @@
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Index Stats";
 			// 
-			// label17
+			// groupBox6
 			// 
-			this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label17.AutoSize = true;
-			this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label17.Location = new System.Drawing.Point(1110, 15);
-			this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(202, 17);
-			this.label17.TabIndex = 19;
-			this.label17.Text = "Function parameters explained";
+			this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox6.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox6.Location = new System.Drawing.Point(956, 10);
+			this.groupBox6.Margin = new System.Windows.Forms.Padding(10);
+			this.groupBox6.Name = "groupBox6";
+			this.groupBox6.Padding = new System.Windows.Forms.Padding(10);
+			this.groupBox6.Size = new System.Drawing.Size(428, 414);
+			this.groupBox6.TabIndex = 1;
+			this.groupBox6.TabStop = false;
+			this.groupBox6.Text = "CAN-bus connection";
 			// 
-			// pictureBox1
+			// progressBar1
 			// 
-			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pictureBox1.Image = global::ROVInterface.Properties.Resources.joystickrescale_dark_3;
-			this.pictureBox1.Location = new System.Drawing.Point(1015, 35);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(368, 378);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 18;
-			this.pictureBox1.TabStop = false;
+			this.progressBar1.Location = new System.Drawing.Point(1262, 42);
+			this.progressBar1.Name = "progressBar1";
+			this.progressBar1.Size = new System.Drawing.Size(100, 23);
+			this.progressBar1.TabIndex = 17;
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Location = new System.Drawing.Point(1262, 23);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(71, 17);
+			this.label19.TabIndex = 18;
+			this.label19.Text = "Heartbeat";
+			// 
+			// groupBox7
+			// 
+			this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox7.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox7.Location = new System.Drawing.Point(483, 10);
+			this.groupBox7.Margin = new System.Windows.Forms.Padding(10);
+			this.groupBox7.Name = "groupBox7";
+			this.groupBox7.Padding = new System.Windows.Forms.Padding(10);
+			this.groupBox7.Size = new System.Drawing.Size(453, 414);
+			this.groupBox7.TabIndex = 2;
+			this.groupBox7.TabStop = false;
+			this.groupBox7.Text = "Ethernet connection";
+			// 
+			// groupBox8
+			// 
+			this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox8.Controls.Add(this.groupBox1);
+			this.groupBox8.Controls.Add(this.groupBox2);
+			this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox8.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox8.Location = new System.Drawing.Point(10, 10);
+			this.groupBox8.Margin = new System.Windows.Forms.Padding(10);
+			this.groupBox8.Name = "groupBox8";
+			this.groupBox8.Padding = new System.Windows.Forms.Padding(10);
+			this.groupBox8.Size = new System.Drawing.Size(453, 414);
+			this.groupBox8.TabIndex = 2;
+			this.groupBox8.TabStop = false;
+			this.groupBox8.Text = "Serial connection";
 			// 
 			// WindowStatus
 			// 
@@ -692,8 +746,6 @@
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
@@ -708,10 +760,11 @@
 			this.flowLayoutPanel2.PerformLayout();
 			this.tabPage5.ResumeLayout(false);
 			this.tabPage5.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.panel_IndexStats.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.groupBox8.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -722,10 +775,8 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmb_comport;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmb_baudrate;
@@ -767,5 +818,10 @@
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.ProgressBar progressBar1;
+		private System.Windows.Forms.GroupBox groupBox6;
+		private System.Windows.Forms.GroupBox groupBox8;
+		private System.Windows.Forms.GroupBox groupBox7;
 	}
 }
