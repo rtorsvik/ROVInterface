@@ -73,12 +73,29 @@ public static class ProgramSaverLoader {
 						case "</JoystickSettings>":
 							pos = LoadPosition.Settings;
 							break;
+						case "<Setting>":
+							pos = LoadPosition.JoystickSettingsChild;
+							dataHolder.cur_joystickSetting = new DataHolder.joystickSettings_Setting();
+							break;
 						default:
 							throw new Exception("Did not find correct next tag, of either '</JoystickSettings>'.");
 					}
 					break;
 				case LoadPosition.JoystickSettingsChild:
-					// Dunno yet
+					string sj = dataHolder.cur_joystickSetting.NextData();
+					if (sj == EOF) {
+						// If a new object needs to be created
+						dataHolder.joystickSettings.Add(dataHolder.cur_joystickSetting);
+						//dataHolder.cur_indexSetting = null;
+						pos = LoadPosition.JoystickSettings;
+					} else if (sj == "") {
+						// If a value needs to be inserted into dataholder
+						dataHolder.cur_joystickSetting.Insert(next);
+					} else {
+						// If a tag is needed to be compared
+						if (sj != next)
+							throw new Exception("Did not find expected tag.");
+					}
 					break;
 				case LoadPosition.IndexSettings:
 					switch (next) {
@@ -132,6 +149,10 @@ public static class ProgramSaverLoader {
 
 		Console.Write("Fin");
 
+		// ******************************************************
+		// UPDATE settings on joysticks here
+		// ******************************************************
+
 		for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
 			DataHolder.indexSettings_Setting d = dataHolder.indexSettings[i];
 			ROVInterface.Program.windowStatus.indexSettings.CreateElement(d.index, d.name, d.digit, d.size);
@@ -148,7 +169,14 @@ public static class ProgramSaverLoader {
 
 		// Loop through and add JoystickSettings
 		src += "	<JoystickSettings>\n";
-			
+		JoystickSettings js = ROVInterface.Program.windowStatus.joystickSettings;
+		JoystickSettings.AxisSetting[] axiss = { js.as0, js.as1, js.as2, js.as3, js.as4, js.as5 };
+		for (int i = 0, j = 6; i < j; i++) {
+			src += "		<Setting>\n";
+			src += "			<jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><expo>" + axiss[i].expo + 
+				"</expo><deadband>" + axiss[i].deadband + "</deadband><offset>" + axiss[i].offset + "</offset><max>" + axiss[i].max + "</max>\n";
+			src += "		</Setting>\n";
+		}
 		src += "	</JoystickSettings>\n";
 
 		// Loop through and add IndexSettings
@@ -283,12 +311,15 @@ public static class ProgramSaverLoader {
 	}
 
 	private class DataHolder {
-		private List<int> joystickSettings;
+		public List<joystickSettings_Setting> joystickSettings;
+		public joystickSettings_Setting cur_joystickSetting;
 		public List<indexSettings_Setting> indexSettings;
 		public indexSettings_Setting cur_indexSetting;
 		public List<int> indexStats;
 
 		public DataHolder() {
+			cur_joystickSetting = new joystickSettings_Setting();
+			joystickSettings = new List<joystickSettings_Setting>();
 			cur_indexSetting = new indexSettings_Setting();
 			indexSettings = new List<indexSettings_Setting>();
 			indexStats = new List<int>();
@@ -329,6 +360,54 @@ public static class ProgramSaverLoader {
 						break;
 					case 7:
 						size = int.Parse(s);
+						break;
+				}
+			}
+		}
+
+		public class joystickSettings_Setting {
+			public int jindex;
+			public int aindex;
+			public float expo;
+			public int deadband;
+			public int offset;
+			public int max;
+
+			private bool waitforval = false;
+			private int readindex = 0;
+			private readonly string[] req = { "<jindex>", "</jindex>", "<aindex>", "</aindex>", "<expo>", "</expo>", "<deadband>", "</deadband>", "<offset>", "</offset>", "<max>", "</max>" };
+
+			public string NextData() {
+				if (readindex == req.Length)
+					return EOF;
+
+				if (waitforval) {
+					waitforval = false;
+					return "";
+				}
+				waitforval = (readindex % 2 == 0 ? true : false);
+				return req[readindex++];
+			}
+
+			public void Insert(string s) {
+				switch (readindex) {
+					case 1:
+						jindex = int.Parse(s);
+						break;
+					case 3:
+						aindex = int.Parse(s);
+						break;
+					case 5:
+						expo = float.Parse(s);
+						break;
+					case 7:
+						deadband = int.Parse(s);
+						break;
+					case 9:
+						offset = int.Parse(s);
+						break;
+					case 11:
+						max = int.Parse(s);
 						break;
 				}
 			}
