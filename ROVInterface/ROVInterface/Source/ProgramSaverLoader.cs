@@ -147,6 +147,9 @@ public static class ProgramSaverLoader {
 		src += "<Settings>\n";
 
 		// Loop through and add JoystickSettings
+		src += "	<JoystickSettings>\n";
+			
+		src += "	</JoystickSettings>\n";
 
 		// Loop through and add IndexSettings
 		src += "	<IndexSettings>\n";

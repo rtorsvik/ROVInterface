@@ -1,4 +1,14 @@
 ﻿<Settings>
+  <JoystickSettings>
+    <Setting>
+      <jindex>0</jindex>
+      <aindex>0</aindex>
+      <expo>0</expo>
+      <deadband>0</deadband>
+      <offset>0</offset>
+      <max>0</max>
+    </Setting>
+  </JoystickSettings>
   <IndexSettings>
     <Setting>
       <index>1</index>
