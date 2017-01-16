@@ -13,8 +13,8 @@ namespace ROVInterface
     public partial class WindowStatus : Form
     {
 
-		private IndexSettings indexSettings;
-		private IndexStats indexStats;
+		public IndexSettings indexSettings;
+		public IndexStats indexStats;
 
 		private JoystickSettings joystickSettings;
 
@@ -41,7 +41,9 @@ namespace ROVInterface
 			//add all available com port elements to com port combobox
 			cmb_comport.Items.AddRange(SerialConnection.GetPortList());
 
-        }
+			// Load all settings
+			ProgramSaverLoader.Load();
+		}
 
 		private void btn_connect_serial_Click(object sender, EventArgs e)
 		{

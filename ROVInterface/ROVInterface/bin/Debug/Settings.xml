@@ -1,23 +1,23 @@
-﻿<Settings>
-  <JoystickSettings>
-    
-  </JoystickSettings>
-  <IndexSettings>
-    <Setting>
-      <index>1</index>
-      <name>Temp1</name>
-      <digit>2</digit>
-      <size>12</size>
-    </Setting>
-    <Setting>
-      <index>2</index>
-      <name>Temp2</name>
-      <digit>2</digit>
-      <size>12</size>
-    </Setting>
-  </IndexSettings>
-  <IndexStats>
-    <Stats>1</Stats>
-    <Stats>2</Stats>
-  </IndexStats>
+<Settings>
+	<IndexSettings>
+		<Setting>
+			<index>1</index><name>Temp1</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>2</index><name>Temp2</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>5</index><name>Temp3</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>46</index><name>Rein</name><digit>2</digit><size>12</size>
+		</Setting>
+	</IndexSettings>
+	<IndexStats>
+		<Stats>1</Stats>
+		<Stats>2</Stats>
+		<Stats>5</Stats>
+		<Stats>2</Stats>
+		<Stats>46</Stats>
+	</IndexStats>
 </Settings>
