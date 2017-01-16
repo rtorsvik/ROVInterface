@@ -13,6 +13,11 @@ public class IndexSettings {
 	}
 
 	public FlowLayoutPanel CreateElement() {
+		return CreateElement(0, "", 2, 12);
+	}
+
+	public FlowLayoutPanel CreateElement(int index, string name, int digit, int size) {
+
 		Setting setting = new Setting(this);
 		setting.labels = new Label[4];
 
@@ -28,6 +33,7 @@ public class IndexSettings {
 		NumericUpDown nud = new NumericUpDown();
 		nud.Parent = temp;
 		nud.ValueChanged += setting.UpdateIndex;
+		nud.Value = index;
 		nud.Width = 70;
 		nud.Maximum = (int)Math.Pow(2, 15) - 1;
 		setting.index = nud;
@@ -36,6 +42,7 @@ public class IndexSettings {
 		// Name handler
 		TextBox txtbox = new TextBox();
 		txtbox.Parent = temp;
+		txtbox.Text = name;
 		txtbox.TextChanged += setting.UpdateStats;
 		txtbox.Width = 200;
 		setting.name = txtbox;
@@ -48,7 +55,7 @@ public class IndexSettings {
 		nud.Width = 40;
 		nud.Minimum = 0;
 		nud.Maximum = 12;
-		nud.Value = 2;
+		nud.Value = digit;
 		setting.digit = nud;
 
 		setting.labels[3] = CreateLabel("Size:", temp);
@@ -59,7 +66,7 @@ public class IndexSettings {
 		nud.Width = 40;
 		nud.Minimum = 8;
 		nud.Maximum = 25;
-		nud.Value = 12;
+		nud.Value = size;
 		setting.size = nud;
 
 		// Color handler
@@ -164,7 +171,7 @@ public class IndexStats {
 	private Button btnEditMode;
 	private IndexSettings indexSettings;
 	private bool editMode = true;
-	private List<Stats> allStats;
+	public List<Stats> allStats;
 
 	public IndexStats (IndexSettings s, FlowLayoutPanel pan, Button btnEditMode) {
 		indexSettings = s;
@@ -199,6 +206,10 @@ public class IndexStats {
 	}
 
 	public void CreateElement() {
+		CreateElement(-1);
+	}
+
+	public void CreateElement(int index) {
 		Stats stats = new Stats(indexSettings);
 		allStats.Add(stats);
 
@@ -231,6 +242,16 @@ public class IndexStats {
 		btn.Click += stats.Delete;
 
 		stats.Init();
+		if (index >= 0) {
+			IndexSettings.Setting found = null;
+			foreach (IndexSettings.Setting o in stats.index.Items) {
+				if (o.index.Value == index) {
+					found = o;
+					break;
+				}
+			}
+			stats.index.SelectedItem = found;
+		}
 
 		if (editMode) {
 			stats.index.Visible = true;
@@ -273,12 +294,20 @@ public class IndexStats {
 			if (_setting != null)
 				_setting.linkedStats.Remove(this);
 
+			// If no setting selected
+			if (s == null)
+				return;
+
 			// Add link to new settings
 			_setting = s;
 			_setting.linkedStats.Add(this);
 		}
 
 		public void UpdateSettings() {
+			// If no setting has yet been selected
+			if (_setting == null)
+				return;
+
 			// Update everything from settings
 			name.Font = new System.Drawing.Font("Microsoft Sans Serif", (int)_setting.size.Value);
 			bind.ResetCurrentItem();
