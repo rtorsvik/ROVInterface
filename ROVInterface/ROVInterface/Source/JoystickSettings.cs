@@ -293,7 +293,7 @@ class JoystickSettings
 		/// <param name="deadband">0...100</param>
 		/// <param name="offset">0...100</param>
 		/// <param name="max">0...100</param>
-		public void setSettings(int joystickIndex, int axisIndex, int reverse, decimal expo, int deadband, int offset, int max)
+		public void SetSettings(int joystickIndex, int axisIndex, int reverse, decimal expo, int deadband, int offset, int max)
 		{
 			c_joystick.SelectedIndex = joystickIndex;
 			c_axis.SelectedIndex = axisIndex;
