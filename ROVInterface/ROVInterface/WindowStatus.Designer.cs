@@ -341,6 +341,7 @@
 			this.btn_send_serial.TabIndex = 6;
 			this.btn_send_serial.Text = "Send";
 			this.btn_send_serial.UseVisualStyleBackColor = true;
+			this.btn_send_serial.Click += new System.EventHandler(this.btn_send_serial_Click);
 			// 
 			// txt_serial_index
 			// 

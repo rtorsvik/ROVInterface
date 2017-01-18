@@ -97,7 +97,7 @@ public class JoystickSettings
 
 		public int inValue;     //Value of the axis on the joystick
 
-		public int reverse;     //(-1) if reversed, otherwise (1)
+		public bool reverse;           //outValue reversed when true
 		public float expo;		//curvature of outValue
 		public int deadband;	//how much does inValue have to travel from midpoint before outValue starts to change [%]
 		public int offset;      //offset, at which value does outValue start when inValue exceeds deadband [%]
@@ -227,8 +227,8 @@ public class JoystickSettings
 			{
 				joystick = c_joystick.SelectedIndex;
 				axis = c_axis.SelectedIndex;
-				
-				reverse = c_reverse.Checked ? -1 : 1;
+
+				reverse = c_reverse.Checked;
 				expo = (float)c_expo.Value;
 				deadband = (int)c_deadband.Value;
 				offset = (int)c_offset.Value;
@@ -273,6 +273,8 @@ public class JoystickSettings
 
 			double e = expo;
 
+			int r = reverse ? -1 : 1;
+
 			//in the "dead" zone of the deadband, y = 0, else, calculate y value
 			double y;
 			if (-x0 < x && x < x0)
@@ -283,7 +285,7 @@ public class JoystickSettings
 			{
 				//Function might not have real solutins for negative values of x, 
 				//so calculate only for asolute values of x, and convert later
-				y = (reverse * (Math.Pow((Math.Abs(x) - x0), e)) * (y1 - y0) / (Math.Pow((x1 - x0), e)) + y0);
+				y = (r * (Math.Pow((Math.Abs(x) - x0), e)) * (y1 - y0) / (Math.Pow((x1 - x0), e)) + y0);
 			}
 
 			//for negative values of x, invert y value 
@@ -298,17 +300,17 @@ public class JoystickSettings
 		/// </summary>
 		/// <param name="joystickIndex"></param>
 		/// <param name="axisIndex"></param>
-		/// <param name="reverse">{-1,1} -1 when reversed</param>
+		/// <param name="reverse">true when reversed</param>
 		/// <param name="expo">1,0...3,0</param>
 		/// <param name="deadband">0...100</param>
 		/// <param name="offset">0...100</param>
 		/// <param name="max">0...100</param>
-		public void SetSettings(int joystickIndex, int axisIndex, int reverse, decimal expo, int deadband, int offset, int max)
+		public void SetSettings(int joystickIndex, int axisIndex, bool reverse, decimal expo, int deadband, int offset, int max)
 		{
 			c_joystick.SelectedIndex = joystickIndex;
 			c_axis.SelectedIndex = axisIndex;
 
-			if (reverse == -1)
+			if (reverse)
 				c_reverse.Checked = true;
 
 			c_expo.Value = expo;

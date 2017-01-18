@@ -89,6 +89,8 @@ class SerialConnection
 
 		Array.Copy(BitConverter.GetBytes(value), 0, packet, 2, 4);
 
+		Program.errors.Add(packet.ToString());
+
         port.Write(packet, 0, 6);
 
         return true;

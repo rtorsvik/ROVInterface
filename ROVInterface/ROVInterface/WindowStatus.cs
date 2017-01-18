@@ -162,4 +162,10 @@ public partial class WindowStatus : Form
 		indexStats.ChangeEditMode();
 	}
 
+	private void btn_send_serial_Click(object sender, EventArgs e)
+	{
+		int index = Int32.Parse(txt_serial_index.Text);
+		float value = float.Parse(txt_serial_index.Text);
+		serialConnection.send(index, value);
+	}
 }
