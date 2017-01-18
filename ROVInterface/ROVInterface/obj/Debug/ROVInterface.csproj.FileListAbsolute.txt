@@ -14,8 +14,6 @@ C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterf
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.csproj.GenerateResource.Cache
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\ROVInterface.exe
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\ROVInterface.pdb
-C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.WindowCamera.resources
-C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.WindowStatus.resources
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\SlimDX.dll
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\SlimDX.pdb
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\SlimDX.xml
@@ -23,3 +21,5 @@ C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\SlimDX.xml
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\obj\Debug\WindowStatus.resources
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\obj\Debug\WindowCamera.resources
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\WindowCamera.resources
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\WindowStatus.resources
