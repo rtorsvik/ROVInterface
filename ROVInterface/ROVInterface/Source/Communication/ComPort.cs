@@ -73,23 +73,22 @@ class SerialConnection
 
 
 
-    public bool send(int index, float value)
+    public bool send(int index, int value)
     {
-        //TODO
-        //Send value according to which port/output channel to use
+		//packet to send
         byte[] packet = new byte[6];
 
+		//index part of package
         packet[0] = (byte)((index & 0x00f0) >>  8);
         packet[1] = (byte)((index & 0x000f) >>  0);
 
-		//packet[2] = (byte)((value & 0xf000) >> 24);
-		//packet[3] = (byte)((value & 0x0f00) >> 16);
-		//packet[4] = (byte)((value & 0x00f0) >>  8);
-		//packet[5] = (byte)((value & 0x000f) >>  0);
+		//value part of package
+		packet[2] = (byte)((value & 0xf000) >> 24);
+		packet[3] = (byte)((value & 0x0f00) >> 16);
+		packet[4] = (byte)((value & 0x00f0) >>  8);
+		packet[5] = (byte)((value & 0x000f) >>  0);
 
-		Array.Copy(BitConverter.GetBytes(value), 0, packet, 2, 4);
-
-		Program.errors.Add(packet.ToString());
+		Program.WindowStatus.tab
 
         port.Write(packet, 0, 6);
 
