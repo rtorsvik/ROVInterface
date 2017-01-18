@@ -134,11 +134,11 @@ public static class ProgramSaverLoader {
 
 		for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
 			DataHolder.indexSettings_Setting d = dataHolder.indexSettings[i];
-			ROVInterface.Program.windowStatus.indexSettings.CreateElement(d.index, d.name, d.digit, d.size);
+			Program.windowStatus.indexSettings.CreateElement(d.index, d.name, d.digit, d.size);
 		}
 		for (int i = 0, j = dataHolder.indexStats.Count; i < j; i++) {
 			int e = dataHolder.indexStats[i];
-			ROVInterface.Program.windowStatus.indexStats.CreateElement(e);
+			Program.windowStatus.indexStats.CreateElement(e);
 		}
 	}
 
@@ -153,7 +153,7 @@ public static class ProgramSaverLoader {
 
 		// Loop through and add IndexSettings
 		src += "	<IndexSettings>\n";
-		List<IndexSettings.Setting> li = ROVInterface.Program.windowStatus.indexSettings.allSettings;
+		List<IndexSettings.Setting> li = Program.windowStatus.indexSettings.allSettings;
 		for (int i = 0, j = li.Count; i < j; i++) {
 			src += "		<Setting>\n			<index>" + 
 				li[i].index.Value + "</index><name>" + li[i].name.Text + "</name><digit>" + li[i].digit.Value + 
@@ -163,7 +163,7 @@ public static class ProgramSaverLoader {
 
 		// Loop through and add IndexStats
 		src += "	<IndexStats>\n";
-		List<IndexStats.Stats> ls = ROVInterface.Program.windowStatus.indexStats.allStats;
+		List<IndexStats.Stats> ls = Program.windowStatus.indexStats.allStats;
 		for (int i = 0, j = ls.Count; i < j; i++) {
 			src += "		<Stats>" + ((IndexSettings.Setting)ls[i].index.SelectedItem).index.Value + "</Stats>\n";
 		}

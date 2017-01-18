@@ -28,7 +28,15 @@ class SerialConnection
 
     public bool Open()
     {
-        port.Open();
+		try
+		{
+			port.Open();
+		}
+		catch (UnauthorizedAccessException e)
+		{
+			Program.errors.Add("Cannot access com port. Comport might already be in use by another application");
+		}
+
         return false;
     }
 

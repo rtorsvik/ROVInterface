@@ -9,41 +9,39 @@ using System.IO.Ports;
 
 
 
-namespace ROVInterface
+static class Program
 {
-    static class Program
+	public static WindowStatus windowStatus;
+	public static List<string> errors;
+
+    /// <summary>
+    /// The main entry point for the application.
+    /// </summary>
+    [STAThread]
+    static void Main()
     {
-		public static WindowStatus windowStatus;
-
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Console.Write("Red five, standing by\n");
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Console.Write("Red five, standing by\n");
 
 
-            //Test field
-            //#############################################################################
-            String[] sl = SerialConnection.GetPortList();
-			foreach (string s in sl)
-			{
-				Console.Write(s);
-			}
+		//Test field
+		//#############################################################################
+		errors = new List<string>();
+		//#############################################################################
 
-			JoystickHandler.Init();
-			ST_Register.Init();
-			ProgramSaverLoader.Init();
-            //#############################################################################
 
-            new WindowCamera().Show();
-			windowStatus = new WindowStatus();
-			windowStatus.FormClosing += ProgramSaverLoader.Save;
-			Application.Run(windowStatus);
+		//Program handlers and classes
+		JoystickHandler.Init();
+		ST_Register.Init();
+		ProgramSaverLoader.Init();
+            
+
+        new WindowCamera().Show();
+		windowStatus = new WindowStatus();
+		windowStatus.FormClosing += ProgramSaverLoader.Save;
+		Application.Run(windowStatus);
 			
-        }
     }
 }
+

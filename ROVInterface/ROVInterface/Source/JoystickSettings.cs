@@ -51,6 +51,16 @@ public class JoystickSettings
 		as5.Update();
 
 		bs6.Update();
+
+		//finn ut sammen med terje hvor disse egentlig skal kalles hen
+		ST_Register.commands[1] = as0.outValue;
+		ST_Register.commands[2] = as1.outValue;
+		ST_Register.commands[3] = as2.outValue;
+		ST_Register.commands[4] = as3.outValue;
+		ST_Register.commands[5] = as4.outValue;
+		ST_Register.commands[6] = as5.outValue;
+
+		//ST_Register.commands[10] = bs6.outValue;
 	}
 
 
@@ -179,7 +189,7 @@ public class JoystickSettings
 
 		private void DrawItems()
 		{
-			ROVInterface.WindowStatus window = ROVInterface.Program.windowStatus;
+			WindowStatus window = Program.windowStatus;
 			TabPage page = window.tabPage5;
 
 			c_container.Controls.Add(c_description);
@@ -434,7 +444,7 @@ public class JoystickSettings
 
 		private void DrawItems()
 		{
-			ROVInterface.WindowStatus window = ROVInterface.Program.windowStatus;
+			WindowStatus window = Program.windowStatus;
 			TabPage page = window.tabPage5;
 
 			c_container.Controls.Add(c_description);

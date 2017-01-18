@@ -127,12 +127,12 @@ public class IndexSettings {
 			size.ValueChanged -= this.UpdateStats;
 			delete.Click -= this.Delete;
 
-			ROVInterface.Program.windowStatus.Controls.Remove(index);
-			ROVInterface.Program.windowStatus.Controls.Remove(name);
-			ROVInterface.Program.windowStatus.Controls.Remove(digit);
-			ROVInterface.Program.windowStatus.Controls.Remove(size);
-			ROVInterface.Program.windowStatus.Controls.Remove(delete);
-			ROVInterface.Program.windowStatus.Controls.Remove(panel);
+			Program.windowStatus.Controls.Remove(index);
+			Program.windowStatus.Controls.Remove(name);
+			Program.windowStatus.Controls.Remove(digit);
+			Program.windowStatus.Controls.Remove(size);
+			Program.windowStatus.Controls.Remove(delete);
+			Program.windowStatus.Controls.Remove(panel);
 
 			index.Dispose();
 			name.Dispose();
@@ -342,10 +342,10 @@ public class IndexStats {
 			index.SelectedValueChanged -= this.UpdateIndex;
 			delete.Click -= this.Delete;
 
-			ROVInterface.Program.windowStatus.Controls.Remove(index);
-			ROVInterface.Program.windowStatus.Controls.Remove(name);
-			ROVInterface.Program.windowStatus.Controls.Remove(delete);
-			ROVInterface.Program.windowStatus.Controls.Remove(panel);
+			Program.windowStatus.Controls.Remove(index);
+			Program.windowStatus.Controls.Remove(name);
+			Program.windowStatus.Controls.Remove(delete);
+			Program.windowStatus.Controls.Remove(panel);
 
 			index.Dispose();
 			name.Dispose();
