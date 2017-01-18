@@ -184,14 +184,14 @@ public class IndexStats {
 		editMode = !editMode;
 
 		if (editMode) {
-			btnEditMode.Text = "Edit Mode";
+			btnEditMode.Text = "Display Mode";
 			foreach(Stats s in allStats) {
 				s.index.Visible = true;
 				s.delete.Visible = true;
 				s.name.Visible = false;
 			}
 		} else {
-			btnEditMode.Text = "Display Mode";
+			btnEditMode.Text = "Edit Mode";
 			foreach (Stats s in allStats) {
 				s.index.Visible = false;
 				s.delete.Visible = false;

@@ -147,11 +147,13 @@ public static class ProgramSaverLoader {
 			}
 		}
 
-		Console.Write("Fin");
+		JoystickSettings js = Program.windowStatus.joystickSettings;
+		JoystickSettings.AxisSetting[] axiss = { js.as0, js.as1, js.as2, js.as3, js.as4, js.as5 };
+		for (int i = 0, j = dataHolder.joystickSettings.Count; i < j; i++) {
+			DataHolder.joystickSettings_Setting d = dataHolder.joystickSettings[i];
+			axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, (decimal)d.expo, d.deadband, d.offset, d.max);
+		}
 
-		// ******************************************************
-		// UPDATE settings on joysticks here
-		// ******************************************************
 
 		for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
 			DataHolder.indexSettings_Setting d = dataHolder.indexSettings[i];
@@ -161,6 +163,8 @@ public static class ProgramSaverLoader {
 			int e = dataHolder.indexStats[i];
 			Program.windowStatus.indexStats.CreateElement(e);
 		}
+
+		dataHolder.Clear();
 	}
 
 	public static void Save(object sender, EventArgs e) {
@@ -173,7 +177,7 @@ public static class ProgramSaverLoader {
 		JoystickSettings.AxisSetting[] axiss = { js.as0, js.as1, js.as2, js.as3, js.as4, js.as5 };
 		for (int i = 0, j = 6; i < j; i++) {
 			src += "		<Setting>\n";
-			src += "			<jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><expo>" + axiss[i].expo + 
+			src += "			<jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><reverse>" + axiss[i].reverse.ToString() + "</reverse><expo>" + axiss[i].expo + 
 				"</expo><deadband>" + axiss[i].deadband + "</deadband><offset>" + axiss[i].offset + "</offset><max>" + axiss[i].max + "</max>\n";
 			src += "		</Setting>\n";
 		}
@@ -325,6 +329,10 @@ public static class ProgramSaverLoader {
 			indexStats = new List<int>();
 		}
 
+		public void Clear() {
+			// Clear all data
+		}
+
 		public class indexSettings_Setting {
 			public int index;
 			public string name;
@@ -368,6 +376,7 @@ public static class ProgramSaverLoader {
 		public class joystickSettings_Setting {
 			public int jindex;
 			public int aindex;
+			public bool reverse;
 			public float expo;
 			public int deadband;
 			public int offset;
@@ -375,7 +384,7 @@ public static class ProgramSaverLoader {
 
 			private bool waitforval = false;
 			private int readindex = 0;
-			private readonly string[] req = { "<jindex>", "</jindex>", "<aindex>", "</aindex>", "<expo>", "</expo>", "<deadband>", "</deadband>", "<offset>", "</offset>", "<max>", "</max>" };
+			private readonly string[] req = { "<jindex>", "</jindex>", "<aindex>", "</aindex>", "<reverse>", "</reverse>", "<expo>", "</expo>", "<deadband>", "</deadband>", "<offset>", "</offset>", "<max>", "</max>" };
 
 			public string NextData() {
 				if (readindex == req.Length)
@@ -398,15 +407,18 @@ public static class ProgramSaverLoader {
 						aindex = int.Parse(s);
 						break;
 					case 5:
-						expo = float.Parse(s);
+						reverse = bool.Parse(s);
 						break;
 					case 7:
-						deadband = int.Parse(s);
+						expo = float.Parse(s);
 						break;
 					case 9:
-						offset = int.Parse(s);
+						deadband = int.Parse(s);
 						break;
 					case 11:
+						offset = int.Parse(s);
+						break;
+					case 13:
 						max = int.Parse(s);
 						break;
 				}

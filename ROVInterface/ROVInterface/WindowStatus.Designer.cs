@@ -83,6 +83,7 @@
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.tim_heartBeat = new System.Windows.Forms.Timer(this.components);
 			this.txt_error = new System.Windows.Forms.TextBox();
+			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.tabControl1.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -97,9 +98,9 @@
 			this.flowLayoutPanel2.SuspendLayout();
 			this.tabPage5.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			this.panel_IndexStats.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
+			this.tableLayoutPanel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -692,22 +693,23 @@
 			// panel_IndexStats
 			// 
 			this.panel_IndexStats.AutoScroll = true;
-			this.panel_IndexStats.Controls.Add(this.flowLayoutPanel1);
 			this.panel_IndexStats.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel_IndexStats.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.panel_IndexStats.Location = new System.Drawing.Point(3, 19);
+			this.panel_IndexStats.Location = new System.Drawing.Point(123, 0);
 			this.panel_IndexStats.Margin = new System.Windows.Forms.Padding(0);
 			this.panel_IndexStats.Name = "panel_IndexStats";
-			this.panel_IndexStats.Size = new System.Drawing.Size(1402, 158);
+			this.panel_IndexStats.Size = new System.Drawing.Size(1279, 158);
 			this.panel_IndexStats.TabIndex = 2;
 			// 
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.Controls.Add(this.btn_EditMode);
 			this.flowLayoutPanel1.Controls.Add(this.btn_AddIndexStat);
+			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(1388, 28);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(117, 152);
 			this.flowLayoutPanel1.TabIndex = 0;
 			// 
 			// btn_EditMode
@@ -715,18 +717,18 @@
 			this.btn_EditMode.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.btn_EditMode.Location = new System.Drawing.Point(3, 3);
 			this.btn_EditMode.Name = "btn_EditMode";
-			this.btn_EditMode.Size = new System.Drawing.Size(100, 23);
+			this.btn_EditMode.Size = new System.Drawing.Size(110, 30);
 			this.btn_EditMode.TabIndex = 0;
-			this.btn_EditMode.Text = "Edit Mode";
+			this.btn_EditMode.Text = "Display Mode";
 			this.btn_EditMode.UseVisualStyleBackColor = true;
 			this.btn_EditMode.Click += new System.EventHandler(this.btn_EditMode_Click);
 			// 
 			// btn_AddIndexStat
 			// 
 			this.btn_AddIndexStat.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.btn_AddIndexStat.Location = new System.Drawing.Point(109, 3);
+			this.btn_AddIndexStat.Location = new System.Drawing.Point(3, 39);
 			this.btn_AddIndexStat.Name = "btn_AddIndexStat";
-			this.btn_AddIndexStat.Size = new System.Drawing.Size(100, 23);
+			this.btn_AddIndexStat.Size = new System.Drawing.Size(110, 30);
 			this.btn_AddIndexStat.TabIndex = 1;
 			this.btn_AddIndexStat.Text = "New";
 			this.btn_AddIndexStat.UseVisualStyleBackColor = true;
@@ -736,7 +738,7 @@
 			// 
 			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox4.Controls.Add(this.panel_IndexStats);
+			this.groupBox4.Controls.Add(this.tableLayoutPanel3);
 			this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox4.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.groupBox4.Location = new System.Drawing.Point(9, 626);
@@ -763,6 +765,22 @@
 			this.txt_error.Size = new System.Drawing.Size(1425, 20);
 			this.txt_error.TabIndex = 1;
 			this.txt_error.Text = "error messages";
+			// 
+			// tableLayoutPanel3
+			// 
+			this.tableLayoutPanel3.ColumnCount = 2;
+			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 123F));
+			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel3.Controls.Add(this.panel_IndexStats, 1, 0);
+			this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel1, 0, 0);
+			this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 19);
+			this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+			this.tableLayoutPanel3.RowCount = 1;
+			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(1402, 158);
+			this.tableLayoutPanel3.TabIndex = 1;
 			// 
 			// WindowStatus
 			// 
@@ -797,9 +815,9 @@
 			this.tabPage5.ResumeLayout(false);
 			this.tabPage5.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			this.panel_IndexStats.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
+			this.tableLayoutPanel3.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -862,4 +880,5 @@
 		private System.Windows.Forms.Timer tim_heartBeat;
 		private System.Windows.Forms.TextBox txt_error;
 		private System.Windows.Forms.Label lbl_heartBeat_ms;
-	}
+	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+}
