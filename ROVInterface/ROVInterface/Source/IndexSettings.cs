@@ -237,7 +237,7 @@ public class IndexStats {
 		btn.BackColor = System.Drawing.Color.White;
 		btn.Text = "X";
 		btn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-		btn.Size = new System.Drawing.Size(22, 22);
+		btn.Size = new System.Drawing.Size(25, 25);
 		stats.delete = btn;
 		btn.Click += stats.Delete;
 
