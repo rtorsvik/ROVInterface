@@ -24,6 +24,7 @@ public static class ProgramSaverLoader {
 		catch (Exception e) {
 			Console.WriteLine(e);
 			// Do something when the settings can't be loaded
+			Program.errors.Add("Failed to load settings.");
 		}
 	}
 

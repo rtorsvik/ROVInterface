@@ -25,7 +25,7 @@ public class IndexSettings {
 		FlowLayoutPanel temp = new FlowLayoutPanel();
 		temp.Parent = panelIndexSettings;
 		temp.Width = temp.Parent.Width - 6;
-		temp.Height = 22;
+		temp.Height = 25;
 		setting.panel = temp;
 
 		setting.labels[0] = CreateLabel("Index:", temp);
@@ -78,7 +78,7 @@ public class IndexSettings {
 		btn.Parent = temp;
 		btn.Text = "X";
 		btn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-		btn.Size = new System.Drawing.Size(22, 22);
+		btn.Size = new System.Drawing.Size(25, 25);
 		btn.Margin = new Padding(2);
 		btn.Click += setting.Delete;
 		setting.delete = btn;
