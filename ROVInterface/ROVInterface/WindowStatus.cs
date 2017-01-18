@@ -77,6 +77,7 @@ public partial class WindowStatus : Form
 			catch (NullReferenceException)
 			{
 				Program.errors.Add("No com port or baud rate selected");
+				return;
 			}
 		}
 

@@ -169,7 +169,7 @@ public static class ProgramSaverLoader {
 
 		// Loop through and add JoystickSettings
 		src += "	<JoystickSettings>\n";
-		JoystickSettings js = ROVInterface.Program.windowStatus.joystickSettings;
+		JoystickSettings js = Program.windowStatus.joystickSettings;
 		JoystickSettings.AxisSetting[] axiss = { js.as0, js.as1, js.as2, js.as3, js.as4, js.as5 };
 		for (int i = 0, j = 6; i < j; i++) {
 			src += "		<Setting>\n";

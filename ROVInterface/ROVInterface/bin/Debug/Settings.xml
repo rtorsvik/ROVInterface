@@ -1,5 +1,23 @@
 <Settings>
 	<JoystickSettings>
+		<Setting>
+			<jindex>-1</jindex><aindex>-1</aindex><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+		</Setting>
+		<Setting>
+			<jindex>-1</jindex><aindex>-1</aindex><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+		</Setting>
+		<Setting>
+			<jindex>-1</jindex><aindex>-1</aindex><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+		</Setting>
+		<Setting>
+			<jindex>-1</jindex><aindex>-1</aindex><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+		</Setting>
+		<Setting>
+			<jindex>-1</jindex><aindex>-1</aindex><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+		</Setting>
+		<Setting>
+			<jindex>-1</jindex><aindex>-1</aindex><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+		</Setting>
 	</JoystickSettings>
 	<IndexSettings>
 		<Setting>
