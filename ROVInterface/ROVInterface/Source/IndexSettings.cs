@@ -13,13 +13,12 @@ public class IndexSettings {
 	}
 
 	public FlowLayoutPanel CreateElement() {
-		return CreateElement(0, "", 2, 12);
+		return CreateElement(0, "", 2, 12, System.Drawing.Color.White, 0, 0, 100, 100, "");
 	}
 
-	public FlowLayoutPanel CreateElement(int index, string name, int digit, int size) {
+	public FlowLayoutPanel CreateElement(int index, string name, int digit, int size, System.Drawing.Color color, int v1raw, int v1scaled, int v2raw, int v2scaled, string suffix) {
 
 		Setting setting = new Setting(this);
-		setting.labels = new Label[0];
 
 		// Panel handler
 		FlowLayoutPanel temp = new FlowLayoutPanel();
@@ -27,8 +26,7 @@ public class IndexSettings {
 		temp.Width = temp.Parent.Width - 30;
 		temp.Height = 25;
 		setting.panel = temp;
-
-		//setting.labels[0] = CreateLabel("Index:", temp);
+		
 		// Index handler
 		NumericUpDown nud = new NumericUpDown();
 		nud.Parent = temp;
@@ -37,8 +35,7 @@ public class IndexSettings {
 		nud.Value = index;
 		nud.Width = 60;
 		setting.index = nud;
-
-		//setting.labels[1] = CreateLabel("Name:", temp);
+		
 		// Name handler
 		TextBox txtbox = new TextBox();
 		txtbox.Parent = temp;
@@ -47,8 +44,7 @@ public class IndexSettings {
 		txtbox.Width = 200;
 		txtbox.Margin = new Padding(3, 3, 30, 3);
 		setting.name = txtbox;
-
-		//setting.labels[2] = CreateLabel("Digits:", temp);
+		
 		// Digit handler
 		nud = new NumericUpDown();
 		nud.Parent = temp;
@@ -58,8 +54,7 @@ public class IndexSettings {
 		nud.Maximum = 12;
 		nud.Value = digit;
 		setting.digit = nud;
-
-		//setting.labels[3] = CreateLabel("Size:", temp);
+		
 		// Size handler
 		nud = new NumericUpDown();
 		nud.Parent = temp;
@@ -70,57 +65,63 @@ public class IndexSettings {
 		nud.Value = size;
 		nud.Margin = new Padding(3, 3, 30, 3);
 		setting.size = nud;
-
-		//setting.labels[4] = CreateLabel("Color:", temp);
+		
 		// Color handler
 		Button btn = new Button();
-		btn.BackColor = System.Drawing.Color.White;
+		btn.BackColor = color;
 		btn.Parent = temp;
 		btn.Text = "";
 		btn.Size = new System.Drawing.Size(25, 25);
 		btn.Margin = new Padding(2, 2, 29, 2);
 		btn.Click += setting.OpenColorDialog;
 		setting.color = btn;
-
-		//setting.labels[5] = CreateLabel("Value (raw - scaled):", temp);
+		
 		// Val1 handler raw
 		nud = new NumericUpDown();
 		nud.Value = nud.Minimum = int.MinValue;
 		nud.Maximum = int.MaxValue;
+		nud.Value = v1raw;
 		nud.Width = 100;
 		nud.Parent = temp;
+		nud.ValueChanged += setting.UpdateStats;
 		setting.val1raw = nud;
 		// Val1 handler scaled
 		nud = new NumericUpDown();
 		nud.Value = nud.Minimum = int.MinValue;
 		nud.Maximum = int.MaxValue;
+		nud.Value = v1scaled;
 		nud.Width = 100;
 		nud.Parent = temp;
+		nud.ValueChanged += setting.UpdateStats;
 		nud.Margin = new Padding(3, 3, 30, 3);
 		setting.val1scaled = nud;
-
-		//setting.labels[6] = CreateLabel("Value (raw - scaled):", temp);
+		
 		// Val2 handler raw
 		nud = new NumericUpDown();
 		nud.Value = nud.Minimum = int.MinValue;
 		nud.Maximum = int.MaxValue;
+		nud.Value = v2raw;
 		nud.Width = 100;
 		nud.Parent = temp;
+		nud.ValueChanged += setting.UpdateStats;
 		setting.val2raw = nud;
 		// Val2 handler scaled
 		nud = new NumericUpDown();
 		nud.Value = nud.Minimum = int.MinValue;
 		nud.Maximum = int.MaxValue;
+		nud.Value = v2scaled;
 		nud.Width = 100;
 		nud.Parent = temp;
+		nud.ValueChanged += setting.UpdateStats;
 		nud.Margin = new Padding(3, 3, 30, 3);
 		setting.val2scaled = nud;
-
-		//setting.labels[7] = CreateLabel("Suffix:", temp);
+		
 		// Suffix handler
 		ComboBox cmb = new ComboBox();
 		cmb.Parent = temp;
 		cmb.Width = 70;
+		cmb.Text = suffix;
+		cmb.TextChanged += setting.UpdateStats;
 		cmb.Margin = new Padding(3, 3, 30, 3);
 		setting.suffix = cmb;
 
@@ -169,7 +170,6 @@ public class IndexSettings {
 		public NumericUpDown val2scaled;
 		public ComboBox suffix;
 		public Button delete;
-		public Label[] labels;
 
 		public Setting(IndexSettings handler) {
 			this.handler = handler;
@@ -179,18 +179,15 @@ public class IndexSettings {
 		public void Delete(object sender, EventArgs e) {
 			handler.allSettings.Remove(this);
 
-			index.ValueChanged -= this.UpdateIndex;
-			name.TextChanged -= this.UpdateStats;
-			digit.ValueChanged -= this.UpdateStats;
-			size.ValueChanged -= this.UpdateStats;
-			color.Click -= this.OpenColorDialog;
-			delete.Click -= this.Delete;
-
 			Program.windowStatus.Controls.Remove(index);
 			Program.windowStatus.Controls.Remove(name);
 			Program.windowStatus.Controls.Remove(digit);
 			Program.windowStatus.Controls.Remove(size);
 			Program.windowStatus.Controls.Remove(color);
+			Program.windowStatus.Controls.Remove(val1raw);
+			Program.windowStatus.Controls.Remove(val1scaled);
+			Program.windowStatus.Controls.Remove(val2raw);
+			Program.windowStatus.Controls.Remove(val2scaled);
 			Program.windowStatus.Controls.Remove(delete);
 			Program.windowStatus.Controls.Remove(panel);
 
@@ -199,9 +196,11 @@ public class IndexSettings {
 			digit.Dispose();
 			size.Dispose();
 			color.Dispose();
+			val1raw.Dispose();
+			val1scaled.Dispose();
+			val2raw.Dispose();
+			val2scaled.Dispose();
 			delete.Dispose();
-			for (int i = 0, j = labels.Length; i < j; i++)
-				labels[i].Dispose();
 			panel.Dispose();
 
 			for (int i = 0, j = linkedStats.Count; i < j; i++)
@@ -343,13 +342,13 @@ public class IndexStats {
 		private IndexSettings.Setting _setting;
 		public IndexSettings indexSettings;
 
-		private float value;
+		private int value;
 		private BindingSource bind;
 
 		public Stats (IndexSettings s) {
 			indexSettings = s;
 			_setting = null;
-			value = float.MinValue;
+			value = int.MinValue;
 		}
 
 		public void Init() {
@@ -382,25 +381,30 @@ public class IndexStats {
 			name.ForeColor = _setting.color.BackColor;
 			bind.ResetCurrentItem();
 			// Update the value
+			resetval = true; // Force reset of the value
 			UpdateValue();
 		}
 
+		private bool resetval = true;
 		public void UpdateValue() {
 			if (_setting == null)
 				return;
 			// Find new value
+			int v = 0;
 			bool found = true;
-			float v = 0.0f;
-			try { value = ST_Register.status[(int)_setting.index.Value]; }
+			try { v = ST_Register.status[(int)_setting.index.Value]; }
 			catch (Exception e) { found = false; }
 
-			if (found) {
-				if (value != v) {
+			if (found || resetval) {
+				if (value != v || resetval) {
 					value = v;
-					name.Text = _setting.ToString() + ": " + value;
+					float f = v;
+					
+					name.Text = _setting.ToString() + ": " + value + " " + _setting.suffix.Text;
+					resetval = false;
 				}
 			} else
-				name.Text = _setting.ToString() + ": " + "NaN";
+				name.Text = _setting.ToString() + ": " + "NaN " + _setting.suffix.Text;
 		}
 
 		public void Delete(object sender, EventArgs e) {
@@ -408,10 +412,6 @@ public class IndexStats {
 			if (_setting != null)
 				_setting.linkedStats.Remove(this);
 			Program.windowStatus.indexStats.allStats.Remove(this);
-
-			index.Click -= this.UpdateIndexList;
-			index.SelectedValueChanged -= this.UpdateIndex;
-			delete.Click -= this.Delete;
 
 			Program.windowStatus.Controls.Remove(index);
 			Program.windowStatus.Controls.Remove(name);
