@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 
 /*
-	Need to implement loading of JoystickSettings, and other buttons etc coming later.
-	Need to implement saving of JoystickSettings, and other buttons etc coming later.
+	BUG - Check if a value between tags are empty, such as name
 */
 
 public static class ProgramSaverLoader {

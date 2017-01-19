@@ -19,35 +19,36 @@ public class IndexSettings {
 	public FlowLayoutPanel CreateElement(int index, string name, int digit, int size) {
 
 		Setting setting = new Setting(this);
-		setting.labels = new Label[8];
+		setting.labels = new Label[0];
 
 		// Panel handler
 		FlowLayoutPanel temp = new FlowLayoutPanel();
 		temp.Parent = panelIndexSettings;
-		temp.Width = temp.Parent.Width - 6;
+		temp.Width = temp.Parent.Width - 30;
 		temp.Height = 25;
 		setting.panel = temp;
 
-		setting.labels[0] = CreateLabel("Index:", temp);
+		//setting.labels[0] = CreateLabel("Index:", temp);
 		// Index handler
 		NumericUpDown nud = new NumericUpDown();
 		nud.Parent = temp;
 		nud.ValueChanged += setting.UpdateIndex;
-		nud.Value = index;
-		nud.Width = 70;
 		nud.Maximum = (int)Math.Pow(2, 15) - 1;
+		nud.Value = index;
+		nud.Width = 60;
 		setting.index = nud;
 
-		setting.labels[1] = CreateLabel("Name:", temp);
+		//setting.labels[1] = CreateLabel("Name:", temp);
 		// Name handler
 		TextBox txtbox = new TextBox();
 		txtbox.Parent = temp;
 		txtbox.Text = name;
 		txtbox.TextChanged += setting.UpdateStats;
 		txtbox.Width = 200;
+		txtbox.Margin = new Padding(3, 3, 30, 3);
 		setting.name = txtbox;
 
-		setting.labels[2] = CreateLabel("Digits:", temp);
+		//setting.labels[2] = CreateLabel("Digits:", temp);
 		// Digit handler
 		nud = new NumericUpDown();
 		nud.Parent = temp;
@@ -58,7 +59,7 @@ public class IndexSettings {
 		nud.Value = digit;
 		setting.digit = nud;
 
-		setting.labels[3] = CreateLabel("Size:", temp);
+		//setting.labels[3] = CreateLabel("Size:", temp);
 		// Size handler
 		nud = new NumericUpDown();
 		nud.Parent = temp;
@@ -67,51 +68,60 @@ public class IndexSettings {
 		nud.Minimum = 8;
 		nud.Maximum = 25;
 		nud.Value = size;
+		nud.Margin = new Padding(3, 3, 30, 3);
 		setting.size = nud;
 
-		setting.labels[4] = CreateLabel("Color:", temp);
+		//setting.labels[4] = CreateLabel("Color:", temp);
 		// Color handler
 		Button btn = new Button();
 		btn.BackColor = System.Drawing.Color.White;
 		btn.Parent = temp;
 		btn.Text = "";
 		btn.Size = new System.Drawing.Size(25, 25);
-		btn.Margin = new Padding(2);
+		btn.Margin = new Padding(2, 2, 29, 2);
 		btn.Click += setting.OpenColorDialog;
 		setting.color = btn;
 
-		setting.labels[5] = CreateLabel("Value (raw - scaled):", temp);
+		//setting.labels[5] = CreateLabel("Value (raw - scaled):", temp);
 		// Val1 handler raw
 		nud = new NumericUpDown();
 		nud.Value = nud.Minimum = int.MinValue;
 		nud.Maximum = int.MaxValue;
+		nud.Width = 100;
 		nud.Parent = temp;
 		setting.val1raw = nud;
 		// Val1 handler scaled
 		nud = new NumericUpDown();
 		nud.Value = nud.Minimum = int.MinValue;
 		nud.Maximum = int.MaxValue;
+		nud.Width = 100;
 		nud.Parent = temp;
+		nud.Margin = new Padding(3, 3, 30, 3);
 		setting.val1scaled = nud;
 
-		setting.labels[6] = CreateLabel("Value (raw - scaled):", temp);
-		// Val1 handler raw
+		//setting.labels[6] = CreateLabel("Value (raw - scaled):", temp);
+		// Val2 handler raw
 		nud = new NumericUpDown();
 		nud.Value = nud.Minimum = int.MinValue;
 		nud.Maximum = int.MaxValue;
+		nud.Width = 100;
 		nud.Parent = temp;
 		setting.val2raw = nud;
-		// Val1 handler scaled
+		// Val2 handler scaled
 		nud = new NumericUpDown();
 		nud.Value = nud.Minimum = int.MinValue;
 		nud.Maximum = int.MaxValue;
+		nud.Width = 100;
 		nud.Parent = temp;
+		nud.Margin = new Padding(3, 3, 30, 3);
 		setting.val2scaled = nud;
 
-		setting.labels[7] = CreateLabel("Suffix:", temp);
+		//setting.labels[7] = CreateLabel("Suffix:", temp);
 		// Suffix handler
 		ComboBox cmb = new ComboBox();
 		cmb.Parent = temp;
+		cmb.Width = 70;
+		cmb.Margin = new Padding(3, 3, 30, 3);
 		setting.suffix = cmb;
 
 		// Delete handler
@@ -397,6 +407,7 @@ public class IndexStats {
 			// Remove link to settings
 			if (_setting != null)
 				_setting.linkedStats.Remove(this);
+			Program.windowStatus.indexStats.allStats.Remove(this);
 
 			index.Click -= this.UpdateIndexList;
 			index.SelectedValueChanged -= this.UpdateIndex;

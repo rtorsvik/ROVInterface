@@ -58,8 +58,9 @@
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.panel_IndexSettings = new System.Windows.Forms.FlowLayoutPanel();
+			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
 			this.btn_InsertIndexSetting = new System.Windows.Forms.Button();
+			this.panel_IndexSettings = new System.Windows.Forms.FlowLayoutPanel();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label8 = new System.Windows.Forms.Label();
@@ -85,6 +86,15 @@
 			this.tim_heartBeat = new System.Windows.Forms.Timer(this.components);
 			this.txt_error = new System.Windows.Forms.TextBox();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+			this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
+			this.label21 = new System.Windows.Forms.Label();
+			this.label22 = new System.Windows.Forms.Label();
+			this.label23 = new System.Windows.Forms.Label();
+			this.label24 = new System.Windows.Forms.Label();
+			this.label25 = new System.Windows.Forms.Label();
+			this.label26 = new System.Windows.Forms.Label();
 			this.connectionTab.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -94,7 +104,7 @@
 			this.groupBox2.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
-			this.panel_IndexSettings.SuspendLayout();
+			this.tableLayoutPanel4.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.flowLayoutPanel2.SuspendLayout();
 			this.tabPage5.SuspendLayout();
@@ -102,6 +112,7 @@
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
+			this.flowLayoutPanel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -478,7 +489,7 @@
 			// 
 			this.tableLayoutPanel2.ColumnCount = 1;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.17052F));
-			this.tableLayoutPanel2.Controls.Add(this.panel_IndexSettings, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.groupBox5, 0, 1);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
@@ -490,17 +501,23 @@
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(1384, 592);
 			this.tableLayoutPanel2.TabIndex = 1;
 			// 
-			// panel_IndexSettings
+			// tableLayoutPanel4
 			// 
-			this.panel_IndexSettings.AutoScroll = true;
-			this.panel_IndexSettings.Controls.Add(this.btn_InsertIndexSetting);
-			this.panel_IndexSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel_IndexSettings.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.panel_IndexSettings.Location = new System.Drawing.Point(0, 0);
-			this.panel_IndexSettings.Margin = new System.Windows.Forms.Padding(0);
-			this.panel_IndexSettings.Name = "panel_IndexSettings";
-			this.panel_IndexSettings.Size = new System.Drawing.Size(1384, 436);
-			this.panel_IndexSettings.TabIndex = 0;
+			this.tableLayoutPanel4.ColumnCount = 1;
+			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel4.Controls.Add(this.btn_InsertIndexSetting, 0, 0);
+			this.tableLayoutPanel4.Controls.Add(this.panel_IndexSettings, 0, 2);
+			this.tableLayoutPanel4.Controls.Add(this.flowLayoutPanel3, 0, 1);
+			this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+			this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+			this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+			this.tableLayoutPanel4.RowCount = 3;
+			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel4.Size = new System.Drawing.Size(1384, 436);
+			this.tableLayoutPanel4.TabIndex = 1;
 			// 
 			// btn_InsertIndexSetting
 			// 
@@ -508,11 +525,21 @@
 			this.btn_InsertIndexSetting.Location = new System.Drawing.Point(4, 4);
 			this.btn_InsertIndexSetting.Margin = new System.Windows.Forms.Padding(4);
 			this.btn_InsertIndexSetting.Name = "btn_InsertIndexSetting";
-			this.btn_InsertIndexSetting.Size = new System.Drawing.Size(133, 37);
+			this.btn_InsertIndexSetting.Size = new System.Drawing.Size(133, 32);
 			this.btn_InsertIndexSetting.TabIndex = 0;
 			this.btn_InsertIndexSetting.Text = "Insert New";
 			this.btn_InsertIndexSetting.UseVisualStyleBackColor = true;
 			this.btn_InsertIndexSetting.Click += new System.EventHandler(this.btn_InsertIndexSetting_Click);
+			// 
+			// panel_IndexSettings
+			// 
+			this.panel_IndexSettings.AutoScroll = true;
+			this.panel_IndexSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel_IndexSettings.Location = new System.Drawing.Point(0, 65);
+			this.panel_IndexSettings.Margin = new System.Windows.Forms.Padding(0);
+			this.panel_IndexSettings.Name = "panel_IndexSettings";
+			this.panel_IndexSettings.Size = new System.Drawing.Size(1384, 371);
+			this.panel_IndexSettings.TabIndex = 0;
 			// 
 			// groupBox5
 			// 
@@ -787,6 +814,109 @@
 			this.txt_error.TabIndex = 1;
 			this.txt_error.Text = "error messages";
 			// 
+			// flowLayoutPanel3
+			// 
+			this.flowLayoutPanel3.Controls.Add(this.label1);
+			this.flowLayoutPanel3.Controls.Add(this.label20);
+			this.flowLayoutPanel3.Controls.Add(this.label21);
+			this.flowLayoutPanel3.Controls.Add(this.label26);
+			this.flowLayoutPanel3.Controls.Add(this.label22);
+			this.flowLayoutPanel3.Controls.Add(this.label23);
+			this.flowLayoutPanel3.Controls.Add(this.label24);
+			this.flowLayoutPanel3.Controls.Add(this.label25);
+			this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 43);
+			this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+			this.flowLayoutPanel3.Size = new System.Drawing.Size(1378, 19);
+			this.flowLayoutPanel3.TabIndex = 1;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label1.Location = new System.Drawing.Point(12, 0);
+			this.label1.Margin = new System.Windows.Forms.Padding(12, 0, 10, 0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(41, 17);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Index";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label20.Location = new System.Drawing.Point(83, 0);
+			this.label20.Margin = new System.Windows.Forms.Padding(20, 0, 172, 0);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(45, 17);
+			this.label20.TabIndex = 1;
+			this.label20.Text = "Name";
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label21.Location = new System.Drawing.Point(303, 0);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(43, 17);
+			this.label21.TabIndex = 2;
+			this.label21.Text = "Digits";
+			// 
+			// label22
+			// 
+			this.label22.AutoSize = true;
+			this.label22.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label22.Location = new System.Drawing.Point(413, 0);
+			this.label22.Margin = new System.Windows.Forms.Padding(25, 0, 3, 0);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(41, 17);
+			this.label22.TabIndex = 3;
+			this.label22.Text = "Color";
+			// 
+			// label23
+			// 
+			this.label23.AutoSize = true;
+			this.label23.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label23.Location = new System.Drawing.Point(492, 0);
+			this.label23.Margin = new System.Windows.Forms.Padding(35, 0, 3, 0);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(146, 17);
+			this.label23.TabIndex = 4;
+			this.label23.Text = "Value 1 (raw - scaled)";
+			// 
+			// label24
+			// 
+			this.label24.AutoSize = true;
+			this.label24.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label24.Location = new System.Drawing.Point(730, 0);
+			this.label24.Margin = new System.Windows.Forms.Padding(89, 0, 3, 0);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(146, 17);
+			this.label24.TabIndex = 5;
+			this.label24.Text = "Value 2 (raw - scaled)";
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label25.Location = new System.Drawing.Point(967, 0);
+			this.label25.Margin = new System.Windows.Forms.Padding(88, 0, 3, 0);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(42, 17);
+			this.label25.TabIndex = 6;
+			this.label25.Text = "Suffix";
+			// 
+			// label26
+			// 
+			this.label26.AutoSize = true;
+			this.label26.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label26.Location = new System.Drawing.Point(350, 0);
+			this.label26.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+			this.label26.Name = "label26";
+			this.label26.Size = new System.Drawing.Size(35, 17);
+			this.label26.TabIndex = 7;
+			this.label26.Text = "Size";
+			// 
 			// WindowStatus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -814,7 +944,7 @@
 			this.groupBox2.PerformLayout();
 			this.tabPage4.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
-			this.panel_IndexSettings.ResumeLayout(false);
+			this.tableLayoutPanel4.ResumeLayout(false);
 			this.groupBox5.ResumeLayout(false);
 			this.flowLayoutPanel2.ResumeLayout(false);
 			this.flowLayoutPanel2.PerformLayout();
@@ -824,6 +954,8 @@
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
+			this.flowLayoutPanel3.ResumeLayout(false);
+			this.flowLayoutPanel3.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -887,4 +1019,14 @@
 	public System.Windows.Forms.TextBox txt_serial_index;
 	public System.Windows.Forms.GroupBox groupBox3;
 	public System.Windows.Forms.ColorDialog colorDialog1;
+	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+	private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+	private System.Windows.Forms.Label label1;
+	private System.Windows.Forms.Label label20;
+	private System.Windows.Forms.Label label21;
+	private System.Windows.Forms.Label label22;
+	private System.Windows.Forms.Label label23;
+	private System.Windows.Forms.Label label24;
+	private System.Windows.Forms.Label label25;
+	private System.Windows.Forms.Label label26;
 }
