@@ -343,12 +343,16 @@ public class IndexStats {
 		public IndexSettings indexSettings;
 
 		private int value;
+		private float scale;
+		private float offset;
 		private BindingSource bind;
 
 		public Stats (IndexSettings s) {
 			indexSettings = s;
 			_setting = null;
 			value = int.MinValue;
+			scale = 1f;
+			offset = 0f;
 		}
 
 		public void Init() {
@@ -382,6 +386,19 @@ public class IndexStats {
 			bind.ResetCurrentItem();
 			// Update the value
 			resetval = true; // Force reset of the value
+			// Fix the scale and offset
+			if (_setting == null) {
+				offset = 0f;
+				scale = 1f;
+			} else {
+				if (_setting.val2raw.Value - _setting.val1raw.Value == 0) {
+					scale = 0f;
+					offset = (float)(_setting.val1scaled.Value + _setting.val2scaled.Value) / 2f;
+				} else {
+					scale = (float)(_setting.val2scaled.Value - _setting.val1scaled.Value) / (float)(_setting.val2raw.Value - _setting.val1raw.Value);
+					offset = scale * (float)_setting.val1raw.Value - (float)_setting.val1scaled.Value;
+				}
+			}
 			UpdateValue();
 		}
 
@@ -398,9 +415,7 @@ public class IndexStats {
 			if (found || resetval) {
 				if (value != v || resetval) {
 					value = v;
-					float f = v;
-					
-					name.Text = _setting.ToString() + ": " + value + " " + _setting.suffix.Text;
+					name.Text = _setting.ToString() + ": " + (value * scale + offset) + " " + _setting.suffix.Text;
 					resetval = false;
 				}
 			} else
