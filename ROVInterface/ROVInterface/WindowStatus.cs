@@ -81,11 +81,15 @@ public partial class WindowStatus : Form
 		if (serialConnection != null && serialConnection.IsOpen())
 		{
 			btn_connect_serial.BackColor = System.Drawing.Color.SpringGreen;
+			txt_con_messageSendt.Text = serialConnection.messageSendt;
+			txt_con_messageRecieved.Text = serialConnection.messageRecieved;
 		}
 		else
 		{
 			btn_connect_serial.UseVisualStyleBackColor = true;
 		}
+		
+
 
 		//update hartbeat
 		heartBeat = (int)st.status[0];
