@@ -172,4 +172,17 @@ public partial class WindowStatus : Form
 		}
 
 	}
+
+	private bool shownInstructions = false;
+
+	private void grp_IndexInstructions_Enter(object sender, EventArgs e) {
+		shownInstructions = !shownInstructions;
+
+		if (shownInstructions) {
+			tbl_IndexSettings.RowStyles[3].SizeType = SizeType.AutoSize;
+		} else {
+			tbl_IndexSettings.RowStyles[3].SizeType = SizeType.Absolute;
+			tbl_IndexSettings.RowStyles[3].Height = 20;
+		}
+	}
 }

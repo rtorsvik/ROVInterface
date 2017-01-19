@@ -539,6 +539,7 @@
 			this.btn_Instructions.TabIndex = 2;
 			this.btn_Instructions.Text = "Instructions";
 			this.btn_Instructions.UseVisualStyleBackColor = true;
+			this.btn_Instructions.Click += new System.EventHandler(this.grp_IndexInstructions_Enter);
 			// 
 			// grp_IndexInstructions
 			// 
