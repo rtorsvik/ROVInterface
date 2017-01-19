@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 
-/*
-	BUG - Check if a value between tags are empty, such as name
-*/
-
 public static class ProgramSaverLoader {
 
 	private static Reader reader;
@@ -36,8 +32,6 @@ public static class ProgramSaverLoader {
 		dataHolder = new DataHolder();
 		LoadPosition pos = LoadPosition.Start;
 		bool fin = false;
-
-		System.Threading.Thread.Sleep(10);
 
 		// The file exists, read it and insert the read data into settings
 		while (!reader.IsEmpty() && !fin) {
@@ -157,7 +151,7 @@ public static class ProgramSaverLoader {
 
 		for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
 			DataHolder.indexSettings_Setting d = dataHolder.indexSettings[i];
-			Program.windowStatus.indexSettings.CreateElement(d.index, d.name, d.digit, d.size);
+			Program.windowStatus.indexSettings.CreateElement(d.index, d.name, d.digit, d.size, d.color, d.v1raw, d.v1scaled, d.v2raw, d.v2scaled, d.suffix);
 		}
 		for (int i = 0, j = dataHolder.indexStats.Count; i < j; i++) {
 			int e = dataHolder.indexStats[i];
@@ -187,9 +181,11 @@ public static class ProgramSaverLoader {
 		src += "	<IndexSettings>\n";
 		List<IndexSettings.Setting> li = Program.windowStatus.indexSettings.allSettings;
 		for (int i = 0, j = li.Count; i < j; i++) {
-			src += "		<Setting>\n			<index>" + 
-				li[i].index.Value + "</index><name>" + (li[i].name.Text == "" ? "No name" : li[i].name.Text) + "</name><digit>" + li[i].digit.Value + 
-				"</digit><size>" + li[i].size.Value + "</size>\n		</Setting>\n";
+			src += "		<Setting>\n			<index>" +
+				li[i].index.Value + "</index><name>" + li[i].name.Text + "</name><digit>" + li[i].digit.Value +
+				"</digit><size>" + li[i].size.Value + "</size><color>" + li[i].color.BackColor.ToArgb() + "</color><raw>" + li[i].val1raw.Value +
+				"</raw><scaled>" + li[i].val1scaled.Value + "</scaled><raw>" + li[i].val2raw.Value + "</raw><scaled>" + li[i].val2scaled.Value +
+				"</scaled><suffix>" + li[i].suffix.Text + "</suffix>\n		</Setting>\n";
 		}
 		src += "	</IndexSettings>\n";
 
@@ -338,10 +334,17 @@ public static class ProgramSaverLoader {
 			public string name;
 			public int digit;
 			public int size;
+			public System.Drawing.Color color;
+			public int v1raw;
+			public int v1scaled;
+			public int v2raw;
+			public int v2scaled;
+			public string suffix;
 
 			private bool waitforval = false;
 			private int readindex = 0;
-			private readonly string[] req = { "<index>", "</index>", "<name>", "</name>", "<digit>", "</digit>", "<size>", "</size>" };
+			private readonly string[] req = { "<index>", "</index>", "<name>", "</name>", "<digit>", "</digit>", "<size>", "</size>", "<color>", "</color>",
+											  "<raw>", "</raw>", "<scaled>", "</scaled>", "<raw>", "</raw>", "<scaled>", "</scaled>", "<suffix>", "</suffix>" };
 
 			public string NextData() {
 				if (readindex == req.Length)
@@ -356,19 +359,22 @@ public static class ProgramSaverLoader {
 			}
 
 			public void Insert(string s) {
+				if (s == req[readindex]) {
+					NextData();
+					return;
+				}
+				
 				switch (readindex) {
-					case 1:
-						index = int.Parse(s);
-						break;
-					case 3:
-						name = s;
-						break;
-					case 5:
-						digit = int.Parse(s);
-						break;
-					case 7:
-						size = int.Parse(s);
-						break;
+					case 1: index = int.Parse(s); break;
+					case 3: name = s; break;
+					case 5: digit = int.Parse(s); break;
+					case 7: size = int.Parse(s); break;
+					case 9: color = System.Drawing.Color.FromArgb(int.Parse(s)); break;
+					case 11: v1raw = int.Parse(s); break;
+					case 13: v1scaled = int.Parse(s); break;
+					case 15: v2raw = int.Parse(s); break;
+					case 17: v2scaled = int.Parse(s); break;
+					case 19: suffix = s; break;
 				}
 			}
 		}
@@ -384,7 +390,8 @@ public static class ProgramSaverLoader {
 
 			private bool waitforval = false;
 			private int readindex = 0;
-			private readonly string[] req = { "<jindex>", "</jindex>", "<aindex>", "</aindex>", "<reverse>", "</reverse>", "<expo>", "</expo>", "<deadband>", "</deadband>", "<offset>", "</offset>", "<max>", "</max>" };
+			private readonly string[] req = { "<jindex>", "</jindex>", "<aindex>", "</aindex>", "<reverse>", "</reverse>", "<expo>", "</expo>",
+											  "<deadband>", "</deadband>", "<offset>", "</offset>", "<max>", "</max>" };
 
 			public string NextData() {
 				if (readindex == req.Length)
@@ -399,28 +406,19 @@ public static class ProgramSaverLoader {
 			}
 
 			public void Insert(string s) {
+				if (s == req[readindex]) {
+					NextData();
+					return;
+				}
+
 				switch (readindex) {
-					case 1:
-						jindex = int.Parse(s);
-						break;
-					case 3:
-						aindex = int.Parse(s);
-						break;
-					case 5:
-						reverse = bool.Parse(s);
-						break;
-					case 7:
-						expo = float.Parse(s);
-						break;
-					case 9:
-						deadband = int.Parse(s);
-						break;
-					case 11:
-						offset = int.Parse(s);
-						break;
-					case 13:
-						max = int.Parse(s);
-						break;
+					case 1: jindex = int.Parse(s); break;
+					case 3: aindex = int.Parse(s); break;
+					case 5: reverse = bool.Parse(s); break;
+					case 7: expo = float.Parse(s); break;
+					case 9: deadband = int.Parse(s); break;
+					case 11: offset = int.Parse(s); break;
+					case 13: max = int.Parse(s); break;
 				}
 			}
 		}

@@ -11,16 +11,16 @@
   </JoystickSettings>
   <IndexSettings>
     <Setting>
-      <index>1</index>
-      <name>Temp1</name>
-      <digit>2</digit>
-      <size>12</size>
-    </Setting>
-    <Setting>
       <index>2</index>
       <name>Temp2</name>
       <digit>2</digit>
       <size>12</size>
+      <color>=</color>
+      <raw>0</raw>
+      <scaled>0</scaled>
+      <raw>1</raw>
+      <scaled>1</scaled>
+      <suffix>m/s</suffix>
     </Setting>
   </IndexSettings>
   <IndexStats>
