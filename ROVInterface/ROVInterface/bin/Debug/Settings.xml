@@ -21,9 +21,14 @@
 	</JoystickSettings>
 	<IndexSettings>
 		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size>
+			<index>0</index><name>No name</name><digit>2</digit><size>13</size>
+		</Setting>
+		<Setting>
+			<index>1</index><name>Temp2</name><digit>2</digit><size>15</size>
 		</Setting>
 	</IndexSettings>
 	<IndexStats>
+		<Stats>0</Stats>
+		<Stats>1</Stats>
 	</IndexStats>
 </Settings>

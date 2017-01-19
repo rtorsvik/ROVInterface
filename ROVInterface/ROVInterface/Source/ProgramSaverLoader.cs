@@ -189,7 +189,7 @@ public static class ProgramSaverLoader {
 		List<IndexSettings.Setting> li = Program.windowStatus.indexSettings.allSettings;
 		for (int i = 0, j = li.Count; i < j; i++) {
 			src += "		<Setting>\n			<index>" + 
-				li[i].index.Value + "</index><name>" + li[i].name.Text + "</name><digit>" + li[i].digit.Value + 
+				li[i].index.Value + "</index><name>" + (li[i].name.Text == "" ? "No name" : li[i].name.Text) + "</name><digit>" + li[i].digit.Value + 
 				"</digit><size>" + li[i].size.Value + "</size>\n		</Setting>\n";
 		}
 		src += "	</IndexSettings>\n";

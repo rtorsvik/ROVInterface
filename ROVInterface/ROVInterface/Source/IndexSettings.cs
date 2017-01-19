@@ -19,7 +19,7 @@ public class IndexSettings {
 	public FlowLayoutPanel CreateElement(int index, string name, int digit, int size) {
 
 		Setting setting = new Setting(this);
-		setting.labels = new Label[5];
+		setting.labels = new Label[8];
 
 		// Panel handler
 		FlowLayoutPanel temp = new FlowLayoutPanel();
@@ -76,8 +76,43 @@ public class IndexSettings {
 		btn.Parent = temp;
 		btn.Text = "";
 		btn.Size = new System.Drawing.Size(25, 25);
+		btn.Margin = new Padding(2);
 		btn.Click += setting.OpenColorDialog;
 		setting.color = btn;
+
+		setting.labels[5] = CreateLabel("Value (raw - scaled):", temp);
+		// Val1 handler raw
+		nud = new NumericUpDown();
+		nud.Value = nud.Minimum = int.MinValue;
+		nud.Maximum = int.MaxValue;
+		nud.Parent = temp;
+		setting.val1raw = nud;
+		// Val1 handler scaled
+		nud = new NumericUpDown();
+		nud.Value = nud.Minimum = int.MinValue;
+		nud.Maximum = int.MaxValue;
+		nud.Parent = temp;
+		setting.val1scaled = nud;
+
+		setting.labels[6] = CreateLabel("Value (raw - scaled):", temp);
+		// Val1 handler raw
+		nud = new NumericUpDown();
+		nud.Value = nud.Minimum = int.MinValue;
+		nud.Maximum = int.MaxValue;
+		nud.Parent = temp;
+		setting.val2raw = nud;
+		// Val1 handler scaled
+		nud = new NumericUpDown();
+		nud.Value = nud.Minimum = int.MinValue;
+		nud.Maximum = int.MaxValue;
+		nud.Parent = temp;
+		setting.val2scaled = nud;
+
+		setting.labels[7] = CreateLabel("Suffix:", temp);
+		// Suffix handler
+		ComboBox cmb = new ComboBox();
+		cmb.Parent = temp;
+		setting.suffix = cmb;
 
 		// Delete handler
 		btn = new Button();
@@ -102,7 +137,7 @@ public class IndexSettings {
 		lab.AutoSize = true;
 		lab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 		lab.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
-		lab.Margin = new Padding(2, 2, 2, 0);
+		lab.Margin = new Padding(2, 4, 2, 0);
 
 		return lab;
 	}
@@ -118,6 +153,11 @@ public class IndexSettings {
 		public NumericUpDown digit;
 		public NumericUpDown size;
 		public Button color;
+		public NumericUpDown val1raw;
+		public NumericUpDown val1scaled;
+		public NumericUpDown val2raw;
+		public NumericUpDown val2scaled;
+		public ComboBox suffix;
 		public Button delete;
 		public Label[] labels;
 
@@ -171,8 +211,10 @@ public class IndexSettings {
 		}
 
 		public void OpenColorDialog(object sender, EventArgs e) {
-			if (Program.windowStatus.colorDialog1.ShowDialog() == DialogResult.OK)
+			if (Program.windowStatus.colorDialog1.ShowDialog() == DialogResult.OK) {
 				this.color.BackColor = Program.windowStatus.colorDialog1.Color;
+				UpdateStats(null, null);
+			}
 		}
 
 		public override string ToString() {
@@ -194,6 +236,7 @@ public class IndexStats {
 		flowLayoutPanel = pan;
 		this.btnEditMode = btnEditMode;
 		allStats = new List<Stats>();
+		ChangeEditMode();
 	}
 
 	public void ChangeEditMode() {
@@ -326,6 +369,7 @@ public class IndexStats {
 
 			// Update everything from settings
 			name.Font = new System.Drawing.Font("Microsoft Sans Serif", (int)_setting.size.Value);
+			name.ForeColor = _setting.color.BackColor;
 			bind.ResetCurrentItem();
 			// Update the value
 			UpdateValue();

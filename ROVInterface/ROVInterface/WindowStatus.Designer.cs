@@ -476,17 +476,17 @@
 			// 
 			// tableLayoutPanel2
 			// 
-			this.tableLayoutPanel2.ColumnCount = 2;
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.ColumnCount = 1;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.17052F));
 			this.tableLayoutPanel2.Controls.Add(this.panel_IndexSettings, 0, 0);
-			this.tableLayoutPanel2.Controls.Add(this.groupBox5, 1, 0);
+			this.tableLayoutPanel2.Controls.Add(this.groupBox5, 0, 1);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
 			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowCount = 2;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 156F));
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(1384, 592);
 			this.tableLayoutPanel2.TabIndex = 1;
 			// 
@@ -499,7 +499,7 @@
 			this.panel_IndexSettings.Location = new System.Drawing.Point(0, 0);
 			this.panel_IndexSettings.Margin = new System.Windows.Forms.Padding(0);
 			this.panel_IndexSettings.Name = "panel_IndexSettings";
-			this.panel_IndexSettings.Size = new System.Drawing.Size(692, 592);
+			this.panel_IndexSettings.Size = new System.Drawing.Size(1384, 436);
 			this.panel_IndexSettings.TabIndex = 0;
 			// 
 			// btn_InsertIndexSetting
@@ -519,11 +519,11 @@
 			this.groupBox5.Controls.Add(this.flowLayoutPanel2);
 			this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox5.Location = new System.Drawing.Point(692, 0);
+			this.groupBox5.Location = new System.Drawing.Point(0, 436);
 			this.groupBox5.Margin = new System.Windows.Forms.Padding(0, 0, 7, 6);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-			this.groupBox5.Size = new System.Drawing.Size(685, 586);
+			this.groupBox5.Size = new System.Drawing.Size(1377, 150);
 			this.groupBox5.TabIndex = 1;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Instructions";
@@ -536,7 +536,7 @@
 			this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 20);
 			this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
 			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-			this.flowLayoutPanel2.Size = new System.Drawing.Size(677, 562);
+			this.flowLayoutPanel2.Size = new System.Drawing.Size(1369, 126);
 			this.flowLayoutPanel2.TabIndex = 0;
 			// 
 			// label8
@@ -545,7 +545,7 @@
 			this.label8.Location = new System.Drawing.Point(4, 0);
 			this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(663, 136);
+			this.label8.Size = new System.Drawing.Size(848, 119);
 			this.label8.TabIndex = 0;
 			this.label8.Text = resources.GetString("label8.Text");
 			// 
