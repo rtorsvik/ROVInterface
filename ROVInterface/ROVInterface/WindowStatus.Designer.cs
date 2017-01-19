@@ -84,6 +84,7 @@
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.tim_heartBeat = new System.Windows.Forms.Timer(this.components);
 			this.txt_error = new System.Windows.Forms.TextBox();
+			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.connectionTab.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -140,7 +141,7 @@
 			this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabPage2.Size = new System.Drawing.Size(1869, 712);
+			this.tabPage2.Size = new System.Drawing.Size(1392, 600);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			// 
@@ -256,7 +257,7 @@
 			this.tableLayoutPanel1.ColumnCount = 3;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 597F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 598F));
 			this.tableLayoutPanel1.Controls.Add(this.groupBox8, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.groupBox7, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.groupBox6, 2, 0);
@@ -469,7 +470,7 @@
 			this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-			this.tabPage4.Size = new System.Drawing.Size(1869, 712);
+			this.tabPage4.Size = new System.Drawing.Size(1392, 600);
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "Index Settings";
 			// 
@@ -486,7 +487,7 @@
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 1;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(1861, 704);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(1384, 592);
 			this.tableLayoutPanel2.TabIndex = 1;
 			// 
 			// panel_IndexSettings
@@ -498,7 +499,7 @@
 			this.panel_IndexSettings.Location = new System.Drawing.Point(0, 0);
 			this.panel_IndexSettings.Margin = new System.Windows.Forms.Padding(0);
 			this.panel_IndexSettings.Name = "panel_IndexSettings";
-			this.panel_IndexSettings.Size = new System.Drawing.Size(930, 704);
+			this.panel_IndexSettings.Size = new System.Drawing.Size(692, 592);
 			this.panel_IndexSettings.TabIndex = 0;
 			// 
 			// btn_InsertIndexSetting
@@ -518,11 +519,11 @@
 			this.groupBox5.Controls.Add(this.flowLayoutPanel2);
 			this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox5.Location = new System.Drawing.Point(930, 0);
+			this.groupBox5.Location = new System.Drawing.Point(692, 0);
 			this.groupBox5.Margin = new System.Windows.Forms.Padding(0, 0, 7, 6);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-			this.groupBox5.Size = new System.Drawing.Size(924, 698);
+			this.groupBox5.Size = new System.Drawing.Size(685, 586);
 			this.groupBox5.TabIndex = 1;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Instructions";
@@ -535,7 +536,7 @@
 			this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 20);
 			this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
 			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-			this.flowLayoutPanel2.Size = new System.Drawing.Size(916, 674);
+			this.flowLayoutPanel2.Size = new System.Drawing.Size(677, 562);
 			this.flowLayoutPanel2.TabIndex = 0;
 			// 
 			// label8
@@ -544,7 +545,7 @@
 			this.label8.Location = new System.Drawing.Point(4, 0);
 			this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(848, 119);
+			this.label8.Size = new System.Drawing.Size(663, 136);
 			this.label8.TabIndex = 0;
 			this.label8.Text = resources.GetString("label8.Text");
 			// 
@@ -567,7 +568,7 @@
 			this.tabPage5.Location = new System.Drawing.Point(4, 25);
 			this.tabPage5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabPage5.Name = "tabPage5";
-			this.tabPage5.Size = new System.Drawing.Size(1869, 712);
+			this.tabPage5.Size = new System.Drawing.Size(1392, 600);
 			this.tabPage5.TabIndex = 4;
 			this.tabPage5.Text = "Joystick Settings";
 			// 
@@ -885,4 +886,5 @@
 	public System.Windows.Forms.TabControl connectionTab;
 	public System.Windows.Forms.TextBox txt_serial_index;
 	public System.Windows.Forms.GroupBox groupBox3;
+	public System.Windows.Forms.ColorDialog colorDialog1;
 }
