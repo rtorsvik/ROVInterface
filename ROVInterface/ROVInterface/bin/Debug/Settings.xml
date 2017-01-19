@@ -21,14 +21,77 @@
 	</JoystickSettings>
 	<IndexSettings>
 		<Setting>
-			<index>0</index><name>No name</name><digit>2</digit><size>13</size>
+			<index>1</index><name>Temp2</name><digit>2</digit><size>20</size>
 		</Setting>
 		<Setting>
-			<index>1</index><name>Temp2</name><digit>2</digit><size>15</size>
+			<index>1337</index><name>No name</name><digit>2</digit><size>13</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>2</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>hjbnnjm</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
 		</Setting>
 	</IndexSettings>
 	<IndexStats>
-		<Stats>0</Stats>
 		<Stats>1</Stats>
+		<Stats>1337</Stats>
 	</IndexStats>
 </Settings>
