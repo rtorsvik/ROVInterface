@@ -37,7 +37,6 @@ public partial class WindowStatus : Form
 	public WindowStatus()
     {
         InitializeComponent();
-
         //Make this screen appear on primary or seconodary screen by setting scrn =
         //  0, primary screen
         //  1, secondary screen
