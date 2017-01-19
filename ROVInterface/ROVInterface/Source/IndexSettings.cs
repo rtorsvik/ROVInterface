@@ -19,7 +19,7 @@ public class IndexSettings {
 	public FlowLayoutPanel CreateElement(int index, string name, int digit, int size) {
 
 		Setting setting = new Setting(this);
-		setting.labels = new Label[4];
+		setting.labels = new Label[5];
 
 		// Panel handler
 		FlowLayoutPanel temp = new FlowLayoutPanel();
@@ -69,11 +69,18 @@ public class IndexSettings {
 		nud.Value = size;
 		setting.size = nud;
 
+		setting.labels[4] = CreateLabel("Color:", temp);
 		// Color handler
-		// DUNNO
+		Button btn = new Button();
+		btn.BackColor = System.Drawing.Color.White;
+		btn.Parent = temp;
+		btn.Text = "";
+		btn.Size = new System.Drawing.Size(25, 25);
+		btn.Click += setting.OpenColorDialog;
+		setting.color = btn;
 
 		// Delete handler
-		Button btn = new Button();
+		btn = new Button();
 		btn.BackColor = System.Drawing.Color.White;
 		btn.Parent = temp;
 		btn.Text = "X";
@@ -110,6 +117,7 @@ public class IndexSettings {
 		public TextBox name;
 		public NumericUpDown digit;
 		public NumericUpDown size;
+		public Button color;
 		public Button delete;
 		public Label[] labels;
 
@@ -125,12 +133,14 @@ public class IndexSettings {
 			name.TextChanged -= this.UpdateStats;
 			digit.ValueChanged -= this.UpdateStats;
 			size.ValueChanged -= this.UpdateStats;
+			color.Click -= this.OpenColorDialog;
 			delete.Click -= this.Delete;
 
 			Program.windowStatus.Controls.Remove(index);
 			Program.windowStatus.Controls.Remove(name);
 			Program.windowStatus.Controls.Remove(digit);
 			Program.windowStatus.Controls.Remove(size);
+			Program.windowStatus.Controls.Remove(color);
 			Program.windowStatus.Controls.Remove(delete);
 			Program.windowStatus.Controls.Remove(panel);
 
@@ -138,6 +148,7 @@ public class IndexSettings {
 			name.Dispose();
 			digit.Dispose();
 			size.Dispose();
+			color.Dispose();
 			delete.Dispose();
 			for (int i = 0, j = labels.Length; i < j; i++)
 				labels[i].Dispose();
@@ -157,6 +168,11 @@ public class IndexSettings {
 			// Update all stats if there are any, with the new settings
 			for (int i = 0, j = linkedStats.Count; i < j; i++)
 				linkedStats[i].UpdateSettings();
+		}
+
+		public void OpenColorDialog(object sender, EventArgs e) {
+			if (Program.windowStatus.colorDialog1.ShowDialog() == DialogResult.OK)
+				this.color.BackColor = Program.windowStatus.colorDialog1.Color;
 		}
 
 		public override string ToString() {

@@ -84,6 +84,7 @@
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.tim_heartBeat = new System.Windows.Forms.Timer(this.components);
 			this.txt_error = new System.Windows.Forms.TextBox();
+			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.tabControl1.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -204,7 +205,7 @@
 			// pbr_heartBeat
 			// 
 			this.pbr_heartBeat.Location = new System.Drawing.Point(1683, 52);
-			this.pbr_heartBeat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.pbr_heartBeat.Margin = new System.Windows.Forms.Padding(4);
 			this.pbr_heartBeat.Maximum = 1;
 			this.pbr_heartBeat.Name = "pbr_heartBeat";
 			this.pbr_heartBeat.Size = new System.Drawing.Size(133, 28);
@@ -462,9 +463,9 @@
 			this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
 			this.tabPage4.Controls.Add(this.tableLayoutPanel2);
 			this.tabPage4.Location = new System.Drawing.Point(4, 25);
-			this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
 			this.tabPage4.Name = "tabPage4";
-			this.tabPage4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
 			this.tabPage4.Size = new System.Drawing.Size(1869, 712);
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "Index Settings";
@@ -501,7 +502,7 @@
 			// 
 			this.btn_InsertIndexSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_InsertIndexSetting.Location = new System.Drawing.Point(4, 4);
-			this.btn_InsertIndexSetting.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btn_InsertIndexSetting.Margin = new System.Windows.Forms.Padding(4);
 			this.btn_InsertIndexSetting.Name = "btn_InsertIndexSetting";
 			this.btn_InsertIndexSetting.Size = new System.Drawing.Size(133, 37);
 			this.btn_InsertIndexSetting.TabIndex = 0;
@@ -517,7 +518,7 @@
 			this.groupBox5.Location = new System.Drawing.Point(930, 0);
 			this.groupBox5.Margin = new System.Windows.Forms.Padding(0, 0, 7, 6);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
 			this.groupBox5.Size = new System.Drawing.Size(924, 698);
 			this.groupBox5.TabIndex = 1;
 			this.groupBox5.TabStop = false;
@@ -583,7 +584,7 @@
 			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox1.Image = global::ROVInterface.Properties.Resources.joystickscale_dark_test;
 			this.pictureBox1.Location = new System.Drawing.Point(1353, 43);
-			this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(491, 465);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -703,7 +704,7 @@
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 4);
-			this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(156, 190);
 			this.flowLayoutPanel1.TabIndex = 0;
@@ -712,7 +713,7 @@
 			// 
 			this.btn_EditMode.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.btn_EditMode.Location = new System.Drawing.Point(4, 4);
-			this.btn_EditMode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btn_EditMode.Margin = new System.Windows.Forms.Padding(4);
 			this.btn_EditMode.Name = "btn_EditMode";
 			this.btn_EditMode.Size = new System.Drawing.Size(147, 37);
 			this.btn_EditMode.TabIndex = 0;
@@ -724,7 +725,7 @@
 			// 
 			this.btn_AddIndexStat.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.btn_AddIndexStat.Location = new System.Drawing.Point(4, 49);
-			this.btn_AddIndexStat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btn_AddIndexStat.Margin = new System.Windows.Forms.Padding(4);
 			this.btn_AddIndexStat.Name = "btn_AddIndexStat";
 			this.btn_AddIndexStat.Size = new System.Drawing.Size(147, 37);
 			this.btn_AddIndexStat.TabIndex = 1;
@@ -740,9 +741,9 @@
 			this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox4.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.groupBox4.Location = new System.Drawing.Point(12, 770);
-			this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
 			this.groupBox4.Size = new System.Drawing.Size(1877, 222);
 			this.groupBox4.TabIndex = 0;
 			this.groupBox4.TabStop = false;
@@ -882,4 +883,5 @@
 		private System.Windows.Forms.TextBox txt_error;
 		private System.Windows.Forms.Label lbl_heartBeat_ms;
 	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+	public System.Windows.Forms.ColorDialog colorDialog1;
 }
