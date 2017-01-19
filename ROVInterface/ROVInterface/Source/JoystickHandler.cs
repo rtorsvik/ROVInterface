@@ -32,11 +32,11 @@ static class JoystickHandler
 	/// <summary>
 	/// Call this method to update the state of all the joysticks
 	/// </summary>
-	public static void update()
+	public static void Update()
 	{
 		foreach(TJoystick j in joystick)
 		{
-			j.update();
+			j.Update();
 		}
 	}
 
@@ -108,7 +108,7 @@ public class TJoystick
 	/// <summary>
 	/// Update state of joystick
 	/// </summary>
-	public void update()
+	public void Update()
 	{
 		//Get the state of the joystick
 		JoystickState state = joystick.GetCurrentState();

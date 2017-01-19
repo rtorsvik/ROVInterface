@@ -63,39 +63,16 @@ public partial class WindowStatus : Form
 		ProgramSaverLoader.Load();
 	}
 
-	private void btn_connect_serial_Click(object sender, EventArgs e)
-	{
-		//temp, should be replaced with comm handler later
-		if(serialConnection == null)
-		{
-			try
-			{
-				serialConnection = new SerialConnection(cmb_comport.SelectedItem.ToString(), int.Parse(cmb_baudrate.SelectedItem.ToString()));
-
-			}
-			catch (NullReferenceException)
-			{
-				Program.errors.Add("No com port or baud rate selected");
-				return;
-			}
-		}
-
-		if (serialConnection.IsOpen())
-		{
-			serialConnection.Close();
-		}
-		else
-		{
-			serialConnection.Open();
-		}
-			
-	}
+	
 
 
 
 	//tick updates all the elements in the window
 	private void tim_update_Tick(object sender, EventArgs e)
 	{
+		//update values from joystick
+		JoystickHandler.Update();
+
 		//Update Joystick Status fields
 		joystickSettings.Update();
 		indexStats.UpdateAllValues();
@@ -166,5 +143,33 @@ public partial class WindowStatus : Form
 		int index = Int32.Parse(txt_serial_index.Text);
 		int value = Int32.Parse(txt_serial_value.Text);
 		serialConnection.send(index, value);
+	}
+
+	private void btn_connect_serial_Click(object sender, EventArgs e)
+	{
+		//temp, should be replaced with comm handler later
+		if (serialConnection == null)
+		{
+			try
+			{
+				serialConnection = new SerialConnection(cmb_comport.SelectedItem.ToString(), int.Parse(cmb_baudrate.SelectedItem.ToString()));
+
+			}
+			catch (NullReferenceException)
+			{
+				Program.errors.Add("No com port or baud rate selected");
+				return;
+			}
+		}
+
+		if (serialConnection.IsOpen())
+		{
+			serialConnection.Close();
+		}
+		else
+		{
+			serialConnection.Open();
+		}
+
 	}
 }

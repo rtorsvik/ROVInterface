@@ -348,7 +348,7 @@ public class JoystickSettings
 			//if none of the axes changes enough within 3 seconds, stop this autodetect processs and use -1 as index
 			while (stopWatch.ElapsedMilliseconds < 3000 && index == -1)
 			{
-				jh.update();
+				jh.Update();
 
 				for (int i = 0; i < joystick.axis.Length; i++)
 				{
@@ -510,7 +510,7 @@ public class JoystickSettings
 			//if none of the axes changes enough within 3 seconds, stop this autodetect processs and use -1 as index
 			while (stopWatch.ElapsedMilliseconds < 3000 && index == -1)
 			{
-				jh.update();
+				jh.Update();
 
 				for (int i = 0; i < joystick.axis.Length; i++)
 				{
