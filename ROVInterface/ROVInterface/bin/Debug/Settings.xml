@@ -21,10 +21,18 @@
 	</JoystickSettings>
 	<IndexSettings>
 		<Setting>
-			<index>0</index><name>HeartBeat</name><digit>2</digit><size>12</size><color>-65536</color><raw>0</raw><scaled>0</scaled><raw>1</raw><scaled>1</scaled><suffix></suffix>
+			<index>0</index><name>HeartBeat</name><digit>1</digit><size>16</size><color>-65536</color><raw>0</raw><scaled>0</scaled><raw>1</raw><scaled>20</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>13</index><name>Rand</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>14</index><name>dt</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 	</IndexSettings>
 	<IndexStats>
 		<Stats>0</Stats>
+		<Stats>13</Stats>
+		<Stats>14</Stats>
 	</IndexStats>
 </Settings>

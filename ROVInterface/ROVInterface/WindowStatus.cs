@@ -22,7 +22,7 @@ public partial class WindowStatus : Form
 	public JoystickSettings joystickSettings;
 
 	//heartbeat
-	public bool pulse = true;
+	public bool pulse;
 	public int heartBeat = 1;
 	public int heartBeat_prev = 0;
 	public long heartBeat_ms;
@@ -101,10 +101,18 @@ public partial class WindowStatus : Form
 			heartBeatTimer.Reset();
 		}
 		heartBeat_prev = heartBeat;
+
 		if (pulse)
+		{
 			pbr_heartBeat.Value = 100;
+			checkBox1.Checked = true;
+		}	
 		else
+		{
 			pbr_heartBeat.Value = 0;
+			checkBox1.Checked = false;
+		}
+			
 
 
 		//display error messages
@@ -124,6 +132,7 @@ public partial class WindowStatus : Form
 	{
 		pulse = false;
 		heartBeatTimer.Start();
+		heartBeat_prev = heartBeat;
 		if (st.status[0] == 0)
 			try { serialConnection.send(0, 1); } catch { Program.errors.Add("No serial connection for heartbeat"); }
 		else if (st.status[0] == 1)
@@ -194,6 +203,17 @@ public partial class WindowStatus : Form
 
 	private void button1_Click(object sender, EventArgs e)
 	{
-		tim_heartBeat.Enabled = true;
+		if (tim_heartBeat.Enabled)
+		{
+			tim_heartBeat.Enabled = false;
+			button1.UseVisualStyleBackColor = true;
+			
+		}
+		else
+		{
+			tim_heartBeat.Enabled = true;
+			button1.BackColor = System.Drawing.Color.SpringGreen;
+		}
+			
 	}
 }

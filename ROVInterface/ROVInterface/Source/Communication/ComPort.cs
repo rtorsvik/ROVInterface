@@ -134,6 +134,7 @@ class SerialConnection
 		//add read bytes to buffer
 		for (int i = 0; i < bytesRead; i++)
 		{
+			if (idx > 6) { idx = 0; Console.WriteLine("error in packet index"); return; }
 			buffer[idx++] = packet[i];
 		}
 

@@ -97,6 +97,7 @@
 			this.txt_error = new System.Windows.Forms.TextBox();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.button1 = new System.Windows.Forms.Button();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.connectionTab.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -176,6 +177,7 @@
 			// 
 			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox3.Controls.Add(this.checkBox1);
 			this.groupBox3.Controls.Add(this.button1);
 			this.groupBox3.Controls.Add(this.lbl_heartBeat_ms);
 			this.groupBox3.Controls.Add(this.label19);
@@ -233,7 +235,7 @@
 			// 
 			this.label6.AutoSize = true;
 			this.label6.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label6.Location = new System.Drawing.Point(19, 78);
+			this.label6.Location = new System.Drawing.Point(19, 63);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(123, 17);
 			this.label6.TabIndex = 16;
@@ -251,18 +253,18 @@
 			// 
 			// txt_con_messageSendt
 			// 
-			this.txt_con_messageSendt.Location = new System.Drawing.Point(21, 52);
+			this.txt_con_messageSendt.Location = new System.Drawing.Point(148, 32);
 			this.txt_con_messageSendt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txt_con_messageSendt.Name = "txt_con_messageSendt";
-			this.txt_con_messageSendt.Size = new System.Drawing.Size(257, 23);
+			this.txt_con_messageSendt.Size = new System.Drawing.Size(126, 23);
 			this.txt_con_messageSendt.TabIndex = 13;
 			// 
 			// txt_con_messageRecieved
 			// 
-			this.txt_con_messageRecieved.Location = new System.Drawing.Point(21, 97);
+			this.txt_con_messageRecieved.Location = new System.Drawing.Point(148, 60);
 			this.txt_con_messageRecieved.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txt_con_messageRecieved.Name = "txt_con_messageRecieved";
-			this.txt_con_messageRecieved.Size = new System.Drawing.Size(257, 23);
+			this.txt_con_messageRecieved.Size = new System.Drawing.Size(126, 23);
 			this.txt_con_messageRecieved.TabIndex = 14;
 			// 
 			// tableLayoutPanel1
@@ -314,11 +316,11 @@
 			this.groupBox1.Controls.Add(this.txt_serial_index);
 			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox1.Location = new System.Drawing.Point(0, 257);
+			this.groupBox1.Location = new System.Drawing.Point(0, 222);
 			this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.groupBox1.Size = new System.Drawing.Size(366, 158);
+			this.groupBox1.Size = new System.Drawing.Size(366, 165);
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Advanced";
@@ -327,7 +329,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label5.Location = new System.Drawing.Point(160, 31);
+			this.label5.Location = new System.Drawing.Point(20, 61);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(44, 17);
 			this.label5.TabIndex = 12;
@@ -337,7 +339,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label4.Location = new System.Drawing.Point(19, 31);
+			this.label4.Location = new System.Drawing.Point(20, 34);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(41, 17);
 			this.label4.TabIndex = 11;
@@ -345,19 +347,19 @@
 			// 
 			// txt_serial_value
 			// 
-			this.txt_serial_value.Location = new System.Drawing.Point(163, 50);
+			this.txt_serial_value.Location = new System.Drawing.Point(94, 58);
 			this.txt_serial_value.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txt_serial_value.Name = "txt_serial_value";
-			this.txt_serial_value.Size = new System.Drawing.Size(116, 23);
+			this.txt_serial_value.Size = new System.Drawing.Size(82, 23);
 			this.txt_serial_value.TabIndex = 10;
 			// 
 			// btn_send_serial
 			// 
 			this.btn_send_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_send_serial.Location = new System.Drawing.Point(230, 90);
+			this.btn_send_serial.Location = new System.Drawing.Point(230, 31);
 			this.btn_send_serial.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
 			this.btn_send_serial.Name = "btn_send_serial";
-			this.btn_send_serial.Size = new System.Drawing.Size(121, 42);
+			this.btn_send_serial.Size = new System.Drawing.Size(111, 50);
 			this.btn_send_serial.TabIndex = 6;
 			this.btn_send_serial.Text = "Send";
 			this.btn_send_serial.UseVisualStyleBackColor = true;
@@ -365,10 +367,10 @@
 			// 
 			// txt_serial_index
 			// 
-			this.txt_serial_index.Location = new System.Drawing.Point(21, 50);
+			this.txt_serial_index.Location = new System.Drawing.Point(94, 31);
 			this.txt_serial_index.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txt_serial_index.Name = "txt_serial_index";
-			this.txt_serial_index.Size = new System.Drawing.Size(116, 23);
+			this.txt_serial_index.Size = new System.Drawing.Size(82, 23);
 			this.txt_serial_index.TabIndex = 9;
 			// 
 			// groupBox2
@@ -395,7 +397,7 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label2.Location = new System.Drawing.Point(19, 36);
+			this.label2.Location = new System.Drawing.Point(20, 36);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(34, 17);
 			this.label2.TabIndex = 3;
@@ -404,20 +406,20 @@
 			// cmb_comport
 			// 
 			this.cmb_comport.FormattingEnabled = true;
-			this.cmb_comport.Location = new System.Drawing.Point(21, 57);
+			this.cmb_comport.Location = new System.Drawing.Point(94, 33);
 			this.cmb_comport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.cmb_comport.Name = "cmb_comport";
-			this.cmb_comport.Size = new System.Drawing.Size(121, 24);
+			this.cmb_comport.Size = new System.Drawing.Size(82, 24);
 			this.cmb_comport.TabIndex = 0;
-			this.cmb_comport.Text = "COM port";
+			this.cmb_comport.Text = "COM5";
 			// 
 			// btn_connect_serial
 			// 
 			this.btn_connect_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_connect_serial.Location = new System.Drawing.Point(230, 83);
+			this.btn_connect_serial.Location = new System.Drawing.Point(230, 33);
 			this.btn_connect_serial.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
 			this.btn_connect_serial.Name = "btn_connect_serial";
-			this.btn_connect_serial.Size = new System.Drawing.Size(121, 57);
+			this.btn_connect_serial.Size = new System.Drawing.Size(111, 52);
 			this.btn_connect_serial.TabIndex = 5;
 			this.btn_connect_serial.Text = "Connect";
 			this.btn_connect_serial.UseVisualStyleBackColor = true;
@@ -427,7 +429,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label3.Location = new System.Drawing.Point(160, 36);
+			this.label3.Location = new System.Drawing.Point(20, 64);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(70, 17);
 			this.label3.TabIndex = 4;
@@ -439,12 +441,12 @@
 			this.cmb_baudrate.Items.AddRange(new object[] {
             "9600",
             "115200"});
-			this.cmb_baudrate.Location = new System.Drawing.Point(163, 57);
+			this.cmb_baudrate.Location = new System.Drawing.Point(94, 61);
 			this.cmb_baudrate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.cmb_baudrate.Name = "cmb_baudrate";
-			this.cmb_baudrate.Size = new System.Drawing.Size(121, 24);
+			this.cmb_baudrate.Size = new System.Drawing.Size(82, 24);
 			this.cmb_baudrate.TabIndex = 2;
-			this.cmb_baudrate.Text = "Baud rate";
+			this.cmb_baudrate.Text = "9600";
 			// 
 			// groupBox7
 			// 
@@ -837,6 +839,7 @@
 			// tim_update
 			// 
 			this.tim_update.Enabled = true;
+			this.tim_update.Interval = 10;
 			this.tim_update.Tick += new System.EventHandler(this.tim_update_Tick);
 			// 
 			// panel_IndexStats
@@ -947,6 +950,16 @@
 			this.button1.Text = "Start transmision";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(1086, 97);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(95, 21);
+			this.checkBox1.TabIndex = 20;
+			this.checkBox1.Text = "checkBox1";
+			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
 			// WindowStatus
 			// 
@@ -1064,4 +1077,5 @@
 	private System.Windows.Forms.Label label24;
 	private System.Windows.Forms.Label label25;
 	private System.Windows.Forms.Button button1;
+	private System.Windows.Forms.CheckBox checkBox1;
 }
