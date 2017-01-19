@@ -92,7 +92,7 @@ public partial class WindowStatus : Form
 
 
 		//update hartbeat
-		heartBeat = (int)st.status[0];
+		heartBeat = st.status[0];
 		if(heartBeat != heartBeat_prev)
 		{
 			pulse = true;
@@ -102,9 +102,10 @@ public partial class WindowStatus : Form
 		}
 		heartBeat_prev = heartBeat;
 		if (pulse)
-			pbr_heartBeat.Value = 1;
+			pbr_heartBeat.Value = 100;
 		else
 			pbr_heartBeat.Value = 0;
+
 
 		//display error messages
 		string statusMessage = "";
@@ -122,6 +123,7 @@ public partial class WindowStatus : Form
 	private void tim_heartBeat_Tick(object sender, EventArgs e)
 	{
 		pulse = false;
+		heartBeatTimer.Start();
 		if (st.status[0] == 0)
 			try { serialConnection.send(0, 1); } catch { Program.errors.Add("No serial connection for heartbeat"); }
 		else if (st.status[0] == 1)
@@ -188,5 +190,10 @@ public partial class WindowStatus : Form
 			tbl_IndexSettings.RowStyles[3].SizeType = SizeType.Absolute;
 			tbl_IndexSettings.RowStyles[3].Height = 20;
 		}
+	}
+
+	private void button1_Click(object sender, EventArgs e)
+	{
+		tim_heartBeat.Enabled = true;
 	}
 }

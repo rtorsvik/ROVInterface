@@ -21,7 +21,7 @@
 	</JoystickSettings>
 	<IndexSettings>
 		<Setting>
-			<index>0</index><name>Testerjfsjgmsgkbsggabgabn</name><digit>2</digit><size>12</size><color>-32704</color><raw>0</raw><scaled>0</scaled><raw>1</raw><scaled>1</scaled><suffix>m/s</suffix>
+			<index>0</index><name>HeartBeat</name><digit>2</digit><size>12</size><color>-65536</color><raw>0</raw><scaled>0</scaled><raw>1</raw><scaled>1</scaled><suffix></suffix>
 		</Setting>
 	</IndexSettings>
 	<IndexStats>

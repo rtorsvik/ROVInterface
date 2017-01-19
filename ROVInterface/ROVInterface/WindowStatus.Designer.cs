@@ -96,6 +96,7 @@
 			this.tim_heartBeat = new System.Windows.Forms.Timer(this.components);
 			this.txt_error = new System.Windows.Forms.TextBox();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+			this.button1 = new System.Windows.Forms.Button();
 			this.connectionTab.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -175,6 +176,7 @@
 			// 
 			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox3.Controls.Add(this.button1);
 			this.groupBox3.Controls.Add(this.lbl_heartBeat_ms);
 			this.groupBox3.Controls.Add(this.label19);
 			this.groupBox3.Controls.Add(this.pbr_heartBeat);
@@ -195,9 +197,10 @@
 			// 
 			// lbl_heartBeat_ms
 			// 
+			this.lbl_heartBeat_ms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.lbl_heartBeat_ms.AutoSize = true;
 			this.lbl_heartBeat_ms.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.lbl_heartBeat_ms.Location = new System.Drawing.Point(1613, 55);
+			this.lbl_heartBeat_ms.Location = new System.Drawing.Point(1133, 55);
 			this.lbl_heartBeat_ms.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.lbl_heartBeat_ms.Name = "lbl_heartBeat_ms";
 			this.lbl_heartBeat_ms.Size = new System.Drawing.Size(34, 17);
@@ -206,8 +209,9 @@
 			// 
 			// label19
 			// 
+			this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label19.AutoSize = true;
-			this.label19.Location = new System.Drawing.Point(1683, 28);
+			this.label19.Location = new System.Drawing.Point(1203, 28);
 			this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label19.Name = "label19";
 			this.label19.Size = new System.Drawing.Size(71, 17);
@@ -216,14 +220,14 @@
 			// 
 			// pbr_heartBeat
 			// 
-			this.pbr_heartBeat.Location = new System.Drawing.Point(1683, 52);
+			this.pbr_heartBeat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pbr_heartBeat.Location = new System.Drawing.Point(1203, 52);
 			this.pbr_heartBeat.Margin = new System.Windows.Forms.Padding(4);
-			this.pbr_heartBeat.Maximum = 1;
 			this.pbr_heartBeat.Name = "pbr_heartBeat";
 			this.pbr_heartBeat.Size = new System.Drawing.Size(133, 28);
 			this.pbr_heartBeat.Step = 1;
 			this.pbr_heartBeat.TabIndex = 17;
-			this.pbr_heartBeat.Value = 1;
+			this.pbr_heartBeat.Value = 100;
 			// 
 			// label6
 			// 
@@ -916,7 +920,7 @@
 			// 
 			// tim_heartBeat
 			// 
-			this.tim_heartBeat.Interval = 10000;
+			this.tim_heartBeat.Interval = 1000;
 			this.tim_heartBeat.Tick += new System.EventHandler(this.tim_heartBeat_Tick);
 			// 
 			// txt_error
@@ -931,6 +935,18 @@
 			this.txt_error.Size = new System.Drawing.Size(1422, 23);
 			this.txt_error.TabIndex = 1;
 			this.txt_error.Text = "error messages";
+			// 
+			// button1
+			// 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Location = new System.Drawing.Point(1203, 87);
+			this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(133, 42);
+			this.button1.TabIndex = 13;
+			this.button1.Text = "Start transmision";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// WindowStatus
 			// 
@@ -1047,4 +1063,5 @@
 	private System.Windows.Forms.Label label23;
 	private System.Windows.Forms.Label label24;
 	private System.Windows.Forms.Label label25;
+	private System.Windows.Forms.Button button1;
 }

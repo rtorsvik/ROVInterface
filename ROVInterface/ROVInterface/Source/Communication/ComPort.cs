@@ -3,6 +3,8 @@ using System.IO.Ports;
 using System.Text;
 using System.Windows.Forms;
 
+using st_reg = ST_Register;
+
 class SerialConnection
 {
 
@@ -143,10 +145,26 @@ class SerialConnection
 			//save latest message that was sendt
 			messageRecieved = PacketToString(buffer);
 		}
-			
 
 
 
+		//Save the recieved value to st_register
+		//reconstruct index 
+		int index;
+		index = buffer[0] << 8; //index MSB
+		index |= buffer[1]; //index LSB
+
+		//reconstruct value
+		int value;
+		value = buffer[2] << 24;
+		value |= buffer[3] << 16;
+		value |= buffer[4] << 8;
+		value |= buffer[5];
+
+		st_reg.status[index] = value;
+
+
+		/*
 		//For the example assume the data we are received is ASCII data. 
 		tString += Encoding.ASCII.GetString(packet, 0, bytesRead);
 		//Check if string contains the terminator  
@@ -160,12 +178,11 @@ class SerialConnection
 			
 			//Do something with workingString 
 			Console.WriteLine(workingString);
-
-			
-			
 		}
-	
-		
+
+		*/
+
+
 
 	}
 
