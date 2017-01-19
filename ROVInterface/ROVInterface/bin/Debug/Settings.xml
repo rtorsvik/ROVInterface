@@ -83,6 +83,12 @@
 		<Setting>
 			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
 		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
+		<Setting>
+			<index>0</index><name>No name</name><digit>2</digit><size>12</size>
+		</Setting>
 	</IndexSettings>
 	<IndexStats>
 		<Stats>1</Stats>

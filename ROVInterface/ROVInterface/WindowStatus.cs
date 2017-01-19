@@ -167,4 +167,17 @@ public partial class WindowStatus : Form
 		int value = Int32.Parse(txt_serial_value.Text);
 		serialConnection.send(index, value);
 	}
+
+	private bool shownInstructions = false;
+
+	private void grp_IndexInstructions_Enter(object sender, EventArgs e) {
+		shownInstructions = !shownInstructions;
+
+		if (shownInstructions) {
+			tbl_IndexSettings.RowStyles[3].SizeType = SizeType.AutoSize;
+		} else {
+			tbl_IndexSettings.RowStyles[3].SizeType = SizeType.Absolute;
+			tbl_IndexSettings.RowStyles[3].Height = 20;
+		}
+	}
 }

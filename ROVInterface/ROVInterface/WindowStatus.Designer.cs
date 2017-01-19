@@ -57,13 +57,23 @@
 			this.groupBox7 = new System.Windows.Forms.GroupBox();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
-			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+			this.tbl_IndexSettings = new System.Windows.Forms.TableLayoutPanel();
+			this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
 			this.btn_InsertIndexSetting = new System.Windows.Forms.Button();
-			this.panel_IndexSettings = new System.Windows.Forms.FlowLayoutPanel();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.btn_Instructions = new System.Windows.Forms.Button();
+			this.grp_IndexInstructions = new System.Windows.Forms.GroupBox();
 			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label8 = new System.Windows.Forms.Label();
+			this.panel_IndexSettings = new System.Windows.Forms.FlowLayoutPanel();
+			this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
+			this.label21 = new System.Windows.Forms.Label();
+			this.label26 = new System.Windows.Forms.Label();
+			this.label22 = new System.Windows.Forms.Label();
+			this.label23 = new System.Windows.Forms.Label();
+			this.label24 = new System.Windows.Forms.Label();
+			this.label25 = new System.Windows.Forms.Label();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
 			this.label17 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -86,15 +96,6 @@
 			this.tim_heartBeat = new System.Windows.Forms.Timer(this.components);
 			this.txt_error = new System.Windows.Forms.TextBox();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-			this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
-			this.label22 = new System.Windows.Forms.Label();
-			this.label23 = new System.Windows.Forms.Label();
-			this.label24 = new System.Windows.Forms.Label();
-			this.label25 = new System.Windows.Forms.Label();
-			this.label26 = new System.Windows.Forms.Label();
 			this.connectionTab.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -103,16 +104,16 @@
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.tabPage4.SuspendLayout();
-			this.tableLayoutPanel2.SuspendLayout();
-			this.tableLayoutPanel4.SuspendLayout();
-			this.groupBox5.SuspendLayout();
+			this.tbl_IndexSettings.SuspendLayout();
+			this.flowLayoutPanel4.SuspendLayout();
+			this.grp_IndexInstructions.SuspendLayout();
 			this.flowLayoutPanel2.SuspendLayout();
+			this.flowLayoutPanel3.SuspendLayout();
 			this.tabPage5.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
-			this.flowLayoutPanel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -476,7 +477,7 @@
 			// tabPage4
 			// 
 			this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-			this.tabPage4.Controls.Add(this.tableLayoutPanel2);
+			this.tabPage4.Controls.Add(this.tbl_IndexSettings);
 			this.tabPage4.Location = new System.Drawing.Point(4, 25);
 			this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
 			this.tabPage4.Name = "tabPage4";
@@ -485,39 +486,36 @@
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "Index Settings";
 			// 
-			// tableLayoutPanel2
+			// tbl_IndexSettings
 			// 
-			this.tableLayoutPanel2.ColumnCount = 1;
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.17052F));
-			this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 0);
-			this.tableLayoutPanel2.Controls.Add(this.groupBox5, 0, 1);
-			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
-			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 2;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 156F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(1384, 592);
-			this.tableLayoutPanel2.TabIndex = 1;
+			this.tbl_IndexSettings.ColumnCount = 1;
+			this.tbl_IndexSettings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tbl_IndexSettings.Controls.Add(this.flowLayoutPanel4, 0, 0);
+			this.tbl_IndexSettings.Controls.Add(this.grp_IndexInstructions, 0, 3);
+			this.tbl_IndexSettings.Controls.Add(this.panel_IndexSettings, 0, 2);
+			this.tbl_IndexSettings.Controls.Add(this.flowLayoutPanel3, 0, 1);
+			this.tbl_IndexSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbl_IndexSettings.Location = new System.Drawing.Point(4, 4);
+			this.tbl_IndexSettings.Margin = new System.Windows.Forms.Padding(0);
+			this.tbl_IndexSettings.Name = "tbl_IndexSettings";
+			this.tbl_IndexSettings.RowCount = 4;
+			this.tbl_IndexSettings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this.tbl_IndexSettings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+			this.tbl_IndexSettings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tbl_IndexSettings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tbl_IndexSettings.Size = new System.Drawing.Size(1384, 592);
+			this.tbl_IndexSettings.TabIndex = 1;
 			// 
-			// tableLayoutPanel4
+			// flowLayoutPanel4
 			// 
-			this.tableLayoutPanel4.ColumnCount = 1;
-			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel4.Controls.Add(this.btn_InsertIndexSetting, 0, 0);
-			this.tableLayoutPanel4.Controls.Add(this.panel_IndexSettings, 0, 2);
-			this.tableLayoutPanel4.Controls.Add(this.flowLayoutPanel3, 0, 1);
-			this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-			this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-			this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-			this.tableLayoutPanel4.RowCount = 3;
-			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel4.Size = new System.Drawing.Size(1384, 436);
-			this.tableLayoutPanel4.TabIndex = 1;
+			this.flowLayoutPanel4.Controls.Add(this.btn_InsertIndexSetting);
+			this.flowLayoutPanel4.Controls.Add(this.btn_Instructions);
+			this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+			this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+			this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+			this.flowLayoutPanel4.Size = new System.Drawing.Size(1384, 40);
+			this.flowLayoutPanel4.TabIndex = 0;
 			// 
 			// btn_InsertIndexSetting
 			// 
@@ -531,6 +529,58 @@
 			this.btn_InsertIndexSetting.UseVisualStyleBackColor = true;
 			this.btn_InsertIndexSetting.Click += new System.EventHandler(this.btn_InsertIndexSetting_Click);
 			// 
+			// btn_Instructions
+			// 
+			this.btn_Instructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_Instructions.Location = new System.Drawing.Point(145, 4);
+			this.btn_Instructions.Margin = new System.Windows.Forms.Padding(4);
+			this.btn_Instructions.Name = "btn_Instructions";
+			this.btn_Instructions.Size = new System.Drawing.Size(133, 32);
+			this.btn_Instructions.TabIndex = 2;
+			this.btn_Instructions.Text = "Instructions";
+			this.btn_Instructions.UseVisualStyleBackColor = true;
+			this.btn_Instructions.Click += new System.EventHandler(this.grp_IndexInstructions_Enter);
+			// 
+			// grp_IndexInstructions
+			// 
+			this.grp_IndexInstructions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.grp_IndexInstructions.AutoSize = true;
+			this.grp_IndexInstructions.Controls.Add(this.flowLayoutPanel2);
+			this.grp_IndexInstructions.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.grp_IndexInstructions.Location = new System.Drawing.Point(0, 572);
+			this.grp_IndexInstructions.Margin = new System.Windows.Forms.Padding(0, 0, 7, 6);
+			this.grp_IndexInstructions.Name = "grp_IndexInstructions";
+			this.grp_IndexInstructions.Padding = new System.Windows.Forms.Padding(4);
+			this.grp_IndexInstructions.Size = new System.Drawing.Size(1377, 14);
+			this.grp_IndexInstructions.TabIndex = 1;
+			this.grp_IndexInstructions.TabStop = false;
+			this.grp_IndexInstructions.Text = "Instructions";
+			// 
+			// flowLayoutPanel2
+			// 
+			this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.flowLayoutPanel2.AutoSize = true;
+			this.flowLayoutPanel2.Controls.Add(this.label8);
+			this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+			this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 20);
+			this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+			this.flowLayoutPanel2.Size = new System.Drawing.Size(1369, 119);
+			this.flowLayoutPanel2.TabIndex = 0;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label8.Location = new System.Drawing.Point(4, 0);
+			this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(848, 119);
+			this.label8.TabIndex = 0;
+			this.label8.Text = resources.GetString("label8.Text");
+			// 
 			// panel_IndexSettings
 			// 
 			this.panel_IndexSettings.AutoScroll = true;
@@ -538,43 +588,111 @@
 			this.panel_IndexSettings.Location = new System.Drawing.Point(0, 65);
 			this.panel_IndexSettings.Margin = new System.Windows.Forms.Padding(0);
 			this.panel_IndexSettings.Name = "panel_IndexSettings";
-			this.panel_IndexSettings.Size = new System.Drawing.Size(1384, 371);
+			this.panel_IndexSettings.Size = new System.Drawing.Size(1384, 507);
 			this.panel_IndexSettings.TabIndex = 0;
 			// 
-			// groupBox5
+			// flowLayoutPanel3
 			// 
-			this.groupBox5.Controls.Add(this.flowLayoutPanel2);
-			this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBox5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox5.Location = new System.Drawing.Point(0, 436);
-			this.groupBox5.Margin = new System.Windows.Forms.Padding(0, 0, 7, 6);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-			this.groupBox5.Size = new System.Drawing.Size(1377, 150);
-			this.groupBox5.TabIndex = 1;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "Instructions";
+			this.flowLayoutPanel3.Controls.Add(this.label1);
+			this.flowLayoutPanel3.Controls.Add(this.label20);
+			this.flowLayoutPanel3.Controls.Add(this.label21);
+			this.flowLayoutPanel3.Controls.Add(this.label26);
+			this.flowLayoutPanel3.Controls.Add(this.label22);
+			this.flowLayoutPanel3.Controls.Add(this.label23);
+			this.flowLayoutPanel3.Controls.Add(this.label24);
+			this.flowLayoutPanel3.Controls.Add(this.label25);
+			this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 43);
+			this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+			this.flowLayoutPanel3.Size = new System.Drawing.Size(1378, 19);
+			this.flowLayoutPanel3.TabIndex = 1;
 			// 
-			// flowLayoutPanel2
+			// label1
 			// 
-			this.flowLayoutPanel2.Controls.Add(this.label8);
-			this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 20);
-			this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-			this.flowLayoutPanel2.Size = new System.Drawing.Size(1369, 126);
-			this.flowLayoutPanel2.TabIndex = 0;
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label1.Location = new System.Drawing.Point(12, 0);
+			this.label1.Margin = new System.Windows.Forms.Padding(12, 0, 10, 0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(41, 17);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Index";
 			// 
-			// label8
+			// label20
 			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(4, 0);
-			this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(848, 119);
-			this.label8.TabIndex = 0;
-			this.label8.Text = resources.GetString("label8.Text");
+			this.label20.AutoSize = true;
+			this.label20.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label20.Location = new System.Drawing.Point(83, 0);
+			this.label20.Margin = new System.Windows.Forms.Padding(20, 0, 172, 0);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(45, 17);
+			this.label20.TabIndex = 1;
+			this.label20.Text = "Name";
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label21.Location = new System.Drawing.Point(303, 0);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(43, 17);
+			this.label21.TabIndex = 2;
+			this.label21.Text = "Digits";
+			// 
+			// label26
+			// 
+			this.label26.AutoSize = true;
+			this.label26.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label26.Location = new System.Drawing.Point(350, 0);
+			this.label26.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+			this.label26.Name = "label26";
+			this.label26.Size = new System.Drawing.Size(35, 17);
+			this.label26.TabIndex = 7;
+			this.label26.Text = "Size";
+			// 
+			// label22
+			// 
+			this.label22.AutoSize = true;
+			this.label22.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label22.Location = new System.Drawing.Point(413, 0);
+			this.label22.Margin = new System.Windows.Forms.Padding(25, 0, 3, 0);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(41, 17);
+			this.label22.TabIndex = 3;
+			this.label22.Text = "Color";
+			// 
+			// label23
+			// 
+			this.label23.AutoSize = true;
+			this.label23.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label23.Location = new System.Drawing.Point(492, 0);
+			this.label23.Margin = new System.Windows.Forms.Padding(35, 0, 3, 0);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(146, 17);
+			this.label23.TabIndex = 4;
+			this.label23.Text = "Value 1 (raw - scaled)";
+			// 
+			// label24
+			// 
+			this.label24.AutoSize = true;
+			this.label24.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label24.Location = new System.Drawing.Point(730, 0);
+			this.label24.Margin = new System.Windows.Forms.Padding(89, 0, 3, 0);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(146, 17);
+			this.label24.TabIndex = 5;
+			this.label24.Text = "Value 2 (raw - scaled)";
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label25.Location = new System.Drawing.Point(967, 0);
+			this.label25.Margin = new System.Windows.Forms.Padding(88, 0, 3, 0);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(42, 17);
+			this.label25.TabIndex = 6;
+			this.label25.Text = "Suffix";
 			// 
 			// tabPage5
 			// 
@@ -814,109 +932,6 @@
 			this.txt_error.TabIndex = 1;
 			this.txt_error.Text = "error messages";
 			// 
-			// flowLayoutPanel3
-			// 
-			this.flowLayoutPanel3.Controls.Add(this.label1);
-			this.flowLayoutPanel3.Controls.Add(this.label20);
-			this.flowLayoutPanel3.Controls.Add(this.label21);
-			this.flowLayoutPanel3.Controls.Add(this.label26);
-			this.flowLayoutPanel3.Controls.Add(this.label22);
-			this.flowLayoutPanel3.Controls.Add(this.label23);
-			this.flowLayoutPanel3.Controls.Add(this.label24);
-			this.flowLayoutPanel3.Controls.Add(this.label25);
-			this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 43);
-			this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-			this.flowLayoutPanel3.Size = new System.Drawing.Size(1378, 19);
-			this.flowLayoutPanel3.TabIndex = 1;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label1.Location = new System.Drawing.Point(12, 0);
-			this.label1.Margin = new System.Windows.Forms.Padding(12, 0, 10, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(41, 17);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Index";
-			// 
-			// label20
-			// 
-			this.label20.AutoSize = true;
-			this.label20.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label20.Location = new System.Drawing.Point(83, 0);
-			this.label20.Margin = new System.Windows.Forms.Padding(20, 0, 172, 0);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(45, 17);
-			this.label20.TabIndex = 1;
-			this.label20.Text = "Name";
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label21.Location = new System.Drawing.Point(303, 0);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(43, 17);
-			this.label21.TabIndex = 2;
-			this.label21.Text = "Digits";
-			// 
-			// label22
-			// 
-			this.label22.AutoSize = true;
-			this.label22.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label22.Location = new System.Drawing.Point(413, 0);
-			this.label22.Margin = new System.Windows.Forms.Padding(25, 0, 3, 0);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(41, 17);
-			this.label22.TabIndex = 3;
-			this.label22.Text = "Color";
-			// 
-			// label23
-			// 
-			this.label23.AutoSize = true;
-			this.label23.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label23.Location = new System.Drawing.Point(492, 0);
-			this.label23.Margin = new System.Windows.Forms.Padding(35, 0, 3, 0);
-			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(146, 17);
-			this.label23.TabIndex = 4;
-			this.label23.Text = "Value 1 (raw - scaled)";
-			// 
-			// label24
-			// 
-			this.label24.AutoSize = true;
-			this.label24.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label24.Location = new System.Drawing.Point(730, 0);
-			this.label24.Margin = new System.Windows.Forms.Padding(89, 0, 3, 0);
-			this.label24.Name = "label24";
-			this.label24.Size = new System.Drawing.Size(146, 17);
-			this.label24.TabIndex = 5;
-			this.label24.Text = "Value 2 (raw - scaled)";
-			// 
-			// label25
-			// 
-			this.label25.AutoSize = true;
-			this.label25.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label25.Location = new System.Drawing.Point(967, 0);
-			this.label25.Margin = new System.Windows.Forms.Padding(88, 0, 3, 0);
-			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(42, 17);
-			this.label25.TabIndex = 6;
-			this.label25.Text = "Suffix";
-			// 
-			// label26
-			// 
-			this.label26.AutoSize = true;
-			this.label26.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label26.Location = new System.Drawing.Point(350, 0);
-			this.label26.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-			this.label26.Name = "label26";
-			this.label26.Size = new System.Drawing.Size(35, 17);
-			this.label26.TabIndex = 7;
-			this.label26.Text = "Size";
-			// 
 			// WindowStatus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -943,19 +958,21 @@
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.tabPage4.ResumeLayout(false);
-			this.tableLayoutPanel2.ResumeLayout(false);
-			this.tableLayoutPanel4.ResumeLayout(false);
-			this.groupBox5.ResumeLayout(false);
+			this.tbl_IndexSettings.ResumeLayout(false);
+			this.tbl_IndexSettings.PerformLayout();
+			this.flowLayoutPanel4.ResumeLayout(false);
+			this.grp_IndexInstructions.ResumeLayout(false);
+			this.grp_IndexInstructions.PerformLayout();
 			this.flowLayoutPanel2.ResumeLayout(false);
 			this.flowLayoutPanel2.PerformLayout();
+			this.flowLayoutPanel3.ResumeLayout(false);
+			this.flowLayoutPanel3.PerformLayout();
 			this.tabPage5.ResumeLayout(false);
 			this.tabPage5.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
-			this.flowLayoutPanel3.ResumeLayout(false);
-			this.flowLayoutPanel3.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -981,8 +998,6 @@
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Timer tim_update;
 		private System.Windows.Forms.TabPage tabPage4;
-		private System.Windows.Forms.FlowLayoutPanel panel_IndexSettings;
-		private System.Windows.Forms.Button btn_InsertIndexSetting;
 		private System.Windows.Forms.FlowLayoutPanel panel_IndexStats;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.Button btn_EditMode;
@@ -998,10 +1013,6 @@
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.GroupBox groupBox4;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-		private System.Windows.Forms.GroupBox groupBox5;
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label label17;
 		private System.Windows.Forms.Label label19;
@@ -1019,14 +1030,21 @@
 	public System.Windows.Forms.TextBox txt_serial_index;
 	public System.Windows.Forms.GroupBox groupBox3;
 	public System.Windows.Forms.ColorDialog colorDialog1;
-	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+	private System.Windows.Forms.TableLayoutPanel tbl_IndexSettings;
+	private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+	private System.Windows.Forms.Button btn_InsertIndexSetting;
+	private System.Windows.Forms.Button btn_Instructions;
+	private System.Windows.Forms.GroupBox grp_IndexInstructions;
+	private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+	private System.Windows.Forms.Label label8;
+	private System.Windows.Forms.FlowLayoutPanel panel_IndexSettings;
 	private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
 	private System.Windows.Forms.Label label1;
 	private System.Windows.Forms.Label label20;
 	private System.Windows.Forms.Label label21;
+	private System.Windows.Forms.Label label26;
 	private System.Windows.Forms.Label label22;
 	private System.Windows.Forms.Label label23;
 	private System.Windows.Forms.Label label24;
 	private System.Windows.Forms.Label label25;
-	private System.Windows.Forms.Label label26;
 }
