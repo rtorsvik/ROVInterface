@@ -28,7 +28,7 @@
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowStatus));
-			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.connectionTab = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -38,8 +38,8 @@
 			this.pbr_heartBeat = new System.Windows.Forms.ProgressBar();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.txt_con_messageSendt = new System.Windows.Forms.TextBox();
+			this.txt_con_messageRecieved = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBox8 = new System.Windows.Forms.GroupBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -84,7 +84,7 @@
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.tim_heartBeat = new System.Windows.Forms.Timer(this.components);
 			this.txt_error = new System.Windows.Forms.TextBox();
-			this.tabControl1.SuspendLayout();
+			this.connectionTab.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
@@ -103,24 +103,24 @@
 			this.tableLayoutPanel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// tabControl1
+			// connectionTab
 			// 
-			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.connectionTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Controls.Add(this.tabPage3);
-			this.tabControl1.Controls.Add(this.tabPage4);
-			this.tabControl1.Controls.Add(this.tabPage5);
-			this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tabControl1.ItemSize = new System.Drawing.Size(72, 21);
-			this.tabControl1.Location = new System.Drawing.Point(12, 12);
-			this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(1877, 741);
-			this.tabControl1.TabIndex = 0;
+			this.connectionTab.Controls.Add(this.tabPage1);
+			this.connectionTab.Controls.Add(this.tabPage2);
+			this.connectionTab.Controls.Add(this.tabPage3);
+			this.connectionTab.Controls.Add(this.tabPage4);
+			this.connectionTab.Controls.Add(this.tabPage5);
+			this.connectionTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.connectionTab.ItemSize = new System.Drawing.Size(72, 21);
+			this.connectionTab.Location = new System.Drawing.Point(12, 12);
+			this.connectionTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.connectionTab.Name = "connectionTab";
+			this.connectionTab.SelectedIndex = 0;
+			this.connectionTab.Size = new System.Drawing.Size(1400, 629);
+			this.connectionTab.TabIndex = 0;
 			// 
 			// tabPage1
 			// 
@@ -129,7 +129,7 @@
 			this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabPage1.Size = new System.Drawing.Size(1869, 712);
+			this.tabPage1.Size = new System.Drawing.Size(1392, 600);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "tabPage1";
 			// 
@@ -154,7 +154,7 @@
 			this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabPage3.Size = new System.Drawing.Size(1869, 712);
+			this.tabPage3.Size = new System.Drawing.Size(1392, 600);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Connection";
 			// 
@@ -167,15 +167,15 @@
 			this.groupBox3.Controls.Add(this.pbr_heartBeat);
 			this.groupBox3.Controls.Add(this.label6);
 			this.groupBox3.Controls.Add(this.label7);
-			this.groupBox3.Controls.Add(this.textBox2);
-			this.groupBox3.Controls.Add(this.textBox1);
+			this.groupBox3.Controls.Add(this.txt_con_messageSendt);
+			this.groupBox3.Controls.Add(this.txt_con_messageRecieved);
 			this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox3.Location = new System.Drawing.Point(19, 534);
+			this.groupBox3.Location = new System.Drawing.Point(19, 422);
 			this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.groupBox3.Size = new System.Drawing.Size(1832, 153);
+			this.groupBox3.Size = new System.Drawing.Size(1355, 153);
 			this.groupBox3.TabIndex = 12;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Status";
@@ -204,7 +204,7 @@
 			// pbr_heartBeat
 			// 
 			this.pbr_heartBeat.Location = new System.Drawing.Point(1683, 52);
-			this.pbr_heartBeat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.pbr_heartBeat.Margin = new System.Windows.Forms.Padding(4);
 			this.pbr_heartBeat.Maximum = 1;
 			this.pbr_heartBeat.Name = "pbr_heartBeat";
 			this.pbr_heartBeat.Size = new System.Drawing.Size(133, 28);
@@ -232,21 +232,21 @@
 			this.label7.TabIndex = 15;
 			this.label7.Text = "Message sendt";
 			// 
-			// textBox2
+			// txt_con_messageSendt
 			// 
-			this.textBox2.Location = new System.Drawing.Point(21, 52);
-			this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(257, 23);
-			this.textBox2.TabIndex = 13;
+			this.txt_con_messageSendt.Location = new System.Drawing.Point(21, 52);
+			this.txt_con_messageSendt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_con_messageSendt.Name = "txt_con_messageSendt";
+			this.txt_con_messageSendt.Size = new System.Drawing.Size(257, 23);
+			this.txt_con_messageSendt.TabIndex = 13;
 			// 
-			// textBox1
+			// txt_con_messageRecieved
 			// 
-			this.textBox1.Location = new System.Drawing.Point(21, 97);
-			this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(257, 23);
-			this.textBox1.TabIndex = 14;
+			this.txt_con_messageRecieved.Location = new System.Drawing.Point(21, 97);
+			this.txt_con_messageRecieved.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_con_messageRecieved.Name = "txt_con_messageRecieved";
+			this.txt_con_messageRecieved.Size = new System.Drawing.Size(257, 23);
+			this.txt_con_messageRecieved.TabIndex = 14;
 			// 
 			// tableLayoutPanel1
 			// 
@@ -265,7 +265,7 @@
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 1;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(1859, 523);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(1382, 411);
 			this.tableLayoutPanel1.TabIndex = 2;
 			// 
 			// groupBox8
@@ -281,13 +281,15 @@
 			this.groupBox8.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
 			this.groupBox8.Name = "groupBox8";
 			this.groupBox8.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-			this.groupBox8.Size = new System.Drawing.Size(605, 499);
+			this.groupBox8.Size = new System.Drawing.Size(366, 387);
 			this.groupBox8.TabIndex = 2;
 			this.groupBox8.TabStop = false;
 			this.groupBox8.Text = "Serial connection";
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.label5);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.txt_serial_value);
@@ -299,7 +301,7 @@
 			this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.groupBox1.Size = new System.Drawing.Size(604, 158);
+			this.groupBox1.Size = new System.Drawing.Size(366, 158);
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Advanced";
@@ -335,7 +337,7 @@
 			// btn_send_serial
 			// 
 			this.btn_send_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_send_serial.Location = new System.Drawing.Point(468, 50);
+			this.btn_send_serial.Location = new System.Drawing.Point(230, 90);
 			this.btn_send_serial.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
 			this.btn_send_serial.Name = "btn_send_serial";
 			this.btn_send_serial.Size = new System.Drawing.Size(121, 42);
@@ -354,6 +356,8 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.label2);
 			this.groupBox2.Controls.Add(this.cmb_comport);
 			this.groupBox2.Controls.Add(this.btn_connect_serial);
@@ -365,7 +369,7 @@
 			this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.groupBox2.Size = new System.Drawing.Size(604, 144);
+			this.groupBox2.Size = new System.Drawing.Size(366, 144);
 			this.groupBox2.TabIndex = 11;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Connection";
@@ -393,7 +397,7 @@
 			// btn_connect_serial
 			// 
 			this.btn_connect_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_connect_serial.Location = new System.Drawing.Point(468, 57);
+			this.btn_connect_serial.Location = new System.Drawing.Point(230, 83);
 			this.btn_connect_serial.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
 			this.btn_connect_serial.Name = "btn_connect_serial";
 			this.btn_connect_serial.Size = new System.Drawing.Size(121, 57);
@@ -432,11 +436,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox7.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox7.Location = new System.Drawing.Point(644, 12);
+			this.groupBox7.Location = new System.Drawing.Point(405, 12);
 			this.groupBox7.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
 			this.groupBox7.Name = "groupBox7";
 			this.groupBox7.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-			this.groupBox7.Size = new System.Drawing.Size(605, 499);
+			this.groupBox7.Size = new System.Drawing.Size(366, 387);
 			this.groupBox7.TabIndex = 2;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "Ethernet connection";
@@ -448,11 +452,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox6.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox6.Location = new System.Drawing.Point(1275, 12);
+			this.groupBox6.Location = new System.Drawing.Point(797, 12);
 			this.groupBox6.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-			this.groupBox6.Size = new System.Drawing.Size(571, 499);
+			this.groupBox6.Size = new System.Drawing.Size(572, 387);
 			this.groupBox6.TabIndex = 1;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "CAN-bus connection";
@@ -462,9 +466,9 @@
 			this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
 			this.tabPage4.Controls.Add(this.tableLayoutPanel2);
 			this.tabPage4.Location = new System.Drawing.Point(4, 25);
-			this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
 			this.tabPage4.Name = "tabPage4";
-			this.tabPage4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
 			this.tabPage4.Size = new System.Drawing.Size(1869, 712);
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "Index Settings";
@@ -501,7 +505,7 @@
 			// 
 			this.btn_InsertIndexSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_InsertIndexSetting.Location = new System.Drawing.Point(4, 4);
-			this.btn_InsertIndexSetting.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btn_InsertIndexSetting.Margin = new System.Windows.Forms.Padding(4);
 			this.btn_InsertIndexSetting.Name = "btn_InsertIndexSetting";
 			this.btn_InsertIndexSetting.Size = new System.Drawing.Size(133, 37);
 			this.btn_InsertIndexSetting.TabIndex = 0;
@@ -517,7 +521,7 @@
 			this.groupBox5.Location = new System.Drawing.Point(930, 0);
 			this.groupBox5.Margin = new System.Windows.Forms.Padding(0, 0, 7, 6);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
 			this.groupBox5.Size = new System.Drawing.Size(924, 698);
 			this.groupBox5.TabIndex = 1;
 			this.groupBox5.TabStop = false;
@@ -583,7 +587,7 @@
 			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox1.Image = global::ROVInterface.Properties.Resources.joystickscale_dark_test;
 			this.pictureBox1.Location = new System.Drawing.Point(1353, 43);
-			this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(491, 465);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -693,7 +697,7 @@
 			this.panel_IndexStats.Location = new System.Drawing.Point(164, 0);
 			this.panel_IndexStats.Margin = new System.Windows.Forms.Padding(0);
 			this.panel_IndexStats.Name = "panel_IndexStats";
-			this.panel_IndexStats.Size = new System.Drawing.Size(1705, 198);
+			this.panel_IndexStats.Size = new System.Drawing.Size(1228, 166);
 			this.panel_IndexStats.TabIndex = 2;
 			// 
 			// flowLayoutPanel1
@@ -703,16 +707,16 @@
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 4);
-			this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(156, 190);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(156, 158);
 			this.flowLayoutPanel1.TabIndex = 0;
 			// 
 			// btn_EditMode
 			// 
 			this.btn_EditMode.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.btn_EditMode.Location = new System.Drawing.Point(4, 4);
-			this.btn_EditMode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btn_EditMode.Margin = new System.Windows.Forms.Padding(4);
 			this.btn_EditMode.Name = "btn_EditMode";
 			this.btn_EditMode.Size = new System.Drawing.Size(147, 37);
 			this.btn_EditMode.TabIndex = 0;
@@ -724,7 +728,7 @@
 			// 
 			this.btn_AddIndexStat.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.btn_AddIndexStat.Location = new System.Drawing.Point(4, 49);
-			this.btn_AddIndexStat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btn_AddIndexStat.Margin = new System.Windows.Forms.Padding(4);
 			this.btn_AddIndexStat.Name = "btn_AddIndexStat";
 			this.btn_AddIndexStat.Size = new System.Drawing.Size(147, 37);
 			this.btn_AddIndexStat.TabIndex = 1;
@@ -739,11 +743,11 @@
 			this.groupBox4.Controls.Add(this.tableLayoutPanel3);
 			this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox4.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox4.Location = new System.Drawing.Point(12, 770);
-			this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.groupBox4.Location = new System.Drawing.Point(12, 647);
+			this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-			this.groupBox4.Size = new System.Drawing.Size(1877, 222);
+			this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
+			this.groupBox4.Size = new System.Drawing.Size(1400, 190);
 			this.groupBox4.TabIndex = 0;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Index Stats";
@@ -761,7 +765,7 @@
 			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
 			this.tableLayoutPanel3.RowCount = 1;
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel3.Size = new System.Drawing.Size(1869, 198);
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(1392, 166);
 			this.tableLayoutPanel3.TabIndex = 1;
 			// 
 			// tim_heartBeat
@@ -775,10 +779,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_error.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.txt_error.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txt_error.Location = new System.Drawing.Point(1, 1006);
+			this.txt_error.Location = new System.Drawing.Point(1, 994);
 			this.txt_error.Margin = new System.Windows.Forms.Padding(0);
 			this.txt_error.Name = "txt_error";
-			this.txt_error.Size = new System.Drawing.Size(1899, 23);
+			this.txt_error.Size = new System.Drawing.Size(1422, 23);
 			this.txt_error.TabIndex = 1;
 			this.txt_error.Text = "error messages";
 			// 
@@ -787,17 +791,17 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-			this.ClientSize = new System.Drawing.Size(1901, 1030);
+			this.ClientSize = new System.Drawing.Size(1424, 861);
 			this.Controls.Add(this.txt_error);
 			this.Controls.Add(this.groupBox4);
-			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.connectionTab);
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.Name = "WindowStatus";
 			this.Text = "Status";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.WindowStatus_Load);
-			this.tabControl1.ResumeLayout(false);
+			this.connectionTab.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
@@ -825,8 +829,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
@@ -841,12 +843,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_serial_value;
         private System.Windows.Forms.Button btn_send_serial;
-        private System.Windows.Forms.TextBox txt_serial_index;
-		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Timer tim_update;
 		private System.Windows.Forms.TabPage tabPage4;
@@ -882,4 +880,9 @@
 		private System.Windows.Forms.TextBox txt_error;
 		private System.Windows.Forms.Label lbl_heartBeat_ms;
 	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+	public System.Windows.Forms.TextBox txt_con_messageSendt;
+	public System.Windows.Forms.TextBox txt_con_messageRecieved;
+	public System.Windows.Forms.TabControl connectionTab;
+	public System.Windows.Forms.TextBox txt_serial_index;
+	public System.Windows.Forms.GroupBox groupBox3;
 }

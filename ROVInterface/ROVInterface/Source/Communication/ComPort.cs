@@ -79,18 +79,24 @@ class SerialConnection
         byte[] packet = new byte[6];
 
 		//index part of package
-        packet[0] = (byte)((index & 0x00f0) >>  8);
-        packet[1] = (byte)((index & 0x000f) >>  0);
+        packet[0] = (byte)(index >>  8);
+        packet[1] = (byte)(index >>  0);
 
 		//value part of package
-		packet[2] = (byte)((value & 0xf000) >> 24);
-		packet[3] = (byte)((value & 0x0f00) >> 16);
-		packet[4] = (byte)((value & 0x00f0) >>  8);
-		packet[5] = (byte)((value & 0x000f) >>  0);
+		packet[2] = (byte)(value >> 24);
+		packet[3] = (byte)(value >> 16);
+		packet[4] = (byte)(value >>  8);
+		packet[5] = (byte)(value >>  0);
 
-		Program.WindowStatus.tab
+		string s = "[";
+		foreach (byte b in packet)
+		{
+			s += b + ", ";
+		}
+		s += "]";
+		Program.windowStatus.txt_con_messageSendt.Text = s;
 
-        port.Write(packet, 0, 6);
+		port.Write(packet, 0, 6);
 
         return true;
     }

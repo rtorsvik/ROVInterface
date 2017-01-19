@@ -17,7 +17,7 @@ public class ST_Array {
 	}
 
 	// Indexer, so this array instance can be used as a[i];
-	public float this[int i] {
+	public int this[int i] {
 		get {
 			i = BinarySearchAlgorithm(i, 0, sizecur);
 			if (i < 0)
@@ -28,7 +28,7 @@ public class ST_Array {
 	}
 
 	// Takes an index and insert it into arr
-	private void SearchAndSet(int i, float v) {
+	private void SearchAndSet(int i, int v) {
 		int found = BinarySearchAlgorithm(i, 0, sizecur);
 		if (found >= 0 && arr[found].index == i)
 			arr[found].value = v;
@@ -90,13 +90,13 @@ public class ST_Array {
 
 	public class arrelement {
 		public int index;
-		public float value;
+		public int value;
 
 		public arrelement() {
 			index = -1;
 			value = 0;
 		}
-		public arrelement(int index, float value) {
+		public arrelement(int index, int value) {
 			this.index = index;
 			this.value = value;
 		}

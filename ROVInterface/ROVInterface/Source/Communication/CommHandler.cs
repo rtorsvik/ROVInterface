@@ -15,7 +15,7 @@ static class CommHandler
 	}
 	
 
-    public static bool Send(int index, float value)
+    public static bool Send(int index, int value)
     {
 		//TODO
 		//Send value according to which port/output channel to use

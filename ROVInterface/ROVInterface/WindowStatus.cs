@@ -165,7 +165,7 @@ public partial class WindowStatus : Form
 	private void btn_send_serial_Click(object sender, EventArgs e)
 	{
 		int index = Int32.Parse(txt_serial_index.Text);
-		int value = Int32.Parse(txt_serial_index.Text);
+		int value = Int32.Parse(txt_serial_value.Text);
 		serialConnection.send(index, value);
 	}
 }
