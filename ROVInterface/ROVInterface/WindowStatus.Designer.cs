@@ -33,6 +33,7 @@
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.button1 = new System.Windows.Forms.Button();
 			this.lbl_heartBeat_ms = new System.Windows.Forms.Label();
 			this.label19 = new System.Windows.Forms.Label();
 			this.pbr_heartBeat = new System.Windows.Forms.ProgressBar();
@@ -86,7 +87,7 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
-			this.tim_update = new System.Windows.Forms.Timer(this.components);
+			this.tim_10ms_update = new System.Windows.Forms.Timer(this.components);
 			this.panel_IndexStats = new System.Windows.Forms.FlowLayoutPanel();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.btn_EditMode = new System.Windows.Forms.Button();
@@ -96,8 +97,8 @@
 			this.tim_heartBeat = new System.Windows.Forms.Timer(this.components);
 			this.txt_error = new System.Windows.Forms.TextBox();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-			this.button1 = new System.Windows.Forms.Button();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.tim_100ms_update = new System.Windows.Forms.Timer(this.components);
+			this.grp_joysticksettings_instructions = new System.Windows.Forms.GroupBox();
 			this.connectionTab.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -177,7 +178,6 @@
 			// 
 			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox3.Controls.Add(this.checkBox1);
 			this.groupBox3.Controls.Add(this.button1);
 			this.groupBox3.Controls.Add(this.lbl_heartBeat_ms);
 			this.groupBox3.Controls.Add(this.label19);
@@ -196,6 +196,19 @@
 			this.groupBox3.TabIndex = 12;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Status";
+			// 
+			// button1
+			// 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.button1.Location = new System.Drawing.Point(1203, 87);
+			this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(133, 42);
+			this.button1.TabIndex = 13;
+			this.button1.Text = "Start transmision";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// lbl_heartBeat_ms
 			// 
@@ -703,6 +716,7 @@
 			// tabPage5
 			// 
 			this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+			this.tabPage5.Controls.Add(this.grp_joysticksettings_instructions);
 			this.tabPage5.Controls.Add(this.label17);
 			this.tabPage5.Controls.Add(this.pictureBox1);
 			this.tabPage5.Controls.Add(this.label18);
@@ -738,10 +752,10 @@
 			// 
 			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox1.Image = global::ROVInterface.Properties.Resources.joystickscale_dark_test;
-			this.pictureBox1.Location = new System.Drawing.Point(1353, 43);
+			this.pictureBox1.Location = new System.Drawing.Point(1019, 39);
 			this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(491, 465);
+			this.pictureBox1.Size = new System.Drawing.Size(369, 357);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox1.TabIndex = 18;
 			this.pictureBox1.TabStop = false;
@@ -836,11 +850,11 @@
 			this.label9.TabIndex = 3;
 			this.label9.Text = "Joystick";
 			// 
-			// tim_update
+			// tim_10ms_update
 			// 
-			this.tim_update.Enabled = true;
-			this.tim_update.Interval = 10;
-			this.tim_update.Tick += new System.EventHandler(this.tim_update_Tick);
+			this.tim_10ms_update.Enabled = true;
+			this.tim_10ms_update.Interval = 10;
+			this.tim_10ms_update.Tick += new System.EventHandler(this.tim_10ms_update_Tick);
 			// 
 			// panel_IndexStats
 			// 
@@ -850,7 +864,7 @@
 			this.panel_IndexStats.Location = new System.Drawing.Point(164, 0);
 			this.panel_IndexStats.Margin = new System.Windows.Forms.Padding(0);
 			this.panel_IndexStats.Name = "panel_IndexStats";
-			this.panel_IndexStats.Size = new System.Drawing.Size(1228, 166);
+			this.panel_IndexStats.Size = new System.Drawing.Size(1228, 161);
 			this.panel_IndexStats.TabIndex = 2;
 			// 
 			// flowLayoutPanel1
@@ -862,7 +876,7 @@
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 4);
 			this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(156, 158);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(156, 153);
 			this.flowLayoutPanel1.TabIndex = 0;
 			// 
 			// btn_EditMode
@@ -900,7 +914,7 @@
 			this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-			this.groupBox4.Size = new System.Drawing.Size(1400, 190);
+			this.groupBox4.Size = new System.Drawing.Size(1400, 185);
 			this.groupBox4.TabIndex = 0;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Index Stats";
@@ -918,7 +932,7 @@
 			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
 			this.tableLayoutPanel3.RowCount = 1;
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel3.Size = new System.Drawing.Size(1392, 166);
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(1392, 161);
 			this.tableLayoutPanel3.TabIndex = 1;
 			// 
 			// tim_heartBeat
@@ -932,34 +946,30 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_error.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.txt_error.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txt_error.Location = new System.Drawing.Point(1, 994);
+			this.txt_error.Location = new System.Drawing.Point(1, 837);
 			this.txt_error.Margin = new System.Windows.Forms.Padding(0);
 			this.txt_error.Name = "txt_error";
 			this.txt_error.Size = new System.Drawing.Size(1422, 23);
 			this.txt_error.TabIndex = 1;
 			this.txt_error.Text = "error messages";
 			// 
-			// button1
+			// tim_100ms_update
 			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(1203, 87);
-			this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(133, 42);
-			this.button1.TabIndex = 13;
-			this.button1.Text = "Start transmision";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.tim_100ms_update.Enabled = true;
+			this.tim_100ms_update.Tick += new System.EventHandler(this.tim_100ms_update_Tick);
 			// 
-			// checkBox1
+			// grp_joysticksettings_instructions
 			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(1086, 97);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(95, 21);
-			this.checkBox1.TabIndex = 20;
-			this.checkBox1.Text = "checkBox1";
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.grp_joysticksettings_instructions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.grp_joysticksettings_instructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.grp_joysticksettings_instructions.Location = new System.Drawing.Point(8, 568);
+			this.grp_joysticksettings_instructions.Name = "grp_joysticksettings_instructions";
+			this.grp_joysticksettings_instructions.Size = new System.Drawing.Size(1235, 29);
+			this.grp_joysticksettings_instructions.TabIndex = 20;
+			this.grp_joysticksettings_instructions.TabStop = false;
+			this.grp_joysticksettings_instructions.Text = "Instructions";
+			this.grp_joysticksettings_instructions.Enter += new System.EventHandler(this.grp_joysticksettings_instructions_Enter);
 			// 
 			// WindowStatus
 			// 
@@ -1025,7 +1035,7 @@
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.Timer tim_update;
+		private System.Windows.Forms.Timer tim_10ms_update;
 		private System.Windows.Forms.TabPage tabPage4;
 		private System.Windows.Forms.FlowLayoutPanel panel_IndexStats;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -1077,5 +1087,6 @@
 	private System.Windows.Forms.Label label24;
 	private System.Windows.Forms.Label label25;
 	private System.Windows.Forms.Button button1;
-	private System.Windows.Forms.CheckBox checkBox1;
+	private System.Windows.Forms.Timer tim_100ms_update;
+	private System.Windows.Forms.GroupBox grp_joysticksettings_instructions;
 }

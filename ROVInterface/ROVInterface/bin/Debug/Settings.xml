@@ -1,13 +1,13 @@
 <Settings>
 	<JoystickSettings>
 		<Setting>
-			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>0</jindex><aindex>12</aindex><reverse>False</reverse><expo>3</expo><deadband>40</deadband><offset>18</offset><max>53</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>0</jindex><aindex>13</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>0</jindex><aindex>21</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 		<Setting>
 			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
@@ -20,19 +20,7 @@
 		</Setting>
 	</JoystickSettings>
 	<IndexSettings>
-		<Setting>
-			<index>0</index><name>HeartBeat</name><digit>1</digit><size>16</size><color>-65536</color><raw>0</raw><scaled>0</scaled><raw>1</raw><scaled>20</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>13</index><name>Rand</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>14</index><name>dt</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
 	</IndexSettings>
 	<IndexStats>
-		<Stats>0</Stats>
-		<Stats>13</Stats>
-		<Stats>14</Stats>
 	</IndexStats>
 </Settings>

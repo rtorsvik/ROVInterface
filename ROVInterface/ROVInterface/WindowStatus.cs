@@ -32,6 +32,7 @@ public partial class WindowStatus : Form
 
 	//temp serialtesting
 	SerialConnection serialConnection;
+	bool sendHeartbeat;
 
 
 	public WindowStatus()
@@ -55,6 +56,7 @@ public partial class WindowStatus : Form
 			
 		//add all available com port elements to com port combobox
 		cmb_comport.Items.AddRange(SerialConnection.GetPortList());
+		try { cmb_comport.SelectedIndex = 1; } catch { }				//load index 1 (COM5) as default
 
 		//temp, initialize status[0]
 		st.status[0] = 1;
@@ -68,7 +70,7 @@ public partial class WindowStatus : Form
 
 
 	//tick updates all the elements in the window
-	private void tim_update_Tick(object sender, EventArgs e)
+	private void tim_10ms_update_Tick(object sender, EventArgs e)
 	{
 		//update values from joystick
 		JoystickHandler.Update();
@@ -76,20 +78,6 @@ public partial class WindowStatus : Form
 		//Update Joystick Status fields
 		joystickSettings.Update();
 		indexStats.UpdateAllValues();
-
-		//serial connection
-		if (serialConnection != null && serialConnection.IsOpen())
-		{
-			btn_connect_serial.BackColor = System.Drawing.Color.SpringGreen;
-			txt_con_messageSendt.Text = serialConnection.messageSendt;
-			txt_con_messageRecieved.Text = serialConnection.messageRecieved;
-		}
-		else
-		{
-			btn_connect_serial.UseVisualStyleBackColor = true;
-		}
-		
-
 
 		//update hartbeat
 		heartBeat = st.status[0];
@@ -103,16 +91,59 @@ public partial class WindowStatus : Form
 		heartBeat_prev = heartBeat;
 
 		if (pulse)
-		{
 			pbr_heartBeat.Value = 100;
-			checkBox1.Checked = true;
-		}	
 		else
+			pbr_heartBeat.Value = 0;		
+
+	}
+
+
+
+	private void tim_100ms_update_Tick(object sender, EventArgs e)
+	{
+		//serial connection
+		if (serialConnection != null)
 		{
-			pbr_heartBeat.Value = 0;
-			checkBox1.Checked = false;
+			//update connection button color
+			if (serialConnection.GetConnectionStatus() == CommHandler.ConnectionStatus.Connected)
+			{
+				btn_connect_serial.BackColor = System.Drawing.Color.ForestGreen; //Darg green?, ForrestGreen? LimeGreen? SpringGreen?
+				btn_connect_serial.ForeColor = System.Drawing.Color.White;
+			}
+
+			else if (serialConnection.GetConnectionStatus() == CommHandler.ConnectionStatus.NotConnected)
+			{
+				btn_connect_serial.UseVisualStyleBackColor = true;
+				btn_connect_serial.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			}
+
+			else if (serialConnection.GetConnectionStatus() == CommHandler.ConnectionStatus.Disconnected)
+			{
+				btn_connect_serial.BackColor = System.Drawing.Color.Red; //Firebrick?
+				btn_connect_serial.ForeColor = System.Drawing.Color.White;
+			}
+
+			txt_con_messageSendt.Text = serialConnection.messageSendt;
+			txt_con_messageRecieved.Text = serialConnection.messageRecieved;
 		}
-			
+
+
+
+		//send some joystick values to the serialconn
+		try { serialConnection.Send(1, joystickSettings.as0.outValue); } catch { }
+		try { serialConnection.Send(2, joystickSettings.as1.outValue); } catch { }
+		try { serialConnection.Send(3, joystickSettings.as2.outValue); } catch { }
+		try { serialConnection.Send(4, joystickSettings.as3.outValue); } catch { }
+
+		if (sendHeartbeat)
+		{
+			if (st.status[0] == 0)
+				try { serialConnection.Send(0, 1); } catch { Program.errors.Add("No serial connection for heartbeat"); }
+			else if (st.status[0] > 0)
+				try { serialConnection.Send(0, 0); } catch { Program.errors.Add("No serial connection for heartbeat"); }
+
+			sendHeartbeat = false;
+		}
 
 
 		//display error messages
@@ -122,10 +153,10 @@ public partial class WindowStatus : Form
 			statusMessage += s + ", ";
 		}
 		//statusMessage -= ", "; implement equivalent this in some way
-		txt_error.Text = statusMessage;		
-
-
+		txt_error.Text = statusMessage;
 	}
+
+
 
 	//tick sends heartbeat to monitor bus connection
 	private void tim_heartBeat_Tick(object sender, EventArgs e)
@@ -133,10 +164,7 @@ public partial class WindowStatus : Form
 		pulse = false;
 		heartBeatTimer.Start();
 		heartBeat_prev = heartBeat;
-		if (st.status[0] == 0)
-			try { serialConnection.send(0, 1); } catch { Program.errors.Add("No serial connection for heartbeat"); }
-		else if (st.status[0] == 1)
-			try { serialConnection.send(0, 0); } catch { Program.errors.Add("No serial connection for heartbeat"); }
+		sendHeartbeat = true;		
 	}
 
 
@@ -157,7 +185,7 @@ public partial class WindowStatus : Form
 	{
 		int index = Int32.Parse(txt_serial_index.Text);
 		int value = Int32.Parse(txt_serial_value.Text);
-		serialConnection.send(index, value);
+		serialConnection.Send(index, value);
 	}
 
 	private void btn_connect_serial_Click(object sender, EventArgs e)
@@ -215,5 +243,12 @@ public partial class WindowStatus : Form
 			button1.BackColor = System.Drawing.Color.SpringGreen;
 		}
 			
+	}
+
+	private void grp_joysticksettings_instructions_Enter(object sender, EventArgs e)
+	{
+		grp_joysticksettings_instructions.Size = new System.Drawing.Size(400, 300);
+
+		throw new NotImplementedException("resize joystickiinstructions not implemented");
 	}
 }
