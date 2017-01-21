@@ -17,8 +17,8 @@ class SerialConnection : Port
 	public string messageSendt;
 	public string messageRecieved;
 
-	public byte[] buffer;
-	public int idx = 0;
+	private byte[] buffer;
+	private int idx = 0;
 
 
 	//Returns a list of all the available com ports with their names
@@ -126,7 +126,7 @@ class SerialConnection : Port
 	}
 
 
-
+	/*
 	/// <summary>
 	/// Get com port name
 	/// </summary>
@@ -135,6 +135,7 @@ class SerialConnection : Port
     {
         return port.PortName;
     }
+	*/
 
 
 

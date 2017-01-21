@@ -13,8 +13,8 @@ using SlimDX.DirectInput;
 /// </summary>
 static class JoystickHandler
 {
-	//public static Joystick[] joystick;
-	public static TJoystick[] joystick;
+
+	public static TJoystick[] joystick;	//A list of the connected joysticks
 
 
 
@@ -26,8 +26,6 @@ static class JoystickHandler
 		joystick = GetSticks();
 		TJoystick.JOYSTICKNUM = 0;	//Reset joystick counter		
 	}
-
-
 
 	/// <summary>
 	/// Call this method to update the state of all the joysticks
@@ -87,13 +85,17 @@ public class TJoystick
 {
 	private Joystick joystick;
 	private int joystickNumber;
-	public int[] axis;
+	public int[] axis_raw;			//TEMP Should contain the raw value from the joystick
+	public int[] axis;				//contains the value from each axis of the joystick, TEMP should contain scaled value of axis
 	public bool[] button;
 
 	public static int JOYSTICKNUM = 0;
 
 
-
+	/// <summary>
+	/// Construct a new TJoystick
+	/// </summary>
+	/// <param name="joystick">The SlimDX joystick to handle</param>
 	public TJoystick(Joystick joystick)
 	{
 		this.joystick = joystick;

@@ -63,6 +63,18 @@ public class JoystickSettings
 		//ST_Register.commands[10] = bs6.outValue;
 	}
 
+	public void LoadConnectedJoysticks()
+	{
+		as0.LoadConnectedJoysticks();
+		as1.LoadConnectedJoysticks();
+		as2.LoadConnectedJoysticks();
+		as3.LoadConnectedJoysticks();
+		as4.LoadConnectedJoysticks();
+		as5.LoadConnectedJoysticks();
+
+		//bs6.LoadConnectedJoysticks();
+	}
+
 
 	/// <summary>
 	/// Setings for an axis on a joystick
@@ -180,7 +192,9 @@ public class JoystickSettings
 			c_autoDetect = new Button();
 			c_autoDetect.Click += this.AutoDetect;
 			c_autoDetect.Text = "A";
-			c_autoDetect.Size = new System.Drawing.Size(24, 24);
+			c_autoDetect.Size = new System.Drawing.Size(23, 23);
+			c_autoDetect.Margin = new Padding(3, 2, 3, 3);
+			c_autoDetect.UseVisualStyleBackColor = true;
 
 			DrawItems();
 			SNUM++;
@@ -367,6 +381,16 @@ public class JoystickSettings
 
 
 
+		/// <summary>
+		/// Update the select joystick combobox control
+		/// </summary>
+		public void LoadConnectedJoysticks()
+		{
+			c_joystick.Items.AddRange(JoystickHandler.GetSticks());
+		}
+
+
+
 		private string[] axes_list = {
 			"ARx",	"ARy",	"ARz",
 			"AX",	"AY",	"AZ",
@@ -433,7 +457,9 @@ public class JoystickSettings
 			c_autoDetect = new Button();
 			c_autoDetect.Click += this.AutoDetect;
 			c_autoDetect.Text = "A";
-			c_autoDetect.Size = new System.Drawing.Size(24, 24);
+			c_autoDetect.Size = new System.Drawing.Size(23, 23);
+			c_autoDetect.Margin = new Padding(3, 2, 3, 3);
+			c_autoDetect.UseVisualStyleBackColor = true;
 
 			c_inValue = new CheckBox();
 			c_inValue.Text = "";

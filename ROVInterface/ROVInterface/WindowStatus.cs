@@ -107,8 +107,8 @@ public partial class WindowStatus : Form
 			//update connection button color
 			if (serialConnection.GetConnectionStatus() == CommHandler.ConnectionStatus.Connected)
 			{
-				btn_connect_serial.BackColor = System.Drawing.Color.ForestGreen; //Darg green?, ForrestGreen? LimeGreen? SpringGreen?
-				btn_connect_serial.ForeColor = System.Drawing.Color.White;
+				btn_connect_serial.BackColor = System.Drawing.Color.SpringGreen; //Darg green?, ForrestGreen? LimeGreen? SpringGreen?
+				//btn_connect_serial.ForeColor = System.Drawing.Color.White;
 			}
 
 			else if (serialConnection.GetConnectionStatus() == CommHandler.ConnectionStatus.NotConnected)
@@ -250,5 +250,17 @@ public partial class WindowStatus : Form
 		grp_joysticksettings_instructions.Size = new System.Drawing.Size(400, 300);
 
 		throw new NotImplementedException("resize joystickiinstructions not implemented");
+	}
+
+	private void cmb_comport_Click(object sender, EventArgs e)
+	{
+		//add all available com port elements to com port combobox
+		cmb_comport.Items.Clear();
+		cmb_comport.Items.AddRange(SerialConnection.GetPortList());
+	}
+
+	private void button2_Click(object sender, EventArgs e)
+	{
+		joystickSettings.LoadConnectedJoysticks();
 	}
 }

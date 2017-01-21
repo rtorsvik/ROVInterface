@@ -76,6 +76,7 @@
 			this.label24 = new System.Windows.Forms.Label();
 			this.label25 = new System.Windows.Forms.Label();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.grp_joysticksettings_instructions = new System.Windows.Forms.GroupBox();
 			this.label17 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.label18 = new System.Windows.Forms.Label();
@@ -98,7 +99,9 @@
 			this.txt_error = new System.Windows.Forms.TextBox();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.tim_100ms_update = new System.Windows.Forms.Timer(this.components);
-			this.grp_joysticksettings_instructions = new System.Windows.Forms.GroupBox();
+			this.button2 = new System.Windows.Forms.Button();
+			this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+			this.label27 = new System.Windows.Forms.Label();
 			this.connectionTab.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -117,6 +120,7 @@
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
+			this.flowLayoutPanel5.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -425,6 +429,7 @@
 			this.cmb_comport.Size = new System.Drawing.Size(82, 24);
 			this.cmb_comport.TabIndex = 0;
 			this.cmb_comport.Text = "COM5";
+			this.cmb_comport.Click += new System.EventHandler(this.cmb_comport_Click);
 			// 
 			// btn_connect_serial
 			// 
@@ -716,18 +721,11 @@
 			// tabPage5
 			// 
 			this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+			this.tabPage5.Controls.Add(this.flowLayoutPanel5);
+			this.tabPage5.Controls.Add(this.button2);
 			this.tabPage5.Controls.Add(this.grp_joysticksettings_instructions);
 			this.tabPage5.Controls.Add(this.label17);
 			this.tabPage5.Controls.Add(this.pictureBox1);
-			this.tabPage5.Controls.Add(this.label18);
-			this.tabPage5.Controls.Add(this.label16);
-			this.tabPage5.Controls.Add(this.label15);
-			this.tabPage5.Controls.Add(this.label14);
-			this.tabPage5.Controls.Add(this.label13);
-			this.tabPage5.Controls.Add(this.label12);
-			this.tabPage5.Controls.Add(this.label11);
-			this.tabPage5.Controls.Add(this.label10);
-			this.tabPage5.Controls.Add(this.label9);
 			this.tabPage5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tabPage5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.tabPage5.Location = new System.Drawing.Point(4, 25);
@@ -736,6 +734,19 @@
 			this.tabPage5.Size = new System.Drawing.Size(1392, 600);
 			this.tabPage5.TabIndex = 4;
 			this.tabPage5.Text = "Joystick Settings";
+			// 
+			// grp_joysticksettings_instructions
+			// 
+			this.grp_joysticksettings_instructions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.grp_joysticksettings_instructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.grp_joysticksettings_instructions.Location = new System.Drawing.Point(8, 568);
+			this.grp_joysticksettings_instructions.Name = "grp_joysticksettings_instructions";
+			this.grp_joysticksettings_instructions.Size = new System.Drawing.Size(1235, 29);
+			this.grp_joysticksettings_instructions.TabIndex = 20;
+			this.grp_joysticksettings_instructions.TabStop = false;
+			this.grp_joysticksettings_instructions.Text = "Instructions";
+			this.grp_joysticksettings_instructions.Enter += new System.EventHandler(this.grp_joysticksettings_instructions_Enter);
 			// 
 			// label17
 			// 
@@ -752,8 +763,8 @@
 			// 
 			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox1.Image = global::ROVInterface.Properties.Resources.joystickscale_dark_test;
-			this.pictureBox1.Location = new System.Drawing.Point(1019, 39);
-			this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+			this.pictureBox1.Location = new System.Drawing.Point(1013, 41);
+			this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 10, 4);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(369, 357);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -764,7 +775,8 @@
 			// 
 			this.label18.AutoSize = true;
 			this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label18.Location = new System.Drawing.Point(1193, 18);
+			this.label18.Location = new System.Drawing.Point(889, 0);
+			this.label18.Margin = new System.Windows.Forms.Padding(80, 0, 3, 0);
 			this.label18.Name = "label18";
 			this.label18.Size = new System.Drawing.Size(68, 17);
 			this.label18.TabIndex = 17;
@@ -774,7 +786,8 @@
 			// 
 			this.label16.AutoSize = true;
 			this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label16.Location = new System.Drawing.Point(769, 18);
+			this.label16.Location = new System.Drawing.Point(581, 0);
+			this.label16.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(39, 17);
 			this.label16.TabIndex = 13;
@@ -784,7 +797,8 @@
 			// 
 			this.label15.AutoSize = true;
 			this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label15.Location = new System.Drawing.Point(1037, 18);
+			this.label15.Location = new System.Drawing.Point(773, 0);
+			this.label15.Margin = new System.Windows.Forms.Padding(18, 0, 3, 0);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(33, 17);
 			this.label15.TabIndex = 12;
@@ -794,7 +808,7 @@
 			// 
 			this.label14.AutoSize = true;
 			this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label14.Location = new System.Drawing.Point(832, 18);
+			this.label14.Location = new System.Drawing.Point(626, 0);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(74, 17);
 			this.label14.TabIndex = 11;
@@ -804,7 +818,7 @@
 			// 
 			this.label13.AutoSize = true;
 			this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label13.Location = new System.Drawing.Point(933, 18);
+			this.label13.Location = new System.Drawing.Point(706, 0);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(46, 17);
 			this.label13.TabIndex = 10;
@@ -814,7 +828,8 @@
 			// 
 			this.label12.AutoSize = true;
 			this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label12.Location = new System.Drawing.Point(669, 18);
+			this.label12.Location = new System.Drawing.Point(502, 0);
+			this.label12.Margin = new System.Windows.Forms.Padding(60, 0, 3, 0);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(61, 17);
 			this.label12.TabIndex = 9;
@@ -824,7 +839,8 @@
 			// 
 			this.label11.AutoSize = true;
 			this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label11.Location = new System.Drawing.Point(512, 18);
+			this.label11.Location = new System.Drawing.Point(380, 0);
+			this.label11.Margin = new System.Windows.Forms.Padding(110, 0, 3, 0);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(59, 17);
 			this.label11.TabIndex = 7;
@@ -834,7 +850,8 @@
 			// 
 			this.label10.AutoSize = true;
 			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.Location = new System.Drawing.Point(335, 18);
+			this.label10.Location = new System.Drawing.Point(234, 0);
+			this.label10.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(33, 17);
 			this.label10.TabIndex = 4;
@@ -844,7 +861,8 @@
 			// 
 			this.label9.AutoSize = true;
 			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.Location = new System.Drawing.Point(221, 18);
+			this.label9.Location = new System.Drawing.Point(158, 0);
+			this.label9.Margin = new System.Windows.Forms.Padding(60, 0, 3, 0);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(58, 17);
 			this.label9.TabIndex = 3;
@@ -958,18 +976,45 @@
 			this.tim_100ms_update.Enabled = true;
 			this.tim_100ms_update.Tick += new System.EventHandler(this.tim_100ms_update_Tick);
 			// 
-			// grp_joysticksettings_instructions
+			// button2
 			// 
-			this.grp_joysticksettings_instructions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.button2.Location = new System.Drawing.Point(1313, 534);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.TabIndex = 21;
+			this.button2.Text = "button2";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// flowLayoutPanel5
+			// 
+			this.flowLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.grp_joysticksettings_instructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.grp_joysticksettings_instructions.Location = new System.Drawing.Point(8, 568);
-			this.grp_joysticksettings_instructions.Name = "grp_joysticksettings_instructions";
-			this.grp_joysticksettings_instructions.Size = new System.Drawing.Size(1235, 29);
-			this.grp_joysticksettings_instructions.TabIndex = 20;
-			this.grp_joysticksettings_instructions.TabStop = false;
-			this.grp_joysticksettings_instructions.Text = "Instructions";
-			this.grp_joysticksettings_instructions.Enter += new System.EventHandler(this.grp_joysticksettings_instructions_Enter);
+			this.flowLayoutPanel5.Controls.Add(this.label27);
+			this.flowLayoutPanel5.Controls.Add(this.label9);
+			this.flowLayoutPanel5.Controls.Add(this.label10);
+			this.flowLayoutPanel5.Controls.Add(this.label11);
+			this.flowLayoutPanel5.Controls.Add(this.label12);
+			this.flowLayoutPanel5.Controls.Add(this.label16);
+			this.flowLayoutPanel5.Controls.Add(this.label14);
+			this.flowLayoutPanel5.Controls.Add(this.label13);
+			this.flowLayoutPanel5.Controls.Add(this.label15);
+			this.flowLayoutPanel5.Controls.Add(this.label18);
+			this.flowLayoutPanel5.Location = new System.Drawing.Point(8, 15);
+			this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+			this.flowLayoutPanel5.Size = new System.Drawing.Size(1374, 19);
+			this.flowLayoutPanel5.TabIndex = 22;
+			// 
+			// label27
+			// 
+			this.label27.AutoSize = true;
+			this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label27.Location = new System.Drawing.Point(15, 0);
+			this.label27.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
+			this.label27.Name = "label27";
+			this.label27.Size = new System.Drawing.Size(80, 17);
+			this.label27.TabIndex = 18;
+			this.label27.Text = "Index/descr";
 			// 
 			// WindowStatus
 			// 
@@ -1012,6 +1057,8 @@
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
+			this.flowLayoutPanel5.ResumeLayout(false);
+			this.flowLayoutPanel5.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1089,4 +1136,7 @@
 	private System.Windows.Forms.Button button1;
 	private System.Windows.Forms.Timer tim_100ms_update;
 	private System.Windows.Forms.GroupBox grp_joysticksettings_instructions;
+	private System.Windows.Forms.Button button2;
+	private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+	private System.Windows.Forms.Label label27;
 }
