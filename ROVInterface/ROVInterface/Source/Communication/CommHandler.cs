@@ -53,20 +53,25 @@ public static class CommHandler
 
     public static void Send(int index, int value)
     {
-        // Default
+        // Packet to be sent forward
         byte[] packet = new byte[6];
+        bool fail = false;
+        try {
+            packet = AEgir.main.ConvertCommands((ushort)index, value);
+        } catch {
+            fail = true;
+        }
+        if (fail) {
+            //deconstruct index part of message into bytes
+            packet[0] = (byte)(index >> 8);
+            packet[1] = (byte)(index >> 0);
 
-        //deconstruct index part of message into bytes
-        packet[0] = (byte)(index >> 8);
-        packet[1] = (byte)(index >> 0);
-
-        //deconstruct value part of message into bytes
-        packet[2] = (byte)(value >> 24);
-        packet[3] = (byte)(value >> 16);
-        packet[4] = (byte)(value >> 8);
-        packet[5] = (byte)(value >> 0);
-
-        Console.WriteLine(AEgir.main.returnint());
+            //deconstruct value part of message into bytes
+            packet[2] = (byte)(value >> 24);
+            packet[3] = (byte)(value >> 16);
+            packet[4] = (byte)(value >> 8);
+            packet[5] = (byte)(value >> 0);
+        }
 
         port.Send(index, value);
     }
