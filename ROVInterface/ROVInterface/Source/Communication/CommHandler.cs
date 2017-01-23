@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using AEgir;
 
 static class CommHandler
 {
@@ -24,7 +26,7 @@ static class CommHandler
 	{
 		throw new NotImplementedException();
 	}
-
+    
 
 
 	//initialise an ethernet connection
@@ -41,11 +43,24 @@ static class CommHandler
 		throw new NotImplementedException();
 	}
 
-
-
-	public static void Send(int index, int value)
+    public static void Send(int index, int value)
     {
-		port.Send(index, value);
+        // Default
+        byte[] packet = new byte[6];
+
+        //deconstruct index part of message into bytes
+        packet[0] = (byte)(index >> 8);
+        packet[1] = (byte)(index >> 0);
+
+        //deconstruct value part of message into bytes
+        packet[2] = (byte)(value >> 24);
+        packet[3] = (byte)(value >> 16);
+        packet[4] = (byte)(value >> 8);
+        packet[5] = (byte)(value >> 0);
+
+        Console.WriteLine(AEgir.main.returnint());
+
+        port.Send(index, value);
     }
 
 
