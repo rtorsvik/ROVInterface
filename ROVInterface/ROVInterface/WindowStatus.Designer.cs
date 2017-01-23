@@ -76,18 +76,21 @@
 			this.label24 = new System.Windows.Forms.Label();
 			this.label25 = new System.Windows.Forms.Label();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+			this.label27 = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			this.label11 = new System.Windows.Forms.Label();
+			this.label12 = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.label13 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
+			this.label18 = new System.Windows.Forms.Label();
+			this.button2 = new System.Windows.Forms.Button();
 			this.grp_joysticksettings_instructions = new System.Windows.Forms.GroupBox();
 			this.label17 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.label18 = new System.Windows.Forms.Label();
-			this.label16 = new System.Windows.Forms.Label();
-			this.label15 = new System.Windows.Forms.Label();
-			this.label14 = new System.Windows.Forms.Label();
-			this.label13 = new System.Windows.Forms.Label();
-			this.label12 = new System.Windows.Forms.Label();
-			this.label11 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
 			this.tim_10ms_update = new System.Windows.Forms.Timer(this.components);
 			this.panel_IndexStats = new System.Windows.Forms.FlowLayoutPanel();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -99,9 +102,7 @@
 			this.txt_error = new System.Windows.Forms.TextBox();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.tim_100ms_update = new System.Windows.Forms.Timer(this.components);
-			this.button2 = new System.Windows.Forms.Button();
-			this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
-			this.label27 = new System.Windows.Forms.Label();
+			this.tim_SendCommandsDelay = new System.Windows.Forms.Timer(this.components);
 			this.connectionTab.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -116,11 +117,11 @@
 			this.flowLayoutPanel2.SuspendLayout();
 			this.flowLayoutPanel3.SuspendLayout();
 			this.tabPage5.SuspendLayout();
+			this.flowLayoutPanel5.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
-			this.flowLayoutPanel5.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -735,6 +736,143 @@
 			this.tabPage5.TabIndex = 4;
 			this.tabPage5.Text = "Joystick Settings";
 			// 
+			// flowLayoutPanel5
+			// 
+			this.flowLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.flowLayoutPanel5.Controls.Add(this.label27);
+			this.flowLayoutPanel5.Controls.Add(this.label9);
+			this.flowLayoutPanel5.Controls.Add(this.label10);
+			this.flowLayoutPanel5.Controls.Add(this.label11);
+			this.flowLayoutPanel5.Controls.Add(this.label12);
+			this.flowLayoutPanel5.Controls.Add(this.label16);
+			this.flowLayoutPanel5.Controls.Add(this.label14);
+			this.flowLayoutPanel5.Controls.Add(this.label13);
+			this.flowLayoutPanel5.Controls.Add(this.label15);
+			this.flowLayoutPanel5.Controls.Add(this.label18);
+			this.flowLayoutPanel5.Location = new System.Drawing.Point(8, 15);
+			this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+			this.flowLayoutPanel5.Size = new System.Drawing.Size(1374, 19);
+			this.flowLayoutPanel5.TabIndex = 22;
+			// 
+			// label27
+			// 
+			this.label27.AutoSize = true;
+			this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label27.Location = new System.Drawing.Point(15, 0);
+			this.label27.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
+			this.label27.Name = "label27";
+			this.label27.Size = new System.Drawing.Size(80, 17);
+			this.label27.TabIndex = 18;
+			this.label27.Text = "Index/descr";
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label9.Location = new System.Drawing.Point(158, 0);
+			this.label9.Margin = new System.Windows.Forms.Padding(60, 0, 3, 0);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(58, 17);
+			this.label9.TabIndex = 3;
+			this.label9.Text = "Joystick";
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label10.Location = new System.Drawing.Point(234, 0);
+			this.label10.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(33, 17);
+			this.label10.TabIndex = 4;
+			this.label10.Text = "Axis";
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label11.Location = new System.Drawing.Point(380, 0);
+			this.label11.Margin = new System.Windows.Forms.Padding(110, 0, 3, 0);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(59, 17);
+			this.label11.TabIndex = 7;
+			this.label11.Text = "Value in";
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label12.Location = new System.Drawing.Point(502, 0);
+			this.label12.Margin = new System.Windows.Forms.Padding(60, 0, 3, 0);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(61, 17);
+			this.label12.TabIndex = 9;
+			this.label12.Text = "Reverse";
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label16.Location = new System.Drawing.Point(581, 0);
+			this.label16.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(39, 17);
+			this.label16.TabIndex = 13;
+			this.label16.Text = "Expo";
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label14.Location = new System.Drawing.Point(626, 0);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(74, 17);
+			this.label14.TabIndex = 11;
+			this.label14.Text = "Deadband";
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label13.Location = new System.Drawing.Point(706, 0);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(46, 17);
+			this.label13.TabIndex = 10;
+			this.label13.Text = "Offset";
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label15.Location = new System.Drawing.Point(773, 0);
+			this.label15.Margin = new System.Windows.Forms.Padding(18, 0, 3, 0);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(33, 17);
+			this.label15.TabIndex = 12;
+			this.label15.Text = "Max";
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label18.Location = new System.Drawing.Point(889, 0);
+			this.label18.Margin = new System.Windows.Forms.Padding(80, 0, 3, 0);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(68, 17);
+			this.label18.TabIndex = 17;
+			this.label18.Text = "Value out";
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(1313, 534);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.TabIndex = 21;
+			this.button2.Text = "button2";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
 			// grp_joysticksettings_instructions
 			// 
 			this.grp_joysticksettings_instructions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -770,103 +908,6 @@
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox1.TabIndex = 18;
 			this.pictureBox1.TabStop = false;
-			// 
-			// label18
-			// 
-			this.label18.AutoSize = true;
-			this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label18.Location = new System.Drawing.Point(889, 0);
-			this.label18.Margin = new System.Windows.Forms.Padding(80, 0, 3, 0);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(68, 17);
-			this.label18.TabIndex = 17;
-			this.label18.Text = "Value out";
-			// 
-			// label16
-			// 
-			this.label16.AutoSize = true;
-			this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label16.Location = new System.Drawing.Point(581, 0);
-			this.label16.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(39, 17);
-			this.label16.TabIndex = 13;
-			this.label16.Text = "Expo";
-			// 
-			// label15
-			// 
-			this.label15.AutoSize = true;
-			this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label15.Location = new System.Drawing.Point(773, 0);
-			this.label15.Margin = new System.Windows.Forms.Padding(18, 0, 3, 0);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(33, 17);
-			this.label15.TabIndex = 12;
-			this.label15.Text = "Max";
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label14.Location = new System.Drawing.Point(626, 0);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(74, 17);
-			this.label14.TabIndex = 11;
-			this.label14.Text = "Deadband";
-			// 
-			// label13
-			// 
-			this.label13.AutoSize = true;
-			this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label13.Location = new System.Drawing.Point(706, 0);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(46, 17);
-			this.label13.TabIndex = 10;
-			this.label13.Text = "Offset";
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label12.Location = new System.Drawing.Point(502, 0);
-			this.label12.Margin = new System.Windows.Forms.Padding(60, 0, 3, 0);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(61, 17);
-			this.label12.TabIndex = 9;
-			this.label12.Text = "Reverse";
-			// 
-			// label11
-			// 
-			this.label11.AutoSize = true;
-			this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label11.Location = new System.Drawing.Point(380, 0);
-			this.label11.Margin = new System.Windows.Forms.Padding(110, 0, 3, 0);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(59, 17);
-			this.label11.TabIndex = 7;
-			this.label11.Text = "Value in";
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.Location = new System.Drawing.Point(234, 0);
-			this.label10.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(33, 17);
-			this.label10.TabIndex = 4;
-			this.label10.Text = "Axis";
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.Location = new System.Drawing.Point(158, 0);
-			this.label9.Margin = new System.Windows.Forms.Padding(60, 0, 3, 0);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(58, 17);
-			this.label9.TabIndex = 3;
-			this.label9.Text = "Joystick";
 			// 
 			// tim_10ms_update
 			// 
@@ -976,45 +1017,10 @@
 			this.tim_100ms_update.Enabled = true;
 			this.tim_100ms_update.Tick += new System.EventHandler(this.tim_100ms_update_Tick);
 			// 
-			// button2
+			// tim_SendCommandsDelay
 			// 
-			this.button2.Location = new System.Drawing.Point(1313, 534);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 21;
-			this.button2.Text = "button2";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// flowLayoutPanel5
-			// 
-			this.flowLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.flowLayoutPanel5.Controls.Add(this.label27);
-			this.flowLayoutPanel5.Controls.Add(this.label9);
-			this.flowLayoutPanel5.Controls.Add(this.label10);
-			this.flowLayoutPanel5.Controls.Add(this.label11);
-			this.flowLayoutPanel5.Controls.Add(this.label12);
-			this.flowLayoutPanel5.Controls.Add(this.label16);
-			this.flowLayoutPanel5.Controls.Add(this.label14);
-			this.flowLayoutPanel5.Controls.Add(this.label13);
-			this.flowLayoutPanel5.Controls.Add(this.label15);
-			this.flowLayoutPanel5.Controls.Add(this.label18);
-			this.flowLayoutPanel5.Location = new System.Drawing.Point(8, 15);
-			this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-			this.flowLayoutPanel5.Size = new System.Drawing.Size(1374, 19);
-			this.flowLayoutPanel5.TabIndex = 22;
-			// 
-			// label27
-			// 
-			this.label27.AutoSize = true;
-			this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label27.Location = new System.Drawing.Point(15, 0);
-			this.label27.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
-			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(80, 17);
-			this.label27.TabIndex = 18;
-			this.label27.Text = "Index/descr";
+			this.tim_SendCommandsDelay.Interval = 10;
+			this.tim_SendCommandsDelay.Tick += ST_Register.SendCommands;
 			// 
 			// WindowStatus
 			// 
@@ -1053,12 +1059,12 @@
 			this.flowLayoutPanel3.PerformLayout();
 			this.tabPage5.ResumeLayout(false);
 			this.tabPage5.PerformLayout();
+			this.flowLayoutPanel5.ResumeLayout(false);
+			this.flowLayoutPanel5.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
-			this.flowLayoutPanel5.ResumeLayout(false);
-			this.flowLayoutPanel5.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1139,4 +1145,5 @@
 	private System.Windows.Forms.Button button2;
 	private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
 	private System.Windows.Forms.Label label27;
+	public System.Windows.Forms.Timer tim_SendCommandsDelay;
 }

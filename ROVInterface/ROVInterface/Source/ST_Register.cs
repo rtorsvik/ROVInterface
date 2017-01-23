@@ -19,7 +19,10 @@ public static class ST_Register {
 		commands = new ST_Array();
 	}
 
-	public static void SendCommands() {
+	public static void SendCommands(object sender, EventArgs e) {
+		// Stop the timer for next update, to start again when finished with sending these commands
+		Program.windowStatus.tim_SendCommandsDelay.Stop();
+
 		ST_Array.arrelement[] data = commands.GetAllValues();
 		KeyValuePair<int, int>[] tosend = new KeyValuePair<int, int>[data.Length];
 		for (int i = 0, j = data.Length; i < j; i++)
@@ -32,7 +35,8 @@ public static class ST_Register {
 		commands.ResetArray();
 	}
 
+	/* NOT IN USE
 	public static void SendSingleCommand(ST_Array.arrelement data) {
 		CommHandler.Send(data.index, data.value);
-	}
+	}*/
 }
