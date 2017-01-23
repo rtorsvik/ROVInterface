@@ -31,7 +31,6 @@ public partial class WindowStatus : Form
 
 
 	//temp serialtesting
-	SerialConnection serialConnection;
 	bool sendHeartbeat;
 
 
@@ -102,45 +101,45 @@ public partial class WindowStatus : Form
 	private void tim_100ms_update_Tick(object sender, EventArgs e)
 	{
 		//serial connection
-		if (serialConnection != null)
+		if (CommHandler.initialized)
 		{
 			//update connection button color
-			if (serialConnection.GetConnectionStatus() == CommHandler.ConnectionStatus.Connected)
+			if (CommHandler.GetConnectionStatus() == CommHandler.ConnectionStatus.Connected)
 			{
 				btn_connect_serial.BackColor = System.Drawing.Color.SpringGreen; //Darg green?, ForrestGreen? LimeGreen? SpringGreen?
 				//btn_connect_serial.ForeColor = System.Drawing.Color.White;
 			}
 
-			else if (serialConnection.GetConnectionStatus() == CommHandler.ConnectionStatus.NotConnected)
+			else if (CommHandler.GetConnectionStatus() == CommHandler.ConnectionStatus.NotConnected)
 			{
 				btn_connect_serial.UseVisualStyleBackColor = true;
 				btn_connect_serial.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			}
 
-			else if (serialConnection.GetConnectionStatus() == CommHandler.ConnectionStatus.Disconnected)
+			else if (CommHandler.GetConnectionStatus() == CommHandler.ConnectionStatus.Disconnected)
 			{
 				btn_connect_serial.BackColor = System.Drawing.Color.Red; //Firebrick?
 				btn_connect_serial.ForeColor = System.Drawing.Color.White;
 			}
 
-			txt_con_messageSendt.Text = serialConnection.messageSendt;
-			txt_con_messageRecieved.Text = serialConnection.messageRecieved;
+			txt_con_messageSendt.Text = CommHandler.messageSendt;
+			txt_con_messageRecieved.Text = CommHandler.messageRecieved;
 		}
 
 
 
-		//send some joystick values to the serialconn
-		try { serialConnection.Send(1, joystickSettings.as0.outValue); } catch { }
-		try { serialConnection.Send(2, joystickSettings.as1.outValue); } catch { }
-		try { serialConnection.Send(3, joystickSettings.as2.outValue); } catch { }
-		try { serialConnection.Send(4, joystickSettings.as3.outValue); } catch { }
+		//TEMP: send some joystick values to the serialconn
+		try { CommHandler.Send(1, joystickSettings.as0.outValue); } catch { }
+		try { CommHandler.Send(2, joystickSettings.as1.outValue); } catch { }
+		try { CommHandler.Send(3, joystickSettings.as2.outValue); } catch { }
+		try { CommHandler.Send(4, joystickSettings.as3.outValue); } catch { }
 
 		if (sendHeartbeat)
 		{
 			if (st.status[0] == 0)
-				try { serialConnection.Send(0, 1); } catch { Program.errors.Add("No serial connection for heartbeat"); }
+				try { CommHandler.Send(0, 1); } catch { Program.errors.Add("No serial connection for heartbeat"); }
 			else if (st.status[0] > 0)
-				try { serialConnection.Send(0, 0); } catch { Program.errors.Add("No serial connection for heartbeat"); }
+				try { CommHandler.Send(0, 0); } catch { Program.errors.Add("No serial connection for heartbeat"); }
 
 			sendHeartbeat = false;
 		}
@@ -185,33 +184,22 @@ public partial class WindowStatus : Form
 	{
 		int index = Int32.Parse(txt_serial_index.Text);
 		int value = Int32.Parse(txt_serial_value.Text);
-		serialConnection.Send(index, value);
+		CommHandler.Send(index, value);
 	}
 
 	private void btn_connect_serial_Click(object sender, EventArgs e)
 	{
 		//temp, should be replaced with comm handler later
-		if (serialConnection == null)
-		{
-			try
-			{
-				serialConnection = new SerialConnection(cmb_comport.SelectedItem.ToString(), int.Parse(cmb_baudrate.SelectedItem.ToString()));
+		if (!CommHandler.initialized)
+			CommHandler.InitSerial(cmb_comport.SelectedItem.ToString(), int.Parse(cmb_baudrate.SelectedItem.ToString()));
 
-			}
-			catch (NullReferenceException)
-			{
-				Program.errors.Add("No com port or baud rate selected");
-				return;
-			}
-		}
-
-		if (serialConnection.IsOpen())
+		if (CommHandler.IsOpen())
 		{
-			serialConnection.Close();
+			CommHandler.Close();
 		}
 		else
 		{
-			serialConnection.Open();
+			CommHandler.Open();
 		}
 
 	}
