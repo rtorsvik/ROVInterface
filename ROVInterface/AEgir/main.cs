@@ -19,9 +19,10 @@ namespace AEgir {
             Pair<int,int> ConvertData(byte[] b);
         */
 
-        public static byte[] ConvertCommands(ushort index, int value) {
+        public static byte[] ConvertCommands(int index, int value) {
 
-            byte[] packet = new byte[6];
+			return null;
+            /*byte[] packet = new byte[6];
 
             packet[0] = (byte)(index >> 8);
             packet[1] = (byte)(index >> 0);
@@ -31,7 +32,7 @@ namespace AEgir {
             packet[3] = (byte)(value >> 8);
             packet[2] = (byte)(value >> 0);
 
-            return packet;
+            return packet;*/
         }
 
         public static KeyValuePair<int, int> ConvertData(byte[] b) {
