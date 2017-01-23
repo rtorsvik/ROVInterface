@@ -21,9 +21,13 @@ public static class ST_Register {
 
 	public static void SendCommands() {
 		ST_Array.arrelement[] data = commands.GetAllValues();
+		KeyValuePair<int, int>[] tosend = new KeyValuePair<int, int>[data.Length];
 		for (int i = 0, j = data.Length; i < j; i++)
+			tosend[i] = new KeyValuePair<int, int>(data[i].index, data[i].value);
+		CommHandler.Send(tosend);
+		/*for (int i = 0, j = data.Length; i < j; i++)
 			CommHandler.Send(data[i].index, data[i].value);
-
+		*/
 		// Reset the command array
 		commands.ResetArray();
 	}

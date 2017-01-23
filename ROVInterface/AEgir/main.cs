@@ -15,28 +15,28 @@ namespace AEgir {
 
         /*
             Need two functions
-            byte[] ConvertCommands(int index, int value);
-            Pair<int,int> ConvertData(byte[] b);
+            public static byte[] ConvertCommands(KeyValuePair<int, int>[]);
+            public static Pair<int,int>[] ConvertData(byte[]);
         */
 
-        public static byte[] ConvertCommands(ushort index, int value) {
+        public static byte[] ConvertCommands(KeyValuePair<int, int>[] data) {
+            
             
             byte[] packet = new byte[6];
 
-            packet[0] = (byte)(index >> 8);
+            /*packet[0] = (byte)(index >> 8);
             packet[1] = (byte)(index >> 0);
             
             packet[5] = (byte)(value >> 24);
             packet[4] = (byte)(value >> 16);
             packet[3] = (byte)(value >> 8);
-            packet[2] = (byte)(value >> 0);
+            packet[2] = (byte)(value >> 0);*/
 
             return packet;
         }
 
-        public static KeyValuePair<int, int> ConvertData(byte[] b) {
-
-            return new KeyValuePair<int,int>(0, -1);
+        public static KeyValuePair<int, int>[] ConvertData(byte[] b) {
+			return null;
         }
     }
 }
