@@ -352,7 +352,6 @@ public class JoystickSettings
 			int axisValue = 0;
 
 			//Change color of button to indicate that autotedect is running
-			System.Drawing.Color originalColor = c_autoDetect.BackColor;
 			c_autoDetect.BackColor = System.Drawing.Color.Aquamarine;
 			c_autoDetect.Update();
 
@@ -374,7 +373,7 @@ public class JoystickSettings
 			}
 
 			c_axis.SelectedIndex = index;
-			c_autoDetect.BackColor = originalColor;
+			c_autoDetect.UseVisualStyleBackColor = true;
 			c_autoDetect.Update();
 
 		}
@@ -526,7 +525,6 @@ public class JoystickSettings
 			bool buttonValue = false;
 
 			//Change color of button to indicate that autotedect is running
-			System.Drawing.Color originalColor = c_autoDetect.BackColor;
 			c_autoDetect.BackColor = System.Drawing.Color.Aquamarine;
 			c_autoDetect.Update();
 
@@ -550,7 +548,7 @@ public class JoystickSettings
 			if (index == -1) index = 0;
 
 			c_button.Value = index;
-			c_autoDetect.BackColor = originalColor;
+			c_autoDetect.UseVisualStyleBackColor = true;
 			c_autoDetect.Update();
 
 		}

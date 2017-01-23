@@ -6,10 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using AEgir;
 
-static class CommHandler
+public static class CommHandler
 {
 	public enum ConnectionStatus { NotConnected, Connected, Disconnected }
-	private static Port port;
+	public static Port port;
+	public static bool initialized;
+
+	public static string messageSendt;
+	public static string messageRecieved;
 
 
 
@@ -17,6 +21,7 @@ static class CommHandler
 	public static void InitSerial(string comPort, int baudRate)
 	{
 		port = new SerialConnection(comPort, baudRate);
+		initialized = true;
 	}
 
 
@@ -25,6 +30,7 @@ static class CommHandler
 	public static void InitEthernet(string comPort, int baudRate)
 	{
 		throw new NotImplementedException();
+		initialized = true;
 	}
     
 
@@ -33,6 +39,7 @@ static class CommHandler
 	public static void InitCAN(string comPort, int baudRate)
 	{
 		throw new NotImplementedException();
+		initialized = true;
 	}
 
 
@@ -41,6 +48,7 @@ static class CommHandler
 	public static void InitAEGIR(string comPort, int baudRate)
 	{
 		throw new NotImplementedException();
+		initialized = true;
 	}
 
     public static void Send(int index, int value)
@@ -91,6 +99,34 @@ static class CommHandler
 
 		return s;
 	}
+
+
+
+
+	public static bool Open()
+	{
+		return port.Open();
+	}
+
+	public static bool Close()
+	{
+		return port.Close();
+	}
+
+	public static bool IsOpen()
+	{
+		return port.IsOpen();
+	}
+
+	public static ConnectionStatus GetConnectionStatus()
+	{
+		return port.GetConnectionStatus();
+	}
+
+
+
+
+
 
 
 

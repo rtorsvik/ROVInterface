@@ -14,9 +14,6 @@ class SerialConnection : Port
 	private bool connectionOpened;
 	private CommHandler.ConnectionStatus connectionStatus;
 
-	public string messageSendt;
-	public string messageRecieved;
-
 	private byte[] buffer;
 	private int idx = 0;
 
@@ -160,7 +157,7 @@ class SerialConnection : Port
 		packet[5] = (byte)(value >>  0);
 
 		//save latest message that was sendt
-		messageSendt = CommHandler.PacketToByteString(packet);
+		CommHandler.messageSendt = CommHandler.PacketToByteString(packet);
 
 		port.Write(packet, 0, 6);
 
@@ -206,7 +203,7 @@ class SerialConnection : Port
 			idx = 0;
 
 			//save latest message that was sendt
-			messageRecieved = CommHandler.PacketToByteString(buffer);
+			CommHandler.messageRecieved = CommHandler.PacketToByteString(buffer);
 		}
 
 
