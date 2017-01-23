@@ -173,10 +173,10 @@ class AEGIRConnection : Port
 		heading = readValues[6] << 8;
 		heading |= readValues[7];
 
-		//ST_Register[4] = pitch;
-		//ST_Register[5] = roll;
-		//and so on
-
+		ST_Register[4] = pitch;
+		ST_Register[5] = roll;
+		ST_Register[6] = yaw;
+		ST_Register[37] = heading;
 
 	}
 
