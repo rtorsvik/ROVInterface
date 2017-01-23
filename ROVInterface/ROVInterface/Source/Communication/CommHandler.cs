@@ -73,7 +73,7 @@ public static class CommHandler
 
 
 
-    private static void Recieve()
+    private static void Recieve(byte[] package)
     {
 		throw new NotImplementedException("Recieve-method is not implemented, an maybe shoukld not be eighter, remove this later if not.");
     }
