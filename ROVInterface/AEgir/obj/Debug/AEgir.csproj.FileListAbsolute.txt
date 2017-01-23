@@ -1,0 +1,5 @@
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\AEgir\bin\Debug\AEgir.dll
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\AEgir\bin\Debug\AEgir.pdb
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\AEgir\obj\Debug\AEgir.csprojResolveAssemblyReference.cache
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\AEgir\obj\Debug\AEgir.dll
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\AEgir\obj\Debug\AEgir.pdb
