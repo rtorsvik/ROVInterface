@@ -51,11 +51,18 @@ public static class CommHandler
 		initialized = true;
 	}
 
+
+	/// <summary>
+	/// Send single command
+	/// </summary>
+	/// <param name="index"></param>
+	/// <param name="value"></param>
     public static void Send(int index, int value)
     {
         // Packet to be sent forward
         byte[] packet = new byte[6];
         bool fail = false;
+		
 		
         try {
             packet = AEgir.main.ConvertCommands((ushort)index, value);
@@ -75,12 +82,20 @@ public static class CommHandler
             packet[5] = (byte)(value >> 0);
         }
 
-        port.Send(index, value);
+        port.Send(packet);
     }
 
 
 
-    private static void Recieve(byte[] package)
+	public static void Send(KeyValuePair<int, int>[] commands)
+	{
+
+	}
+
+	
+
+
+	private static void Recieve(byte[] package)
     {
 		throw new NotImplementedException("Recieve-method is not implemented, an maybe shoukld not be eighter, remove this later if not.");
     }
