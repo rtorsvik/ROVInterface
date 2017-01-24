@@ -25,5 +25,3 @@ C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\WindowStatus.resources
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\AEgir.dll
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\AEgir.pdb
-C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\AEgir.dll
-C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\AEgir.pdb

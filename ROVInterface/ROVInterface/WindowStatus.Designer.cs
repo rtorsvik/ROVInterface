@@ -33,6 +33,8 @@
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.label28 = new System.Windows.Forms.Label();
+			this.nud_comm_transfreq = new System.Windows.Forms.NumericUpDown();
 			this.button1 = new System.Windows.Forms.Button();
 			this.lbl_heartBeat_ms = new System.Windows.Forms.Label();
 			this.label19 = new System.Windows.Forms.Label();
@@ -103,11 +105,10 @@
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.tim_100ms_update = new System.Windows.Forms.Timer(this.components);
 			this.tim_SendCommandsDelay = new System.Windows.Forms.Timer(this.components);
-			this.nud_comm_transfreq = new System.Windows.Forms.NumericUpDown();
-			this.label28 = new System.Windows.Forms.Label();
 			this.connectionTab.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nud_comm_transfreq)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox8.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -124,7 +125,6 @@
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.nud_comm_transfreq)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -207,6 +207,30 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Status";
 			// 
+			// label28
+			// 
+			this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label28.AutoSize = true;
+			this.label28.Location = new System.Drawing.Point(1200, 31);
+			this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label28.Name = "label28";
+			this.label28.Size = new System.Drawing.Size(118, 17);
+			this.label28.TabIndex = 21;
+			this.label28.Text = "Transmision freq.";
+			// 
+			// nud_comm_transfreq
+			// 
+			this.nud_comm_transfreq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.nud_comm_transfreq.Location = new System.Drawing.Point(1203, 52);
+			this.nud_comm_transfreq.Name = "nud_comm_transfreq";
+			this.nud_comm_transfreq.Size = new System.Drawing.Size(133, 23);
+			this.nud_comm_transfreq.TabIndex = 20;
+			this.nud_comm_transfreq.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			// 
 			// button1
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -279,7 +303,7 @@
 			this.txt_con_messageSendt.Location = new System.Drawing.Point(148, 32);
 			this.txt_con_messageSendt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txt_con_messageSendt.Name = "txt_con_messageSendt";
-			this.txt_con_messageSendt.Size = new System.Drawing.Size(126, 23);
+			this.txt_con_messageSendt.Size = new System.Drawing.Size(163, 23);
 			this.txt_con_messageSendt.TabIndex = 13;
 			// 
 			// txt_con_messageRecieved
@@ -287,7 +311,7 @@
 			this.txt_con_messageRecieved.Location = new System.Drawing.Point(148, 60);
 			this.txt_con_messageRecieved.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txt_con_messageRecieved.Name = "txt_con_messageRecieved";
-			this.txt_con_messageRecieved.Size = new System.Drawing.Size(126, 23);
+			this.txt_con_messageRecieved.Size = new System.Drawing.Size(163, 23);
 			this.txt_con_messageRecieved.TabIndex = 14;
 			// 
 			// tableLayoutPanel1
@@ -1024,32 +1048,7 @@
 			// 
 			// tim_SendCommandsDelay
 			// 
-			this.tim_SendCommandsDelay.Enabled = true;
 			this.tim_SendCommandsDelay.Interval = 10;
-			// 
-			// nud_comm_transfreq
-			// 
-			this.nud_comm_transfreq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.nud_comm_transfreq.Location = new System.Drawing.Point(1203, 52);
-			this.nud_comm_transfreq.Name = "nud_comm_transfreq";
-			this.nud_comm_transfreq.Size = new System.Drawing.Size(133, 23);
-			this.nud_comm_transfreq.TabIndex = 20;
-			this.nud_comm_transfreq.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-			// 
-			// label28
-			// 
-			this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(1200, 31);
-			this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label28.Name = "label28";
-			this.label28.Size = new System.Drawing.Size(118, 17);
-			this.label28.TabIndex = 21;
-			this.label28.Text = "Transmision freq.";
 			// 
 			// WindowStatus
 			// 
@@ -1070,6 +1069,7 @@
 			this.tabPage3.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nud_comm_transfreq)).EndInit();
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.groupBox8.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
@@ -1094,7 +1094,6 @@
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.nud_comm_transfreq)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

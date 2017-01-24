@@ -126,12 +126,6 @@
     <None Include="Resources\joystickrescale dark.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AEgir\AEgir.csproj">
-      <Project>{525848f6-1af5-4818-946c-c270ff305563}</Project>
-      <Name>AEgir</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>

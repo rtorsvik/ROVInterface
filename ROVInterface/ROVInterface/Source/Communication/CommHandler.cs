@@ -132,17 +132,25 @@ public static class CommHandler
 	{
 		// Packet to be sent forward
 		byte[] packet = new byte[0];
-		bool fail = false;
+		bool fail = true;
 
-		try {
-			// Use the loaded dll file here if needed
-			object[] o = new object[1];
-			o[0] = commands;
-			packet = dllConvertCommands.Invoke(null, o) as byte[];
-			//packet = AEgir.main.ConvertCommands(commands);
-		} catch (Exception e) {
-			fail = true;
+		if(loadedDll)
+		{
+			try
+			{
+				// Use the loaded dll file here if needed
+				object[] o = new object[1];
+				o[0] = commands;
+				packet = dllConvertCommands.Invoke(null, o) as byte[];
+				fail = false;
+			}
+			catch (Exception e)
+			{
+				fail = true;
+			}
 		}
+
+
 
 		if (fail) {
 			packet = new byte[commands.Length * 6];
@@ -156,15 +164,18 @@ public static class CommHandler
 				packet[cur + 4] = (byte)(commands[i].Value >> 8);
 				packet[cur + 5] = (byte)(commands[i].Value >> 0);
 			}
-		} else if (packet == null || packet.Length == 0) {
+		}
+
+		if (packet == null || packet.Length == 0) {
 			Program.windowStatus.tim_SendCommandsDelay.Start();
 			return;
 		}
 
 		port.Send(packet);
+		Program.windowStatus.tim_SendCommandsDelay.Start();
 	}
 
-	
+
 
 
 	private static void Recieve(byte[] package)

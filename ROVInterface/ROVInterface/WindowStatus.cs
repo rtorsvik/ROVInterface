@@ -110,7 +110,7 @@ public partial class WindowStatus : Form
 			if (CommHandler.GetConnectionStatus() == CommHandler.ConnectionStatus.Connected)
 			{
 				btn_connect_serial.BackColor = System.Drawing.Color.SpringGreen; //Darg green?, ForrestGreen? LimeGreen? SpringGreen?
-				//btn_connect_serial.ForeColor = System.Drawing.Color.White;
+																				 //btn_connect_serial.ForeColor = System.Drawing.Color.White;
 			}
 
 			else if (CommHandler.GetConnectionStatus() == CommHandler.ConnectionStatus.NotConnected)
@@ -136,6 +136,14 @@ public partial class WindowStatus : Form
 		//try { CommHandler.Send(2, joystickSettings.as1.outValue); } catch { }
 		//try { CommHandler.Send(3, joystickSettings.as2.outValue); } catch { }
 		//try { CommHandler.Send(4, joystickSettings.as3.outValue); } catch { }
+
+		//TEMP
+		ST_Register.commands[1] = joystickSettings.as0.outValue;
+		ST_Register.commands[2] = joystickSettings.as1.outValue;
+		ST_Register.commands[3] = joystickSettings.as2.outValue;
+		ST_Register.commands[4] = joystickSettings.as3.outValue;
+
+
 
 		if (sendHeartbeat)
 		{
@@ -234,14 +242,18 @@ public partial class WindowStatus : Form
 
 		if (tim_SendCommandsDelay.Enabled)
 		{
+			tim_SendCommandsDelay.Stop();
 			tim_SendCommandsDelay.Enabled = false;
 			button1.UseVisualStyleBackColor = true;
+
 
 		}
 		else
 		{
+			
 			tim_SendCommandsDelay.Enabled = true;
 			button1.BackColor = System.Drawing.Color.SpringGreen;
+			tim_SendCommandsDelay.Start();
 		}
 
 

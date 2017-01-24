@@ -160,7 +160,6 @@ class SerialConnection : Port
 		CommHandler.messageSendt = CommHandler.PacketToByteString(packet);
 
 		port.Write(packet, 0, 6);
-		Program.windowStatus.tim_SendCommandsDelay.Start();
 	}
 
 	public void Send(byte[] packet)
