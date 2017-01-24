@@ -225,4 +225,8 @@ class SerialConnection : Port
 
 	}
 
+	public void Send(byte[] packet)
+	{
+		throw new NotImplementedException();
+	}
 }

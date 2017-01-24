@@ -190,7 +190,7 @@ public class JoystickSettings
 			c_outValue.Size = new System.Drawing.Size(50, 24);
 
 			c_autoDetect = new Button();
-			c_autoDetect.Click += this.AutoDetect;
+			c_autoDetect.Click += this.AutoDetect2;
 			c_autoDetect.Text = "A";
 			c_autoDetect.Size = new System.Drawing.Size(23, 23);
 			c_autoDetect.Margin = new Padding(3, 2, 3, 3);
@@ -373,6 +373,59 @@ public class JoystickSettings
 			}
 
 			c_axis.SelectedIndex = index;
+			c_autoDetect.UseVisualStyleBackColor = true;
+			c_autoDetect.Update();
+
+		}
+
+
+
+		/// <summary>
+		/// Autodetect axis and joystick
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		public void AutoDetect2(object sender, EventArgs e) //(object sender, EventArgs e) ??? make this function run when hitting button
+		{
+			//Change color of button to indicate that autotedect is running
+			c_autoDetect.BackColor = System.Drawing.Color.Aquamarine;
+			c_autoDetect.Update();
+
+			Stopwatch stopWatch = new Stopwatch();
+			stopWatch.Start();
+
+			//if none of the axes changes enough within 3 seconds, stop this autodetect processs and use -1 as index and joystick
+			int joystickIndex = -1;
+			int axisIndex = -1;
+			while (stopWatch.ElapsedMilliseconds < 3000 && axisIndex == -1)
+			{
+				jh.Update();
+
+				//for each joystick, check each axis
+				for (int ji = 0; ji < jh.joystick.Length; ji++)
+				{
+					TJoystick joystick = jh.joystick[ji];
+
+					for (int ai = 0; ai < joystick.axis.Length; ai++)
+					{
+						int axisValue = joystick.axis[ai];
+
+						//if the value of the axis is over a sertain value, save thisjoystick and axis as the detected axis
+						if (axisValue < -32767 * 0.5 || axisValue > 32767 * 0.5)
+						{
+							joystickIndex = ji;
+							axisIndex = ai;
+
+						}
+							
+					}
+
+				}	
+
+			}
+
+			c_joystick.SelectedIndex = joystickIndex;
+			c_axis.SelectedIndex = axisIndex;
 			c_autoDetect.UseVisualStyleBackColor = true;
 			c_autoDetect.Update();
 

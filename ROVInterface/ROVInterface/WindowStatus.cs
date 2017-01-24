@@ -129,17 +129,21 @@ public partial class WindowStatus : Form
 
 
 		//TEMP: send some joystick values to the serialconn
-		try { CommHandler.Send(1, joystickSettings.as0.outValue); } catch { }
-		try { CommHandler.Send(2, joystickSettings.as1.outValue); } catch { }
-		try { CommHandler.Send(3, joystickSettings.as2.outValue); } catch { }
-		try { CommHandler.Send(4, joystickSettings.as3.outValue); } catch { }
+		//try { CommHandler.Send(1, joystickSettings.as0.outValue); } catch { }
+		//try { CommHandler.Send(2, joystickSettings.as1.outValue); } catch { }
+		//try { CommHandler.Send(3, joystickSettings.as2.outValue); } catch { }
+		//try { CommHandler.Send(4, joystickSettings.as3.outValue); } catch { }
 
 		if (sendHeartbeat)
 		{
 			if (st.status[0] == 0)
-				try { CommHandler.Send(0, 1); } catch { Program.errors.Add("No serial connection for heartbeat"); }
+			{
+				//try { CommHandler.Send(0, 1); } catch { Program.errors.Add("No serial connection for heartbeat"); }
+			}
 			else if (st.status[0] > 0)
-				try { CommHandler.Send(0, 0); } catch { Program.errors.Add("No serial connection for heartbeat"); }
+			{
+				//try { CommHandler.Send(0, 0); } catch { Program.errors.Add("No serial connection for heartbeat"); }
+			}
 
 			sendHeartbeat = false;
 		}
@@ -184,7 +188,7 @@ public partial class WindowStatus : Form
 	{
 		int index = Int32.Parse(txt_serial_index.Text);
 		int value = Int32.Parse(txt_serial_value.Text);
-		CommHandler.Send(index, value);
+		//CommHandler.Send(index, value);
 	}
 
 	private void btn_connect_serial_Click(object sender, EventArgs e)

@@ -32,6 +32,11 @@ public class EthernetPort : Port
 		throw new NotImplementedException();
 	}
 
+	public void Send(byte[] packet)
+	{
+		throw new NotImplementedException();
+	}
+
 	public void Send(int index, int value)
 	{
 		throw new NotImplementedException();
