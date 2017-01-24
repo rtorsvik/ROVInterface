@@ -188,7 +188,11 @@ public partial class WindowStatus : Form
 	{
 		int index = Int32.Parse(txt_serial_index.Text);
 		int value = Int32.Parse(txt_serial_value.Text);
-		//CommHandler.Send(index, value);
+
+		KeyValuePair<int, int>[] kvp = new KeyValuePair<int, int>[1];
+		kvp[0] = new KeyValuePair<int, int>(index, value);
+
+		CommHandler.Send(kvp);
 	}
 
 	private void btn_connect_serial_Click(object sender, EventArgs e)
@@ -223,6 +227,22 @@ public partial class WindowStatus : Form
 
 	private void button1_Click(object sender, EventArgs e)
 	{
+		tim_SendCommandsDelay.Interval = (int)(1000 / (float)nud_comm_transfreq.Value);
+
+		if (tim_SendCommandsDelay.Enabled)
+		{
+			tim_SendCommandsDelay.Enabled = false;
+			button1.UseVisualStyleBackColor = true;
+
+		}
+		else
+		{
+			tim_SendCommandsDelay.Enabled = true;
+			button1.BackColor = System.Drawing.Color.SpringGreen;
+		}
+
+
+		/*
 		if (tim_heartBeat.Enabled)
 		{
 			tim_heartBeat.Enabled = false;
@@ -234,7 +254,8 @@ public partial class WindowStatus : Form
 			tim_heartBeat.Enabled = true;
 			button1.BackColor = System.Drawing.Color.SpringGreen;
 		}
-			
+		*/
+
 	}
 
 	private void grp_joysticksettings_instructions_Enter(object sender, EventArgs e)
