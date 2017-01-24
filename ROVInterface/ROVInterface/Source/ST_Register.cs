@@ -20,6 +20,12 @@ public static class ST_Register {
 	}
 
 	public static void SendCommands(object sender, EventArgs e) {
+		// Ignore this call if the port has not been assigned yet
+		if (CommHandler.port == null) {
+			commands.ResetArray();
+			return;
+		}
+
 		// Stop the timer for next update, to start again when finished with sending these commands
 		Program.windowStatus.tim_SendCommandsDelay.Stop();
 

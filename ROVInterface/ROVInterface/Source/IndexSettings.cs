@@ -269,6 +269,7 @@ public class IndexStats {
 	}
 
 	public void UpdateAllValues() {
+		// FAILSE ---- there is happening some deletion in this foreach block !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		foreach (Stats s in allStats)
 			s.UpdateValue();
 	}

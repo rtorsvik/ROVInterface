@@ -62,6 +62,9 @@ public partial class WindowStatus : Form
 
 		// Load all settings
 		ProgramSaverLoader.Load();
+
+		// Start the st_register send timer
+		tim_SendCommandsDelay.Tick += ST_Register.SendCommands;
 	}
 
 	

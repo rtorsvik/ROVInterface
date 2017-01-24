@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using AEgir;
 
 public static class CommHandler
 {
@@ -112,8 +111,10 @@ public static class CommHandler
 				packet[cur + 4] = (byte)(commands[i].Value >> 8);
 				packet[cur + 5] = (byte)(commands[i].Value >> 0);
 			}
-		} else if (packet == null || packet.Length == 0)
+		} else if (packet == null || packet.Length == 0) {
+			Program.windowStatus.tim_SendCommandsDelay.Start();
 			return;
+		}
 
 		port.Send(packet);
 	}

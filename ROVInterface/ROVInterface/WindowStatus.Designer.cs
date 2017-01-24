@@ -1024,6 +1024,7 @@
 			// 
 			// tim_SendCommandsDelay
 			// 
+			this.tim_SendCommandsDelay.Enabled = true;
 			this.tim_SendCommandsDelay.Interval = 10;
 			// 
 			// nud_comm_transfreq
