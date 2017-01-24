@@ -35,6 +35,7 @@ static class Program
 		JoystickHandler.Init();
 		ST_Register.Init();
 		ProgramSaverLoader.Init();
+		CommHandler.InitDllImport();
             
 
         new WindowCamera().Show();

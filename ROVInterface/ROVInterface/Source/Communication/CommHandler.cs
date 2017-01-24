@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 public static class CommHandler
 {
@@ -14,6 +15,46 @@ public static class CommHandler
 	public static string messageSendt;
 	public static string messageRecieved;
 
+	// Dll variables
+	private static bool loadedDll = false;
+	private const string dllpath = "./AEgir.dll";
+	private static Assembly dll;
+	private static MethodInfo dllConvertCommands;
+	private static MethodInfo dllConvertData;
+
+	// Try to load the ddl by path name, set loadedDll to true if succesful
+	public static void InitDllImport() {
+		try {
+			dll = Assembly.LoadFrom(dllpath);
+			// Load the methods
+			dllConvertCommands = dll.GetTypes()[0].GetMethod("ConvertCommands");
+			dllConvertData = dll.GetTypes()[0].GetMethod("ConvertData");
+
+			// Check if the methods have the correct input and output
+			if (dllConvertCommands.ReturnType != typeof(Byte[]))
+				throw new Exception("The method \"ConvertCommands\" do not have 'Byte[]' as return value.");
+			if (dllConvertData.ReturnType != typeof(KeyValuePair<int,int>[]))
+				throw new Exception("The method \"ConvertData\" do not have 'KeyValuePair<int,int>[]' as return value.");
+
+			ParameterInfo[] param;
+			if ((param = dllConvertCommands.GetParameters()).Length == 1) {
+				if (param[0].ParameterType != typeof(KeyValuePair<int,int>[]))
+					throw new Exception("The method \"ConvertCommands\" do not have 'KeyValuePair<int,int>[]' as return value.");
+			} else
+				throw new Exception("The method \"ConvertCommands\" do not have only 1 parameter.");
+
+			if ((param = dllConvertData.GetParameters()).Length == 1) {
+				if (param[0].ParameterType != typeof(Byte[]))
+					throw new Exception("The method \"ConvertData\" do not have 'Byte[]' as parameter value.");
+			} else
+				throw new Exception("The method \"ConvertData\" do not have only 1 parameter.");
+
+			loadedDll = true;
+		} catch (Exception e) {
+			loadedDll = false;
+			Console.WriteLine(e);
+		}
+	}
 
 
 	//initialise a serial connection
@@ -94,7 +135,11 @@ public static class CommHandler
 		bool fail = false;
 
 		try {
-			packet = AEgir.main.ConvertCommands(commands);
+			// Use the loaded dll file here if needed
+			object[] o = new object[1];
+			o[0] = commands;
+			packet = dllConvertCommands.Invoke(null, o) as byte[];
+			//packet = AEgir.main.ConvertCommands(commands);
 		} catch (Exception e) {
 			fail = true;
 		}
