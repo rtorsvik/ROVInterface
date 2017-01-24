@@ -163,6 +163,17 @@ class SerialConnection : Port
 
     }
 
+	public void Send(byte[] packet)
+	{
+		//throw new NotImplementedException();
+
+		//save latest message that was sendt
+		CommHandler.messageSendt = CommHandler.PacketToByteString(packet);
+
+		port.Write(packet, 0 , packet.Length);
+
+	}
+
 
 
 	/// <summary>
@@ -225,8 +236,5 @@ class SerialConnection : Port
 
 	}
 
-	public void Send(byte[] packet)
-	{
-		throw new NotImplementedException();
-	}
+	
 }
