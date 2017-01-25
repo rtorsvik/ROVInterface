@@ -135,7 +135,7 @@ class SerialConnection : Port
 	*/
 
 
-
+	
 	/// <summary>
 	/// Send a message of 6 bytes. First two bytes represent index of the value, the next 4 bytes represent the value itself
 	/// </summary>
@@ -160,7 +160,10 @@ class SerialConnection : Port
 		CommHandler.messageSendt = CommHandler.PacketToByteString(packet);
 
 		port.Write(packet, 0, 6);
+
+		throw new NotImplementedException();
 	}
+	
 
 	public void Send(byte[] packet)
 	{

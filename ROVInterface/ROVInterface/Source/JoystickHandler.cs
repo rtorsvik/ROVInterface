@@ -23,8 +23,7 @@ static class JoystickHandler
 	/// </summary>
 	public static void Init()
 	{
-		joystick = GetSticks();
-		TJoystick.JOYSTICKNUM = 0;	//Reset joystick counter		
+		joystick = GetSticks();		
 	}
 
 	/// <summary>
@@ -44,6 +43,7 @@ static class JoystickHandler
 	//ref.: Chris Charitidis https://www.youtube.com/watch?v=rtnLGfAj7W0
 	public static TJoystick[] GetSticks()
 	{
+		TJoystick.JOYSTICKNUM = 0;  //Reset joystick counter
 		DirectInput input = new DirectInput();
 
 		//For each connected device of type GameController, get the device and add it to a list of joysticks

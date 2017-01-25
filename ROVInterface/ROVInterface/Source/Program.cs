@@ -28,9 +28,14 @@ static class Program
 		//Test field
 		//#############################################################################
 		errors = new List<string>();
+
 		//#############################################################################
 
 
+
+
+
+		
 		//Program handlers and classes
 		JoystickHandler.Init();
 		ST_Register.Init();
@@ -42,6 +47,7 @@ static class Program
 		windowStatus = new WindowStatus();
 		windowStatus.FormClosing += ProgramSaverLoader.Save;
 		Application.Run(windowStatus);
+		
 			
     }
 }

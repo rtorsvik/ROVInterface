@@ -17,7 +17,7 @@ public static class CommHandler
 
 	// Dll variables
 	private static bool loadedDll = false;
-	private const string dllpath = "./AEgir.dll";
+	private const string dllpath = "./iTranslator.dll";
 	private static Assembly dll;
 	private static MethodInfo dllConvertCommands;
 	private static MethodInfo dllConvertData;
@@ -97,7 +97,7 @@ public static class CommHandler
 	/// </summary>
 	/// <param name="index"></param>
 	/// <param name="value"></param>
-    /*public static void Send(int index, int value)
+	/*public static void Send(int index, int value)
     {
 		// ***** DEPRECATED *****************
         // Packet to be sent forward
@@ -126,6 +126,13 @@ public static class CommHandler
         port.Send(packet);
     }*/
 
+
+	public static void Send(KeyValuePair<int, int> command)
+	{
+		KeyValuePair<int, int>[] kvp_arr = new KeyValuePair<int, int>[1];
+		kvp_arr[0] = command;
+		Send(kvp_arr);
+	}
 
 
 	public static void Send(KeyValuePair<int, int>[] commands)
@@ -166,13 +173,12 @@ public static class CommHandler
 			}
 		}
 
-		if (packet == null || packet.Length == 0) {
-			Program.windowStatus.tim_SendCommandsDelay.Start();
+		if (packet == null || packet.Length == 0) 
 			return;
-		}
+		
 
 		port.Send(packet);
-		Program.windowStatus.tim_SendCommandsDelay.Start();
+
 	}
 
 

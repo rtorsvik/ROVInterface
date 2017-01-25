@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -19,6 +20,12 @@ public class JoystickSettings
 	private const int SSPACE = 30;  //pixels, spacing between AxisSetting elements
 	private const int SOFF = 40;    //pixels, offset from top
 
+	//TEMP: should be saved in array
+	public List<AxisSetting> axisSetting = new List<AxisSetting>();
+	public string[] axisLabels = new string[6] { "Forward/backward", "Left/right", "Up/Down", "Pitch", "Roll", "Yaw" };
+	public int[] prevOut = new int[6];
+
+
 
 	public AxisSetting as0;
 	public AxisSetting as1;
@@ -26,51 +33,88 @@ public class JoystickSettings
 	public AxisSetting as3;
 	public AxisSetting as4;
 	public AxisSetting as5;
+	int as0prev;
+	int as1prev;
+	int as2prev;
+	int as3prev;
+	int as4prev;
+	int as5prev;
 
 	ButtonSetting bs6;
 
 	public JoystickSettings()
 	{
+		for(int i = 0; i < axisLabels.Length; i++)
+		{
+			axisSetting.Add(new AxisSetting(axisLabels[i]));
+		}
+
+		
 		as0 = new AxisSetting("Forward/backward");
 		as1 = new AxisSetting("Left/right");
 		as2 = new AxisSetting("Up/Down");
 		as3 = new AxisSetting("Pitch");
 		as4 = new AxisSetting("Roll");
 		as5 = new AxisSetting("Yaw");
-
+		
+		
 		bs6 = new ButtonSetting("Lights on/off");
 	}
 
 	public void Update()
 	{
+		for (int i = 0; i < axisLabels.Length; i++)
+		{
+			axisSetting[i].Update();
+		}
+
+		/*
 		as0.Update();
 		as1.Update();
 		as2.Update();
 		as3.Update();
 		as4.Update();
 		as5.Update();
+		*/
 
 		bs6.Update();
 
-		//finn ut sammen med terje hvor disse egentlig skal kalles hen
+		//TEMP: finn ut sammen med terje hvor disse egentlig skal kalles hen
+		for (int i = 0; i < axisLabels.Length; i++)
+		{
+			if (axisSetting[i].outValue != prevOut[i])
+				ST_Register.commands[i+1] = axisSetting[i].outValue;
+			prevOut[i] = axisSetting[i].outValue;
+
+		}
+
+		/*
 		ST_Register.commands[1] = as0.outValue;
 		ST_Register.commands[2] = as1.outValue;
 		ST_Register.commands[3] = as2.outValue;
 		ST_Register.commands[4] = as3.outValue;
 		ST_Register.commands[5] = as4.outValue;
 		ST_Register.commands[6] = as5.outValue;
+		*/
 
 		//ST_Register.commands[10] = bs6.outValue;
 	}
 
 	public void LoadConnectedJoysticks()
 	{
+		for (int i = 0; i < axisLabels.Length; i++)
+		{
+			axisSetting[i].LoadConnectedJoysticks();
+		}
+
+		/*
 		as0.LoadConnectedJoysticks();
 		as1.LoadConnectedJoysticks();
 		as2.LoadConnectedJoysticks();
 		as3.LoadConnectedJoysticks();
 		as4.LoadConnectedJoysticks();
 		as5.LoadConnectedJoysticks();
+		*/
 
 		//bs6.LoadConnectedJoysticks();
 	}
@@ -438,6 +482,7 @@ public class JoystickSettings
 		/// </summary>
 		public void LoadConnectedJoysticks()
 		{
+			c_joystick.Items.Clear();
 			c_joystick.Items.AddRange(JoystickHandler.GetSticks());
 		}
 

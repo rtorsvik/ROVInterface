@@ -131,20 +131,6 @@ public partial class WindowStatus : Form
 
 
 
-		//TEMP: send some joystick values to the serialconn
-		//try { CommHandler.Send(1, joystickSettings.as0.outValue); } catch { }
-		//try { CommHandler.Send(2, joystickSettings.as1.outValue); } catch { }
-		//try { CommHandler.Send(3, joystickSettings.as2.outValue); } catch { }
-		//try { CommHandler.Send(4, joystickSettings.as3.outValue); } catch { }
-
-		//TEMP
-		ST_Register.commands[1] = joystickSettings.as0.outValue;
-		ST_Register.commands[2] = joystickSettings.as1.outValue;
-		ST_Register.commands[3] = joystickSettings.as2.outValue;
-		ST_Register.commands[4] = joystickSettings.as3.outValue;
-
-
-
 		if (sendHeartbeat)
 		{
 			if (st.status[0] == 0)
@@ -178,7 +164,25 @@ public partial class WindowStatus : Form
 		pulse = false;
 		heartBeatTimer.Start();
 		heartBeat_prev = heartBeat;
-		sendHeartbeat = true;		
+		sendHeartbeat = true;
+
+		try
+		{
+			KeyValuePair<int, int> kvp;
+
+			if (st.status[0] == 0)
+				kvp = new KeyValuePair<int, int>(0, 1);
+
+			else
+				kvp = new KeyValuePair<int, int>(0, 0);
+
+			CommHandler.Send(kvp);
+		}
+		catch
+		{
+			Console.Write("No connection for heartbeat");
+		}
+
 	}
 
 
@@ -242,9 +246,10 @@ public partial class WindowStatus : Form
 
 		if (tim_SendCommandsDelay.Enabled)
 		{
-			tim_SendCommandsDelay.Stop();
+			//tim_SendCommandsDelay.Stop();
 			tim_SendCommandsDelay.Enabled = false;
-			button1.UseVisualStyleBackColor = true;
+			tim_heartBeat.Enabled = false;
+			btn_startTransmition.UseVisualStyleBackColor = true;
 
 
 		}
@@ -252,25 +257,10 @@ public partial class WindowStatus : Form
 		{
 			
 			tim_SendCommandsDelay.Enabled = true;
-			button1.BackColor = System.Drawing.Color.SpringGreen;
-			tim_SendCommandsDelay.Start();
-		}
-
-
-		/*
-		if (tim_heartBeat.Enabled)
-		{
-			tim_heartBeat.Enabled = false;
-			button1.UseVisualStyleBackColor = true;
-			
-		}
-		else
-		{
 			tim_heartBeat.Enabled = true;
-			button1.BackColor = System.Drawing.Color.SpringGreen;
+			btn_startTransmition.BackColor = System.Drawing.Color.SpringGreen;
+			//tim_SendCommandsDelay.Start();
 		}
-		*/
-
 	}
 
 	private void grp_joysticksettings_instructions_Enter(object sender, EventArgs e)

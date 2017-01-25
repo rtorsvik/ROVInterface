@@ -34,6 +34,7 @@ public static class ST_Register {
 		for (int i = 0, j = data.Length; i < j; i++)
 			tosend[i] = new KeyValuePair<int, int>(data[i].index, data[i].value);
 		CommHandler.Send(tosend);
+		Program.windowStatus.tim_SendCommandsDelay.Start();
 		/*for (int i = 0, j = data.Length; i < j; i++)
 			CommHandler.Send(data[i].index, data[i].value);
 		*/
