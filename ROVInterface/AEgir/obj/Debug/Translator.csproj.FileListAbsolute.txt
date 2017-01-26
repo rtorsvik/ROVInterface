@@ -1,5 +1,0 @@
-C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\AEgir\bin\Debug\Translator.dll
-C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\AEgir\bin\Debug\Translator.pdb
-C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\AEgir\obj\Debug\Translator.csprojResolveAssemblyReference.cache
-C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\AEgir\obj\Debug\Translator.dll
-C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\AEgir\obj\Debug\Translator.pdb
