@@ -26,14 +26,8 @@ namespace Translator
 		/// </summary>
 		public const string TRANSLATORNAME = "UIS Subsea ÆGIR translator";
 
-		/*
-		 * your code goes here
-		 * 
-		 */
-		
-		
 
-
+	
 		//Identifyers
 		private const int TOP_XBOX_CTRLS = 0x200;
 		private const int TOP_XBOX_AXES = 0x201;
@@ -71,6 +65,8 @@ namespace Translator
 		private static byte[] TOP_XBOX_CTRLS_cache = new byte[8];
 		private static byte[] TOP_XBOX_AXES_cache = new byte[8];
 		private static byte[] TOP_POWR_CTRL_cache = new byte[1];
+		private static byte[] TOP_REG_PARAM1_cache = new byte[6];
+		private static byte[] TOP_REG_PARAM2_cache = new byte[5];
 
 
 
