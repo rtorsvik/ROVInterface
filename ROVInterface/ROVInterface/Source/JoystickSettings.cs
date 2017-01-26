@@ -365,7 +365,11 @@ public class JoystickSettings
 		/// <param name="max">0...100</param>
 		public void SetSettings(int joystickIndex, int axisIndex, bool reverse, decimal expo, int deadband, int offset, int max)
 		{
-			c_joystick.SelectedIndex = joystickIndex;
+			try {
+				c_joystick.SelectedIndex = joystickIndex;
+			} catch {
+				c_joystick.SelectedIndex = -1;
+			}
 			c_axis.SelectedIndex = axisIndex;
 
 			if (reverse)

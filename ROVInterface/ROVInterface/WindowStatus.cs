@@ -146,14 +146,9 @@ public partial class WindowStatus : Form
 		}
 
 
-		//display error messages
-		string statusMessage = "";
-		foreach (string s in Program.errors)
-		{
-			statusMessage += s + ", ";
-		}
-		//statusMessage -= ", "; implement equivalent this in some way
-		txt_error.Text = statusMessage;
+		//display error messages if they are updated
+		if (Program.errors.HaveUpdated())
+			txt_error.Text = Program.errors.ToString();
 	}
 
 

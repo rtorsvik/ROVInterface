@@ -12,7 +12,7 @@ using System.IO.Ports;
 static class Program
 {
 	public static WindowStatus windowStatus;
-	public static List<string> errors;
+	public static ErrorManager errors;
 
     /// <summary>
     /// The main entry point for the application.
@@ -27,7 +27,7 @@ static class Program
 
 		//Test field
 		//#############################################################################
-		errors = new List<string>();
+		errors = new ErrorManager();
 
 		//#############################################################################
 
