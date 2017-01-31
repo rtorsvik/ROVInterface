@@ -29,10 +29,12 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowStatus));
 			this.connectionTab = new System.Windows.Forms.TabControl();
-			this.tab_Graphics = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.rdb_comm_status_bytes = new System.Windows.Forms.RadioButton();
+			this.rdb_comm_status_hex = new System.Windows.Forms.RadioButton();
+			this.rdb_comm_status_dec = new System.Windows.Forms.RadioButton();
 			this.label28 = new System.Windows.Forms.Label();
 			this.nud_comm_transfreq = new System.Windows.Forms.NumericUpDown();
 			this.btn_startTransmition = new System.Windows.Forms.Button();
@@ -46,6 +48,8 @@
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBox8 = new System.Windows.Forms.GroupBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.nud_con_serial_value = new System.Windows.Forms.NumericUpDown();
+			this.nud_con_serial_index = new System.Windows.Forms.NumericUpDown();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.btn_send_serial = new System.Windows.Forms.Button();
@@ -103,18 +107,17 @@
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.tim_100ms_update = new System.Windows.Forms.Timer(this.components);
 			this.tim_SendCommandsDelay = new System.Windows.Forms.Timer(this.components);
-			this.rdb_comm_status_dec = new System.Windows.Forms.RadioButton();
-			this.rdb_comm_status_hex = new System.Windows.Forms.RadioButton();
-			this.rdb_comm_status_bytes = new System.Windows.Forms.RadioButton();
-			this.nud_con_serial_index = new System.Windows.Forms.NumericUpDown();
-			this.nud_con_serial_value = new System.Windows.Forms.NumericUpDown();
+			this.pan_graphicsCreator = new System.Windows.Forms.Panel();
 			this.connectionTab.SuspendLayout();
+			this.tabPage2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nud_comm_transfreq)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox8.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_value)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_index)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			this.tbl_IndexSettings.SuspendLayout();
@@ -128,8 +131,6 @@
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_index)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_value)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -137,7 +138,6 @@
 			this.connectionTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.connectionTab.Controls.Add(this.tab_Graphics);
 			this.connectionTab.Controls.Add(this.tabPage2);
 			this.connectionTab.Controls.Add(this.tabPage3);
 			this.connectionTab.Controls.Add(this.tabPage4);
@@ -151,21 +151,10 @@
 			this.connectionTab.Size = new System.Drawing.Size(1400, 629);
 			this.connectionTab.TabIndex = 0;
 			// 
-			// tab_Graphics
-			// 
-			this.tab_Graphics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.tab_Graphics.Location = new System.Drawing.Point(4, 25);
-			this.tab_Graphics.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tab_Graphics.Name = "tab_Graphics";
-			this.tab_Graphics.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tab_Graphics.Size = new System.Drawing.Size(1392, 600);
-			this.tab_Graphics.TabIndex = 0;
-			this.tab_Graphics.Text = "tabPage1";
-			this.tab_Graphics.Paint += new System.Windows.Forms.PaintEventHandler(this.tab_Graphics_Paint);
-			// 
 			// tabPage2
 			// 
 			this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.tabPage2.Controls.Add(this.pan_graphicsCreator);
 			this.tabPage2.Location = new System.Drawing.Point(4, 25);
 			this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabPage2.Name = "tabPage2";
@@ -215,6 +204,41 @@
 			this.groupBox3.TabIndex = 12;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Status";
+			// 
+			// rdb_comm_status_bytes
+			// 
+			this.rdb_comm_status_bytes.AutoSize = true;
+			this.rdb_comm_status_bytes.Location = new System.Drawing.Point(230, 98);
+			this.rdb_comm_status_bytes.Name = "rdb_comm_status_bytes";
+			this.rdb_comm_status_bytes.Size = new System.Drawing.Size(61, 21);
+			this.rdb_comm_status_bytes.TabIndex = 24;
+			this.rdb_comm_status_bytes.Text = "Bytes";
+			this.rdb_comm_status_bytes.UseVisualStyleBackColor = true;
+			this.rdb_comm_status_bytes.CheckedChanged += new System.EventHandler(this.rdb_comm_status_CheckedChanged);
+			// 
+			// rdb_comm_status_hex
+			// 
+			this.rdb_comm_status_hex.AutoSize = true;
+			this.rdb_comm_status_hex.Location = new System.Drawing.Point(297, 98);
+			this.rdb_comm_status_hex.Name = "rdb_comm_status_hex";
+			this.rdb_comm_status_hex.Size = new System.Drawing.Size(50, 21);
+			this.rdb_comm_status_hex.TabIndex = 23;
+			this.rdb_comm_status_hex.Text = "Hex";
+			this.rdb_comm_status_hex.UseVisualStyleBackColor = true;
+			this.rdb_comm_status_hex.CheckedChanged += new System.EventHandler(this.rdb_comm_status_CheckedChanged);
+			// 
+			// rdb_comm_status_dec
+			// 
+			this.rdb_comm_status_dec.AutoSize = true;
+			this.rdb_comm_status_dec.Checked = true;
+			this.rdb_comm_status_dec.Location = new System.Drawing.Point(148, 98);
+			this.rdb_comm_status_dec.Name = "rdb_comm_status_dec";
+			this.rdb_comm_status_dec.Size = new System.Drawing.Size(76, 21);
+			this.rdb_comm_status_dec.TabIndex = 22;
+			this.rdb_comm_status_dec.TabStop = true;
+			this.rdb_comm_status_dec.Text = "Decimal";
+			this.rdb_comm_status_dec.UseVisualStyleBackColor = true;
+			this.rdb_comm_status_dec.CheckedChanged += new System.EventHandler(this.rdb_comm_status_CheckedChanged);
 			// 
 			// label28
 			// 
@@ -380,6 +404,35 @@
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Advanced";
+			// 
+			// nud_con_serial_value
+			// 
+			this.nud_con_serial_value.Location = new System.Drawing.Point(94, 61);
+			this.nud_con_serial_value.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.nud_con_serial_value.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+			this.nud_con_serial_value.Name = "nud_con_serial_value";
+			this.nud_con_serial_value.Size = new System.Drawing.Size(82, 23);
+			this.nud_con_serial_value.TabIndex = 14;
+			// 
+			// nud_con_serial_index
+			// 
+			this.nud_con_serial_index.Location = new System.Drawing.Point(94, 32);
+			this.nud_con_serial_index.Maximum = new decimal(new int[] {
+            32767,
+            0,
+            0,
+            0});
+			this.nud_con_serial_index.Name = "nud_con_serial_index";
+			this.nud_con_serial_index.Size = new System.Drawing.Size(82, 23);
+			this.nud_con_serial_index.TabIndex = 13;
 			// 
 			// label5
 			// 
@@ -1040,69 +1093,13 @@
 			this.tim_100ms_update.Enabled = true;
 			this.tim_100ms_update.Tick += new System.EventHandler(this.tim_100ms_update_Tick);
 			// 
-			// rdb_comm_status_dec
+			// pan_graphicsCreator
 			// 
-			this.rdb_comm_status_dec.AutoSize = true;
-			this.rdb_comm_status_dec.Checked = true;
-			this.rdb_comm_status_dec.Location = new System.Drawing.Point(148, 98);
-			this.rdb_comm_status_dec.Name = "rdb_comm_status_dec";
-			this.rdb_comm_status_dec.Size = new System.Drawing.Size(76, 21);
-			this.rdb_comm_status_dec.TabIndex = 22;
-			this.rdb_comm_status_dec.TabStop = true;
-			this.rdb_comm_status_dec.Text = "Decimal";
-			this.rdb_comm_status_dec.UseVisualStyleBackColor = true;
-			this.rdb_comm_status_dec.CheckedChanged += new System.EventHandler(this.rdb_comm_status_CheckedChanged);
-			// 
-			// rdb_comm_status_hex
-			// 
-			this.rdb_comm_status_hex.AutoSize = true;
-			this.rdb_comm_status_hex.Location = new System.Drawing.Point(297, 98);
-			this.rdb_comm_status_hex.Name = "rdb_comm_status_hex";
-			this.rdb_comm_status_hex.Size = new System.Drawing.Size(50, 21);
-			this.rdb_comm_status_hex.TabIndex = 23;
-			this.rdb_comm_status_hex.Text = "Hex";
-			this.rdb_comm_status_hex.UseVisualStyleBackColor = true;
-			this.rdb_comm_status_hex.CheckedChanged += new System.EventHandler(this.rdb_comm_status_CheckedChanged);
-			// 
-			// rdb_comm_status_bytes
-			// 
-			this.rdb_comm_status_bytes.AutoSize = true;
-			this.rdb_comm_status_bytes.Location = new System.Drawing.Point(230, 98);
-			this.rdb_comm_status_bytes.Name = "rdb_comm_status_bytes";
-			this.rdb_comm_status_bytes.Size = new System.Drawing.Size(61, 21);
-			this.rdb_comm_status_bytes.TabIndex = 24;
-			this.rdb_comm_status_bytes.Text = "Bytes";
-			this.rdb_comm_status_bytes.UseVisualStyleBackColor = true;
-			this.rdb_comm_status_bytes.CheckedChanged += new System.EventHandler(this.rdb_comm_status_CheckedChanged);
-			// 
-			// nud_con_serial_index
-			// 
-			this.nud_con_serial_index.Location = new System.Drawing.Point(94, 32);
-			this.nud_con_serial_index.Maximum = new decimal(new int[] {
-            32767,
-            0,
-            0,
-            0});
-			this.nud_con_serial_index.Name = "nud_con_serial_index";
-			this.nud_con_serial_index.Size = new System.Drawing.Size(82, 23);
-			this.nud_con_serial_index.TabIndex = 13;
-			// 
-			// nud_con_serial_value
-			// 
-			this.nud_con_serial_value.Location = new System.Drawing.Point(94, 61);
-			this.nud_con_serial_value.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.nud_con_serial_value.Minimum = new decimal(new int[] {
-            -2147483648,
-            0,
-            0,
-            -2147483648});
-			this.nud_con_serial_value.Name = "nud_con_serial_value";
-			this.nud_con_serial_value.Size = new System.Drawing.Size(82, 23);
-			this.nud_con_serial_value.TabIndex = 14;
+			this.pan_graphicsCreator.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pan_graphicsCreator.Location = new System.Drawing.Point(3, 2);
+			this.pan_graphicsCreator.Name = "pan_graphicsCreator";
+			this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
+			this.pan_graphicsCreator.TabIndex = 0;
 			// 
 			// WindowStatus
 			// 
@@ -1120,6 +1117,7 @@
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.WindowStatus_Load);
 			this.connectionTab.ResumeLayout(false);
+			this.tabPage2.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
@@ -1128,6 +1126,8 @@
 			this.groupBox8.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_value)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_index)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.tabPage4.ResumeLayout(false);
@@ -1148,15 +1148,12 @@
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_index)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_value)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TabPage tab_Graphics;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ComboBox cmb_comport;
@@ -1236,4 +1233,5 @@
 	private System.Windows.Forms.RadioButton rdb_comm_status_dec;
 	private System.Windows.Forms.NumericUpDown nud_con_serial_index;
 	private System.Windows.Forms.NumericUpDown nud_con_serial_value;
+	private System.Windows.Forms.Panel pan_graphicsCreator;
 }

@@ -18,6 +18,7 @@ public partial class WindowStatus : Form
 
 	public IndexSettings indexSettings;
 	public IndexStats indexStats;
+	public GraphicsCreator graphicsCreator;
 
 	public JoystickSettings joystickSettings;
 
@@ -61,6 +62,7 @@ public partial class WindowStatus : Form
 		st.status[0] = 1;
 
 		// Load all settings
+		graphicsCreator = new GraphicsCreator(pan_graphicsCreator, btn_EditMode);
 		ProgramSaverLoader.Load();
 
 		// Start the st_register send timer
@@ -320,10 +322,5 @@ public partial class WindowStatus : Form
 			txt_con_messageSendt.Text = CommHandler.PacketToByteString(CommHandler.messageSendt);
 			txt_con_messageRecieved.Text = CommHandler.PacketToByteString(CommHandler.messageRecieved);
 		}
-	}
-}
-
-	private void tab_Graphics_Paint(object sender, PaintEventArgs e) {
-		new GraphicsCreator(e.Graphics);
 	}
 }
