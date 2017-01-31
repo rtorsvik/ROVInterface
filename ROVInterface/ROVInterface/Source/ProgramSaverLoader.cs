@@ -168,7 +168,7 @@ public static class ProgramSaverLoader {
 		// Loop through and add JoystickSettings
 		src += "	<JoystickSettings>\n";
 		JoystickSettings js = Program.windowStatus.joystickSettings;
-		JoystickSettings.AxisSetting[] axiss = { js.as0, js.as1, js.as2, js.as3, js.as4, js.as5 };
+		JoystickSettings.AxisSetting[] axiss = js.axisSetting;
 		for (int i = 0, j = 6; i < j; i++) {
 			src += "		<Setting>\n";
 			src += "			<jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><reverse>" + axiss[i].reverse.ToString() + "</reverse><expo>" + axiss[i].expo + 
