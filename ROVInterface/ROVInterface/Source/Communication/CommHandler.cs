@@ -12,8 +12,13 @@ public static class CommHandler
 	public static Port port;
 	public static bool initialized;
 
-	public static string messageSendt;
-	public static string messageRecieved;
+	public static byte[] messageSendt { get { return _messageSendt; } set { _messageSendt = value; newMessage = true; } }
+	private static byte[] _messageSendt;
+
+	public static byte[] messageRecieved { get { return _messageRecieved; } set { _messageRecieved = value; newMessage = true; } }
+	private static byte[] _messageRecieved;
+
+	public static bool newMessage = false;
 
 	// Dll variables
 	private static bool loadedDll = false;
@@ -191,25 +196,7 @@ public static class CommHandler
 
 
 
-	/// <summary>
-	/// Converts the packet into a strong that represents each byte in the packet array
-	/// </summary>
-	/// <param name="packet">the packet containing the bytes of a message</param>
-	/// <returns>Returns a string</returns>
-	public static string PacketToByteString(byte[] packet)
-	{
-		int packet_length = 6;
-		string s = "[";
-		for (int i = 0; i < packet_length; i++)
-		{
-			s += packet[i];
-			if (i != packet_length - 1)
-				s += ", ";
-		}
-		s += "]";
-
-		return s;
-	}
+	
 
 
 
@@ -236,7 +223,27 @@ public static class CommHandler
 
 
 
+	/// <summary>
+	/// Converts the packet into a strong that represents each byte in the packet array
+	/// </summary>
+	/// <param name="packet">the packet containing the bytes of a message</param>
+	/// <returns>Returns a string</returns>
+	public static string PacketToByteString(byte[] packet)
+	{
+		if (packet == null) return "";
 
+		int packet_length = 6;
+		string s = "[";
+		for (int i = 0; i < packet_length; i++)
+		{
+			s += packet[i];
+			if (i != packet_length - 1)
+				s += ", ";
+		}
+		s += "]";
+
+		return s;
+	}
 
 
 
@@ -248,6 +255,8 @@ public static class CommHandler
 	/// <returns>Returns a string</returns>
 	public static string PacketToHEXString(byte[] packet)
 	{
+		if (packet == null) return "";
+
 		int packet_length = 6;
 		StringBuilder s = new StringBuilder();
 		s.Append("[");
@@ -271,6 +280,8 @@ public static class CommHandler
 	/// <returns>Returns a string</returns>
 	public static string PacketToString(byte[] packet)
 	{
+		if (packet == null) return "";
+
 		int index;
 		index = packet[0] << 8;
 		index |= packet[1];
@@ -281,7 +292,7 @@ public static class CommHandler
 		value |= packet[4] << 8;
 		value |= packet[5];
 
-		return "[" + index + ", " + value + "]";
+		return "<" + index + ", " + value + ">";
 	}
 
 

@@ -125,8 +125,28 @@ public partial class WindowStatus : Form
 				btn_connect_serial.ForeColor = System.Drawing.Color.White;
 			}
 
-			txt_con_messageSendt.Text = CommHandler.messageSendt;
-			txt_con_messageRecieved.Text = CommHandler.messageRecieved;
+
+			if (CommHandler.newMessage)
+			{
+				if (rdb_comm_status_dec.Checked)
+				{
+					txt_con_messageSendt.Text = CommHandler.PacketToString(CommHandler.messageSendt);
+					txt_con_messageRecieved.Text = CommHandler.PacketToString(CommHandler.messageRecieved);
+				}
+				else if (rdb_comm_status_hex.Checked)
+				{
+					txt_con_messageSendt.Text = CommHandler.PacketToHEXString(CommHandler.messageSendt);
+					txt_con_messageRecieved.Text = CommHandler.PacketToHEXString(CommHandler.messageRecieved);
+				}
+				else if (rdb_comm_status_bytes.Checked)
+				{
+					txt_con_messageSendt.Text = CommHandler.PacketToByteString(CommHandler.messageSendt);
+					txt_con_messageRecieved.Text = CommHandler.PacketToByteString(CommHandler.messageRecieved);
+				}
+
+				CommHandler.newMessage = false;
+			}
+
 		}
 
 
@@ -201,13 +221,10 @@ public partial class WindowStatus : Form
 
 	private void btn_send_serial_Click(object sender, EventArgs e)
 	{
-		int index = Int32.Parse(txt_serial_index.Text);
-		int value = Int32.Parse(txt_serial_value.Text);
+		int index = (int)nud_con_serial_index.Value;
+		int value = (int)nud_con_serial_value.Value;
 
-		KeyValuePair<int, int>[] kvp = new KeyValuePair<int, int>[1];
-		kvp[0] = new KeyValuePair<int, int>(index, value);
-
-		CommHandler.Send(kvp);
+		CommHandler.Send(new KeyValuePair<int, int>(index, value));
 	}
 
 	private void btn_connect_serial_Click(object sender, EventArgs e)
@@ -219,10 +236,12 @@ public partial class WindowStatus : Form
 		if (CommHandler.IsOpen())
 		{
 			CommHandler.Close();
+			btn_send_serial.Enabled = false;
 		}
 		else
 		{
 			CommHandler.Open();
+			btn_send_serial.Enabled = true;
 		}
 
 	}
@@ -280,5 +299,31 @@ public partial class WindowStatus : Form
 	private void button2_Click(object sender, EventArgs e)
 	{
 		joystickSettings.LoadConnectedJoysticks();
+	}
+
+
+
+	/// <summary>
+	/// Update format of message sent and message recieved if radiobuttons changes
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+	private void rdb_comm_status_CheckedChanged(object sender, EventArgs e)
+	{
+		if (rdb_comm_status_dec.Checked)
+		{
+			txt_con_messageSendt.Text = CommHandler.PacketToString(CommHandler.messageSendt);
+			txt_con_messageRecieved.Text = CommHandler.PacketToString(CommHandler.messageRecieved);
+		}
+		else if (rdb_comm_status_hex.Checked)
+		{
+			txt_con_messageSendt.Text = CommHandler.PacketToHEXString(CommHandler.messageSendt);
+			txt_con_messageRecieved.Text = CommHandler.PacketToHEXString(CommHandler.messageRecieved);
+		}
+		else if (rdb_comm_status_bytes.Checked)
+		{
+			txt_con_messageSendt.Text = CommHandler.PacketToByteString(CommHandler.messageSendt);
+			txt_con_messageRecieved.Text = CommHandler.PacketToByteString(CommHandler.messageRecieved);
+		}
 	}
 }

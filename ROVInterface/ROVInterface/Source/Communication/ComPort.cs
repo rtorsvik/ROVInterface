@@ -156,9 +156,6 @@ class SerialConnection : Port
 		packet[4] = (byte)(value >>  8);
 		packet[5] = (byte)(value >>  0);
 
-		//save latest message that was sendt
-		CommHandler.messageSendt = CommHandler.PacketToByteString(packet);
-
 		port.Write(packet, 0, 6);
 
 		throw new NotImplementedException();
@@ -167,13 +164,10 @@ class SerialConnection : Port
 
 	public void Send(byte[] packet)
 	{
-		//throw new NotImplementedException();
-
-		//save latest message that was sendt
-		CommHandler.messageSendt = CommHandler.PacketToByteString(packet);
-
 		port.Write(packet, 0 , packet.Length);
 
+		//save latest message that was sendt
+		CommHandler.messageSendt = packet;
 	}
 
 
@@ -215,28 +209,26 @@ class SerialConnection : Port
 		{
 			idx = 0;
 
+			//Save the recieved value to st_register
+			//reconstruct index 
+			int index;
+			index = buffer[0] << 8; //index MSB
+			index |= buffer[1]; //index LSB
+
+			//reconstruct value
+			int value;
+			value = buffer[2] << 24;
+			value |= buffer[3] << 16;
+			value |= buffer[4] << 8;
+			value |= buffer[5];
+
+			st_reg.status[index] = value;
+
 			//save latest message that was sendt
-			CommHandler.messageRecieved = CommHandler.PacketToByteString(buffer);
+			CommHandler.messageRecieved = buffer;
+
 		}
-
-
-
-		//Save the recieved value to st_register
-		//reconstruct index 
-		int index;
-		index = buffer[0] << 8; //index MSB
-		index |= buffer[1]; //index LSB
-
-		//reconstruct value
-		int value;
-		value = buffer[2] << 24;
-		value |= buffer[3] << 16;
-		value |= buffer[4] << 8;
-		value |= buffer[5];
-
-		st_reg.status[index] = value;
 
 	}
 
-	
 }
