@@ -48,9 +48,7 @@
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.txt_serial_value = new System.Windows.Forms.TextBox();
 			this.btn_send_serial = new System.Windows.Forms.Button();
-			this.txt_serial_index = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.cmb_comport = new System.Windows.Forms.ComboBox();
@@ -105,7 +103,11 @@
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.tim_100ms_update = new System.Windows.Forms.Timer(this.components);
 			this.tim_SendCommandsDelay = new System.Windows.Forms.Timer(this.components);
-			this.pan_graphicsCreator = new System.Windows.Forms.Panel();
+			this.rdb_comm_status_dec = new System.Windows.Forms.RadioButton();
+			this.rdb_comm_status_hex = new System.Windows.Forms.RadioButton();
+			this.rdb_comm_status_bytes = new System.Windows.Forms.RadioButton();
+			this.nud_con_serial_index = new System.Windows.Forms.NumericUpDown();
+			this.nud_con_serial_value = new System.Windows.Forms.NumericUpDown();
 			this.connectionTab.SuspendLayout();
 			this.tab_Graphics.SuspendLayout();
 			this.tabPage3.SuspendLayout();
@@ -127,6 +129,8 @@
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_index)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_value)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -189,6 +193,9 @@
 			// 
 			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox3.Controls.Add(this.rdb_comm_status_bytes);
+			this.groupBox3.Controls.Add(this.rdb_comm_status_hex);
+			this.groupBox3.Controls.Add(this.rdb_comm_status_dec);
 			this.groupBox3.Controls.Add(this.label28);
 			this.groupBox3.Controls.Add(this.nud_comm_transfreq);
 			this.groupBox3.Controls.Add(this.btn_startTransmition);
@@ -306,7 +313,7 @@
 			this.txt_con_messageSendt.Location = new System.Drawing.Point(148, 32);
 			this.txt_con_messageSendt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txt_con_messageSendt.Name = "txt_con_messageSendt";
-			this.txt_con_messageSendt.Size = new System.Drawing.Size(163, 23);
+			this.txt_con_messageSendt.Size = new System.Drawing.Size(217, 23);
 			this.txt_con_messageSendt.TabIndex = 13;
 			// 
 			// txt_con_messageRecieved
@@ -314,7 +321,7 @@
 			this.txt_con_messageRecieved.Location = new System.Drawing.Point(148, 60);
 			this.txt_con_messageRecieved.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txt_con_messageRecieved.Name = "txt_con_messageRecieved";
-			this.txt_con_messageRecieved.Size = new System.Drawing.Size(163, 23);
+			this.txt_con_messageRecieved.Size = new System.Drawing.Size(217, 23);
 			this.txt_con_messageRecieved.TabIndex = 14;
 			// 
 			// tableLayoutPanel1
@@ -359,11 +366,11 @@
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.nud_con_serial_value);
+			this.groupBox1.Controls.Add(this.nud_con_serial_index);
 			this.groupBox1.Controls.Add(this.label5);
 			this.groupBox1.Controls.Add(this.label4);
-			this.groupBox1.Controls.Add(this.txt_serial_value);
 			this.groupBox1.Controls.Add(this.btn_send_serial);
-			this.groupBox1.Controls.Add(this.txt_serial_index);
 			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.groupBox1.Location = new System.Drawing.Point(0, 222);
@@ -395,17 +402,10 @@
 			this.label4.TabIndex = 11;
 			this.label4.Text = "Index";
 			// 
-			// txt_serial_value
-			// 
-			this.txt_serial_value.Location = new System.Drawing.Point(94, 58);
-			this.txt_serial_value.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txt_serial_value.Name = "txt_serial_value";
-			this.txt_serial_value.Size = new System.Drawing.Size(82, 23);
-			this.txt_serial_value.TabIndex = 10;
-			// 
 			// btn_send_serial
 			// 
 			this.btn_send_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_send_serial.Enabled = false;
 			this.btn_send_serial.Location = new System.Drawing.Point(230, 31);
 			this.btn_send_serial.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
 			this.btn_send_serial.Name = "btn_send_serial";
@@ -414,14 +414,6 @@
 			this.btn_send_serial.Text = "Send";
 			this.btn_send_serial.UseVisualStyleBackColor = true;
 			this.btn_send_serial.Click += new System.EventHandler(this.btn_send_serial_Click);
-			// 
-			// txt_serial_index
-			// 
-			this.txt_serial_index.Location = new System.Drawing.Point(94, 31);
-			this.txt_serial_index.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txt_serial_index.Name = "txt_serial_index";
-			this.txt_serial_index.Size = new System.Drawing.Size(82, 23);
-			this.txt_serial_index.TabIndex = 9;
 			// 
 			// groupBox2
 			// 
@@ -1049,13 +1041,69 @@
 			this.tim_100ms_update.Enabled = true;
 			this.tim_100ms_update.Tick += new System.EventHandler(this.tim_100ms_update_Tick);
 			// 
-			// pan_graphicsCreator
+			// rdb_comm_status_dec
 			// 
-			this.pan_graphicsCreator.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pan_graphicsCreator.Location = new System.Drawing.Point(3, 2);
-			this.pan_graphicsCreator.Name = "pan_graphicsCreator";
-			this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
-			this.pan_graphicsCreator.TabIndex = 0;
+			this.rdb_comm_status_dec.AutoSize = true;
+			this.rdb_comm_status_dec.Checked = true;
+			this.rdb_comm_status_dec.Location = new System.Drawing.Point(148, 98);
+			this.rdb_comm_status_dec.Name = "rdb_comm_status_dec";
+			this.rdb_comm_status_dec.Size = new System.Drawing.Size(76, 21);
+			this.rdb_comm_status_dec.TabIndex = 22;
+			this.rdb_comm_status_dec.TabStop = true;
+			this.rdb_comm_status_dec.Text = "Decimal";
+			this.rdb_comm_status_dec.UseVisualStyleBackColor = true;
+			this.rdb_comm_status_dec.CheckedChanged += new System.EventHandler(this.rdb_comm_status_CheckedChanged);
+			// 
+			// rdb_comm_status_hex
+			// 
+			this.rdb_comm_status_hex.AutoSize = true;
+			this.rdb_comm_status_hex.Location = new System.Drawing.Point(297, 98);
+			this.rdb_comm_status_hex.Name = "rdb_comm_status_hex";
+			this.rdb_comm_status_hex.Size = new System.Drawing.Size(50, 21);
+			this.rdb_comm_status_hex.TabIndex = 23;
+			this.rdb_comm_status_hex.Text = "Hex";
+			this.rdb_comm_status_hex.UseVisualStyleBackColor = true;
+			this.rdb_comm_status_hex.CheckedChanged += new System.EventHandler(this.rdb_comm_status_CheckedChanged);
+			// 
+			// rdb_comm_status_bytes
+			// 
+			this.rdb_comm_status_bytes.AutoSize = true;
+			this.rdb_comm_status_bytes.Location = new System.Drawing.Point(230, 98);
+			this.rdb_comm_status_bytes.Name = "rdb_comm_status_bytes";
+			this.rdb_comm_status_bytes.Size = new System.Drawing.Size(61, 21);
+			this.rdb_comm_status_bytes.TabIndex = 24;
+			this.rdb_comm_status_bytes.Text = "Bytes";
+			this.rdb_comm_status_bytes.UseVisualStyleBackColor = true;
+			this.rdb_comm_status_bytes.CheckedChanged += new System.EventHandler(this.rdb_comm_status_CheckedChanged);
+			// 
+			// nud_con_serial_index
+			// 
+			this.nud_con_serial_index.Location = new System.Drawing.Point(94, 32);
+			this.nud_con_serial_index.Maximum = new decimal(new int[] {
+            32767,
+            0,
+            0,
+            0});
+			this.nud_con_serial_index.Name = "nud_con_serial_index";
+			this.nud_con_serial_index.Size = new System.Drawing.Size(82, 23);
+			this.nud_con_serial_index.TabIndex = 13;
+			// 
+			// nud_con_serial_value
+			// 
+			this.nud_con_serial_value.Location = new System.Drawing.Point(94, 61);
+			this.nud_con_serial_value.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.nud_con_serial_value.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+			this.nud_con_serial_value.Name = "nud_con_serial_value";
+			this.nud_con_serial_value.Size = new System.Drawing.Size(82, 23);
+			this.nud_con_serial_value.TabIndex = 14;
 			// 
 			// WindowStatus
 			// 
@@ -1102,6 +1150,8 @@
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_index)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_value)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1120,7 +1170,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_serial_value;
         private System.Windows.Forms.Button btn_send_serial;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label7;
@@ -1156,7 +1205,6 @@
 	public System.Windows.Forms.TextBox txt_con_messageSendt;
 	public System.Windows.Forms.TextBox txt_con_messageRecieved;
 	public System.Windows.Forms.TabControl connectionTab;
-	public System.Windows.Forms.TextBox txt_serial_index;
 	public System.Windows.Forms.GroupBox groupBox3;
 	public System.Windows.Forms.ColorDialog colorDialog1;
 	private System.Windows.Forms.TableLayoutPanel tbl_IndexSettings;
@@ -1185,5 +1233,9 @@
 	public System.Windows.Forms.Timer tim_SendCommandsDelay;
 	private System.Windows.Forms.Label label28;
 	private System.Windows.Forms.NumericUpDown nud_comm_transfreq;
-	private System.Windows.Forms.Panel pan_graphicsCreator;
+	private System.Windows.Forms.RadioButton rdb_comm_status_bytes;
+	private System.Windows.Forms.RadioButton rdb_comm_status_hex;
+	private System.Windows.Forms.RadioButton rdb_comm_status_dec;
+	private System.Windows.Forms.NumericUpDown nud_con_serial_index;
+	private System.Windows.Forms.NumericUpDown nud_con_serial_value;
 }
