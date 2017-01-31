@@ -324,8 +324,3 @@ public partial class WindowStatus : Form
 		}
 	}
 }
-
-	private void tab_Graphics_Paint(object sender, PaintEventArgs e) {
-		new GraphicsCreator(e.Graphics);
-	}
-}
