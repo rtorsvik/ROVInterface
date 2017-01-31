@@ -1,4 +1,14 @@
 ﻿<Graphics>
+  <Object>
+    <Index>
+      <x>0</x>
+      <y>0</y>
+    </Index>
+    <Index>
+      <x>70</x>
+      <y>20</y>
+    </Index>
+  </Object>
   <Object img="TempImage.png">
     <Index>
       <x>0</x>

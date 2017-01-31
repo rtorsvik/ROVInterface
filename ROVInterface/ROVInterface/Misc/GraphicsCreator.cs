@@ -6,6 +6,7 @@ public class GraphicsCreator {
 
 	private Control parent;
 	private bool editMode = true;
+	private graphicPrototype[] prototypes;
 	
 	private Color bgrColor = Color.FromArgb(255, 32, 32, 32);
 	private int gridsquaresize = 50;
@@ -45,21 +46,37 @@ public class GraphicsCreator {
 		}
 
 		// Create the objects
-
+		foreach(graphicPrototype p in prototypes) {
+			if (p.hasImage)
+				g.DrawImage(p.image, new PointF(0, 0));
+		}
 	}
 
 	private void ClickOnScreen(object sender, MouseEventArgs e) {
 		Console.WriteLine("Mouse position: " + e.Location);
 	}
 
-	// The prototype, holding all the information for every instance of this
-	private class graphicPrototype {
+	public void SetAllPrototypes(graphicPrototype[] ps) {
+		prototypes = ps;
+	}
 
+	// The prototype, holding all the information for every instance of this
+	public class graphicPrototype {
+
+		public bool hasImage = true;
 		public Image image;
 		public prototypeIndex[] indexes;
 
 		public graphicPrototype(string path, prototypeIndex[] indexes) {
-			image = Image.FromFile(path);
+			if (path == "")
+				hasImage = false;
+			else {
+				try {
+					image = Image.FromFile(".\\Graphics\\" + path);
+				} catch {
+					hasImage = false;
+				}
+			}
 			this.indexes = indexes;
 		}
 
@@ -70,6 +87,11 @@ public class GraphicsCreator {
 
 			private int _posx;
 			private int _posy;
+
+			public prototypeIndex(int x, int y) {
+				_posx = x;
+				_posy = y;
+			}
 		}
 	}
 
