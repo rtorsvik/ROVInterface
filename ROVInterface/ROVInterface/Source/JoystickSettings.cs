@@ -21,7 +21,7 @@ public class JoystickSettings
 	private const int SOFF = 40;    //pixels, offset from top
 
 	//TEMP: should be saved in array
-	public List<AxisSetting> axisSetting = new List<AxisSetting>();
+	public AxisSetting[] axisSetting = new AxisSetting[6];
 	public string[] axisLabels = new string[6] { "Forward/backward", "Left/right", "Up/Down", "Pitch", "Roll", "Yaw" };
 	public int[] prevOut = new int[6];
 
