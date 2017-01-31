@@ -29,7 +29,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowStatus));
 			this.connectionTab = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.tab_Graphics = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -132,7 +132,7 @@
 			this.connectionTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.connectionTab.Controls.Add(this.tabPage1);
+			this.connectionTab.Controls.Add(this.tab_Graphics);
 			this.connectionTab.Controls.Add(this.tabPage2);
 			this.connectionTab.Controls.Add(this.tabPage3);
 			this.connectionTab.Controls.Add(this.tabPage4);
@@ -146,16 +146,17 @@
 			this.connectionTab.Size = new System.Drawing.Size(1400, 629);
 			this.connectionTab.TabIndex = 0;
 			// 
-			// tabPage1
+			// tab_Graphics
 			// 
-			this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.tabPage1.Location = new System.Drawing.Point(4, 25);
-			this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabPage1.Size = new System.Drawing.Size(1392, 600);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "tabPage1";
+			this.tab_Graphics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.tab_Graphics.Location = new System.Drawing.Point(4, 25);
+			this.tab_Graphics.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.tab_Graphics.Name = "tab_Graphics";
+			this.tab_Graphics.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.tab_Graphics.Size = new System.Drawing.Size(1392, 600);
+			this.tab_Graphics.TabIndex = 0;
+			this.tab_Graphics.Text = "tabPage1";
+			this.tab_Graphics.Paint += new System.Windows.Forms.PaintEventHandler(this.tab_Graphics_Paint);
 			// 
 			// tabPage2
 			// 
@@ -1096,7 +1097,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tab_Graphics;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ComboBox cmb_comport;

@@ -276,4 +276,8 @@ public partial class WindowStatus : Form
 	{
 		joystickSettings.LoadConnectedJoysticks();
 	}
+
+	private void tab_Graphics_Paint(object sender, PaintEventArgs e) {
+		new GraphicsCreator(e.Graphics);
+	}
 }
