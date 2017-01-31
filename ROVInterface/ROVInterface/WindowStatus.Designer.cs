@@ -105,7 +105,9 @@
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.tim_100ms_update = new System.Windows.Forms.Timer(this.components);
 			this.tim_SendCommandsDelay = new System.Windows.Forms.Timer(this.components);
+			this.pan_graphicsCreator = new System.Windows.Forms.Panel();
 			this.connectionTab.SuspendLayout();
+			this.tab_Graphics.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nud_comm_transfreq)).BeginInit();
@@ -149,6 +151,7 @@
 			// tab_Graphics
 			// 
 			this.tab_Graphics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.tab_Graphics.Controls.Add(this.pan_graphicsCreator);
 			this.tab_Graphics.Location = new System.Drawing.Point(4, 25);
 			this.tab_Graphics.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tab_Graphics.Name = "tab_Graphics";
@@ -156,7 +159,6 @@
 			this.tab_Graphics.Size = new System.Drawing.Size(1392, 600);
 			this.tab_Graphics.TabIndex = 0;
 			this.tab_Graphics.Text = "tabPage1";
-			this.tab_Graphics.Paint += new System.Windows.Forms.PaintEventHandler(this.tab_Graphics_Paint);
 			// 
 			// tabPage2
 			// 
@@ -1047,6 +1049,14 @@
 			this.tim_100ms_update.Enabled = true;
 			this.tim_100ms_update.Tick += new System.EventHandler(this.tim_100ms_update_Tick);
 			// 
+			// pan_graphicsCreator
+			// 
+			this.pan_graphicsCreator.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pan_graphicsCreator.Location = new System.Drawing.Point(3, 2);
+			this.pan_graphicsCreator.Name = "pan_graphicsCreator";
+			this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
+			this.pan_graphicsCreator.TabIndex = 0;
+			// 
 			// WindowStatus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1063,6 +1073,7 @@
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.WindowStatus_Load);
 			this.connectionTab.ResumeLayout(false);
+			this.tab_Graphics.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
@@ -1174,4 +1185,5 @@
 	public System.Windows.Forms.Timer tim_SendCommandsDelay;
 	private System.Windows.Forms.Label label28;
 	private System.Windows.Forms.NumericUpDown nud_comm_transfreq;
+	private System.Windows.Forms.Panel pan_graphicsCreator;
 }
