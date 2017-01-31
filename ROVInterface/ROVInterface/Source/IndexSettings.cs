@@ -269,9 +269,9 @@ public class IndexStats {
 	}
 
 	public void UpdateAllValues() {
-		// FAILSE ---- there is happening some deletion in this foreach block !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		foreach (Stats s in allStats)
-			s.UpdateValue();
+		Stats[] ss = allStats.ToArray();
+		for (int i = 0, j = ss.Length; i < j; i++)
+			ss[i].UpdateValue();
 	}
 
 	public void CreateElement() {
@@ -411,7 +411,7 @@ public class IndexStats {
 			int v = 0;
 			bool found = true;
 			try { v = ST_Register.status[(int)_setting.index.Value]; }
-			catch (Exception e) { found = false; }
+			catch { found = false; }
 
 			if (found || resetval) {
 				if (value != v || resetval) {

@@ -63,6 +63,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Misc\ErrorManager.cs" />
+    <Compile Include="Misc\GraphicsCreator.cs" />
     <Compile Include="Source\Communication\CANPort.cs" />
     <Compile Include="Source\JoystickHandler.cs" />
     <Compile Include="Source\Communication\ComPort.cs" />

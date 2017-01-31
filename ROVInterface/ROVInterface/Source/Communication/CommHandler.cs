@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Reflection;
 
 public static class CommHandler
@@ -22,7 +19,7 @@ public static class CommHandler
 
 	// Dll variables
 	private static bool loadedDll = false;
-	private const string dllpath = "./iTranslator.dll";
+	private const string dllpath = "./Translator.dll";
 	private static Assembly dll;
 	private static MethodInfo dllConvertCommands;
 	private static MethodInfo dllConvertData;
@@ -53,6 +50,13 @@ public static class CommHandler
 					throw new Exception("The method \"ConvertData\" do not have 'Byte[]' as parameter value.");
 			} else
 				throw new Exception("The method \"ConvertData\" do not have only 1 parameter.");
+
+			//if (dll.GetTypes()[0].GetField("") != null)
+			try {
+				Program.errors.Add("Successfully loaded " + (string)dll.GetTypes()[0].GetField("TRANSLATORNAME").GetRawConstantValue());
+			} catch {
+				Program.errors.Add("Successfully loaded " + dll.GetTypes()[0].Module.Name);
+			}
 
 			loadedDll = true;
 		} catch (Exception e) {
@@ -88,13 +92,6 @@ public static class CommHandler
 	}
 
 
-
-	//initialise a connection against UIS Subsea ÆGIR ROV
-	public static void InitAEGIR(string comPort, int baudRate)
-	{
-		throw new NotImplementedException();
-		initialized = true;
-	}
 
 
 	/// <summary>
