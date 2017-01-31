@@ -13,6 +13,7 @@ public class GraphicsCreator {
 	public GraphicsCreator(Control p, Button btn) {
 		parent = p;
 		parent.Paint += RedrawScene;
+		parent.MouseClick += ClickOnScreen;
 		btn.Click += ChangeEditMode;
 	}
 
@@ -32,7 +33,6 @@ public class GraphicsCreator {
 
 		// Draw the grid, if it should be drawn
 		if (editMode) {
-			
 			Pen gridpen = new Pen(Color.FromArgb(255, 70, 70, 70));
 			float xmax = parent.Width;
 			float ymax = parent.Height;
@@ -46,5 +46,42 @@ public class GraphicsCreator {
 
 		// Create the objects
 
+	}
+
+	private void ClickOnScreen(object sender, MouseEventArgs e) {
+		Console.WriteLine("Mouse position: " + e.Location);
+	}
+
+	// The prototype, holding all the information for every instance of this
+	private class graphicPrototype {
+
+		public Image image;
+		public prototypeIndex[] indexes;
+
+		public graphicPrototype(string path, prototypeIndex[] indexes) {
+			image = Image.FromFile(path);
+			this.indexes = indexes;
+		}
+
+		public class prototypeIndex {
+			// Store settings for the indexes
+			public int posx { get { return _posx; } }
+			public int posy { get { return _posy; } }
+
+			private int _posx;
+			private int _posy;
+		}
+	}
+
+	// The object living in the graphics, using the prototype to get all its settings
+	private class graphicObject {
+
+		private graphicPrototype prototype;
+		private int[] indexes;
+
+		public graphicObject(graphicPrototype p) {
+			prototype = p;
+			indexes = new int[prototype.indexes.Length];
+		}
 	}
 }

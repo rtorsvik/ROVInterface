@@ -120,6 +120,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Graphics\Graphics.xml" />
+    <Content Include="Graphics\TempImage.png" />
     <Content Include="Images\joystickrescale dark.jpg" />
     <Content Include="Misc\Settings.xml" />
     <None Include="Resources\joystickscale dark test.png" />
@@ -147,4 +149,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Content Include="Graphics/**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
