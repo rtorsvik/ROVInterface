@@ -30,6 +30,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowStatus));
 			this.connectionTab = new System.Windows.Forms.TabControl();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.pan_graphicsCreator = new System.Windows.Forms.Panel();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.rdb_comm_status_bytes = new System.Windows.Forms.RadioButton();
@@ -80,6 +81,7 @@
 			this.label24 = new System.Windows.Forms.Label();
 			this.label25 = new System.Windows.Forms.Label();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.btn_joystick_instruction = new System.Windows.Forms.Button();
 			this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label27 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
@@ -91,8 +93,8 @@
 			this.label13 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
-			this.button2 = new System.Windows.Forms.Button();
-			this.grp_joysticksettings_instructions = new System.Windows.Forms.GroupBox();
+			this.grp_JoystickInstructions = new System.Windows.Forms.GroupBox();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.label17 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.tim_10ms_update = new System.Windows.Forms.Timer(this.components);
@@ -107,7 +109,6 @@
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.tim_100ms_update = new System.Windows.Forms.Timer(this.components);
 			this.tim_SendCommandsDelay = new System.Windows.Forms.Timer(this.components);
-			this.pan_graphicsCreator = new System.Windows.Forms.Panel();
 			this.connectionTab.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
@@ -127,6 +128,8 @@
 			this.flowLayoutPanel3.SuspendLayout();
 			this.tabPage5.SuspendLayout();
 			this.flowLayoutPanel5.SuspendLayout();
+			this.grp_JoystickInstructions.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -162,6 +165,14 @@
 			this.tabPage2.Size = new System.Drawing.Size(1392, 600);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
+			// 
+			// pan_graphicsCreator
+			// 
+			this.pan_graphicsCreator.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pan_graphicsCreator.Location = new System.Drawing.Point(3, 2);
+			this.pan_graphicsCreator.Name = "pan_graphicsCreator";
+			this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
+			this.pan_graphicsCreator.TabIndex = 0;
 			// 
 			// tabPage3
 			// 
@@ -798,9 +809,9 @@
 			// tabPage5
 			// 
 			this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+			this.tabPage5.Controls.Add(this.btn_joystick_instruction);
 			this.tabPage5.Controls.Add(this.flowLayoutPanel5);
-			this.tabPage5.Controls.Add(this.button2);
-			this.tabPage5.Controls.Add(this.grp_joysticksettings_instructions);
+			this.tabPage5.Controls.Add(this.grp_JoystickInstructions);
 			this.tabPage5.Controls.Add(this.label17);
 			this.tabPage5.Controls.Add(this.pictureBox1);
 			this.tabPage5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -811,6 +822,19 @@
 			this.tabPage5.Size = new System.Drawing.Size(1392, 600);
 			this.tabPage5.TabIndex = 4;
 			this.tabPage5.Text = "Joystick Settings";
+			// 
+			// btn_joystick_instruction
+			// 
+			this.btn_joystick_instruction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_joystick_instruction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_joystick_instruction.Location = new System.Drawing.Point(1255, 564);
+			this.btn_joystick_instruction.Margin = new System.Windows.Forms.Padding(4);
+			this.btn_joystick_instruction.Name = "btn_joystick_instruction";
+			this.btn_joystick_instruction.Size = new System.Drawing.Size(133, 32);
+			this.btn_joystick_instruction.TabIndex = 23;
+			this.btn_joystick_instruction.Text = "Instructions";
+			this.btn_joystick_instruction.UseVisualStyleBackColor = true;
+			this.btn_joystick_instruction.Click += new System.EventHandler(this.grp_JoystickInstructions_Enter);
 			// 
 			// flowLayoutPanel5
 			// 
@@ -939,28 +963,31 @@
 			this.label18.TabIndex = 17;
 			this.label18.Text = "Value out";
 			// 
-			// button2
+			// grp_JoystickInstructions
 			// 
-			this.button2.Location = new System.Drawing.Point(1313, 534);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 21;
-			this.button2.Text = "button2";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// grp_joysticksettings_instructions
-			// 
-			this.grp_joysticksettings_instructions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.grp_JoystickInstructions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.grp_joysticksettings_instructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.grp_joysticksettings_instructions.Location = new System.Drawing.Point(8, 568);
-			this.grp_joysticksettings_instructions.Name = "grp_joysticksettings_instructions";
-			this.grp_joysticksettings_instructions.Size = new System.Drawing.Size(1235, 29);
-			this.grp_joysticksettings_instructions.TabIndex = 20;
-			this.grp_joysticksettings_instructions.TabStop = false;
-			this.grp_joysticksettings_instructions.Text = "Instructions";
-			this.grp_joysticksettings_instructions.Enter += new System.EventHandler(this.grp_joysticksettings_instructions_Enter);
+			this.grp_JoystickInstructions.Controls.Add(this.pictureBox2);
+			this.grp_JoystickInstructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.grp_JoystickInstructions.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.grp_JoystickInstructions.Location = new System.Drawing.Point(8, 574);
+			this.grp_JoystickInstructions.Name = "grp_JoystickInstructions";
+			this.grp_JoystickInstructions.Size = new System.Drawing.Size(1240, 22);
+			this.grp_JoystickInstructions.TabIndex = 20;
+			this.grp_JoystickInstructions.TabStop = false;
+			this.grp_JoystickInstructions.Text = "Instructions";
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox2.Image = global::ROVInterface.Properties.Resources.joystickscale_dark_test;
+			this.pictureBox2.Location = new System.Drawing.Point(492, 49);
+			this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 10, 4);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(369, 357);
+			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox2.TabIndex = 19;
+			this.pictureBox2.TabStop = false;
 			// 
 			// label17
 			// 
@@ -1093,14 +1120,6 @@
 			this.tim_100ms_update.Enabled = true;
 			this.tim_100ms_update.Tick += new System.EventHandler(this.tim_100ms_update_Tick);
 			// 
-			// pan_graphicsCreator
-			// 
-			this.pan_graphicsCreator.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pan_graphicsCreator.Location = new System.Drawing.Point(3, 2);
-			this.pan_graphicsCreator.Name = "pan_graphicsCreator";
-			this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
-			this.pan_graphicsCreator.TabIndex = 0;
-			// 
 			// WindowStatus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1144,6 +1163,8 @@
 			this.tabPage5.PerformLayout();
 			this.flowLayoutPanel5.ResumeLayout(false);
 			this.flowLayoutPanel5.PerformLayout();
+			this.grp_JoystickInstructions.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
@@ -1221,8 +1242,7 @@
 	private System.Windows.Forms.Label label25;
 	private System.Windows.Forms.Button btn_startTransmition;
 	private System.Windows.Forms.Timer tim_100ms_update;
-	private System.Windows.Forms.GroupBox grp_joysticksettings_instructions;
-	private System.Windows.Forms.Button button2;
+	private System.Windows.Forms.GroupBox grp_JoystickInstructions;
 	private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
 	private System.Windows.Forms.Label label27;
 	public System.Windows.Forms.Timer tim_SendCommandsDelay;
@@ -1234,4 +1254,6 @@
 	private System.Windows.Forms.NumericUpDown nud_con_serial_index;
 	private System.Windows.Forms.NumericUpDown nud_con_serial_value;
 	private System.Windows.Forms.Panel pan_graphicsCreator;
+	private System.Windows.Forms.Button btn_joystick_instruction;
+	private System.Windows.Forms.PictureBox pictureBox2;
 }

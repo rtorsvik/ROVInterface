@@ -243,16 +243,31 @@ public partial class WindowStatus : Form
 
 	}
 
-	private bool shownInstructions = false;
-
+	private bool shownIndexInstructions = false;
 	private void grp_IndexInstructions_Enter(object sender, EventArgs e) {
-		shownInstructions = !shownInstructions;
+		shownIndexInstructions = !shownIndexInstructions;
 
-		if (shownInstructions) {
+		if (shownIndexInstructions) {
 			tbl_IndexSettings.RowStyles[3].SizeType = SizeType.AutoSize;
 		} else {
 			tbl_IndexSettings.RowStyles[3].SizeType = SizeType.Absolute;
-			tbl_IndexSettings.RowStyles[3].Height = 20;
+			tbl_IndexSettings.RowStyles[3].Height = 22;
+		}
+	}
+
+	private bool shownJoystickInstructions = false;
+	private void grp_JoystickInstructions_Enter(object sender, EventArgs e)
+	{
+		shownJoystickInstructions = !shownJoystickInstructions;
+
+		if (shownJoystickInstructions)
+		{
+			grp_JoystickInstructions.AutoSize = true;
+		}
+		else
+		{
+			grp_JoystickInstructions.AutoSize = false;
+			grp_JoystickInstructions.Height = 22;
 		}
 	}
 
@@ -281,9 +296,7 @@ public partial class WindowStatus : Form
 
 	private void grp_joysticksettings_instructions_Enter(object sender, EventArgs e)
 	{
-		grp_joysticksettings_instructions.Size = new System.Drawing.Size(400, 300);
 
-		throw new NotImplementedException("resize joystickiinstructions not implemented");
 	}
 
 	private void cmb_comport_Click(object sender, EventArgs e)
