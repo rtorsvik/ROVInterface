@@ -83,6 +83,9 @@ public partial class WindowStatus : Form
 		joystickSettings.Update();
 		indexStats.UpdateAllValues();
 
+		// Update values in the graphics
+		graphicsCreator.UpdateValues();
+
 		//update hartbeat
 		heartBeat = st.status[0];
 		if(heartBeat != heartBeat_prev)

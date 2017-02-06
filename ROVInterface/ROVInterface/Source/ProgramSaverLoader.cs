@@ -28,6 +28,9 @@ public static class ProgramSaverLoader {
 			Console.WriteLine(e);
 			Program.errors.Add("Failed to load settings.");
 		}
+
+		dataHolder.Clear();
+		dataHolder = null;
 	}
 
 	private static void _LoadGraphicsPrototype() {
@@ -44,65 +47,52 @@ public static class ProgramSaverLoader {
 				case LoadPositionGraphics.gStart:
 					if (next == "<Graphics>")
 						pos = LoadPositionGraphics.gGraphics;
-					else
-						throw new Exception("Did not find root tag '<Graphics>'");
+					else {
+						pos = LoadPositionGraphics.gGraphics;
+						dataHolder.cur_graphicSetting = new DataHolder.graphics_Object();
+
+						if (string.Compare(next, 0, "<Graphics img=\"", 0, 15) == 0 && next[next.Length - 1] == '>' && next[next.Length - 2] == '"') { // If start with that string, and ends with '">'
+							dataHolder.cur_graphicSetting.image = next.Substring(15, next.Length - 17);
+						} else
+							throw new Exception("Did not find root tag '<Graphics>' or '<Graphics img=\"%%\">'.");
+					}
 					break;
 				case LoadPositionGraphics.gGraphics:
-					switch(next) {
-						case "<Object>":
-							pos = LoadPositionGraphics.gObject;
-							dataHolder.cur_graphicSetting = new DataHolder.graphics_Object();
+					switch (next) {
+						case "<Index>":
+							pos = LoadPositionGraphics.gIndex;
+							dataHolder.cur_graphicSetting.Insert(next);
+							break;
+						case "<Index hidden>":
+							pos = LoadPositionGraphics.gIndex;
+							dataHolder.cur_graphicSetting.Insert(next);
 							break;
 						case "</Graphics>":
 							fin = true;
 							break;
 						default:
-							pos = LoadPositionGraphics.gObject;
-							dataHolder.cur_graphicSetting = new DataHolder.graphics_Object();
-
-							if (string.Compare(next, 0, "<Object img=\"", 0, 13) == 0 && next[next.Length-1] == '>' && next[next.Length-2] == '"') { // If start with that string, and ends with '">'
-								dataHolder.cur_graphicSetting.image = next.Substring(13, next.Length - 15);
-							} else
-								throw new Exception("Did not find '<Object>', '<Objects img=\"%%\">' or '</Graphics>' tag.");
-							break;
-					}
-					break;
-				case LoadPositionGraphics.gObject:
-					switch(next) {
-						case "<Index>":
-							pos = LoadPositionGraphics.gIndex;
-							dataHolder.cur_graphicSetting.Insert(next);
-							break;
-						case "</Object>":
-							pos = LoadPositionGraphics.gGraphics;
-							dataHolder.graphicSettings.Add(dataHolder.cur_graphicSetting);
-							break;
-						default:
-							throw new Exception("Did not find correct next tag, of either '<Index>' or '</Object>'.");
+							throw new Exception("Did not find correct next tag, of either '<Index>', '<Index hidden>' or '</Object>'.");
 					}
 					break;
 				case LoadPositionGraphics.gIndex:
 					dataHolder.cur_graphicSetting.Insert(next);
 					if (next == "</Index>")
-						pos = LoadPositionGraphics.gObject;
+						pos = LoadPositionGraphics.gGraphics;
 					break;
 				default:
 					break;
 			}
 		}
-		int j = dataHolder.graphicSettings.Count;
-		GraphicsCreator.graphicPrototype[] ps = new GraphicsCreator.graphicPrototype[j];
 
-		for (int i = 0; i < j; i++) {
-			int l = dataHolder.graphicSettings[i].indexes.Count;
-			GraphicsCreator.graphicPrototype.prototypeIndex[] ix = new GraphicsCreator.graphicPrototype.prototypeIndex[l];
-			DataHolder.graphics_Object o = dataHolder.graphicSettings[i];
-			for (int k = 0; k < l; k++)
-				ix[k] = new GraphicsCreator.graphicPrototype.prototypeIndex(o.indexes[k].x, o.indexes[k].y);
-			ps[i] = new GraphicsCreator.graphicPrototype(o.image, ix);
-		}
+		int l = dataHolder.cur_graphicSetting.indexes.Count;
+		GraphicsCreator.graphicPrototype.prototypeIndex[] ix = new GraphicsCreator.graphicPrototype.prototypeIndex[l];
+		DataHolder.graphics_Object o = dataHolder.cur_graphicSetting;
+		for (int k = 0; k < l; k++)
+			ix[k] = new GraphicsCreator.graphicPrototype.prototypeIndex(o.indexes[k].hidden, o.indexes[k].x, o.indexes[k].y, o.indexes[k].ll, o.indexes[k].l, o.indexes[k].h, o.indexes[k].hh);
 
-		Program.windowStatus.graphicsCreator.SetAllPrototypes(ps);
+		GraphicsCreator.graphicPrototype p = new GraphicsCreator.graphicPrototype(o.image, ix);
+
+		Program.windowStatus.graphicsCreator.SetPrototype(p);
 	}
 
 	private static void _Load() {
@@ -237,8 +227,6 @@ public static class ProgramSaverLoader {
 			int e = dataHolder.indexStats[i];
 			Program.windowStatus.indexStats.CreateElement(e);
 		}
-
-		dataHolder.Clear();
 	}
 
 	public static void Save(object sender, EventArgs e) {
@@ -391,7 +379,6 @@ public static class ProgramSaverLoader {
 	}
 
 	private class DataHolder {
-		public List<graphics_Object> graphicSettings;
 		public graphics_Object cur_graphicSetting;
 		public List<joystickSettings_Setting> joystickSettings;
 		public joystickSettings_Setting cur_joystickSetting;
@@ -401,7 +388,6 @@ public static class ProgramSaverLoader {
 
 		public DataHolder() {
 			cur_graphicSetting = new graphics_Object();
-			graphicSettings = new List<graphics_Object>();
 			cur_joystickSetting = new joystickSettings_Setting();
 			joystickSettings = new List<joystickSettings_Setting>();
 			cur_indexSetting = new indexSettings_Setting();
@@ -431,7 +417,9 @@ public static class ProgramSaverLoader {
 
 			public void Insert(string s) {
 				if (s == "<Index>") {
-					cur = new graphics_ObjectIndex();
+					cur = new graphics_ObjectIndex(false);
+				} else if (s == "<Index hidden>") {
+					cur = new graphics_ObjectIndex(true);
 				} else if (s == "</Index>") {
 					indexes.Add(cur);
 				} else
@@ -440,11 +428,20 @@ public static class ProgramSaverLoader {
 
 			public class graphics_ObjectIndex {
 
+				public bool hidden = false;
 				public int x;
 				public int y;
+				public int? ll = null;		// critical low
+				public int? l = null;		// low
+				public int? h = null;		// high
+				public int? hh = null;		// critical high
 
 				private int readindex = -1;
-				private readonly string[] req = { "<x>", "</x>", "<y>", "</y>" };
+				private readonly string[] req = { "<x>", "</x>", "<y>", "</y>", "<ll>", "</ll>", "<l>", "</l>", "<h>", "</h>", "<hh>", "</hh>" };
+
+				public graphics_ObjectIndex(bool hidden) {
+					this.hidden = hidden;
+				}
 
 				public void Insert(string s) {
 					if (readindex == -1) { // Waiting for a open tag
@@ -470,6 +467,18 @@ public static class ProgramSaverLoader {
 									break;
 								case 2:
 									y = int.Parse(s);
+									break;
+								case 4:
+									ll = int.Parse(s);
+									break;
+								case 6:
+									l = int.Parse(s);
+									break;
+								case 8:
+									h = int.Parse(s);
+									break;
+								case 10:
+									hh = int.Parse(s);
 									break;
 							}
 
@@ -583,8 +592,7 @@ public static class ProgramSaverLoader {
 	private enum LoadPositionGraphics {
 		gStart = 0,
 		gGraphics = 1,
-		gObject = 2,
-		gIndex = 3
+		gIndex = 2
 	}
 
 	private enum LoadPosition {
