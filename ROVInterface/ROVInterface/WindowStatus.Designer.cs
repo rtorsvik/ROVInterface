@@ -109,6 +109,10 @@
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.tim_100ms_update = new System.Windows.Forms.Timer(this.components);
 			this.tim_SendCommandsDelay = new System.Windows.Forms.Timer(this.components);
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.label29 = new System.Windows.Forms.Label();
+			this.btn_connect_ethernet = new System.Windows.Forms.Button();
+			this.txt_ipaddress = new System.Windows.Forms.TextBox();
 			this.connectionTab.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
@@ -120,6 +124,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_value)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_index)).BeginInit();
 			this.groupBox2.SuspendLayout();
+			this.groupBox7.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			this.tbl_IndexSettings.SuspendLayout();
 			this.flowLayoutPanel4.SuspendLayout();
@@ -134,6 +139,7 @@
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
+			this.groupBox5.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -344,6 +350,7 @@
 			// 
 			// txt_con_messageSendt
 			// 
+			this.txt_con_messageSendt.Enabled = false;
 			this.txt_con_messageSendt.Location = new System.Drawing.Point(148, 32);
 			this.txt_con_messageSendt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txt_con_messageSendt.Name = "txt_con_messageSendt";
@@ -366,7 +373,7 @@
 			this.tableLayoutPanel1.ColumnCount = 3;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 598F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 522F));
 			this.tableLayoutPanel1.Controls.Add(this.groupBox8, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.groupBox7, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.groupBox6, 2, 0);
@@ -391,7 +398,7 @@
 			this.groupBox8.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
 			this.groupBox8.Name = "groupBox8";
 			this.groupBox8.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-			this.groupBox8.Size = new System.Drawing.Size(366, 387);
+			this.groupBox8.Size = new System.Drawing.Size(404, 387);
 			this.groupBox8.TabIndex = 2;
 			this.groupBox8.TabStop = false;
 			this.groupBox8.Text = "Serial connection";
@@ -411,7 +418,7 @@
 			this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.groupBox1.Size = new System.Drawing.Size(366, 165);
+			this.groupBox1.Size = new System.Drawing.Size(404, 165);
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Advanced";
@@ -469,7 +476,7 @@
 			// 
 			this.btn_send_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_send_serial.Enabled = false;
-			this.btn_send_serial.Location = new System.Drawing.Point(230, 31);
+			this.btn_send_serial.Location = new System.Drawing.Point(268, 31);
 			this.btn_send_serial.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
 			this.btn_send_serial.Name = "btn_send_serial";
 			this.btn_send_serial.Size = new System.Drawing.Size(111, 50);
@@ -493,7 +500,7 @@
 			this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.groupBox2.Size = new System.Drawing.Size(366, 144);
+			this.groupBox2.Size = new System.Drawing.Size(404, 144);
 			this.groupBox2.TabIndex = 11;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Connection";
@@ -522,7 +529,7 @@
 			// btn_connect_serial
 			// 
 			this.btn_connect_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_connect_serial.Location = new System.Drawing.Point(230, 33);
+			this.btn_connect_serial.Location = new System.Drawing.Point(268, 33);
 			this.btn_connect_serial.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
 			this.btn_connect_serial.Name = "btn_connect_serial";
 			this.btn_connect_serial.Size = new System.Drawing.Size(111, 52);
@@ -559,13 +566,14 @@
 			this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox7.Controls.Add(this.groupBox5);
 			this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox7.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox7.Location = new System.Drawing.Point(405, 12);
+			this.groupBox7.Location = new System.Drawing.Point(443, 12);
 			this.groupBox7.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
 			this.groupBox7.Name = "groupBox7";
 			this.groupBox7.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-			this.groupBox7.Size = new System.Drawing.Size(366, 387);
+			this.groupBox7.Size = new System.Drawing.Size(404, 387);
 			this.groupBox7.TabIndex = 2;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "Ethernet connection";
@@ -577,11 +585,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox6.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox6.Location = new System.Drawing.Point(797, 12);
+			this.groupBox6.Location = new System.Drawing.Point(873, 12);
 			this.groupBox6.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-			this.groupBox6.Size = new System.Drawing.Size(572, 387);
+			this.groupBox6.Size = new System.Drawing.Size(496, 387);
 			this.groupBox6.TabIndex = 1;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "CAN-bus connection";
@@ -1120,6 +1128,55 @@
 			this.tim_100ms_update.Enabled = true;
 			this.tim_100ms_update.Tick += new System.EventHandler(this.tim_100ms_update_Tick);
 			// 
+			// groupBox5
+			// 
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox5.Controls.Add(this.txt_ipaddress);
+			this.groupBox5.Controls.Add(this.label29);
+			this.groupBox5.Controls.Add(this.btn_connect_ethernet);
+			this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox5.Location = new System.Drawing.Point(0, 87);
+			this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.groupBox5.Size = new System.Drawing.Size(404, 144);
+			this.groupBox5.TabIndex = 12;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Connection";
+			// 
+			// label29
+			// 
+			this.label29.AutoSize = true;
+			this.label29.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label29.Location = new System.Drawing.Point(20, 36);
+			this.label29.Name = "label29";
+			this.label29.Size = new System.Drawing.Size(76, 17);
+			this.label29.TabIndex = 3;
+			this.label29.Text = "IP Address";
+			// 
+			// btn_connect_ethernet
+			// 
+			this.btn_connect_ethernet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_connect_ethernet.Location = new System.Drawing.Point(268, 33);
+			this.btn_connect_ethernet.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.btn_connect_ethernet.Name = "btn_connect_ethernet";
+			this.btn_connect_ethernet.Size = new System.Drawing.Size(111, 52);
+			this.btn_connect_ethernet.TabIndex = 5;
+			this.btn_connect_ethernet.Text = "Connect";
+			this.btn_connect_ethernet.UseVisualStyleBackColor = true;
+			this.btn_connect_ethernet.Click += new System.EventHandler(this.btn_connect_ethernet_Click);
+			// 
+			// txt_ipaddress
+			// 
+			this.txt_ipaddress.Location = new System.Drawing.Point(102, 33);
+			this.txt_ipaddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_ipaddress.Name = "txt_ipaddress";
+			this.txt_ipaddress.Size = new System.Drawing.Size(103, 23);
+			this.txt_ipaddress.TabIndex = 25;
+			this.txt_ipaddress.Text = "192.168.1.10";
+			// 
 			// WindowStatus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1149,6 +1206,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_index)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
+			this.groupBox7.ResumeLayout(false);
 			this.tabPage4.ResumeLayout(false);
 			this.tbl_IndexSettings.ResumeLayout(false);
 			this.tbl_IndexSettings.PerformLayout();
@@ -1169,6 +1227,8 @@
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
+			this.groupBox5.ResumeLayout(false);
+			this.groupBox5.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1256,4 +1316,8 @@
 	private System.Windows.Forms.Panel pan_graphicsCreator;
 	private System.Windows.Forms.Button btn_joystick_instruction;
 	private System.Windows.Forms.PictureBox pictureBox2;
+	private System.Windows.Forms.GroupBox groupBox5;
+	public System.Windows.Forms.TextBox txt_ipaddress;
+	private System.Windows.Forms.Label label29;
+	private System.Windows.Forms.Button btn_connect_ethernet;
 }

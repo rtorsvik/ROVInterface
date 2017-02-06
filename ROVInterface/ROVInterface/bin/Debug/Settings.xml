@@ -1,10 +1,10 @@
 <Settings>
 	<JoystickSettings>
 		<Setting>
-			<jindex>0</jindex><aindex>21</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>-1</jindex><aindex>21</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>23</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>-1</jindex><aindex>23</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 		<Setting>
 			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
