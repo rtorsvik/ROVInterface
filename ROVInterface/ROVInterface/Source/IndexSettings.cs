@@ -344,8 +344,8 @@ public class IndexStats {
 		public IndexSettings indexSettings;
 
 		private int value;
-		private float scale;
-		private float offset;
+		public float scale;
+		public float offset;
 		private BindingSource bind;
 
 		public Stats (IndexSettings s) {

@@ -20,6 +20,12 @@
 		</Setting>
 	</JoystickSettings>
 	<IndexSettings>
+		<Setting>
+			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
 	</IndexSettings>
 	<IndexStats>
 	</IndexStats>

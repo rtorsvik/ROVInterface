@@ -15,21 +15,91 @@ public static class ProgramSaverLoader {
 
 	public static void Load() {
 
+		dataHolder = new DataHolder();
+
+		try { _LoadGraphicsPrototype(); }
+		catch (Exception e) {
+			Console.WriteLine(e);
+			Program.errors.Add("Failed to load Graphics Prototype.");
+		}
+
 		try { _Load(); }
 		catch (Exception e) {
 			Console.WriteLine(e);
-			// Do something when the settings can't be loaded
 			Program.errors.Add("Failed to load settings.");
 		}
+
+		dataHolder.Clear();
+		dataHolder = null;
+	}
+
+	private static void _LoadGraphicsPrototype() {
+		Reader r = new Reader(".\\Graphics\\Graphics.xml");
+		if (!r.FindFileFromPath()) {
+			throw new FileNotFoundException();
+		}
+		bool fin = false;
+		LoadPositionGraphics pos = LoadPositionGraphics.gStart;
+
+		while (!r.IsEmpty() && !fin) {
+			string next = r.ReadNext();
+			switch (pos) {
+				case LoadPositionGraphics.gStart:
+					if (next == "<Graphics>")
+						pos = LoadPositionGraphics.gGraphics;
+					else {
+						pos = LoadPositionGraphics.gGraphics;
+						dataHolder.cur_graphicSetting = new DataHolder.graphics_Object();
+
+						if (string.Compare(next, 0, "<Graphics img=\"", 0, 15) == 0 && next[next.Length - 1] == '>' && next[next.Length - 2] == '"') { // If start with that string, and ends with '">'
+							dataHolder.cur_graphicSetting.image = next.Substring(15, next.Length - 17);
+						} else
+							throw new Exception("Did not find root tag '<Graphics>' or '<Graphics img=\"%%\">'.");
+					}
+					break;
+				case LoadPositionGraphics.gGraphics:
+					switch (next) {
+						case "<Index>":
+							pos = LoadPositionGraphics.gIndex;
+							dataHolder.cur_graphicSetting.Insert(next);
+							break;
+						case "<Index hidden>":
+							pos = LoadPositionGraphics.gIndex;
+							dataHolder.cur_graphicSetting.Insert(next);
+							break;
+						case "</Graphics>":
+							fin = true;
+							break;
+						default:
+							throw new Exception("Did not find correct next tag, of either '<Index>', '<Index hidden>' or '</Object>'.");
+					}
+					break;
+				case LoadPositionGraphics.gIndex:
+					dataHolder.cur_graphicSetting.Insert(next);
+					if (next == "</Index>")
+						pos = LoadPositionGraphics.gGraphics;
+					break;
+				default:
+					break;
+			}
+		}
+
+		int l = dataHolder.cur_graphicSetting.indexes.Count;
+		GraphicsCreator.graphicPrototype.prototypeIndex[] ix = new GraphicsCreator.graphicPrototype.prototypeIndex[l];
+		DataHolder.graphics_Object o = dataHolder.cur_graphicSetting;
+		for (int k = 0; k < l; k++)
+			ix[k] = new GraphicsCreator.graphicPrototype.prototypeIndex(o.indexes[k].hidden, o.indexes[k].x, o.indexes[k].y, o.indexes[k].ll, o.indexes[k].l, o.indexes[k].h, o.indexes[k].hh);
+
+		GraphicsCreator.graphicPrototype p = new GraphicsCreator.graphicPrototype(o.image, ix);
+
+		Program.windowStatus.graphicsCreator.SetPrototype(p);
 	}
 
 	private static void _Load() {
 		Console.WriteLine("Test write line");
 		if (!reader.FindFileFromPath()) {
-			// If the file was not found, print out a message and quit loading
 			throw new FileNotFoundException();
 		}
-		dataHolder = new DataHolder();
 		LoadPosition pos = LoadPosition.Start;
 		bool fin = false;
 
@@ -157,8 +227,6 @@ public static class ProgramSaverLoader {
 			int e = dataHolder.indexStats[i];
 			Program.windowStatus.indexStats.CreateElement(e);
 		}
-
-		dataHolder.Clear();
 	}
 
 	public static void Save(object sender, EventArgs e) {
@@ -236,7 +304,7 @@ public static class ProgramSaverLoader {
 			return foundfile;
 		}
 		/// <summary>
-		/// Reads the first element or tag, and returns it.
+		/// Reads the first element or tag and returns it.
 		/// </summary>
 		public string ReadNext() {
 
@@ -311,6 +379,7 @@ public static class ProgramSaverLoader {
 	}
 
 	private class DataHolder {
+		public graphics_Object cur_graphicSetting;
 		public List<joystickSettings_Setting> joystickSettings;
 		public joystickSettings_Setting cur_joystickSetting;
 		public List<indexSettings_Setting> indexSettings;
@@ -318,6 +387,7 @@ public static class ProgramSaverLoader {
 		public List<int> indexStats;
 
 		public DataHolder() {
+			cur_graphicSetting = new graphics_Object();
 			cur_joystickSetting = new joystickSettings_Setting();
 			joystickSettings = new List<joystickSettings_Setting>();
 			cur_indexSetting = new indexSettings_Setting();
@@ -326,10 +396,105 @@ public static class ProgramSaverLoader {
 		}
 
 		public void Clear() {
-			// Clear all data
+			// Clear all data -- TODO
 		}
 
-		public class indexSettings_Setting {
+		public interface DataHolderTemplate {
+			string NextData();
+			void Insert(string s);
+		}
+
+		public class graphics_Object {
+			public string image;
+			public List<graphics_ObjectIndex> indexes;
+			private graphics_ObjectIndex cur;
+			
+
+			public graphics_Object() {
+				indexes = new List<graphics_ObjectIndex>();
+				image = "";
+			}
+
+			public void Insert(string s) {
+				if (s == "<Index>") {
+					cur = new graphics_ObjectIndex(false);
+				} else if (s == "<Index hidden>") {
+					cur = new graphics_ObjectIndex(true);
+				} else if (s == "</Index>") {
+					indexes.Add(cur);
+				} else
+					cur.Insert(s);
+			}
+
+			public class graphics_ObjectIndex {
+
+				public bool hidden = false;
+				public int x;
+				public int y;
+				public int? ll = null;		// critical low
+				public int? l = null;		// low
+				public int? h = null;		// high
+				public int? hh = null;		// critical high
+
+				private int readindex = -1;
+				private readonly string[] req = { "<x>", "</x>", "<y>", "</y>", "<ll>", "</ll>", "<l>", "</l>", "<h>", "</h>", "<hh>", "</hh>" };
+
+				public graphics_ObjectIndex(bool hidden) {
+					this.hidden = hidden;
+				}
+
+				public void Insert(string s) {
+					if (readindex == -1) { // Waiting for a open tag
+						int found = -1;
+						for (int i = 0, j = req.Length; i < j; i += 2) {
+							if (s == req[i]) {
+								found = i;
+								break;
+							}
+						}
+						// If no tags required were correct, give an error
+						if (found == -1)
+							throw new Exception("Did not find a correct open tag in an <Index>.");
+
+						readindex = found;
+						return;
+					} else {
+						if (readindex % 2 == 0) { // If last looked at was an open tag, look for a value
+
+							switch(readindex) {
+								case 0:
+									x = int.Parse(s);
+									break;
+								case 2:
+									y = int.Parse(s);
+									break;
+								case 4:
+									ll = int.Parse(s);
+									break;
+								case 6:
+									l = int.Parse(s);
+									break;
+								case 8:
+									h = int.Parse(s);
+									break;
+								case 10:
+									hh = int.Parse(s);
+									break;
+							}
+
+							readindex++;
+						} else { // If last looked at was a value, look for closing tag
+							if (s == req[readindex])
+								readindex = -1;
+							else
+								throw new Exception("Did not find a correct closing tag in an <Index>.");
+						}
+					}
+				}
+			}
+		}
+
+		public class indexSettings_Setting : DataHolderTemplate {
 			public int index;
 			public string name;
 			public int digit;
@@ -379,7 +544,7 @@ public static class ProgramSaverLoader {
 			}
 		}
 
-		public class joystickSettings_Setting {
+		public class joystickSettings_Setting : DataHolderTemplate {
 			public int jindex;
 			public int aindex;
 			public bool reverse;
@@ -422,6 +587,12 @@ public static class ProgramSaverLoader {
 				}
 			}
 		}
+	}
+
+	private enum LoadPositionGraphics {
+		gStart = 0,
+		gGraphics = 1,
+		gIndex = 2
 	}
 
 	private enum LoadPosition {

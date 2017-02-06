@@ -1,0 +1,10 @@
+﻿<Graphics img="TempImage.png">
+  <Index hidden>
+    <x>0</x>
+    <y>0</y>
+  </Index>
+  <Index>
+    <x>70</x>
+    <y>20</y>
+  </Index>
+</Graphics>
