@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -346,7 +347,11 @@ public partial class WindowStatus : Form
 	}
 
 
-
+	private TcpClient client;
+	public StreamReader STR;
+	public StreamWriter STW;
+	public string sendMessage;
+	public string recieveMessage;
 	/// <summary>
 	/// Function is called when ethernet connect buttin is clicked. Function initialises commHandler with an ethernet connection.
 	/// </summary>
@@ -370,7 +375,39 @@ public partial class WindowStatus : Form
 			return;
 		}
 
+		client = new TcpClient();
+		IPEndPoint clientEndPoint = new IPEndPoint(ipAddress, ipPort);
 
+		try
+		{
+			client.Connect(clientEndPoint);
+			if (client.Connected)
+			{
+				
+				STW = new StreamWriter(client.GetStream());
+				STR = new StreamReader(client.GetStream());
+
+				STW.AutoFlush = true;
+
+				bgw_ethernetMessageRecieveHandler.RunWorkerAsync();                //start recieving data in background
+				bgw_ethernetMessageSendHandler.WorkerSupportsCancellation = true;  //ability to cancel this thread
+
+				//update graphics
+				btn_comm_connectethernet.BackColor = System.Drawing.Color.Aquamarine;
+				btn_comm_connectethernet.Text = "Connected";
+
+				btn_comm_startserver.Enabled = false;
+
+				txt_comm_ethernetmessage.Focus();
+				btn_comm_sendethernetmessage.Enabled = true;
+
+			}
+		}
+		catch (Exception e4)
+		{
+			MessageBox.Show("Could not establish client connection\n\n" + e4.ToString());
+			return;
+		}
 
 		/*
 		if (!CommHandler.initialized)
@@ -387,6 +424,71 @@ public partial class WindowStatus : Form
 			btn_send_serial.Enabled = true;
 		}
 		*/
+
+
+
+
+		
+	}
+
+
+	TcpListener listener;
+	/// <summary>
+	/// Functon is called when communication tab start server buttion is clicked.
+	/// The initializes a server for ethernet communication
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+	private void btn_comm_startserver_Click(object sender, EventArgs e)
+	{
+		IPAddress ipAddress;
+		Int32 ipPort;
+
+		//parse ip address and port
+		try
+		{
+			ipAddress = IPAddress.Any;
+			ipPort = Int32.Parse(txt_comm_serverport.Text);
+		}
+		catch (Exception initEthernetException)
+		{
+			MessageBox.Show("Please enter a valid IP address and port number!\n\n" + initEthernetException.ToString());
+			return;
+		}
+
+		listener = new TcpListener(ipAddress, ipPort);
+		listener.Start();
+
+
+
+		bgw_ethernetMessageRecieveHandler.RunWorkerAsync();                //start recieving data in background
+		bgw_ethernetMessageSendHandler.WorkerSupportsCancellation = true;  //ability to cancel this thread
+
+
+		//update graphics
+		btn_comm_startserver.BackColor = System.Drawing.Color.Aquamarine;
+		btn_comm_connectethernet.Enabled = false;
+		txt_comm_ethernetmessage.Focus();
+		
+	}
+
+
+
+	/// <summary>
+	/// Function is callse when communication tab send ethernet message button is clicked
+	/// Sends a message 
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+	private void btn_comm_sendethernetmessage_Click(object sender, EventArgs e)
+	{
+		if (txt_comm_ethernetmessage.Text != "")
+		{
+			sendMessage = txt_comm_ethernetmessage.Text;
+			bgw_ethernetMessageSendHandler.RunWorkerAsync();
+			txt_comm_ethernetmessage.Clear();
+		}
+		
 	}
 
 
@@ -406,5 +508,59 @@ public partial class WindowStatus : Form
 		}
 
 		return "127.0.0.1";
+	}
+
+
+
+	/// <summary>
+	/// Send ethernet message thread
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+	private void bgw_ethernetMessageSendHandler_DoWork(object sender, DoWorkEventArgs e)
+	{
+		if (client.Connected)
+		{
+			STW.WriteLine(sendMessage);
+			this.lbx_comm_messages.Invoke(new MethodInvoker(delegate () { lbx_comm_messages.Items.Add("You : " + sendMessage); }));
+		}
+		else
+		{
+			MessageBox.Show("Send failed");
+		}
+		bgw_ethernetMessageSendHandler.CancelAsync();
+	}
+
+	/// <summary>
+	/// Recieve ethernet message thread
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+	private void bgw_ethernetMessageRecieveHandler_DoWork(object sender, DoWorkEventArgs e)
+	{
+		while (client == null || client.Connected)
+		{
+			if(client == null)
+			{
+
+				client = listener.AcceptTcpClient();
+
+				STR = new StreamReader(client.GetStream());
+				STW = new StreamWriter(client.GetStream());
+
+				STW.AutoFlush = true;
+				btn_comm_sendethernetmessage.Enabled = true;
+			}
+
+			try
+			{
+				recieveMessage = STR.ReadLine();
+				this.lbx_comm_messages.Invoke(new MethodInvoker(delegate () { lbx_comm_messages.Items.Add("Other : " + recieveMessage); }));
+			}
+			catch (Exception e5)
+			{
+				MessageBox.Show(e5.ToString());
+			}
+		}
 	}
 }
