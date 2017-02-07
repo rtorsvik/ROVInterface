@@ -137,6 +137,7 @@ public class IndexSettings {
 		setting.delete = btn;
 
 		allSettings.Add(setting);
+		Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
 		return temp;
 	}
 
@@ -177,6 +178,15 @@ public class IndexSettings {
 		}
 
 		public void Delete(object sender, EventArgs e) {
+			// Remove a reference to this in the graphics index references
+			foreach (GraphicsCreator.graphicPrototype.prototypeIndex p in Program.windowStatus.graphicsCreator.Prototype.indexes) {
+				if (p.settingswithidx == this) {
+					// If any of these p holds a refernce to this setting which shall be deleted
+					p.settingswithidx = null;
+				}
+			}
+			Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
+
 			handler.allSettings.Remove(this);
 
 			Program.windowStatus.Controls.Remove(index);
@@ -211,6 +221,8 @@ public class IndexSettings {
 			// Delete all stats which were using the old index
 			for (int i = 0, j = linkedStats.Count; i < j; i++)
 				linkedStats[i].Delete(null, null);
+
+			Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
 		}
 
 		public void UpdateStats(object sender, EventArgs e) {

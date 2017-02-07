@@ -4,6 +4,8 @@ using System.Windows.Forms;
 
 public class GraphicsCreator {
 
+	public graphicPrototype Prototype { get { return prototype; } }
+
 	private Control parent;
 	private bool editMode = false;
 	private graphicPrototype prototype;
@@ -223,6 +225,12 @@ public class GraphicsCreator {
 			this.indexes = indexes;
 		}
 
+		public void UpdateIdxSettingReference() {
+			// Loop through the indexes and fix the references to the idx settings
+			foreach (prototypeIndex p in indexes)
+				p.UpdateIdxRefernce();
+		}
+
 		public class prototypeIndex {
 			// Store settings for the indexes
 			public int posx { get { return _posx; } }
@@ -234,7 +242,9 @@ public class GraphicsCreator {
 
 			public int _idx = 0;
 			// Some holders to remember the index scalings
-			private IndexSettings.Setting settingswithidx = null;
+			public IndexSettings.Setting settingswithidx = null;
+			private float scale = 0f;
+			private float offset = 0f;
 
 			private bool _hidden;
 			private int _posx;
@@ -258,6 +268,38 @@ public class GraphicsCreator {
 				_l = l;
 				_h = h;
 				_hh = hh;
+			}
+
+			public void UpdateIdxRefernce() {
+				if (settingswithidx != null) {
+					// Check if the old settings are still valid
+					if ((int)settingswithidx.index.Value != _idx)
+						settingswithidx = null;
+				}
+
+				if (settingswithidx == null) {
+					// Search for a correct setting
+					foreach (IndexSettings.Setting set in Program.windowStatus.indexSettings.allSettings) {
+						if ((int)set.index.Value == _idx) {
+							settingswithidx = set;
+							break;
+						}
+					}
+				}
+
+				if (settingswithidx != null) {
+					// Scale the value
+					scale = 0f;
+					offset = 0f;
+
+					if (settingswithidx.val2raw.Value - settingswithidx.val1raw.Value == 0) {
+						scale = 0f;
+						offset = (float)(settingswithidx.val1scaled.Value + settingswithidx.val2scaled.Value) / 2f;
+					} else {
+						scale = (float)(settingswithidx.val2scaled.Value - settingswithidx.val1scaled.Value) / (float)(settingswithidx.val2raw.Value - settingswithidx.val1raw.Value);
+						offset = scale * (float)settingswithidx.val1raw.Value - (float)settingswithidx.val1scaled.Value;
+					}
+				}
 			}
 
 			public void DrawIndexFull(Graphics g) {
@@ -288,45 +330,11 @@ public class GraphicsCreator {
 				// Check for value to show
 				if (refresh || oldvalue != value) {
 					oldvalue = value;
-					float f = value;
-
-					// Calculate the scaled value to check for limits/warnings
-					if (settingswithidx != null) {
-						// Check if the old settings are still valid
-						if ((int)settingswithidx.index.Value != _idx)
-							settingswithidx = null;
-					}
-
-					if (settingswithidx == null) {
-						// Search for a correct setting
-						foreach (IndexSettings.Setting set in Program.windowStatus.indexSettings.allSettings) {
-							if ((int)set.index.Value == _idx) {
-								settingswithidx = set;
-								break;
-							}
-						}
-					}
-
-					if (settingswithidx != null) {
-						// Scale the value
-						float scale = 0f;
-						float offset = 0f;
-
-						if (settingswithidx.val2raw.Value - settingswithidx.val1raw.Value == 0) {
-							scale = 0f;
-							offset = (float)(settingswithidx.val1scaled.Value + settingswithidx.val2scaled.Value) / 2f;
-						} else {
-							scale = (float)(settingswithidx.val2scaled.Value - settingswithidx.val1scaled.Value) / (float)(settingswithidx.val2raw.Value - settingswithidx.val1raw.Value);
-							offset = scale * (float)settingswithidx.val1raw.Value - (float)settingswithidx.val1scaled.Value;
-						}
-
-						f = value * scale + offset;
-					}
 
 					// Check limits with f
 
 					if (!_hidden)
-						DrawOverOldIndex(g, settingswithidx == null ? f.ToString() : value.ToString());
+						DrawOverOldIndex(g, settingswithidx == null ? (value * scale + offset).ToString() : value.ToString());
 				}
 
 				refresh = false;
