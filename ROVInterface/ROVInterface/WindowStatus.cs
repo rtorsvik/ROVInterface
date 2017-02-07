@@ -521,8 +521,30 @@ public partial class WindowStatus : Form
 	{
 		if (client.Connected)
 		{
-			STW.WriteLine(sendMessage);
-			this.lbx_comm_messages.Invoke(new MethodInvoker(delegate () { lbx_comm_messages.Items.Add("You : " + sendMessage); }));
+			//if first character is a bracket, assume rest of message is informat [x1, x2, ... , xn] and send message as bytes
+			if(sendMessage[0] == '[')
+			{
+				char[] splits = new char[] { '[', ',', ']' };
+				
+				string[] byteStrings = sendMessage.Split(splits);
+
+				List<byte> package = new List<byte>();
+				foreach (string s in byteStrings)
+				{
+					if (s == "") continue;
+					package.Add(byte.Parse(s));
+				}
+
+				byte[] package2 = package.ToArray();
+
+				STW.Write(package2);
+			}
+			else
+			{
+				STW.WriteLine(sendMessage);
+			}
+
+			this.lbx_comm_messages.Invoke(new MethodInvoker(delegate () { lbx_comm_messages.Items.Add("You: " + sendMessage); }));
 		}
 		else
 		{
@@ -549,13 +571,14 @@ public partial class WindowStatus : Form
 				STW = new StreamWriter(client.GetStream());
 
 				STW.AutoFlush = true;
-				btn_comm_sendethernetmessage.Enabled = true;
+
+				this.lbx_comm_messages.Invoke(new MethodInvoker(delegate () { lbx_comm_messages.Items.Add("Client connected"); }));
 			}
 
 			try
 			{
 				recieveMessage = STR.ReadLine();
-				this.lbx_comm_messages.Invoke(new MethodInvoker(delegate () { lbx_comm_messages.Items.Add("Other : " + recieveMessage); }));
+				this.lbx_comm_messages.Invoke(new MethodInvoker(delegate () { lbx_comm_messages.Items.Add("Other: " + recieveMessage); }));
 			}
 			catch (Exception e5)
 			{

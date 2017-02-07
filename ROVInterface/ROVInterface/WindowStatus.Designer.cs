@@ -599,7 +599,6 @@
 			// btn_comm_sendethernetmessage
 			// 
 			this.btn_comm_sendethernetmessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_comm_sendethernetmessage.Enabled = false;
 			this.btn_comm_sendethernetmessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_comm_sendethernetmessage.Location = new System.Drawing.Point(314, 332);
 			this.btn_comm_sendethernetmessage.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
