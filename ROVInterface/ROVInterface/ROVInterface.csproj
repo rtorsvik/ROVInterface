@@ -125,6 +125,7 @@
     <Content Include="Graphics\Graphics.xml" />
     <Content Include="Graphics\TempImage.png" />
     <Content Include="Graphics\Warning.png" />
+    <Content Include="Images\Aegir.png" />
     <Content Include="Images\joystickrescale dark.jpg" />
     <Content Include="Misc\Settings.xml" />
     <None Include="Resources\joystickscale dark test.png" />
