@@ -10,7 +10,7 @@ public class EthernetPort : Port
 
 
 
-	public EthernetPort(IPAddress ip)
+	public EthernetPort(IPAddress ipAddress, Int32 ipPort)
 	{
 		try
 		{

@@ -61,6 +61,10 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.cmb_baudrate = new System.Windows.Forms.ComboBox();
 			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.txt_comm_clientip = new System.Windows.Forms.TextBox();
+			this.label29 = new System.Windows.Forms.Label();
+			this.btn_comm_connectethernet = new System.Windows.Forms.Button();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.tbl_IndexSettings = new System.Windows.Forms.TableLayoutPanel();
@@ -109,10 +113,17 @@
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.tim_100ms_update = new System.Windows.Forms.Timer(this.components);
 			this.tim_SendCommandsDelay = new System.Windows.Forms.Timer(this.components);
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.label29 = new System.Windows.Forms.Label();
-			this.btn_connect_ethernet = new System.Windows.Forms.Button();
-			this.txt_ipaddress = new System.Windows.Forms.TextBox();
+			this.txt_comm_clientport = new System.Windows.Forms.TextBox();
+			this.label30 = new System.Windows.Forms.Label();
+			this.groupBox9 = new System.Windows.Forms.GroupBox();
+			this.txt_comm_serverport = new System.Windows.Forms.TextBox();
+			this.label31 = new System.Windows.Forms.Label();
+			this.txt_comm_serverip = new System.Windows.Forms.TextBox();
+			this.label32 = new System.Windows.Forms.Label();
+			this.btn_comm_startserver = new System.Windows.Forms.Button();
+			this.lbx_comm_messages = new System.Windows.Forms.ListBox();
+			this.txt_comm_ethernetmessage = new System.Windows.Forms.TextBox();
+			this.btn_comm_sendethernetmessage = new System.Windows.Forms.Button();
 			this.connectionTab.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
@@ -125,6 +136,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.nud_con_serial_index)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.groupBox7.SuspendLayout();
+			this.groupBox5.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			this.tbl_IndexSettings.SuspendLayout();
 			this.flowLayoutPanel4.SuspendLayout();
@@ -139,7 +151,7 @@
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
-			this.groupBox5.SuspendLayout();
+			this.groupBox9.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -566,7 +578,11 @@
 			this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox7.Controls.Add(this.btn_comm_sendethernetmessage);
+			this.groupBox7.Controls.Add(this.txt_comm_ethernetmessage);
+			this.groupBox7.Controls.Add(this.lbx_comm_messages);
 			this.groupBox7.Controls.Add(this.groupBox5);
+			this.groupBox7.Controls.Add(this.groupBox9);
 			this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox7.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.groupBox7.Location = new System.Drawing.Point(443, 12);
@@ -577,6 +593,56 @@
 			this.groupBox7.TabIndex = 2;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "Ethernet connection";
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox5.Controls.Add(this.txt_comm_clientport);
+			this.groupBox5.Controls.Add(this.label30);
+			this.groupBox5.Controls.Add(this.txt_comm_clientip);
+			this.groupBox5.Controls.Add(this.label29);
+			this.groupBox5.Controls.Add(this.btn_comm_connectethernet);
+			this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox5.Location = new System.Drawing.Point(0, 139);
+			this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.groupBox5.Size = new System.Drawing.Size(404, 108);
+			this.groupBox5.TabIndex = 40;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Connection (as client)";
+			// 
+			// txt_comm_clientip
+			// 
+			this.txt_comm_clientip.Location = new System.Drawing.Point(102, 33);
+			this.txt_comm_clientip.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_comm_clientip.Name = "txt_comm_clientip";
+			this.txt_comm_clientip.Size = new System.Drawing.Size(103, 23);
+			this.txt_comm_clientip.TabIndex = 25;
+			// 
+			// label29
+			// 
+			this.label29.AutoSize = true;
+			this.label29.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label29.Location = new System.Drawing.Point(20, 36);
+			this.label29.Name = "label29";
+			this.label29.Size = new System.Drawing.Size(76, 17);
+			this.label29.TabIndex = 3;
+			this.label29.Text = "IP Address";
+			// 
+			// btn_comm_connectethernet
+			// 
+			this.btn_comm_connectethernet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_comm_connectethernet.Location = new System.Drawing.Point(268, 33);
+			this.btn_comm_connectethernet.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.btn_comm_connectethernet.Name = "btn_comm_connectethernet";
+			this.btn_comm_connectethernet.Size = new System.Drawing.Size(111, 52);
+			this.btn_comm_connectethernet.TabIndex = 5;
+			this.btn_comm_connectethernet.Text = "Connect";
+			this.btn_comm_connectethernet.UseVisualStyleBackColor = true;
+			this.btn_comm_connectethernet.Click += new System.EventHandler(this.btn_connect_ethernet_Click);
 			// 
 			// groupBox6
 			// 
@@ -1128,54 +1194,125 @@
 			this.tim_100ms_update.Enabled = true;
 			this.tim_100ms_update.Tick += new System.EventHandler(this.tim_100ms_update_Tick);
 			// 
-			// groupBox5
+			// txt_comm_clientport
 			// 
-			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.txt_comm_clientport.Location = new System.Drawing.Point(102, 61);
+			this.txt_comm_clientport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_comm_clientport.Name = "txt_comm_clientport";
+			this.txt_comm_clientport.Size = new System.Drawing.Size(103, 23);
+			this.txt_comm_clientport.TabIndex = 27;
+			// 
+			// label30
+			// 
+			this.label30.AutoSize = true;
+			this.label30.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label30.Location = new System.Drawing.Point(20, 64);
+			this.label30.Name = "label30";
+			this.label30.Size = new System.Drawing.Size(34, 17);
+			this.label30.TabIndex = 26;
+			this.label30.Text = "Port";
+			// 
+			// groupBox9
+			// 
+			this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox5.Controls.Add(this.txt_ipaddress);
-			this.groupBox5.Controls.Add(this.label29);
-			this.groupBox5.Controls.Add(this.btn_connect_ethernet);
-			this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox5.Location = new System.Drawing.Point(0, 87);
-			this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.groupBox5.Size = new System.Drawing.Size(404, 144);
-			this.groupBox5.TabIndex = 12;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "Connection";
+			this.groupBox9.Controls.Add(this.txt_comm_serverport);
+			this.groupBox9.Controls.Add(this.label31);
+			this.groupBox9.Controls.Add(this.txt_comm_serverip);
+			this.groupBox9.Controls.Add(this.label32);
+			this.groupBox9.Controls.Add(this.btn_comm_startserver);
+			this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox9.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox9.Location = new System.Drawing.Point(0, 40);
+			this.groupBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.groupBox9.Name = "groupBox9";
+			this.groupBox9.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.groupBox9.Size = new System.Drawing.Size(404, 104);
+			this.groupBox9.TabIndex = 50;
+			this.groupBox9.TabStop = false;
+			this.groupBox9.Text = "Server";
 			// 
-			// label29
+			// txt_comm_serverport
 			// 
-			this.label29.AutoSize = true;
-			this.label29.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label29.Location = new System.Drawing.Point(20, 36);
-			this.label29.Name = "label29";
-			this.label29.Size = new System.Drawing.Size(76, 17);
-			this.label29.TabIndex = 3;
-			this.label29.Text = "IP Address";
+			this.txt_comm_serverport.Location = new System.Drawing.Point(102, 61);
+			this.txt_comm_serverport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_comm_serverport.Name = "txt_comm_serverport";
+			this.txt_comm_serverport.Size = new System.Drawing.Size(103, 23);
+			this.txt_comm_serverport.TabIndex = 27;
+			this.txt_comm_serverport.Text = "80";
 			// 
-			// btn_connect_ethernet
+			// label31
 			// 
-			this.btn_connect_ethernet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_connect_ethernet.Location = new System.Drawing.Point(268, 33);
-			this.btn_connect_ethernet.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
-			this.btn_connect_ethernet.Name = "btn_connect_ethernet";
-			this.btn_connect_ethernet.Size = new System.Drawing.Size(111, 52);
-			this.btn_connect_ethernet.TabIndex = 5;
-			this.btn_connect_ethernet.Text = "Connect";
-			this.btn_connect_ethernet.UseVisualStyleBackColor = true;
-			this.btn_connect_ethernet.Click += new System.EventHandler(this.btn_connect_ethernet_Click);
+			this.label31.AutoSize = true;
+			this.label31.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label31.Location = new System.Drawing.Point(20, 64);
+			this.label31.Name = "label31";
+			this.label31.Size = new System.Drawing.Size(34, 17);
+			this.label31.TabIndex = 26;
+			this.label31.Text = "Port";
 			// 
-			// txt_ipaddress
+			// txt_comm_serverip
 			// 
-			this.txt_ipaddress.Location = new System.Drawing.Point(102, 33);
-			this.txt_ipaddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txt_ipaddress.Name = "txt_ipaddress";
-			this.txt_ipaddress.Size = new System.Drawing.Size(103, 23);
-			this.txt_ipaddress.TabIndex = 25;
-			this.txt_ipaddress.Text = "192.168.1.10";
+			this.txt_comm_serverip.Location = new System.Drawing.Point(102, 33);
+			this.txt_comm_serverip.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_comm_serverip.Name = "txt_comm_serverip";
+			this.txt_comm_serverip.Size = new System.Drawing.Size(103, 23);
+			this.txt_comm_serverip.TabIndex = 25;
+			this.txt_comm_serverip.Text = "192.168.1.10";
+			// 
+			// label32
+			// 
+			this.label32.AutoSize = true;
+			this.label32.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label32.Location = new System.Drawing.Point(20, 36);
+			this.label32.Name = "label32";
+			this.label32.Size = new System.Drawing.Size(76, 17);
+			this.label32.TabIndex = 3;
+			this.label32.Text = "IP Address";
+			// 
+			// btn_comm_startserver
+			// 
+			this.btn_comm_startserver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_comm_startserver.Location = new System.Drawing.Point(268, 33);
+			this.btn_comm_startserver.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.btn_comm_startserver.Name = "btn_comm_startserver";
+			this.btn_comm_startserver.Size = new System.Drawing.Size(111, 52);
+			this.btn_comm_startserver.TabIndex = 5;
+			this.btn_comm_startserver.Text = "Start server";
+			this.btn_comm_startserver.UseVisualStyleBackColor = true;
+			// 
+			// lbx_comm_messages
+			// 
+			this.lbx_comm_messages.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbx_comm_messages.FormattingEnabled = true;
+			this.lbx_comm_messages.ItemHeight = 16;
+			this.lbx_comm_messages.Location = new System.Drawing.Point(1, 243);
+			this.lbx_comm_messages.Name = "lbx_comm_messages";
+			this.lbx_comm_messages.Size = new System.Drawing.Size(404, 116);
+			this.lbx_comm_messages.TabIndex = 51;
+			// 
+			// txt_comm_ethernetmessage
+			// 
+			this.txt_comm_ethernetmessage.Enabled = false;
+			this.txt_comm_ethernetmessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txt_comm_ethernetmessage.Location = new System.Drawing.Point(0, 364);
+			this.txt_comm_ethernetmessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_comm_ethernetmessage.Name = "txt_comm_ethernetmessage";
+			this.txt_comm_ethernetmessage.Size = new System.Drawing.Size(308, 23);
+			this.txt_comm_ethernetmessage.TabIndex = 25;
+			// 
+			// btn_comm_sendethernetmessage
+			// 
+			this.btn_comm_sendethernetmessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_comm_sendethernetmessage.Enabled = false;
+			this.btn_comm_sendethernetmessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_comm_sendethernetmessage.Location = new System.Drawing.Point(315, 364);
+			this.btn_comm_sendethernetmessage.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.btn_comm_sendethernetmessage.Name = "btn_comm_sendethernetmessage";
+			this.btn_comm_sendethernetmessage.Size = new System.Drawing.Size(90, 23);
+			this.btn_comm_sendethernetmessage.TabIndex = 15;
+			this.btn_comm_sendethernetmessage.Text = "Send";
+			this.btn_comm_sendethernetmessage.UseVisualStyleBackColor = true;
 			// 
 			// WindowStatus
 			// 
@@ -1207,6 +1344,9 @@
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox7.ResumeLayout(false);
+			this.groupBox7.PerformLayout();
+			this.groupBox5.ResumeLayout(false);
+			this.groupBox5.PerformLayout();
 			this.tabPage4.ResumeLayout(false);
 			this.tbl_IndexSettings.ResumeLayout(false);
 			this.tbl_IndexSettings.PerformLayout();
@@ -1227,8 +1367,8 @@
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
-			this.groupBox5.ResumeLayout(false);
-			this.groupBox5.PerformLayout();
+			this.groupBox9.ResumeLayout(false);
+			this.groupBox9.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1317,7 +1457,18 @@
 	private System.Windows.Forms.Button btn_joystick_instruction;
 	private System.Windows.Forms.PictureBox pictureBox2;
 	private System.Windows.Forms.GroupBox groupBox5;
-	public System.Windows.Forms.TextBox txt_ipaddress;
+	public System.Windows.Forms.TextBox txt_comm_clientip;
 	private System.Windows.Forms.Label label29;
-	private System.Windows.Forms.Button btn_connect_ethernet;
+	private System.Windows.Forms.Button btn_comm_connectethernet;
+	private System.Windows.Forms.GroupBox groupBox9;
+	public System.Windows.Forms.TextBox txt_comm_serverport;
+	private System.Windows.Forms.Label label31;
+	public System.Windows.Forms.TextBox txt_comm_serverip;
+	private System.Windows.Forms.Label label32;
+	private System.Windows.Forms.Button btn_comm_startserver;
+	public System.Windows.Forms.TextBox txt_comm_clientport;
+	private System.Windows.Forms.Label label30;
+	private System.Windows.Forms.Button btn_comm_sendethernetmessage;
+	public System.Windows.Forms.TextBox txt_comm_ethernetmessage;
+	private System.Windows.Forms.ListBox lbx_comm_messages;
 }

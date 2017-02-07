@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -68,6 +69,10 @@ public partial class WindowStatus : Form
 
 		// Start the st_register send timer
 		tim_SendCommandsDelay.Tick += ST_Register.SendCommands;
+
+		//load local IP address into communication tabs ethernet server settings
+		txt_comm_serverip.Text = GetLocalIPAddress();
+		txt_comm_serverport.Text = "80";
 	}
 
 	
@@ -340,21 +345,36 @@ public partial class WindowStatus : Form
 		}
 	}
 
+
+
+	/// <summary>
+	/// Function is called when ethernet connect buttin is clicked. Function initialises commHandler with an ethernet connection.
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
 	private void btn_connect_ethernet_Click(object sender, EventArgs e)
 	{
 
-		IPAddress ipAddress = null;
-		//parse ip address
+		IPAddress ipAddress;
+		Int32 ipPort;
+		
+		//parse ip address and port
 		try
 		{
-			ipAddress = IPAddress.Parse(txt_ipaddress.Text);
+			ipAddress = IPAddress.Parse(txt_comm_clientip.Text);
+			ipPort = Int32.Parse(txt_comm_clientport.Text);
 		}
-		catch (Exception ipe) { Console.WriteLine(ipe.ToString()); }
+		catch (Exception initEthernetException)
+		{
+			MessageBox.Show("Please enter a valid IP address and port number!\n\n" + initEthernetException.ToString());
+			return;
+		}
 
 
 
+		/*
 		if (!CommHandler.initialized)
-			CommHandler.InitEthernet(ipAddress);
+			CommHandler.InitEthernet(ipAddress, ipPort);
 
 		if (CommHandler.IsOpen())
 		{
@@ -366,5 +386,25 @@ public partial class WindowStatus : Form
 			CommHandler.Open();
 			btn_send_serial.Enabled = true;
 		}
+		*/
+	}
+
+
+
+	/// <summary>
+	/// Get the IP address of this computer
+	/// </summary>
+	/// <returns>Returns IP address if in netwirk, else return "127.0.0.1"</returns>
+	private string GetLocalIPAddress()
+	{
+		IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+
+		foreach (IPAddress ipAddress in host.AddressList)
+		{
+			if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
+				return ipAddress.ToString();
+		}
+
+		return "127.0.0.1";
 	}
 }
