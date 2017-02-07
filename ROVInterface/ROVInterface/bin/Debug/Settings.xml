@@ -21,12 +21,18 @@
 	</JoystickSettings>
 	<IndexSettings>
 		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+			<index>17</index><name>sin</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+			<index>13</index><name>rand</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>16</index><name>cnt</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 	</IndexSettings>
 	<IndexStats>
+		<Stats>17</Stats>
+		<Stats>13</Stats>
+		<Stats>16</Stats>
 	</IndexStats>
 </Settings>
