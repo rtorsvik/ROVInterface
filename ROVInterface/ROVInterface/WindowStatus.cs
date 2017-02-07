@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -229,7 +230,6 @@ public partial class WindowStatus : Form
 
 	private void btn_connect_serial_Click(object sender, EventArgs e)
 	{
-		//temp, should be replaced with comm handler later
 		if (!CommHandler.initialized)
 			CommHandler.InitSerial(cmb_comport.SelectedItem.ToString(), int.Parse(cmb_baudrate.SelectedItem.ToString()));
 
@@ -337,6 +337,34 @@ public partial class WindowStatus : Form
 		{
 			txt_con_messageSendt.Text = CommHandler.PacketToByteString(CommHandler.messageSendt);
 			txt_con_messageRecieved.Text = CommHandler.PacketToByteString(CommHandler.messageRecieved);
+		}
+	}
+
+	private void btn_connect_ethernet_Click(object sender, EventArgs e)
+	{
+
+		IPAddress ipAddress = null;
+		//parse ip address
+		try
+		{
+			ipAddress = IPAddress.Parse(txt_ipaddress.Text);
+		}
+		catch (Exception ipe) { Console.WriteLine(ipe.ToString()); }
+
+
+
+		if (!CommHandler.initialized)
+			CommHandler.InitEthernet(ipAddress);
+
+		if (CommHandler.IsOpen())
+		{
+			CommHandler.Close();
+			btn_send_serial.Enabled = false;
+		}
+		else
+		{
+			CommHandler.Open();
+			btn_send_serial.Enabled = true;
 		}
 	}
 }

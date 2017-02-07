@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
+using System.Net;
 
 public static class CommHandler
 {
@@ -76,9 +77,9 @@ public static class CommHandler
 
 
 	//initialise an ethernet connection
-	public static void InitEthernet(string comPort, int baudRate)
+	public static void InitEthernet(IPAddress ip)
 	{
-		throw new NotImplementedException();
+		port = new EthernetPort(ip);
 		initialized = true;
 	}
     
