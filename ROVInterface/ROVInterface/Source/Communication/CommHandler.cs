@@ -77,9 +77,9 @@ public static class CommHandler
 
 
 	//initialise an ethernet connection
-	public static void InitEthernet(IPAddress ip)
+	public static void InitEthernet(IPAddress ipAddress, Int32 ipPort)
 	{
-		port = new EthernetPort(ip);
+		port = new EthernetPort(ipAddress, ipPort);
 		initialized = true;
 	}
     
