@@ -16,10 +16,26 @@ public class GraphicsCreator {
 	private Form indexDialogForm;
 	private FlowLayoutPanel indexDialogItemContainer;
 
+	private static Bitmap iconWarning;
+	private static Bitmap iconDanger;
+
 	public GraphicsCreator(Control p, Button btn) {
 		parent = p;
 		parent.Paint += TabDrawGraphics;
 		btn.Click += ChangeEditMode;
+
+		try {
+			iconWarning = new Bitmap(Image.FromFile("./Graphics/Warning.png"));
+		} catch (Exception e) {
+			Console.WriteLine("Failed to load/find \"./Graphics/Warning.png\".");
+			Program.errors.Add("Failed to load/find \"./Graphics/Warning.png\".");
+		}
+		try {
+			iconDanger = new Bitmap(Image.FromFile("./Graphics/Danger.png"));
+		} catch (Exception e) {
+			Console.WriteLine("Failed to load/find \"./Graphics/Danger.png\".");
+			Program.errors.Add("Failed to load/find \"./Graphics/Danger.png\".");
+		}
 	}
 
 	// Event handler when a button is clicked to change the edit mode
@@ -167,13 +183,13 @@ public class GraphicsCreator {
 		table.Controls.Add(indexDialogItemContainer, 0, 1);
 		indexDialogItemContainer.Dock = DockStyle.Fill;
 		indexDialogItemContainer.Margin = new Padding(0);
-		indexDialogItemContainer.FlowDirection = FlowDirection.TopDown;
+		indexDialogItemContainer.FlowDirection = FlowDirection.LeftToRight;
 		indexDialogItemContainer.AutoScroll = true;
 		
 		foreach (graphicPrototype.prototypeIndex i in prototype.indexes) {
 			TableLayoutPanel pan = new TableLayoutPanel();
 			indexDialogItemContainer.Controls.Add(pan);
-			pan.Width = indexDialogItemContainer.Width - 6;
+			pan.Width = indexDialogItemContainer.Width - 24;
 			pan.Height = 25;
 			pan.ColumnCount = 2;
 			pan.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100));
@@ -199,6 +215,8 @@ public class GraphicsCreator {
 		for (int i = 0, j = prototype.indexes.Length; i < j; i++) {
 			prototype.indexes[i]._idx = (int)((NumericUpDown)indexDialogItemContainer.Controls[i].Controls[0]).Value;
 		}
+
+		prototype.UpdateIdxSettingReference();
 	}
 
 	private void CancelFormValues(object sender, EventArgs e) {
@@ -209,7 +227,7 @@ public class GraphicsCreator {
 	public class graphicPrototype {
 
 		public bool hasImage = true;
-		public Image image;
+		public Bitmap image;
 		public prototypeIndex[] indexes;
 
 		public graphicPrototype(string path, prototypeIndex[] indexes) {
@@ -217,7 +235,7 @@ public class GraphicsCreator {
 				hasImage = false;
 			else {
 				try {
-					image = Image.FromFile(".\\Graphics\\" + path);
+					image = new Bitmap(Image.FromFile(".\\Graphics\\" + path));
 				} catch {
 					hasImage = false;
 				}
@@ -257,6 +275,7 @@ public class GraphicsCreator {
 			private static Font font = new Font("Serif", 12);
 			private static Brush brush = SystemBrushes.MenuHighlight;
 			private int oldvalue = 0;
+			private string oldtext = "";
 			private bool refresh = true;
 
 
@@ -334,7 +353,7 @@ public class GraphicsCreator {
 					// Check limits with f
 
 					if (!_hidden)
-						DrawOverOldIndex(g, settingswithidx == null ? (value * scale + offset).ToString() : value.ToString());
+						DrawOverOldIndex(g, settingswithidx != null ? (value * scale + offset).ToString() : value.ToString());
 				}
 
 				refresh = false;
@@ -342,9 +361,13 @@ public class GraphicsCreator {
 
 			private void DrawOverOldIndex(Graphics g, string s) {
 				// Clear the old text first
+				SizeF size = g.MeasureString(oldtext, font);
+				g.DrawImage(Program.windowStatus.graphicsCreator.prototype.image.Clone(new Rectangle(new Point(_posx, _posy), new Size((int)size.Width + 1, (int)size.Height + 1)), System.Drawing.Imaging.PixelFormat.DontCare), new PointF(_posx, _posy));
 
 				// Draw the new text
+				g.DrawString(s, font, SystemBrushes.ControlDarkDark, new PointF(_posx + 1, _posy + 1));
 				g.DrawString(s, font, brush, new PointF(_posx, _posy));
+				oldtext = s;
 			}
 		}
 	}

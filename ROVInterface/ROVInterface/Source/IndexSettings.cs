@@ -229,6 +229,8 @@ public class IndexSettings {
 			// Update all stats if there are any, with the new settings
 			for (int i = 0, j = linkedStats.Count; i < j; i++)
 				linkedStats[i].UpdateSettings();
+
+			Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
 		}
 
 		public void OpenColorDialog(object sender, EventArgs e) {
