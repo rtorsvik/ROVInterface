@@ -2,9 +2,19 @@
   <Index hidden>
     <x>0</x>
     <y>0</y>
+    <l>-150</l>
+    <h>370</h>
+    <ll>-450</ll>
+    <hh>450</hh>
   </Index>
   <Index>
     <x>70</x>
     <y>20</y>
+  </Index>
+  <Index>
+    <x>200</x>
+    <y>20</y>
+    <l>-100</l>
+    <hh>350</hh>
   </Index>
 </Graphics>

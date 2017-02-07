@@ -276,6 +276,8 @@ public class GraphicsCreator {
 			private static Brush brush = SystemBrushes.MenuHighlight;
 			private int oldvalue = 0;
 			private string oldtext = "";
+			private icontype didshowicon = icontype.none;
+			private icontype doshowicon = icontype.none;
 			private bool refresh = true;
 
 
@@ -338,36 +340,61 @@ public class GraphicsCreator {
 						return; // Only show warnings while no value is shown
 
 					if (refresh) {
-						DrawOverOldIndex(g, "NaN");
+						DrawOverOldIndex(g, "NaN", _hidden);
 						refresh = false;
 					}
 
 					return; // If no value were found in the registers
 				}
-
-				string s = "";
+				
 				// Check for value to show
 				if (refresh || oldvalue != value) {
 					oldvalue = value;
+					float v = value * scale + offset;
 
 					// Check limits with f
+					if (iconDanger != null && ((_ll != null && _ll > v) || (_hh != null && _hh < v))) {
+						// Show danger
+						doshowicon = icontype.danger;
+						DrawOverOldIndex(g, null, _hidden);
+						g.DrawImage(iconDanger, new PointF(_posx, _posy));
+						return;
+					} else if (iconWarning != null && ((_l != null && _l > v) || (_h != null && _h < v))) {
+						// Show warning
+						doshowicon = icontype.warning;
+						DrawOverOldIndex(g, null, _hidden);
+						g.DrawImage(iconWarning, new PointF(_posx, _posy));
+						return;
+					} else
+						doshowicon = icontype.none;
 
-					if (!_hidden)
-						DrawOverOldIndex(g, settingswithidx != null ? (value * scale + offset).ToString() : value.ToString());
+					DrawOverOldIndex(g, settingswithidx != null ? v.ToString() : value.ToString(), _hidden);
 				}
 
 				refresh = false;
 			}
 
-			private void DrawOverOldIndex(Graphics g, string s) {
+			private void DrawOverOldIndex(Graphics g, string s, bool hidden) {
 				// Clear the old text first
-				SizeF size = g.MeasureString(oldtext, font);
-				g.DrawImage(Program.windowStatus.graphicsCreator.prototype.image.Clone(new Rectangle(new Point(_posx, _posy), new Size((int)size.Width + 1, (int)size.Height + 1)), System.Drawing.Imaging.PixelFormat.DontCare), new PointF(_posx, _posy));
+				if (didshowicon != doshowicon && didshowicon != icontype.none) {
+					g.DrawImage(Program.windowStatus.graphicsCreator.prototype.image.Clone(new Rectangle(new Point(_posx, _posy), didshowicon == icontype.warning ? iconWarning.Size : iconDanger.Size), System.Drawing.Imaging.PixelFormat.DontCare), new PointF(_posx, _posy));
+				}
+				if (!hidden) {
+					SizeF size = g.MeasureString(oldtext, font);
+					g.DrawImage(Program.windowStatus.graphicsCreator.prototype.image.Clone(new Rectangle(new Point(_posx, _posy), new Size((int)size.Width + 1, (int)size.Height + 1)), System.Drawing.Imaging.PixelFormat.DontCare), new PointF(_posx, _posy));
 
-				// Draw the new text
-				g.DrawString(s, font, SystemBrushes.ControlDarkDark, new PointF(_posx + 1, _posy + 1));
-				g.DrawString(s, font, brush, new PointF(_posx, _posy));
-				oldtext = s;
+					// Draw the new text
+					g.DrawString(s, font, SystemBrushes.ControlDarkDark, new PointF(_posx + 1, _posy + 1));
+					g.DrawString(s, font, brush, new PointF(_posx, _posy));
+					oldtext = s;
+				}
+				didshowicon = doshowicon;
+			}
+
+			private enum icontype {
+				none = 0,
+				warning = 1,
+				danger = 2
 			}
 		}
 	}
