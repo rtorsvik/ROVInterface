@@ -1,0 +1,10 @@
+﻿	Terje's To Do:
+
+- Make the loader ignore parts of the xml instead of failing all of it, such as skipping only joystick settings if the only error is in that.
+- Make the loader and saver work around graphics settings.
+- Implement DataHolder Clear() function.
+- Fix positioning of the warning icons from the pivot and to the right or center.
+- Make sure the icons don't get drawn outside of the graphic window.
+	- test if anything can be drawn outside of the graphic window or if its giving an error
+- Make sure the overdrawing don't try to get something of the image/bitmap outside of bounds
+- Fix the overdrawing when no image has been loaded, or failed to load.
