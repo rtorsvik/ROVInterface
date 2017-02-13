@@ -687,7 +687,8 @@ public static class CommHandler
 
 		//find identifyer and data in some way
 		int identifyer = Cob_ID[requestedCobId];
-		byte[] data = b;
+		byte[] data = new byte[b.Length - 1];
+		Array.Copy(b,1,data,0,b.Length - 1);
 
 		switch (identifyer)
 		{
@@ -1023,9 +1024,9 @@ public static class CommHandler
 		}
 
 
-		KeyValuePair<int, int>[] test = new KeyValuePair<int, int>[3] { new KeyValuePair<int, int>(1, 1), new KeyValuePair<int, int>(2, 2), new KeyValuePair<int, int>(3, 3) };
+		//KeyValuePair<int, int>[] test = new KeyValuePair<int, int>[3] { new KeyValuePair<int, int>(1, 1), new KeyValuePair<int, int>(2, 2), new KeyValuePair<int, int>(3, 3) };
 
-		return test;
+		return message.ToArray();
 	}
 
 }

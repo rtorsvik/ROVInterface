@@ -29,3 +29,4 @@ C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Graphics\Danger.png
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Graphics\Warning.png
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.csprojResolveAssemblyReference.cache
+C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Graphics\Aegir.png

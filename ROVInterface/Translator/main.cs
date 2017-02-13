@@ -236,7 +236,7 @@ namespace Translator
 		/// </summary>
 		/// <param name="b">recieved data</param>
 		/// <returns>KeyValuePair containing recieved data in the right format</returns>
-		public static KeyValuePair<int, int>[] ConvertData(byte[] b)
+		public static KeyValuePair<int, int>[] ConvertData(Byte[] b)
 		{
 			List<KeyValuePair<int, int>> message = new List<KeyValuePair<int, int>>();
 
