@@ -6,3 +6,5 @@
 	- test if anything can be drawn outside of the graphic window or if its giving an error
 - Make sure the overdrawing don't try to get something of the image/bitmap outside of bounds
 - Fix the overdrawing when no image has been loaded, or failed to load.
+- Implement digits in indexStats, and wherever else it should be used, where it will always show the x amount of digits, like 10.00
+- ST_Register, change from throwing to useing nullable int
