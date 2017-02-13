@@ -85,7 +85,7 @@ namespace Translator
 			Dictionary<int, byte[]> message = new Dictionary<int, byte[]>();    //messages to send, key representing identifyer and value reperenting the bytes
 			List<byte> package = new List<byte>();                              //contains the bytes to send
 
-
+			Console.WriteLine("#################im inside the .dll, wohooo");
 
 			//"Write" identifyer
 			package.Add(writeidentifier);

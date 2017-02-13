@@ -110,7 +110,8 @@ public partial class WindowStatus : Form
 		else
 			pbr_heartBeat.Value = 0;
 
-		if (CommHandler.connectionType == CommHandler.ConnectionType.CANbus)
+		//TEMP request values from Ægir
+		if (CommHandler.connectionType == CommHandler.ConnectionType.CANbus && transmit)
 		{
 			CommHandler.port.Request(ADFwebRequest++ % 72);
 		}
@@ -314,25 +315,27 @@ public partial class WindowStatus : Form
 		}
 	}
 
-	private void button1_Click(object sender, EventArgs e)
+	bool transmit;
+	private void btn_startTransmission_Click(object sender, EventArgs e)
 	{
 		tim_SendCommandsDelay.Interval = (int)(1000 / (float)nud_comm_transfreq.Value);
 
 		if (tim_SendCommandsDelay.Enabled)
 		{
 			//tim_SendCommandsDelay.Stop();
+			transmit = false;
 			tim_SendCommandsDelay.Enabled = false;
 			tim_heartBeat.Enabled = false;
-			btn_startTransmition.UseVisualStyleBackColor = true;
+			btn_startTransmission.UseVisualStyleBackColor = true;
 
 
 		}
 		else
 		{
-			
+			transmit = true;
 			tim_SendCommandsDelay.Enabled = true;
 			tim_heartBeat.Enabled = true;
-			btn_startTransmition.BackColor = System.Drawing.Color.SpringGreen;
+			btn_startTransmission.BackColor = System.Drawing.Color.SpringGreen;
 			//tim_SendCommandsDelay.Start();
 		}
 	}

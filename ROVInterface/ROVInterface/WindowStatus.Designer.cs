@@ -44,7 +44,7 @@
 			this.rdb_comm_status_dec = new System.Windows.Forms.RadioButton();
 			this.label28 = new System.Windows.Forms.Label();
 			this.nud_comm_transfreq = new System.Windows.Forms.NumericUpDown();
-			this.btn_startTransmition = new System.Windows.Forms.Button();
+			this.btn_startTransmission = new System.Windows.Forms.Button();
 			this.lbl_heartBeat_ms = new System.Windows.Forms.Label();
 			this.label19 = new System.Windows.Forms.Label();
 			this.pbr_heartBeat = new System.Windows.Forms.ProgressBar();
@@ -315,7 +315,7 @@
 			this.groupBox3.Controls.Add(this.rdb_comm_status_dec);
 			this.groupBox3.Controls.Add(this.label28);
 			this.groupBox3.Controls.Add(this.nud_comm_transfreq);
-			this.groupBox3.Controls.Add(this.btn_startTransmition);
+			this.groupBox3.Controls.Add(this.btn_startTransmission);
 			this.groupBox3.Controls.Add(this.lbl_heartBeat_ms);
 			this.groupBox3.Controls.Add(this.label19);
 			this.groupBox3.Controls.Add(this.pbr_heartBeat);
@@ -395,16 +395,16 @@
 			// 
 			// btn_startTransmition
 			// 
-			this.btn_startTransmition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_startTransmition.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.btn_startTransmition.Location = new System.Drawing.Point(1203, 87);
-			this.btn_startTransmition.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
-			this.btn_startTransmition.Name = "btn_startTransmition";
-			this.btn_startTransmition.Size = new System.Drawing.Size(133, 42);
-			this.btn_startTransmition.TabIndex = 13;
-			this.btn_startTransmition.Text = "Start transmision";
-			this.btn_startTransmition.UseVisualStyleBackColor = true;
-			this.btn_startTransmition.Click += new System.EventHandler(this.button1_Click);
+			this.btn_startTransmission.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_startTransmission.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.btn_startTransmission.Location = new System.Drawing.Point(1203, 87);
+			this.btn_startTransmission.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.btn_startTransmission.Name = "btn_startTransmition";
+			this.btn_startTransmission.Size = new System.Drawing.Size(133, 42);
+			this.btn_startTransmission.TabIndex = 13;
+			this.btn_startTransmission.Text = "Start transmision";
+			this.btn_startTransmission.UseVisualStyleBackColor = true;
+			this.btn_startTransmission.Click += new System.EventHandler(this.btn_startTransmission_Click);
 			// 
 			// lbl_heartBeat_ms
 			// 
@@ -1696,7 +1696,7 @@
 	private System.Windows.Forms.Label label23;
 	private System.Windows.Forms.Label label24;
 	private System.Windows.Forms.Label label25;
-	private System.Windows.Forms.Button btn_startTransmition;
+	private System.Windows.Forms.Button btn_startTransmission;
 	private System.Windows.Forms.Timer tim_100ms_update;
 	private System.Windows.Forms.GroupBox grp_JoystickInstructions;
 	private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;

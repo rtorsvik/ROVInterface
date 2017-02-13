@@ -206,6 +206,8 @@ public static class CommHandler
 		//TEMP ÆgirTest
 		//packet = AEgirConvertCommands(commands);
 
+
+
 		port.Send(packet);
 
 	}
