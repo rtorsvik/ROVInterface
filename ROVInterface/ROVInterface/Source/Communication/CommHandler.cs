@@ -23,7 +23,7 @@ public static class CommHandler
 
 	// Dll variables
 	private static bool loadedDll = false;
-	private const string dllpath = "./Translator.dll";
+	private const string dllpath = "./gTranslator.dll";
 	private static Assembly dll;
 	private static MethodInfo dllConvertCommands;
 	private static MethodInfo dllConvertData;
@@ -204,7 +204,7 @@ public static class CommHandler
 
 
 		//TEMP ÆgirTest
-		packet = AEgirConvertCommands(commands);
+		//packet = AEgirConvertCommands(commands);
 
 		port.Send(packet);
 
