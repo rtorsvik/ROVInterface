@@ -1,5 +1,13 @@
-﻿<Graphics img="TempImage.png">
-  <Index>
+﻿<Graphics img="Aegir.png">
+  <Index hidden>
+    <x>50</x>
+    <y>50</y>
+    <hh>80</hh>
+  </Index>
+</Graphics>
+
+<Graphics img="Aegir.png">
+  <Index hidden>
     <x>0</x>
     <y>0</y>
     <l>-150</l>
