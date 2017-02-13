@@ -393,13 +393,13 @@
             0,
             0});
 			// 
-			// btn_startTransmition
+			// btn_startTransmission
 			// 
 			this.btn_startTransmission.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_startTransmission.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.btn_startTransmission.Location = new System.Drawing.Point(1203, 87);
 			this.btn_startTransmission.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
-			this.btn_startTransmission.Name = "btn_startTransmition";
+			this.btn_startTransmission.Name = "btn_startTransmission";
 			this.btn_startTransmission.Size = new System.Drawing.Size(133, 42);
 			this.btn_startTransmission.TabIndex = 13;
 			this.btn_startTransmission.Text = "Start transmision";

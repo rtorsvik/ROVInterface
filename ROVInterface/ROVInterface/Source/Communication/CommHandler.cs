@@ -23,7 +23,7 @@ public static class CommHandler
 
 	// Dll variables
 	private static bool loadedDll = false;
-	private const string dllpath = "./gTranslator.dll";
+	private const string dllpath = "./Translator.dll";
 	private static Assembly dll;
 	private static MethodInfo dllConvertCommands;
 	private static MethodInfo dllConvertData;
@@ -160,6 +160,9 @@ public static class CommHandler
 
 	public static void Send(KeyValuePair<int, int>[] commands)
 	{
+		if (commands.Length == 0)
+			return;
+
 		// Packet to be sent forward
 		byte[] packet = new byte[0];
 		bool fail = true;

@@ -32,3 +32,6 @@ C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterf
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Graphics\Aegir.png
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\SlimDX.pdb
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\SlimDX.xml
+C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.csprojResolveAssemblyReference.cache
+C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Translator.dll
+C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Translator.pdb

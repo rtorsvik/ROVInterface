@@ -223,6 +223,9 @@ public partial class WindowStatus : Form
 
 		try
 		{
+			if (CommHandler.connectionType == CommHandler.ConnectionType.CANbus) //TEMP disable heartbet for Ægir
+				return;
+
 			KeyValuePair<int, int> kvp;
 
 			if (st.status[0] == 0)
