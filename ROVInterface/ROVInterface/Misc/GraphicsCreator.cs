@@ -19,10 +19,10 @@ public class GraphicsCreator {
 	private static Bitmap iconWarning;
 	private static Bitmap iconDanger;
 
-	public GraphicsCreator(Control p, Button btn) {
+	public GraphicsCreator(Control p) {
 		parent = p;
 		parent.Paint += TabDrawGraphics;
-		btn.Click += ChangeEditMode;
+		//btn.Click += ChangeEditMode;
 
 		try {
 			iconWarning = new Bitmap(Image.FromFile("./Graphics/Warning.png"));
@@ -39,7 +39,7 @@ public class GraphicsCreator {
 	}
 
 	// Event handler when a button is clicked to change the edit mode
-	private void ChangeEditMode(object sender, EventArgs e) {
+	public void ChangeEditMode(object sender, EventArgs e) {
 		// From Display mode
 		editMode = !editMode;
 		fullredraw = true;
@@ -275,10 +275,14 @@ public class GraphicsCreator {
 			private static Font font = new Font("Serif", 12);
 			private static Brush brush = SystemBrushes.MenuHighlight;
 			private int oldvalue = 0;
-			private string oldtext = "";
 			private icontype didshowicon = icontype.none;
 			private icontype doshowicon = icontype.none;
 			private bool refresh = true;
+			
+			private Rectangle oldrect = new Rectangle();
+			private Rectangle oldrectfull = new Rectangle();
+			private Rectangle oldrecticon = new Rectangle();
+			private Rectangle oldrectfullicon = new Rectangle();
 
 
 			public prototypeIndex(bool hidden, int x, int y, int? ll, int? l, int? h, int? hh) {
@@ -357,13 +361,19 @@ public class GraphicsCreator {
 						// Show danger
 						doshowicon = icontype.danger;
 						DrawOverOldIndex(g, null, _hidden);
+						oldrectfullicon = new Rectangle(new Point(_posx, _posy), iconDanger.Size);
+						oldrecticon = new Rectangle(oldrectfullicon.Location, oldrectfullicon.Size);
+						oldrecticon.Intersect(new Rectangle(new Point(0, 0), Program.windowStatus.graphicsCreator.prototype.image.Size));
 						g.DrawImage(iconDanger, new PointF(_posx, _posy));
 						return;
 					} else if (iconWarning != null && ((_l != null && _l > v) || (_h != null && _h < v))) {
 						// Show warning
 						doshowicon = icontype.warning;
 						DrawOverOldIndex(g, null, _hidden);
-						g.DrawImage(iconWarning, new PointF(_posx, _posy));
+						oldrectfullicon = new Rectangle(new Point(_posx, _posy), iconWarning.Size);
+						oldrecticon = new Rectangle(oldrectfullicon.Location, oldrectfullicon.Size);
+						oldrecticon.Intersect(new Rectangle(new Point(0, 0), Program.windowStatus.graphicsCreator.prototype.image.Size));
+						g.DrawImage(iconWarning, oldrectfullicon);
 						return;
 					} else
 						doshowicon = icontype.none;
@@ -375,18 +385,41 @@ public class GraphicsCreator {
 			}
 
 			private void DrawOverOldIndex(Graphics g, string s, bool hidden) {
-				// Clear the old text first
+				Bitmap image = Program.windowStatus.graphicsCreator.prototype.image;
+				Pen pen = new Pen(Program.windowStatus.graphicsCreator.bgrColor);
+
+				// Clear the old icon first
 				if (didshowicon != doshowicon && didshowicon != icontype.none) {
-					g.DrawImage(Program.windowStatus.graphicsCreator.prototype.image.Clone(new Rectangle(new Point(_posx, _posy), didshowicon == icontype.warning ? iconWarning.Size : iconDanger.Size), System.Drawing.Imaging.PixelFormat.DontCare), new PointF(_posx, _posy));
+					// Draw over all old icon with the bgr color
+					g.DrawRectangle(pen, oldrectfullicon);
+					// Draw over old icon with the bgr image
+					if (oldrecticon.IntersectsWith(new Rectangle(new Point(0, 0), image.Size)))
+						g.DrawImage(image.Clone(oldrecticon, System.Drawing.Imaging.PixelFormat.DontCare), oldrecticon.Location);
 				}
+
+				// If the text is not hidden
 				if (!hidden) {
-					SizeF size = g.MeasureString(oldtext, font);
-					g.DrawImage(Program.windowStatus.graphicsCreator.prototype.image.Clone(new Rectangle(new Point(_posx, _posy), new Size((int)size.Width + 1, (int)size.Height + 1)), System.Drawing.Imaging.PixelFormat.DontCare), new PointF(_posx, _posy));
+
+					// Draw over all old text with the bgr color
+					g.DrawRectangle(pen, oldrectfull);
+					// Draw over old text with the bgr image
+					if (oldrect.IntersectsWith(new Rectangle(new Point(0, 0), image.Size)))
+						g.DrawImage(image.Clone(oldrect, System.Drawing.Imaging.PixelFormat.DontCare), oldrect.Location);
+
+					// Get the size of the new text
+					Rectangle rect = new Rectangle();
+					rect.Location = new Point(_posx, _posy);
+					SizeF size = g.MeasureString(s, font);
+					rect.Size = new Size((int)size.Width + 1, (int)size.Height + 1);
 
 					// Draw the new text
-					g.DrawString(s, font, SystemBrushes.ControlDarkDark, new PointF(_posx + 1, _posy + 1));
-					g.DrawString(s, font, brush, new PointF(_posx, _posy));
-					oldtext = s;
+					g.DrawString(s, font, SystemBrushes.ControlDarkDark, new Point(_posx + 1, _posy + 1));
+					g.DrawString(s, font, brush, rect.Location);
+
+					// Set the rectangles for drawing over the new text next time
+					oldrectfull = rect;
+					oldrect = new Rectangle(oldrectfull.Location, oldrectfull.Size);
+					oldrect.Intersect(new Rectangle(new Point(0, 0), image.Size));
 				}
 				didshowicon = doshowicon;
 			}

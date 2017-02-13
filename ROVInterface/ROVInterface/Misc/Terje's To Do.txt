@@ -1,7 +1,5 @@
 ﻿	Terje's To Do:
 
-- Make the loader ignore parts of the xml instead of failing all of it, such as skipping only joystick settings if the only error is in that.
-- Make the loader and saver work around graphics settings.
 - Implement DataHolder Clear() function.
 - Fix positioning of the warning icons from the pivot and to the right or center.
 - Make sure the icons don't get drawn outside of the graphic window.

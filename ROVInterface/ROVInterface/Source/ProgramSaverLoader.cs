@@ -96,7 +96,6 @@ public static class ProgramSaverLoader {
 	}
 
 	private static void _Load() {
-		Console.WriteLine("Test write line");
 		if (!reader.FindFileFromPath()) {
 			throw new FileNotFoundException();
 		}
@@ -225,19 +224,24 @@ public static class ProgramSaverLoader {
 					pos = LoadPosition.IndexStats;
 					break;
 				case LoadPosition.GraphicSettings:
-					if (next == "</GraphicSettings")
+					if (next == "</GraphicSettings>") {
 						pos = LoadPosition.Settings;
+						break;
+					}
 
 					// Try to convert x0,x1,x2,...,xn to a list<int>
 					dataHolder.graphicSettings = new List<int>();
 					string cur = "";
 					for (int i = 0, j = next.Length; i < j; i++) {
-						if (next[i] == ',' || i + 1 == j) {
+						if (next[i] == ',' || next[i] == ';') {
 							if (cur == "")
 								dataHolder.graphicSettings.Add(0);
 							else
 								dataHolder.graphicSettings.Add(int.Parse(cur));
 							cur = "";
+
+							if (next[i] == ';')
+								break;
 						} else
 							cur += next[i];
 					}
@@ -269,6 +273,12 @@ public static class ProgramSaverLoader {
 				int e = dataHolder.indexStats[i];
 				Program.windowStatus.indexStats.CreateElement(e);
 			}
+		}
+
+		// If succesfully loaded graphicSettings
+		if (dataHolder.graphicSettings != null) {
+			for (int i = 0, j = dataHolder.graphicSettings.Count; i < j; i++)
+				Program.windowStatus.graphicsCreator.Prototype.indexes[i]._idx = dataHolder.graphicSettings[i];
 		}
 	}
 
@@ -347,8 +357,10 @@ public static class ProgramSaverLoader {
 		GraphicsCreator.graphicPrototype.prototypeIndex[] pi = Program.windowStatus.graphicsCreator.Prototype.indexes;
 		for (int i = 0, j = pi.Length; i < j; i++) {
 			src += pi[i]._idx;
-			if (i + 1 == j)
+			if (i + 1 != j)
 				src += ",";
+			else
+				src += ";";
 		}
 		src += "\n	</GraphicSettings>\n";
 

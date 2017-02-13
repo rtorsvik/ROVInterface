@@ -1,8 +1,16 @@
 ﻿<Graphics img="Aegir.png">
-  <Index hidden>
-    <x>-10</x>
+  <Index>
+    <x>-25</x>
     <y>50</y>
     <hh>80</hh>
+  </Index>
+  <Index>
+    <x>50</x>
+    <y>-10</y>
+  </Index>
+  <Index>
+    <x>430</x>
+    <y>50</y>
   </Index>
 </Graphics>
 
