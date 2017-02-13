@@ -413,8 +413,7 @@ public static class CommHandler
 	private const int ENC_POS = 0x600;
 
 	//Cob_ID
-	private static int[] Cob_ID = new int[73] {
-		0x000,
+	private static int[] Cob_ID = new int[72] {
 		TOP_XBOX_CTRLS,
 		TOP_XBOX_AXES,
 		TOP_POWR_CTRL,
@@ -435,11 +434,9 @@ public static class CommHandler
 		SENSOR_ANGULAR_VELOCITY,
 		SENSOR_THRUSTER_DUTY,
 		SENSOR_DEPTH_SETPOINT,
-
 		POWR_THR_CURRENT,
 		POWR_MAN_CURRENT,
 		POWR_ALIVE,
-
 		VESC_X_CURRENT,
 		VESC_X_CURRENT + 1,
 		VESC_X_CURRENT + 2,
@@ -456,7 +453,6 @@ public static class CommHandler
 		VESC_X_CURRENT + 13,
 		VESC_X_CURRENT + 14,
 		VESC_X_CURRENT + 15,
-
 		VESC_X_RPM,
 		VESC_X_RPM + 1,
 		VESC_X_RPM + 2,
@@ -473,7 +469,6 @@ public static class CommHandler
 		VESC_X_RPM + 13,
 		VESC_X_RPM + 14,
 		VESC_X_RPM + 15,
-
 		VESC_X_TEMP_VOLT,
 		VESC_X_TEMP_VOLT + 1,
 		VESC_X_TEMP_VOLT + 2,
@@ -490,7 +485,6 @@ public static class CommHandler
 		VESC_X_TEMP_VOLT + 13,
 		VESC_X_TEMP_VOLT + 14,
 		VESC_X_TEMP_VOLT + 15,
-
 		ENC_POS
 		};
 

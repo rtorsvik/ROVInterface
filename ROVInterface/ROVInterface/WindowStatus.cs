@@ -110,8 +110,10 @@ public partial class WindowStatus : Form
 		else
 			pbr_heartBeat.Value = 0;
 
-		if(CommHandler.connectionType == CommHandler.ConnectionType.CANbus)
-			CommHandler.port.Request(ADFwebRequest++ % 72 + 1);
+		if (CommHandler.connectionType == CommHandler.ConnectionType.CANbus)
+		{
+			CommHandler.port.Request(ADFwebRequest++ % 72);
+		}
 
 	}
 

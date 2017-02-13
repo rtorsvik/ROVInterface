@@ -129,9 +129,6 @@ public class CANPort : Port
 	/// <param name="index"></param>
 	public void Request(int index)
 	{
-		if (index == 10)
-			Console.WriteLine("reading depth_temp");
-
 		byte readIdentifyer = 0x01;
 
 		byte startAddressHi = (byte)(index >> 8);

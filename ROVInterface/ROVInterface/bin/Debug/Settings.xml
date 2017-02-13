@@ -21,18 +21,30 @@
 	</JoystickSettings>
 	<IndexSettings>
 		<Setting>
-			<index>17</index><name>sin</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>50</scaled><suffix></suffix>
+			<index>4</index><name>Roll</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>1000</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 		<Setting>
-			<index>13</index><name>rand</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+			<index>5</index><name>Pitch</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>1000</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 		<Setting>
-			<index>16</index><name>cnt</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+			<index>6</index><name>Yaw</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>1000</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>501</index><name>Pod temp</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>502</index><name>Water temp</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>503</index><name>DCDC temp</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 	</IndexSettings>
 	<IndexStats>
-		<Stats>13</Stats>
-		<Stats>16</Stats>
-		<Stats>17</Stats>
+		<Stats>4</Stats>
+		<Stats>5</Stats>
+		<Stats>6</Stats>
+		<Stats>501</Stats>
+		<Stats>502</Stats>
+		<Stats>503</Stats>
 	</IndexStats>
 </Settings>
