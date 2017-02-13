@@ -95,7 +95,7 @@ public partial class WindowStatus : Form
 		graphicsCreator.UpdateValues();
 
 		//update hartbeat
-		heartBeat = st.status[0];
+		heartBeat = (int)st.status[0];
 		if(heartBeat != heartBeat_prev)
 		{
 			pulse = true;

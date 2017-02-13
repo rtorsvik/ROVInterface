@@ -335,9 +335,8 @@ public class GraphicsCreator {
 			public void DrawIndex(Graphics g) {
 				bool found = true;
 				int value = 0;
-				try {
-					value = ST_Register.status[_idx];
-				} catch { found = false; }
+				if (found = (ST_Register.status[_idx] != null))
+					value = (int)ST_Register.status[_idx];
 				
 				if (!found) {
 					if (_hidden)
