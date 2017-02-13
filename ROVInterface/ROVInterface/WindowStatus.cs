@@ -91,7 +91,7 @@ public partial class WindowStatus : Form
 		joystickSettings.Update();
 		indexStats.UpdateAllValues();
 
-		// Update values in the graphics
+		// Update graphics tab
 		graphicsCreator.UpdateValues();
 
 		//update hartbeat
@@ -776,5 +776,10 @@ public partial class WindowStatus : Form
 	// Function to open the edit indexes for the graphic tab
 	private void pan_graphicsCreator_DoubleClick(object sender, EventArgs e) {
 		graphicsCreator.ChangeEditMode(sender, e);
+	}
+
+	private void pan_graphicsCreator_Paint(object sender, PaintEventArgs e) {
+		graphicsCreator.DrawBackgroundImage(e);
+		base.OnPaint(e);
 	}
 }

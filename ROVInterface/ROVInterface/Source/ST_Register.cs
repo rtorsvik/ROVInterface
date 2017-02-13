@@ -30,6 +30,9 @@ public static class ST_Register {
 		Program.windowStatus.tim_SendCommandsDelay.Stop();
 
 		ST_Array.arrelement[] data = commands.GetAllValues();
+		// Check if there is no elements to be sent
+		if (data.Length == 0)
+			return;
 		KeyValuePair<int, int>[] tosend = new KeyValuePair<int, int>[data.Length];
 		for (int i = 0, j = data.Length; i < j; i++)
 			tosend[i] = new KeyValuePair<int, int>(data[i].index, data[i].value);
