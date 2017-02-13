@@ -11,7 +11,7 @@ class SerialConnection : Port
 
     private SerialPort port;
 
-	private bool connectionOpened;
+	private bool connectionEstablished;
 	private CommHandler.ConnectionStatus connectionStatus;
 
 	private byte[] buffer;
@@ -56,9 +56,10 @@ class SerialConnection : Port
     {
 		try
 		{
-			connectionOpened = true;
-			port.Open();
 			
+			port.Open();
+
+			connectionEstablished = true;
 			connectionStatus = CommHandler.ConnectionStatus.Connected;
 		}
 		catch (UnauthorizedAccessException e)
@@ -84,7 +85,8 @@ class SerialConnection : Port
     public bool Close()
     {
 		port.Close();
-		connectionOpened = false;
+
+		connectionEstablished = false;
 		connectionStatus = CommHandler.ConnectionStatus.NotConnected;
 
 		//return true if the port has closed
@@ -110,13 +112,13 @@ class SerialConnection : Port
 	/// <returns></returns>
 	public CommHandler.ConnectionStatus GetConnectionStatus()
 	{
-		if(connectionOpened && IsOpen())
+		if(connectionEstablished && IsOpen())
 			connectionStatus = CommHandler.ConnectionStatus.Connected;
 
-		else if (connectionOpened && !IsOpen())
+		else if (connectionEstablished && !IsOpen())
 			connectionStatus = CommHandler.ConnectionStatus.Disconnected;
 
-		else if (!connectionOpened && !IsOpen())
+		else if (!connectionEstablished && !IsOpen())
 			connectionStatus = CommHandler.ConnectionStatus.NotConnected;
 
 		return connectionStatus;

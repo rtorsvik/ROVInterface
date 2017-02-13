@@ -31,6 +31,12 @@
 			this.connectionTab = new System.Windows.Forms.TabControl();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.pan_graphicsCreator = new System.Windows.Forms.Panel();
+			this.groupBox11 = new System.Windows.Forms.GroupBox();
+			this.label37 = new System.Windows.Forms.Label();
+			this.btn_aegir_coolingfan = new System.Windows.Forms.Button();
+			this.btn_aegir_armmotors = new System.Windows.Forms.Button();
+			this.nud_aegir_lightdim = new System.Windows.Forms.NumericUpDown();
+			this.btn_aegir_light = new System.Windows.Forms.Button();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.rdb_comm_status_bytes = new System.Windows.Forms.RadioButton();
@@ -53,11 +59,11 @@
 			this.nud_con_serial_index = new System.Windows.Forms.NumericUpDown();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.btn_send_serial = new System.Windows.Forms.Button();
+			this.btn_comm_serialSend = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.cmb_comport = new System.Windows.Forms.ComboBox();
-			this.btn_connect_serial = new System.Windows.Forms.Button();
+			this.btn_comm_serialConnect = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.cmb_baudrate = new System.Windows.Forms.ComboBox();
 			this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -69,7 +75,7 @@
 			this.label30 = new System.Windows.Forms.Label();
 			this.txt_comm_clientip = new System.Windows.Forms.TextBox();
 			this.label29 = new System.Windows.Forms.Label();
-			this.btn_comm_connectethernet = new System.Windows.Forms.Button();
+			this.btn_comm_ethernetConnect = new System.Windows.Forms.Button();
 			this.groupBox9 = new System.Windows.Forms.GroupBox();
 			this.txt_comm_serverport = new System.Windows.Forms.TextBox();
 			this.label31 = new System.Windows.Forms.Label();
@@ -77,6 +83,17 @@
 			this.label32 = new System.Windows.Forms.Label();
 			this.btn_comm_startserver = new System.Windows.Forms.Button();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.label36 = new System.Windows.Forms.Label();
+			this.txt_comm_CANreply = new System.Windows.Forms.TextBox();
+			this.label35 = new System.Windows.Forms.Label();
+			this.btn_comm_CANsend = new System.Windows.Forms.Button();
+			this.groupBox10 = new System.Windows.Forms.GroupBox();
+			this.txt_comm_CANport = new System.Windows.Forms.TextBox();
+			this.label33 = new System.Windows.Forms.Label();
+			this.txt_comm_CANip = new System.Windows.Forms.TextBox();
+			this.label34 = new System.Windows.Forms.Label();
+			this.btn_comm_CANconnect = new System.Windows.Forms.Button();
+			this.txt_comm_CANmessage = new System.Windows.Forms.TextBox();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.tbl_IndexSettings = new System.Windows.Forms.TableLayoutPanel();
 			this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
@@ -126,8 +143,12 @@
 			this.tim_SendCommandsDelay = new System.Windows.Forms.Timer(this.components);
 			this.bgw_ethernetMessageRecieveHandler = new System.ComponentModel.BackgroundWorker();
 			this.bgw_ethernetMessageSendHandler = new System.ComponentModel.BackgroundWorker();
+			this.bgw_aegirMessageRequest = new System.ComponentModel.BackgroundWorker();
 			this.connectionTab.SuspendLayout();
 			this.tabPage2.SuspendLayout();
+			this.pan_graphicsCreator.SuspendLayout();
+			this.groupBox11.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_lightdim)).BeginInit();
 			this.tabPage3.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nud_comm_transfreq)).BeginInit();
@@ -140,6 +161,8 @@
 			this.groupBox7.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.groupBox9.SuspendLayout();
+			this.groupBox6.SuspendLayout();
+			this.groupBox10.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			this.tbl_IndexSettings.SuspendLayout();
 			this.flowLayoutPanel4.SuspendLayout();
@@ -188,11 +211,85 @@
 			// 
 			// pan_graphicsCreator
 			// 
+			this.pan_graphicsCreator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+			this.pan_graphicsCreator.Controls.Add(this.groupBox11);
 			this.pan_graphicsCreator.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pan_graphicsCreator.Location = new System.Drawing.Point(3, 2);
 			this.pan_graphicsCreator.Name = "pan_graphicsCreator";
 			this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
 			this.pan_graphicsCreator.TabIndex = 0;
+			// 
+			// groupBox11
+			// 
+			this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox11.Controls.Add(this.label37);
+			this.groupBox11.Controls.Add(this.btn_aegir_coolingfan);
+			this.groupBox11.Controls.Add(this.btn_aegir_armmotors);
+			this.groupBox11.Controls.Add(this.nud_aegir_lightdim);
+			this.groupBox11.Controls.Add(this.btn_aegir_light);
+			this.groupBox11.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox11.Location = new System.Drawing.Point(1032, 3);
+			this.groupBox11.Name = "groupBox11";
+			this.groupBox11.Size = new System.Drawing.Size(351, 590);
+			this.groupBox11.TabIndex = 0;
+			this.groupBox11.TabStop = false;
+			this.groupBox11.Text = "Ægir TEMP";
+			// 
+			// label37
+			// 
+			this.label37.AutoSize = true;
+			this.label37.Location = new System.Drawing.Point(182, 151);
+			this.label37.Name = "label37";
+			this.label37.Size = new System.Drawing.Size(95, 17);
+			this.label37.TabIndex = 4;
+			this.label37.Text = "Light dimming";
+			// 
+			// btn_aegir_coolingfan
+			// 
+			this.btn_aegir_coolingfan.Location = new System.Drawing.Point(20, 185);
+			this.btn_aegir_coolingfan.Name = "btn_aegir_coolingfan";
+			this.btn_aegir_coolingfan.Size = new System.Drawing.Size(139, 39);
+			this.btn_aegir_coolingfan.TabIndex = 3;
+			this.btn_aegir_coolingfan.Text = "Coolingfan [Off]";
+			this.btn_aegir_coolingfan.UseVisualStyleBackColor = true;
+			this.btn_aegir_coolingfan.Click += new System.EventHandler(this.btn_aegir_coolingfan_Click);
+			// 
+			// btn_aegir_armmotors
+			// 
+			this.btn_aegir_armmotors.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_aegir_armmotors.Location = new System.Drawing.Point(20, 51);
+			this.btn_aegir_armmotors.Name = "btn_aegir_armmotors";
+			this.btn_aegir_armmotors.Size = new System.Drawing.Size(313, 39);
+			this.btn_aegir_armmotors.TabIndex = 2;
+			this.btn_aegir_armmotors.Text = "Arm motors [Disarmed]";
+			this.btn_aegir_armmotors.UseVisualStyleBackColor = true;
+			this.btn_aegir_armmotors.Click += new System.EventHandler(this.btn_aegir_armmotors_Click);
+			// 
+			// nud_aegir_lightdim
+			// 
+			this.nud_aegir_lightdim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.nud_aegir_lightdim.Location = new System.Drawing.Point(283, 149);
+			this.nud_aegir_lightdim.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.nud_aegir_lightdim.Name = "nud_aegir_lightdim";
+			this.nud_aegir_lightdim.Size = new System.Drawing.Size(50, 23);
+			this.nud_aegir_lightdim.TabIndex = 1;
+			this.nud_aegir_lightdim.ValueChanged += new System.EventHandler(this.nud_aegir_lightdim_ValueChanged);
+			// 
+			// btn_aegir_light
+			// 
+			this.btn_aegir_light.Location = new System.Drawing.Point(20, 140);
+			this.btn_aegir_light.Name = "btn_aegir_light";
+			this.btn_aegir_light.Size = new System.Drawing.Size(139, 39);
+			this.btn_aegir_light.TabIndex = 0;
+			this.btn_aegir_light.Text = "Light [Off]";
+			this.btn_aegir_light.UseVisualStyleBackColor = true;
+			this.btn_aegir_light.Click += new System.EventHandler(this.btn_aegir_light_Click);
 			// 
 			// tabPage3
 			// 
@@ -425,7 +522,7 @@
 			this.groupBox1.Controls.Add(this.nud_con_serial_index);
 			this.groupBox1.Controls.Add(this.label5);
 			this.groupBox1.Controls.Add(this.label4);
-			this.groupBox1.Controls.Add(this.btn_send_serial);
+			this.groupBox1.Controls.Add(this.btn_comm_serialSend);
 			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.groupBox1.Location = new System.Drawing.Point(0, 222);
@@ -486,18 +583,18 @@
 			this.label4.TabIndex = 11;
 			this.label4.Text = "Index";
 			// 
-			// btn_send_serial
+			// btn_comm_serialSend
 			// 
-			this.btn_send_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_send_serial.Enabled = false;
-			this.btn_send_serial.Location = new System.Drawing.Point(268, 31);
-			this.btn_send_serial.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
-			this.btn_send_serial.Name = "btn_send_serial";
-			this.btn_send_serial.Size = new System.Drawing.Size(111, 50);
-			this.btn_send_serial.TabIndex = 6;
-			this.btn_send_serial.Text = "Send";
-			this.btn_send_serial.UseVisualStyleBackColor = true;
-			this.btn_send_serial.Click += new System.EventHandler(this.btn_send_serial_Click);
+			this.btn_comm_serialSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_comm_serialSend.Enabled = false;
+			this.btn_comm_serialSend.Location = new System.Drawing.Point(268, 31);
+			this.btn_comm_serialSend.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.btn_comm_serialSend.Name = "btn_comm_serialSend";
+			this.btn_comm_serialSend.Size = new System.Drawing.Size(111, 50);
+			this.btn_comm_serialSend.TabIndex = 6;
+			this.btn_comm_serialSend.Text = "Send";
+			this.btn_comm_serialSend.UseVisualStyleBackColor = true;
+			this.btn_comm_serialSend.Click += new System.EventHandler(this.btn_send_serial_Click);
 			// 
 			// groupBox2
 			// 
@@ -505,7 +602,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.label2);
 			this.groupBox2.Controls.Add(this.cmb_comport);
-			this.groupBox2.Controls.Add(this.btn_connect_serial);
+			this.groupBox2.Controls.Add(this.btn_comm_serialConnect);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.cmb_baudrate);
 			this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -540,17 +637,17 @@
 			this.cmb_comport.Text = "COM5";
 			this.cmb_comport.Click += new System.EventHandler(this.cmb_comport_Click);
 			// 
-			// btn_connect_serial
+			// btn_comm_serialConnect
 			// 
-			this.btn_connect_serial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_connect_serial.Location = new System.Drawing.Point(268, 33);
-			this.btn_connect_serial.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
-			this.btn_connect_serial.Name = "btn_connect_serial";
-			this.btn_connect_serial.Size = new System.Drawing.Size(111, 52);
-			this.btn_connect_serial.TabIndex = 5;
-			this.btn_connect_serial.Text = "Connect";
-			this.btn_connect_serial.UseVisualStyleBackColor = true;
-			this.btn_connect_serial.Click += new System.EventHandler(this.btn_connect_serial_Click);
+			this.btn_comm_serialConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_comm_serialConnect.Location = new System.Drawing.Point(268, 33);
+			this.btn_comm_serialConnect.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.btn_comm_serialConnect.Name = "btn_comm_serialConnect";
+			this.btn_comm_serialConnect.Size = new System.Drawing.Size(111, 52);
+			this.btn_comm_serialConnect.TabIndex = 5;
+			this.btn_comm_serialConnect.Text = "Connect";
+			this.btn_comm_serialConnect.UseVisualStyleBackColor = true;
+			this.btn_comm_serialConnect.Click += new System.EventHandler(this.btn_connect_serial_Click);
 			// 
 			// label3
 			// 
@@ -636,7 +733,7 @@
 			this.groupBox5.Controls.Add(this.label30);
 			this.groupBox5.Controls.Add(this.txt_comm_clientip);
 			this.groupBox5.Controls.Add(this.label29);
-			this.groupBox5.Controls.Add(this.btn_comm_connectethernet);
+			this.groupBox5.Controls.Add(this.btn_comm_ethernetConnect);
 			this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.groupBox5.Location = new System.Drawing.Point(0, 139);
@@ -684,17 +781,17 @@
 			this.label29.TabIndex = 3;
 			this.label29.Text = "IP Address";
 			// 
-			// btn_comm_connectethernet
+			// btn_comm_ethernetConnect
 			// 
-			this.btn_comm_connectethernet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_comm_connectethernet.Location = new System.Drawing.Point(268, 33);
-			this.btn_comm_connectethernet.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
-			this.btn_comm_connectethernet.Name = "btn_comm_connectethernet";
-			this.btn_comm_connectethernet.Size = new System.Drawing.Size(111, 52);
-			this.btn_comm_connectethernet.TabIndex = 5;
-			this.btn_comm_connectethernet.Text = "Connect";
-			this.btn_comm_connectethernet.UseVisualStyleBackColor = true;
-			this.btn_comm_connectethernet.Click += new System.EventHandler(this.btn_connect_ethernet_Click);
+			this.btn_comm_ethernetConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_comm_ethernetConnect.Location = new System.Drawing.Point(268, 33);
+			this.btn_comm_ethernetConnect.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.btn_comm_ethernetConnect.Name = "btn_comm_ethernetConnect";
+			this.btn_comm_ethernetConnect.Size = new System.Drawing.Size(111, 52);
+			this.btn_comm_ethernetConnect.TabIndex = 5;
+			this.btn_comm_ethernetConnect.Text = "Connect";
+			this.btn_comm_ethernetConnect.UseVisualStyleBackColor = true;
+			this.btn_comm_ethernetConnect.Click += new System.EventHandler(this.btn_connect_ethernet_Click);
 			// 
 			// groupBox9
 			// 
@@ -772,6 +869,12 @@
 			this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox6.Controls.Add(this.label36);
+			this.groupBox6.Controls.Add(this.txt_comm_CANreply);
+			this.groupBox6.Controls.Add(this.label35);
+			this.groupBox6.Controls.Add(this.btn_comm_CANsend);
+			this.groupBox6.Controls.Add(this.groupBox10);
+			this.groupBox6.Controls.Add(this.txt_comm_CANmessage);
 			this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox6.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.groupBox6.Location = new System.Drawing.Point(873, 12);
@@ -782,6 +885,136 @@
 			this.groupBox6.TabIndex = 1;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "CAN-bus connection";
+			// 
+			// label36
+			// 
+			this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label36.AutoSize = true;
+			this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label36.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label36.Location = new System.Drawing.Point(20, 353);
+			this.label36.Name = "label36";
+			this.label36.Size = new System.Drawing.Size(72, 17);
+			this.label36.TabIndex = 54;
+			this.label36.Text = "Response";
+			// 
+			// txt_comm_CANreply
+			// 
+			this.txt_comm_CANreply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.txt_comm_CANreply.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txt_comm_CANreply.Location = new System.Drawing.Point(102, 350);
+			this.txt_comm_CANreply.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_comm_CANreply.Name = "txt_comm_CANreply";
+			this.txt_comm_CANreply.Size = new System.Drawing.Size(229, 23);
+			this.txt_comm_CANreply.TabIndex = 55;
+			// 
+			// label35
+			// 
+			this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label35.AutoSize = true;
+			this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label35.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label35.Location = new System.Drawing.Point(20, 326);
+			this.label35.Name = "label35";
+			this.label35.Size = new System.Drawing.Size(65, 17);
+			this.label35.TabIndex = 28;
+			this.label35.Text = "Message";
+			// 
+			// btn_comm_CANsend
+			// 
+			this.btn_comm_CANsend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btn_comm_CANsend.Enabled = false;
+			this.btn_comm_CANsend.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_comm_CANsend.Location = new System.Drawing.Point(360, 319);
+			this.btn_comm_CANsend.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.btn_comm_CANsend.Name = "btn_comm_CANsend";
+			this.btn_comm_CANsend.Size = new System.Drawing.Size(111, 30);
+			this.btn_comm_CANsend.TabIndex = 52;
+			this.btn_comm_CANsend.Text = "Send";
+			this.btn_comm_CANsend.UseVisualStyleBackColor = true;
+			this.btn_comm_CANsend.Click += new System.EventHandler(this.btn_comm_CANsend_Click);
+			// 
+			// groupBox10
+			// 
+			this.groupBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox10.Controls.Add(this.txt_comm_CANport);
+			this.groupBox10.Controls.Add(this.label33);
+			this.groupBox10.Controls.Add(this.txt_comm_CANip);
+			this.groupBox10.Controls.Add(this.label34);
+			this.groupBox10.Controls.Add(this.btn_comm_CANconnect);
+			this.groupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox10.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox10.Location = new System.Drawing.Point(0, 87);
+			this.groupBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.groupBox10.Name = "groupBox10";
+			this.groupBox10.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.groupBox10.Size = new System.Drawing.Size(496, 108);
+			this.groupBox10.TabIndex = 41;
+			this.groupBox10.TabStop = false;
+			this.groupBox10.Text = "Connection (as client)";
+			// 
+			// txt_comm_CANport
+			// 
+			this.txt_comm_CANport.Enabled = false;
+			this.txt_comm_CANport.Location = new System.Drawing.Point(102, 61);
+			this.txt_comm_CANport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_comm_CANport.Name = "txt_comm_CANport";
+			this.txt_comm_CANport.Size = new System.Drawing.Size(103, 23);
+			this.txt_comm_CANport.TabIndex = 27;
+			this.txt_comm_CANport.Text = "10001";
+			// 
+			// label33
+			// 
+			this.label33.AutoSize = true;
+			this.label33.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label33.Location = new System.Drawing.Point(20, 64);
+			this.label33.Name = "label33";
+			this.label33.Size = new System.Drawing.Size(34, 17);
+			this.label33.TabIndex = 26;
+			this.label33.Text = "Port";
+			// 
+			// txt_comm_CANip
+			// 
+			this.txt_comm_CANip.Enabled = false;
+			this.txt_comm_CANip.Location = new System.Drawing.Point(102, 33);
+			this.txt_comm_CANip.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_comm_CANip.Name = "txt_comm_CANip";
+			this.txt_comm_CANip.Size = new System.Drawing.Size(103, 23);
+			this.txt_comm_CANip.TabIndex = 25;
+			this.txt_comm_CANip.Text = "10.0.0.9";
+			// 
+			// label34
+			// 
+			this.label34.AutoSize = true;
+			this.label34.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.label34.Location = new System.Drawing.Point(20, 36);
+			this.label34.Name = "label34";
+			this.label34.Size = new System.Drawing.Size(76, 17);
+			this.label34.TabIndex = 3;
+			this.label34.Text = "IP Address";
+			// 
+			// btn_comm_CANconnect
+			// 
+			this.btn_comm_CANconnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_comm_CANconnect.Location = new System.Drawing.Point(360, 33);
+			this.btn_comm_CANconnect.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
+			this.btn_comm_CANconnect.Name = "btn_comm_CANconnect";
+			this.btn_comm_CANconnect.Size = new System.Drawing.Size(111, 52);
+			this.btn_comm_CANconnect.TabIndex = 5;
+			this.btn_comm_CANconnect.Text = "Connect";
+			this.btn_comm_CANconnect.UseVisualStyleBackColor = true;
+			this.btn_comm_CANconnect.Click += new System.EventHandler(this.btn_comm_CANconnect_Click);
+			// 
+			// txt_comm_CANmessage
+			// 
+			this.txt_comm_CANmessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.txt_comm_CANmessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txt_comm_CANmessage.Location = new System.Drawing.Point(102, 323);
+			this.txt_comm_CANmessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txt_comm_CANmessage.Name = "txt_comm_CANmessage";
+			this.txt_comm_CANmessage.Size = new System.Drawing.Size(229, 23);
+			this.txt_comm_CANmessage.TabIndex = 53;
 			// 
 			// tabPage4
 			// 
@@ -1325,6 +1558,10 @@
 			// 
 			this.bgw_ethernetMessageSendHandler.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_ethernetMessageSendHandler_DoWork);
 			// 
+			// bgw_aegirMessageRequest
+			// 
+			this.bgw_aegirMessageRequest.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_aegirMessageRequest_DoWork);
+			// 
 			// WindowStatus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1342,6 +1579,10 @@
 			this.Load += new System.EventHandler(this.WindowStatus_Load);
 			this.connectionTab.ResumeLayout(false);
 			this.tabPage2.ResumeLayout(false);
+			this.pan_graphicsCreator.ResumeLayout(false);
+			this.groupBox11.ResumeLayout(false);
+			this.groupBox11.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_lightdim)).EndInit();
 			this.tabPage3.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
@@ -1360,6 +1601,10 @@
 			this.groupBox5.PerformLayout();
 			this.groupBox9.ResumeLayout(false);
 			this.groupBox9.PerformLayout();
+			this.groupBox6.ResumeLayout(false);
+			this.groupBox6.PerformLayout();
+			this.groupBox10.ResumeLayout(false);
+			this.groupBox10.PerformLayout();
 			this.tabPage4.ResumeLayout(false);
 			this.tbl_IndexSettings.ResumeLayout(false);
 			this.tbl_IndexSettings.PerformLayout();
@@ -1393,11 +1638,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmb_baudrate;
-        private System.Windows.Forms.Button btn_connect_serial;
+        private System.Windows.Forms.Button btn_comm_serialConnect;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btn_send_serial;
+        private System.Windows.Forms.Button btn_comm_serialSend;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.GroupBox groupBox2;
@@ -1470,7 +1715,7 @@
 	private System.Windows.Forms.GroupBox groupBox5;
 	public System.Windows.Forms.TextBox txt_comm_clientip;
 	private System.Windows.Forms.Label label29;
-	private System.Windows.Forms.Button btn_comm_connectethernet;
+	private System.Windows.Forms.Button btn_comm_ethernetConnect;
 	private System.Windows.Forms.GroupBox groupBox9;
 	public System.Windows.Forms.TextBox txt_comm_serverport;
 	private System.Windows.Forms.Label label31;
@@ -1484,4 +1729,22 @@
 	private System.Windows.Forms.ListBox lbx_comm_messages;
 	private System.ComponentModel.BackgroundWorker bgw_ethernetMessageRecieveHandler;
 	private System.ComponentModel.BackgroundWorker bgw_ethernetMessageSendHandler;
+	private System.Windows.Forms.Label label35;
+	private System.Windows.Forms.Button btn_comm_CANsend;
+	private System.Windows.Forms.GroupBox groupBox10;
+	public System.Windows.Forms.TextBox txt_comm_CANport;
+	private System.Windows.Forms.Label label33;
+	public System.Windows.Forms.TextBox txt_comm_CANip;
+	private System.Windows.Forms.Label label34;
+	private System.Windows.Forms.Button btn_comm_CANconnect;
+	public System.Windows.Forms.TextBox txt_comm_CANmessage;
+	private System.Windows.Forms.Label label36;
+	public System.Windows.Forms.TextBox txt_comm_CANreply;
+	private System.Windows.Forms.GroupBox groupBox11;
+	private System.Windows.Forms.NumericUpDown nud_aegir_lightdim;
+	private System.Windows.Forms.Button btn_aegir_light;
+	private System.Windows.Forms.Label label37;
+	private System.Windows.Forms.Button btn_aegir_coolingfan;
+	private System.Windows.Forms.Button btn_aegir_armmotors;
+	private System.ComponentModel.BackgroundWorker bgw_aegirMessageRequest;
 }

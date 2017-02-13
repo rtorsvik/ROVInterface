@@ -118,23 +118,44 @@ public partial class WindowStatus : Form
 		//serial connection
 		if (CommHandler.initialized)
 		{
+			//the button to update
+			Button btn;
+			switch (CommHandler.connectionType)
+			{
+				case CommHandler.ConnectionType.Serial:
+					btn = btn_comm_serialConnect;
+					break;
+
+				case CommHandler.ConnectionType.Ethernet:
+					btn = btn_comm_ethernetConnect;
+					break;
+
+				case CommHandler.ConnectionType.CANbus:
+					btn = btn_comm_CANconnect;
+					break;
+
+				default:
+					btn = null;
+					break;
+			}
+
 			//update connection button color
 			if (CommHandler.GetConnectionStatus() == CommHandler.ConnectionStatus.Connected)
 			{
-				btn_connect_serial.BackColor = System.Drawing.Color.SpringGreen; //Darg green?, ForrestGreen? LimeGreen? SpringGreen?
-																				 //btn_connect_serial.ForeColor = System.Drawing.Color.White;
+				btn.BackColor = System.Drawing.Color.SpringGreen; //Darg green?, ForrestGreen? LimeGreen? SpringGreen?
+																 //btn_connect_serial.ForeColor = System.Drawing.Color.White;
 			}
 
 			else if (CommHandler.GetConnectionStatus() == CommHandler.ConnectionStatus.NotConnected)
 			{
-				btn_connect_serial.UseVisualStyleBackColor = true;
-				btn_connect_serial.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+				btn.UseVisualStyleBackColor = true;
+				btn.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			}
 
 			else if (CommHandler.GetConnectionStatus() == CommHandler.ConnectionStatus.Disconnected)
 			{
-				btn_connect_serial.BackColor = System.Drawing.Color.Red; //Firebrick?
-				btn_connect_serial.ForeColor = System.Drawing.Color.White;
+				btn.BackColor = System.Drawing.Color.Red; //Firebrick?
+				btn.ForeColor = System.Drawing.Color.White;
 			}
 
 
@@ -234,6 +255,13 @@ public partial class WindowStatus : Form
 		CommHandler.Send(new KeyValuePair<int, int>(index, value));
 	}
 
+
+
+	/// <summary>
+	/// Start a serial connection
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
 	private void btn_connect_serial_Click(object sender, EventArgs e)
 	{
 		if (!CommHandler.initialized)
@@ -242,12 +270,12 @@ public partial class WindowStatus : Form
 		if (CommHandler.IsOpen())
 		{
 			CommHandler.Close();
-			btn_send_serial.Enabled = false;
+			btn_comm_serialSend.Enabled = false;
 		}
 		else
 		{
 			CommHandler.Open();
-			btn_send_serial.Enabled = true;
+			btn_comm_serialSend.Enabled = true;
 		}
 
 	}
@@ -393,8 +421,8 @@ public partial class WindowStatus : Form
 				bgw_ethernetMessageSendHandler.WorkerSupportsCancellation = true;  //ability to cancel this thread
 
 				//update graphics
-				btn_comm_connectethernet.BackColor = System.Drawing.Color.Aquamarine;
-				btn_comm_connectethernet.Text = "Connected";
+				btn_comm_ethernetConnect.BackColor = System.Drawing.Color.Aquamarine;
+				btn_comm_ethernetConnect.Text = "Connected";
 
 				btn_comm_startserver.Enabled = false;
 
@@ -467,7 +495,7 @@ public partial class WindowStatus : Form
 
 		//update graphics
 		btn_comm_startserver.BackColor = System.Drawing.Color.Aquamarine;
-		btn_comm_connectethernet.Enabled = false;
+		btn_comm_ethernetConnect.Enabled = false;
 		txt_comm_ethernetmessage.Focus();
 		
 	}
@@ -583,6 +611,148 @@ public partial class WindowStatus : Form
 			catch (Exception e5)
 			{
 				MessageBox.Show(e5.ToString());
+			}
+		}
+	}
+
+	/// <summary>
+	/// Start a CAN buss connection
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+	private void btn_comm_CANconnect_Click(object sender, EventArgs e)
+	{
+		if (!CommHandler.initialized)
+		{
+			string ip;
+			int port;
+
+			try
+			{
+				ip = IPAddress.Parse(txt_comm_CANip.Text).ToString();
+				port = Int32.Parse(txt_comm_CANport.Text);
+			}
+			catch(Exception CANConnectExeption)
+			{
+				MessageBox.Show("Please enter a valid IP address and port number", "caption", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+
+			CommHandler.InitCAN(ip, port);
+			btn_comm_CANsend.Enabled = true;
+		}
+
+		else if (CommHandler.IsOpen())
+		{
+			CommHandler.Close();
+			btn_comm_CANsend.Enabled = false;
+		}
+
+		else
+		{
+			CommHandler.Open();
+			btn_comm_CANsend.Enabled = true;
+		}
+	}
+
+	private void btn_comm_CANsend_Click(object sender, EventArgs e)
+	{
+		char[] splits = new char[] { ' ', '[', ',', ']' };
+		string[] byteStrings = txt_comm_CANmessage.Text.Split(splits);
+
+		List<byte> bytesToSend = new List<byte>();
+		foreach (string s in byteStrings)
+		{
+			if (s == "") continue;
+			bytesToSend.Add(byte.Parse(s, System.Globalization.NumberStyles.HexNumber));
+		}
+
+		byte[] package = bytesToSend.ToArray();
+
+		CommHandler.port.Send(package);
+	}
+
+
+
+	//TEMP Ægir############################################################################################################################
+	bool aegirLightOn = false;
+	private void btn_aegir_light_Click(object sender, EventArgs e)
+	{
+		if(aegirLightOn)
+		{
+			aegirLightOn = false;
+			btn_aegir_light.Text = "Light [Off]";
+			btn_aegir_light.UseVisualStyleBackColor = true;
+		}
+		else
+		{
+			aegirLightOn = true;
+			btn_aegir_light.Text = "Light [On]";
+			btn_aegir_light.BackColor = System.Drawing.Color.Aquamarine;
+		}
+
+		ST_Register.commands[400] = Convert.ToInt32(aegirLightOn);
+	}
+
+	private void nud_aegir_lightdim_ValueChanged(object sender, EventArgs e)
+	{
+		ST_Register.commands[401] = (int)nud_aegir_lightdim.Value;
+	}
+
+	int aegirMotorcommandCache;
+	bool aegirCoolingfanOn = false;
+	private void btn_aegir_coolingfan_Click(object sender, EventArgs e)
+	{
+		if (aegirCoolingfanOn)
+		{
+			aegirCoolingfanOn = false;
+			btn_aegir_coolingfan.Text = "Coolingfan [Off]";
+			btn_aegir_coolingfan.UseVisualStyleBackColor = true;
+		}
+		else
+		{
+			aegirCoolingfanOn = true;
+			btn_aegir_coolingfan.Text = "Coolingfan [On]";
+			btn_aegir_coolingfan.BackColor = System.Drawing.Color.Aquamarine;
+		}
+
+		ST_Register.commands[100] = aegirMotorcommandCache = aegirMotorcommandCache & ~0x4 | Convert.ToInt32(aegirCoolingfanOn) << 2;
+	}
+
+	bool aegirArmmotorsOn = false;
+	private void btn_aegir_armmotors_Click(object sender, EventArgs e)
+	{
+		if (aegirArmmotorsOn)
+		{
+			aegirArmmotorsOn = false;
+			btn_aegir_armmotors.Text = "Arm motors [Disarmed]";
+			btn_aegir_armmotors.UseVisualStyleBackColor = true;
+		}
+		else
+		{
+			aegirArmmotorsOn = true;
+			btn_aegir_armmotors.Text = "Arm motors [Armed]";
+			btn_aegir_armmotors.BackColor = System.Drawing.Color.Aquamarine;
+		}
+
+		ST_Register.commands[100] = aegirMotorcommandCache = aegirMotorcommandCache & ~0x1 | Convert.ToInt32(aegirArmmotorsOn);
+	}
+
+
+
+	/// <summary>
+	/// Backgroundworker to request values from ADFweb ethernet/CAN transformer
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+	private void bgw_aegirMessageRequest_DoWork(object sender, DoWorkEventArgs e)
+	{
+		while (true)
+		{
+			//Ask for the Cob_IDs from ADFweb ethernet/CAN transformer
+			for (int i = 1; i < 73; i++)
+			{
+				CommHandler.port.Request(i);
 			}
 		}
 	}

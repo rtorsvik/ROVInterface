@@ -25,25 +25,28 @@ static class Program
         Console.Write("Red five, standing by\n");
 
 
-		//Test field
-		//#############################################################################
-		errors = new ErrorManager();
-
-		//#############################################################################
-
-
-
-
-
-		
+				
 		//Program handlers and classes
 		JoystickHandler.Init();
 		ST_Register.Init();
 		ProgramSaverLoader.Init();
 		CommHandler.InitDllImport();
-            
 
-        new WindowCamera().Show();
+
+
+		//Sandbox
+		//#############################################################################
+		errors = new ErrorManager();
+
+
+		//KeyValuePair<int, int>[] kvp = new KeyValuePair<int, int>[2] { new KeyValuePair<int, int>(400, 0x0001), new KeyValuePair<int, int>(401, 32767) };
+		//CommHandler.Send(kvp);
+		//#############################################################################
+
+
+
+
+		new WindowCamera().Show();
 		windowStatus = new WindowStatus();
 		windowStatus.FormClosing += ProgramSaverLoader.Save;
 		Application.Run(windowStatus);

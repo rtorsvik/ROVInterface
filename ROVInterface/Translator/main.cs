@@ -1,8 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Translator
 {
@@ -28,7 +26,7 @@ namespace Translator
 
 
 	
-		//Identifyers
+		//CAN bus Identifyers
 		private const int TOP_XBOX_CTRLS = 0x200;
 		private const int TOP_XBOX_AXES = 0x201;
 		private const int TOP_POWR_CTRL = 0x202;
@@ -72,6 +70,10 @@ namespace Translator
 
 
 
+		//ADFWeb identifyers
+		private const byte readidentifier = 0x01;
+		private const byte writeidentifier = 0x02;
+
 
 		/// <summary>
 		/// Converts a set of commands into the right format before sending
@@ -80,7 +82,15 @@ namespace Translator
 		/// <returns>byte array in the right format</returns>
 		public static byte[] ConvertCommands(KeyValuePair<int, int>[] commands)
 		{
-			Dictionary<int, byte[]> message = new Dictionary<int, byte[]>(); //messages to send, key representing identifyer and value reperenting the bytes
+			Dictionary<int, byte[]> message = new Dictionary<int, byte[]>();    //messages to send, key representing identifyer and value reperenting the bytes
+			List<byte> package = new List<byte>();                              //contains the bytes to send
+
+
+
+			//"Write" identifyer
+			package.Add(writeidentifier);
+
+
 
 			foreach (KeyValuePair<int, int> p in commands)
 			{
@@ -187,12 +197,36 @@ namespace Translator
 
 			}
 
-			
 
-			return null;
 
-			
+			//number of frames to send (with a maximum of 19 frames)
+			if (message.Count > 19)
+				throw new Exception("To many frames to send send to ADFWeb CAN/Ethernet converter");
 
+			package.Add((byte)message.Count);
+
+
+
+			//add data to package
+			foreach(KeyValuePair<int, byte[]> m in message)
+			{
+				//Cob_ID
+				byte[] Cob_ID = BitConverter.GetBytes(m.Key);
+				package.AddRange(Cob_ID);
+
+				//number of bytes
+				package.Add((byte)m.Value.Length);
+
+				//data
+				package.AddRange(m.Value);
+			}
+
+
+			byte[] test = new byte[3] { 1, 2, 3 };
+
+			//return package.ToArray();
+			return test;
+		
 		}
 
 
@@ -544,7 +578,9 @@ namespace Translator
 			}
 
 
-			return null;
+			KeyValuePair<int, int>[] test = new KeyValuePair<int, int>[3] { new KeyValuePair<int, int>(1, 1), new KeyValuePair<int, int>(2, 2), new KeyValuePair<int, int>(3, 3) };
+
+			return test;
         }
 	}
 }
