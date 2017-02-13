@@ -22,11 +22,11 @@ static class Program
     {
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
-        Console.Write("Red five, standing by\n");
 
 
-				
+
 		//Program handlers and classes
+		errors = new ErrorManager();
 		JoystickHandler.Init();
 		ST_Register.Init();
 		ProgramSaverLoader.Init();
@@ -36,7 +36,7 @@ static class Program
 
 		//Sandbox
 		//#############################################################################
-		errors = new ErrorManager();
+		
 
 
 		//KeyValuePair<int, int>[] kvp = new KeyValuePair<int, int>[2] { new KeyValuePair<int, int>(400, 0x0001), new KeyValuePair<int, int>(401, 32767) };

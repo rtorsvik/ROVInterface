@@ -65,7 +65,7 @@ public partial class WindowStatus : Form
 		st.status[0] = 1;
 
 		// Load all settings
-		graphicsCreator = new GraphicsCreator(pan_graphicsCreator, btn_EditMode);
+		graphicsCreator = new GraphicsCreator(pan_graphicsCreator);
 		ProgramSaverLoader.Load();
 
 		// Start the st_register send timer
@@ -95,7 +95,7 @@ public partial class WindowStatus : Form
 		graphicsCreator.UpdateValues();
 
 		//update hartbeat
-		heartBeat = st.status[0];
+		heartBeat = (int)st.status[0];
 		if(heartBeat != heartBeat_prev)
 		{
 			pulse = true;
@@ -765,5 +765,10 @@ public partial class WindowStatus : Form
 			}
 		}
 		*/
+	}
+
+	// Function to open the edit indexes for the graphic tab
+	private void pan_graphicsCreator_DoubleClick(object sender, EventArgs e) {
+		graphicsCreator.ChangeEditMode(sender, e);
 	}
 }

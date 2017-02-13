@@ -96,7 +96,6 @@ public static class ProgramSaverLoader {
 	}
 
 	private static void _Load() {
-		Console.WriteLine("Test write line");
 		if (!reader.FindFileFromPath()) {
 			throw new FileNotFoundException();
 		}
@@ -125,6 +124,9 @@ public static class ProgramSaverLoader {
 						case "<IndexStats>":
 							pos = LoadPosition.IndexStats;
 							break;
+						case "<GraphicSettings>":
+							pos = LoadPosition.GraphicSettings;
+							break;
 						case "</Settings>":
 							fin = true;
 							break;
@@ -142,7 +144,9 @@ public static class ProgramSaverLoader {
 							dataHolder.cur_joystickSetting = new DataHolder.joystickSettings_Setting();
 							break;
 						default:
-							throw new Exception("Did not find correct next tag, of either '</JoystickSettings>'.");
+							dataHolder.joystickSettings = null;
+							pos = FindNextAfterError(next, out fin);
+							break;
 					}
 					break;
 				case LoadPosition.JoystickSettingsChild:
@@ -157,8 +161,10 @@ public static class ProgramSaverLoader {
 						dataHolder.cur_joystickSetting.Insert(next);
 					} else {
 						// If a tag is needed to be compared
-						if (sj != next)
-							throw new Exception("Did not find expected tag.");
+						if (sj != next) {
+							dataHolder.joystickSettings = null;
+							pos = FindNextAfterError(next, out fin);
+						}
 					}
 					break;
 				case LoadPosition.IndexSettings:
@@ -171,7 +177,9 @@ public static class ProgramSaverLoader {
 							dataHolder.cur_indexSetting = new DataHolder.indexSettings_Setting();
 							break;
 						default:
-							throw new Exception("Did not find correct next tag, of either '</IndexSettings>' or <Setting>.");
+							dataHolder.indexSettings = null;
+							pos = FindNextAfterError(next, out fin);
+							break;
 					}
 					break;
 				case LoadPosition.IndexSettingsChild:
@@ -186,8 +194,10 @@ public static class ProgramSaverLoader {
 						dataHolder.cur_indexSetting.Insert(next);
 					} else {
 						// If a tag is needed to be compared
-						if (s != next)
-							throw new Exception("Did not find expected tag.");
+						if (s != next) {
+							dataHolder.indexSettings = null;
+							pos = FindNextAfterError(next, out fin);
+						}
 					}
 					break;
 				case LoadPosition.IndexStats:
@@ -199,34 +209,111 @@ public static class ProgramSaverLoader {
 							pos = LoadPosition.IndexStatsChild;
 							break;
 						default:
-							throw new Exception("Did not find correct next tag, of either '</IndexStats>' or <Stats>.");
+							dataHolder.indexStats = null;
+							pos = FindNextAfterError(next, out fin);
+							break;
 					}
 					break;
 				case LoadPosition.IndexStatsChild:
 					dataHolder.indexStats.Add(int.Parse(next));
-					if ((next = reader.ReadNext()) != "</Stats>")
-						throw new Exception("Did not find correct closing tag, of '</Stats>'");
+					if ((next = reader.ReadNext()) != "</Stats>") {
+						dataHolder.indexStats = null;
+						pos = FindNextAfterError(next, out fin);
+						break;
+					}
 					pos = LoadPosition.IndexStats;
+					break;
+				case LoadPosition.GraphicSettings:
+					if (next == "</GraphicSettings>") {
+						pos = LoadPosition.Settings;
+						break;
+					}
+
+					// Try to convert x0,x1,x2,...,xn to a list<int>
+					dataHolder.graphicSettings = new List<int>();
+					string cur = "";
+					for (int i = 0, j = next.Length; i < j; i++) {
+						if (next[i] == ',' || next[i] == ';') {
+							if (cur == "")
+								dataHolder.graphicSettings.Add(0);
+							else
+								dataHolder.graphicSettings.Add(int.Parse(cur));
+							cur = "";
+
+							if (next[i] == ';')
+								break;
+						} else
+							cur += next[i];
+					}
+
 					break;
 			}
 		}
 
-		JoystickSettings js = Program.windowStatus.joystickSettings;
-		JoystickSettings.AxisSetting[] axiss = js.axisSetting;
-		for (int i = 0, j = dataHolder.joystickSettings.Count; i < j; i++) {
-			DataHolder.joystickSettings_Setting d = dataHolder.joystickSettings[i];
-			axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, (decimal)d.expo, d.deadband, d.offset, d.max);
+		// If succesfully loaded joystickSettings
+		if (dataHolder.joystickSettings != null) {
+			JoystickSettings js = Program.windowStatus.joystickSettings;
+			JoystickSettings.AxisSetting[] axiss = js.axisSetting;
+			for (int i = 0, j = dataHolder.joystickSettings.Count; i < j; i++) {
+				DataHolder.joystickSettings_Setting d = dataHolder.joystickSettings[i];
+				axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, (decimal)d.expo, d.deadband, d.offset, d.max);
+			}
+		}
+		// If succesfully loaded indexSettings
+		if (dataHolder.indexSettings != null) {
+			for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
+				DataHolder.indexSettings_Setting d = dataHolder.indexSettings[i];
+				Program.windowStatus.indexSettings.CreateElement(d.index, d.name, d.digit, d.size, d.color, d.v1raw, d.v1scaled, d.v2raw, d.v2scaled, d.suffix);
+			}
 		}
 
+		// If succesfully loaded indexStats
+		if (dataHolder.indexStats != null) {
+			for (int i = 0, j = dataHolder.indexStats.Count; i < j; i++) {
+				int e = dataHolder.indexStats[i];
+				Program.windowStatus.indexStats.CreateElement(e);
+			}
+		}
 
-		for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
-			DataHolder.indexSettings_Setting d = dataHolder.indexSettings[i];
-			Program.windowStatus.indexSettings.CreateElement(d.index, d.name, d.digit, d.size, d.color, d.v1raw, d.v1scaled, d.v2raw, d.v2scaled, d.suffix);
+		// If succesfully loaded graphicSettings
+		if (dataHolder.graphicSettings != null) {
+			for (int i = 0, j = dataHolder.graphicSettings.Count; i < j; i++)
+				Program.windowStatus.graphicsCreator.Prototype.indexes[i]._idx = dataHolder.graphicSettings[i];
 		}
-		for (int i = 0, j = dataHolder.indexStats.Count; i < j; i++) {
-			int e = dataHolder.indexStats[i];
-			Program.windowStatus.indexStats.CreateElement(e);
+	}
+
+	private static LoadPosition FindNextAfterError(string next, out bool fin) {
+
+		LoadPosition pos = LoadPosition.Start;
+		fin = false;
+
+		while(next != EOF) {
+			switch (next) {
+				case "<JoystickSettings>":
+					pos = LoadPosition.JoystickSettings;
+					break;
+				case "<IndexSettings>":
+					pos = LoadPosition.IndexSettings;
+					break;
+				case "<IndexStats>":
+					pos = LoadPosition.IndexStats;
+					break;
+				case "<GraphicSettings>":
+					pos = LoadPosition.GraphicSettings;
+					break;
+				case "</Settings>":
+					pos = LoadPosition.Settings;
+					fin = true;
+					break;
+			}
+
+			if (pos != LoadPosition.Start)
+				break;
+
+			next = reader.ReadNext();
 		}
+
+		return pos;
 	}
 
 	public static void Save(object sender, EventArgs e) {
@@ -264,6 +351,18 @@ public static class ProgramSaverLoader {
 			src += "		<Stats>" + ((IndexSettings.Setting)ls[i].index.SelectedItem).index.Value + "</Stats>\n";
 		}
 		src += "	</IndexStats>\n";
+
+		// Loop through and add GraphicSettings
+		src += "	<GraphicSettings>\n		";
+		GraphicsCreator.graphicPrototype.prototypeIndex[] pi = Program.windowStatus.graphicsCreator.Prototype.indexes;
+		for (int i = 0, j = pi.Length; i < j; i++) {
+			src += pi[i]._idx;
+			if (i + 1 != j)
+				src += ",";
+			else
+				src += ";";
+		}
+		src += "\n	</GraphicSettings>\n";
 
 		src += "</Settings>";
 
@@ -385,6 +484,7 @@ public static class ProgramSaverLoader {
 		public List<indexSettings_Setting> indexSettings;
 		public indexSettings_Setting cur_indexSetting;
 		public List<int> indexStats;
+		public List<int> graphicSettings;
 
 		public DataHolder() {
 			cur_graphicSetting = new graphics_Object();
@@ -603,6 +703,7 @@ public static class ProgramSaverLoader {
 		IndexSettings = 4,
 		IndexSettingsChild = 5,
 		IndexStats = 6,
-		IndexStatsChild = 7
+		IndexStatsChild = 7,
+		GraphicSettings = 8
 	}
 }

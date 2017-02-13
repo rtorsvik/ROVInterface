@@ -424,8 +424,8 @@ public class IndexStats {
 			// Find new value
 			int v = 0;
 			bool found = true;
-			try { v = ST_Register.status[(int)_setting.index.Value]; }
-			catch { found = false; }
+			if (found = (ST_Register.status[(int)_setting.index.Value] != null))
+				v = (int)ST_Register.status[(int)_setting.index.Value];
 
 			if (found || resetval) {
 				if (value != v || resetval) {

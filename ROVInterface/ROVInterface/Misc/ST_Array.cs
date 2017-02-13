@@ -17,21 +17,21 @@ public class ST_Array {
 	}
 
 	// Indexer, so this array instance can be used as a[i];
-	public int this[int i] {
+	public int? this[int i] {
 		get {
 			i = BinarySearchAlgorithm(i, 0, sizecur);
 			if (i < 0)
-				throw new Exception("Did not find this value in the array.");
+				return null;
 			return arr[i].value;
 		}
 		set { SearchAndSet(i, value); }
 	}
 
 	// Takes an index and insert it into arr
-	private void SearchAndSet(int i, int v) {
+	private void SearchAndSet(int i, int? v) {
 		int found = BinarySearchAlgorithm(i, 0, sizecur);
 		if (found >= 0 && arr[found].index == i)
-			arr[found].value = v;
+			arr[found].value = (int)v;
 		else {
 			// If did not find the value, insert the new value
 			found = (found + 1) * -1;
@@ -46,7 +46,7 @@ public class ST_Array {
 
 			for (int x = sizemax - 1; x > found; x--)
 				arr[x] = arr[x - 1];
-			arr[found] = new arrelement(i, v);
+			arr[found] = new arrelement(i, (int)v);
 			sizecur++;
 		}
 	}

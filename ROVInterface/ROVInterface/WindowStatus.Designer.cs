@@ -218,6 +218,7 @@
 			this.pan_graphicsCreator.Name = "pan_graphicsCreator";
 			this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
 			this.pan_graphicsCreator.TabIndex = 0;
+			this.pan_graphicsCreator.DoubleClick += new System.EventHandler(this.pan_graphicsCreator_DoubleClick);
 			// 
 			// groupBox11
 			// 
@@ -1543,7 +1544,6 @@
 			this.txt_error.Name = "txt_error";
 			this.txt_error.Size = new System.Drawing.Size(1422, 23);
 			this.txt_error.TabIndex = 1;
-			this.txt_error.Text = "error messages";
 			// 
 			// tim_100ms_update
 			// 

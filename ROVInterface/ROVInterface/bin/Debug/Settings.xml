@@ -1,10 +1,10 @@
 <Settings>
 	<JoystickSettings>
 		<Setting>
-			<jindex>-1</jindex><aindex>21</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>-1</jindex><aindex>-1</aindex><reverse>True</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>23</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 		<Setting>
 			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
@@ -21,30 +21,17 @@
 	</JoystickSettings>
 	<IndexSettings>
 		<Setting>
-			<index>4</index><name>Roll</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>1000</raw><scaled>100</scaled><suffix></suffix>
+			<index>0</index><name>Test Temp</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 		<Setting>
-			<index>5</index><name>Pitch</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>1000</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>6</index><name>Yaw</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>1000</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>501</index><name>Pod temp</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>502</index><name>Water temp</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>503</index><name>DCDC temp</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix></suffix>
+			<index>17</index><name>Sin Curve</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 	</IndexSettings>
 	<IndexStats>
-		<Stats>4</Stats>
-		<Stats>5</Stats>
-		<Stats>6</Stats>
-		<Stats>501</Stats>
-		<Stats>502</Stats>
-		<Stats>503</Stats>
+		<Stats>0</Stats>
+		<Stats>17</Stats>
 	</IndexStats>
+	<GraphicSettings>
+		17,5,2;
+	</GraphicSettings>
 </Settings>
