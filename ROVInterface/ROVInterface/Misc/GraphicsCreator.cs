@@ -22,7 +22,8 @@ public class GraphicsCreator {
 	public GraphicsCreator(Control p) {
 		parent = p;
 		parent.Paint += TabDrawGraphics;
-		//btn.Click += ChangeEditMode;
+
+		graphicPrototype.prototypeIndex.brushbgr = new SolidBrush(bgrColor);
 
 		try {
 			iconWarning = new Bitmap(Image.FromFile("./Graphics/Warning.png"));
@@ -274,6 +275,7 @@ public class GraphicsCreator {
 
 			private static Font font = new Font("Serif", 12);
 			private static Brush brush = SystemBrushes.MenuHighlight;
+			public  static Brush brushbgr;
 			private int oldvalue = 0;
 			private icontype didshowicon = icontype.none;
 			private icontype doshowicon = icontype.none;
@@ -359,7 +361,7 @@ public class GraphicsCreator {
 					if (iconDanger != null && ((_ll != null && _ll > v) || (_hh != null && _hh < v))) {
 						// Show danger
 						doshowicon = icontype.danger;
-						DrawOverOldIndex(g, null, _hidden);
+						DrawOverOldIndex(g, settingswithidx != null ? v.ToString() : value.ToString(), _hidden);
 						oldrectfullicon = new Rectangle(new Point(_posx, _posy), iconDanger.Size);
 						oldrecticon = new Rectangle(oldrectfullicon.Location, oldrectfullicon.Size);
 						oldrecticon.Intersect(new Rectangle(new Point(0, 0), Program.windowStatus.graphicsCreator.prototype.image.Size));
@@ -368,7 +370,7 @@ public class GraphicsCreator {
 					} else if (iconWarning != null && ((_l != null && _l > v) || (_h != null && _h < v))) {
 						// Show warning
 						doshowicon = icontype.warning;
-						DrawOverOldIndex(g, null, _hidden);
+						DrawOverOldIndex(g, settingswithidx != null ? v.ToString() : value.ToString(), _hidden);
 						oldrectfullicon = new Rectangle(new Point(_posx, _posy), iconWarning.Size);
 						oldrecticon = new Rectangle(oldrectfullicon.Location, oldrectfullicon.Size);
 						oldrecticon.Intersect(new Rectangle(new Point(0, 0), Program.windowStatus.graphicsCreator.prototype.image.Size));
@@ -385,12 +387,11 @@ public class GraphicsCreator {
 
 			private void DrawOverOldIndex(Graphics g, string s, bool hidden) {
 				Bitmap image = Program.windowStatus.graphicsCreator.prototype.image;
-				Pen pen = new Pen(Program.windowStatus.graphicsCreator.bgrColor);
 
 				// Clear the old icon first
 				if (didshowicon != doshowicon && didshowicon != icontype.none) {
 					// Draw over all old icon with the bgr color
-					g.DrawRectangle(pen, oldrectfullicon);
+					g.FillRectangle(brushbgr, oldrectfullicon);
 					// Draw over old icon with the bgr image
 					if (oldrecticon.IntersectsWith(new Rectangle(new Point(0, 0), image.Size)))
 						g.DrawImage(image.Clone(oldrecticon, System.Drawing.Imaging.PixelFormat.DontCare), oldrecticon.Location);
@@ -400,7 +401,8 @@ public class GraphicsCreator {
 				if (!hidden) {
 
 					// Draw over all old text with the bgr color
-					g.DrawRectangle(pen, oldrectfull);
+					
+					g.FillRectangle(brushbgr, oldrectfull);
 					// Draw over old text with the bgr image
 					if (oldrect.IntersectsWith(new Rectangle(new Point(0, 0), image.Size)))
 						g.DrawImage(image.Clone(oldrect, System.Drawing.Imaging.PixelFormat.DontCare), oldrect.Location);

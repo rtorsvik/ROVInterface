@@ -12,6 +12,11 @@
     <x>430</x>
     <y>50</y>
   </Index>
+  <Index>
+    <x>50</x>
+    <y>50</y>
+    <l>0</l>
+  </Index>
 </Graphics>
 
 <Graphics img="Aegir.png">
