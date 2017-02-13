@@ -160,9 +160,6 @@ public static class CommHandler
 
 	public static void Send(KeyValuePair<int, int>[] commands)
 	{
-		if (commands.Length == 0)
-			return;
-
 		// Packet to be sent forward
 		byte[] packet = new byte[0];
 		bool fail = true;
