@@ -359,7 +359,7 @@ public class GraphicsCreator {
 					if (iconDanger != null && ((_ll != null && _ll > v) || (_hh != null && _hh < v))) {
 						// Show danger
 						doshowicon = icontype.danger;
-						DrawOverOldIndex(g, null, _hidden);
+						DrawOverOldIndex(g, settingswithidx != null ? v.ToString() : value.ToString(), _hidden);
 						oldrectfullicon = new Rectangle(new Point(_posx, _posy), iconDanger.Size);
 						oldrecticon = new Rectangle(oldrectfullicon.Location, oldrectfullicon.Size);
 						oldrecticon.Intersect(new Rectangle(new Point(0, 0), Program.windowStatus.graphicsCreator.prototype.image.Size));
@@ -368,7 +368,7 @@ public class GraphicsCreator {
 					} else if (iconWarning != null && ((_l != null && _l > v) || (_h != null && _h < v))) {
 						// Show warning
 						doshowicon = icontype.warning;
-						DrawOverOldIndex(g, null, _hidden);
+						DrawOverOldIndex(g, settingswithidx != null ? v.ToString() : value.ToString(), _hidden);
 						oldrectfullicon = new Rectangle(new Point(_posx, _posy), iconWarning.Size);
 						oldrecticon = new Rectangle(oldrectfullicon.Location, oldrectfullicon.Size);
 						oldrecticon.Intersect(new Rectangle(new Point(0, 0), Program.windowStatus.graphicsCreator.prototype.image.Size));
