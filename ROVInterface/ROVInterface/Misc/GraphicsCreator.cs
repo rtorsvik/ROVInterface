@@ -21,7 +21,6 @@ public class GraphicsCreator {
 
 	public GraphicsCreator(Control p) {
 		parent = p;
-		parent.Paint += TabDrawGraphics;
 
 		graphicPrototype.prototypeIndex.brushbgr = new SolidBrush(bgrColor);
 
@@ -41,83 +40,20 @@ public class GraphicsCreator {
 
 	// Event handler when a button is clicked to change the edit mode
 	public void ChangeEditMode(object sender, EventArgs e) {
-		// From Display mode
-		editMode = !editMode;
-		fullredraw = true;
-		parent.Refresh();
-
 		// Show the index dialog form
 		for (int i = 0, j = prototype.indexes.Length; i < j; i++) {
 			((NumericUpDown)indexDialogItemContainer.Controls[i].Controls[0]).Value = prototype.indexes[i]._idx;
 		}
 		indexDialogForm.ShowDialog();
-
-		// From Edit mode
-		editMode = !editMode;
-		fullredraw = true;
-		parent.Refresh();
 	}
 
-	private void TabDrawGraphics(object sender, PaintEventArgs e) {
-		fullredraw = true;
-		RedrawScene(sender, e);
-	}
-
-	// Event handler to update values of the graphics
-	public void UpdateValues() {
-		fullredraw = false;
-		RedrawScene(null, null);
-	}
-
-	// Event handler to get the drawing event of the panel
-	// The function to redraw the scene
-	private void RedrawScene(object sender, PaintEventArgs e) {
-		if (fullredraw) {
-			Graphics g = e.Graphics;
-			fullredraw = false;
-
-			// Clear the screen
-			g.Clear(bgrColor);
-			
-			// Create the graphic
-			if (prototype.hasImage)
-				g.DrawImage(prototype.image, new PointF(0, 0));
-			else {
-				// Draw a border or something when an image is not found
-			}
-
-			// Force draw the values, etc
-			foreach (graphicPrototype.prototypeIndex i in prototype.indexes) {
-				i.DrawIndexFull(g);
-			}
-
-			// Draw the grid, if it should be drawn
-			if (editMode) {
-				Pen gridpen = new Pen(Color.FromArgb(255, 70, 70, 70));
-				float xmax = parent.Width;
-				float ymax = parent.Height;
-				for (int x = gridsquaresize; x < xmax; x += gridsquaresize) {
-					g.DrawLine(gridpen, x, 0, x, ymax);
-				}
-				for (int y = gridsquaresize; y < ymax; y += gridsquaresize) {
-					g.DrawLine(gridpen, 0, y, xmax, y);
-				}
-			}
-		} else {
-
-			Graphics g = parent.CreateGraphics();
-
-			// Just updated the values
-			foreach (graphicPrototype.prototypeIndex i in prototype.indexes) {
-				i.DrawIndex(g);
-			}
-
-			g.Dispose();
-		}
+	public void DrawBackgroundImage(PaintEventArgs e) {
+		e.Graphics.DrawImage(prototype.image, new Point(0, 0));
 	}
 
 	public void SetPrototype(graphicPrototype ps) {
 		prototype = ps;
+		prototype.CreateControlsForIdx(parent);
 
 		if (indexDialogForm != null) {
 			// If an old form exists, clean it up --- TO DO ---
@@ -210,6 +146,12 @@ public class GraphicsCreator {
 		}
 	}
 
+	public void UpdateValues() {
+		// TODO
+		// Go through every control in graphicPrototype and update its controls, or just update it through functions
+		prototype.UpdateControlsValuesForIdx();
+	}
+
 	private void AcceptFormValues(object sender, EventArgs e) {
 		indexDialogForm.Close();
 
@@ -247,7 +189,19 @@ public class GraphicsCreator {
 		public void UpdateIdxSettingReference() {
 			// Loop through the indexes and fix the references to the idx settings
 			foreach (prototypeIndex p in indexes)
-				p.UpdateIdxRefernce();
+				p.UpdateIdxReference();
+		}
+
+		public void CreateControlsForIdx(Control parent) {
+			foreach (prototypeIndex p in indexes)
+				p.CreateControls(parent);
+
+			UpdateControlsValuesForIdx();
+		}
+
+		public void UpdateControlsValuesForIdx() {
+			foreach (prototypeIndex p in indexes)
+				p.UpdateControlsValues();
 		}
 
 		public class prototypeIndex {
@@ -279,12 +233,16 @@ public class GraphicsCreator {
 			private int oldvalue = 0;
 			private icontype didshowicon = icontype.none;
 			private icontype doshowicon = icontype.none;
+			private icontype oldicontype = icontype.none;
 			private bool refresh = true;
 			
 			private Rectangle oldrect = new Rectangle();
 			private Rectangle oldrectfull = new Rectangle();
 			private Rectangle oldrecticon = new Rectangle();
 			private Rectangle oldrectfullicon = new Rectangle();
+
+			public Label control_label;
+			public PictureBox control_icon;
 
 
 			public prototypeIndex(bool hidden, int x, int y, int? ll, int? l, int? h, int? hh) {
@@ -297,7 +255,7 @@ public class GraphicsCreator {
 				_hh = hh;
 			}
 
-			public void UpdateIdxRefernce() {
+			public void UpdateIdxReference() {
 				if (settingswithidx != null) {
 					// Check if the old settings are still valid
 					if ((int)settingswithidx.index.Value != _idx)
@@ -329,100 +287,68 @@ public class GraphicsCreator {
 				}
 			}
 
-			public void DrawIndexFull(Graphics g) {
-				refresh = true;
-				DrawIndex(g);
+			public void CreateControls(Control parent) {
+				control_label = new Label();
+				parent.Controls.Add(control_label);
+				control_label.Parent = parent;
+				control_label.Location = new Point(_posx, _posy);
+				control_label.AutoSize = true;
+				control_label.BackColor = Color.Transparent;
+				control_label.ForeColor = SystemColors.MenuHighlight;
+				control_label.Font = font;
+
+				if (_hh != null || _h != null || _l != null || _ll != null) {
+					// If there is a limit
+					control_icon = new PictureBox();
+					parent.Controls.Add(control_icon);
+					control_icon.Parent = parent;
+					control_icon.Size = new Size(50, 50);
+					if (_hidden)
+						control_icon.Location = new Point(_posx -25, _posy - 25);
+					else
+						control_icon.Location = new Point(_posx - 50, _posy - 15);
+					control_icon.BackColor = Color.Transparent;
+				}
 			}
 
-			public void DrawIndex(Graphics g) {
-				bool found = true;
-				int value = 0;
-				if (found = (ST_Register.status[_idx] != null))
-					value = (int)ST_Register.status[_idx];
-				
-				if (!found) {
-					if (_hidden)
-						return; // Only show warnings while no value is shown
+			public void UpdateControlsValues() {
+				int? value = ST_Register.status[_idx];
 
+				if (value != null) {
+
+					if (value != oldvalue || refresh) {
+						if (!_hidden) {
+							float v = (int)value * scale + offset;
+
+							if (v < _ll || v > _hh) {
+								// Show Danger
+								if (oldicontype != icontype.danger) {
+									oldicontype = icontype.danger;
+									control_icon.Image = iconDanger;
+								}
+							} else if (v < _l || v > _h) {
+								// Show Warning
+								if (oldicontype != icontype.warning) {
+									oldicontype = icontype.warning;
+									control_icon.Image = iconWarning;
+								}
+							} else {
+								// Show Empty
+								if (oldicontype != icontype.none) {
+									oldicontype = icontype.none;
+									control_icon.Image = null;
+								}
+							}
+
+							control_label.Text = (settingswithidx == null ? value.ToString() : (v.ToString() + " " + settingswithidx.suffix.Text));
+						}
+					}
+				} else {
 					if (refresh) {
-						DrawOverOldIndex(g, "NaN", _hidden);
+						control_label.Text = "NaN";
 						refresh = false;
 					}
-
-					return; // If no value were found in the registers
 				}
-				
-				// Check for value to show
-				if (refresh || oldvalue != value) {
-					oldvalue = value;
-					float v = value * scale + offset;
-
-					// Check limits with f
-					if (iconDanger != null && ((_ll != null && _ll > v) || (_hh != null && _hh < v))) {
-						// Show danger
-						doshowicon = icontype.danger;
-						DrawOverOldIndex(g, settingswithidx != null ? v.ToString() : value.ToString(), _hidden);
-						oldrectfullicon = new Rectangle(new Point(_posx, _posy), iconDanger.Size);
-						oldrecticon = new Rectangle(oldrectfullicon.Location, oldrectfullicon.Size);
-						oldrecticon.Intersect(new Rectangle(new Point(0, 0), Program.windowStatus.graphicsCreator.prototype.image.Size));
-						g.DrawImage(iconDanger, new PointF(_posx, _posy));
-						return;
-					} else if (iconWarning != null && ((_l != null && _l > v) || (_h != null && _h < v))) {
-						// Show warning
-						doshowicon = icontype.warning;
-						DrawOverOldIndex(g, settingswithidx != null ? v.ToString() : value.ToString(), _hidden);
-						oldrectfullicon = new Rectangle(new Point(_posx, _posy), iconWarning.Size);
-						oldrecticon = new Rectangle(oldrectfullicon.Location, oldrectfullicon.Size);
-						oldrecticon.Intersect(new Rectangle(new Point(0, 0), Program.windowStatus.graphicsCreator.prototype.image.Size));
-						g.DrawImage(iconWarning, oldrectfullicon);
-						return;
-					} else
-						doshowicon = icontype.none;
-
-					DrawOverOldIndex(g, settingswithidx != null ? v.ToString() : value.ToString(), _hidden);
-				}
-
-				refresh = false;
-			}
-
-			private void DrawOverOldIndex(Graphics g, string s, bool hidden) {
-				Bitmap image = Program.windowStatus.graphicsCreator.prototype.image;
-
-				// Clear the old icon first
-				if (didshowicon != doshowicon && didshowicon != icontype.none) {
-					// Draw over all old icon with the bgr color
-					g.FillRectangle(brushbgr, oldrectfullicon);
-					// Draw over old icon with the bgr image
-					if (oldrecticon.IntersectsWith(new Rectangle(new Point(0, 0), image.Size)))
-						g.DrawImage(image.Clone(oldrecticon, System.Drawing.Imaging.PixelFormat.DontCare), oldrecticon.Location);
-				}
-
-				// If the text is not hidden
-				if (!hidden) {
-
-					// Draw over all old text with the bgr color
-					
-					g.FillRectangle(brushbgr, oldrectfull);
-					// Draw over old text with the bgr image
-					if (oldrect.IntersectsWith(new Rectangle(new Point(0, 0), image.Size)))
-						g.DrawImage(image.Clone(oldrect, System.Drawing.Imaging.PixelFormat.DontCare), oldrect.Location);
-
-					// Get the size of the new text
-					Rectangle rect = new Rectangle();
-					rect.Location = new Point(_posx, _posy);
-					SizeF size = g.MeasureString(s, font);
-					rect.Size = new Size((int)size.Width + 1, (int)size.Height + 1);
-
-					// Draw the new text
-					g.DrawString(s, font, SystemBrushes.ControlDarkDark, new Point(_posx + 1, _posy + 1));
-					g.DrawString(s, font, brush, rect.Location);
-
-					// Set the rectangles for drawing over the new text next time
-					oldrectfull = rect;
-					oldrect = new Rectangle(oldrectfull.Location, oldrectfull.Size);
-					oldrect.Intersect(new Rectangle(new Point(0, 0), image.Size));
-				}
-				didshowicon = doshowicon;
 			}
 
 			private enum icontype {

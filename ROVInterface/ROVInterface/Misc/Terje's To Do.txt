@@ -4,3 +4,4 @@
 - Fix positioning of the warning icons from the pivot and to the right or center.
 - Make sure the icons don't get drawn outside of the graphic window.
 - Implement digits in indexStats, and wherever else it should be used, where it will always show the x amount of digits, like 10.00
+- Fill the list in the prefix in indexSettings

@@ -218,6 +218,7 @@
 			this.pan_graphicsCreator.Name = "pan_graphicsCreator";
 			this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
 			this.pan_graphicsCreator.TabIndex = 0;
+			this.pan_graphicsCreator.Paint += new System.Windows.Forms.PaintEventHandler(this.pan_graphicsCreator_Paint);
 			this.pan_graphicsCreator.DoubleClick += new System.EventHandler(this.pan_graphicsCreator_DoubleClick);
 			// 
 			// groupBox11
@@ -393,13 +394,13 @@
             0,
             0});
 			// 
-			// btn_startTransmition
+			// btn_startTransmission
 			// 
 			this.btn_startTransmission.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_startTransmission.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.btn_startTransmission.Location = new System.Drawing.Point(1203, 87);
 			this.btn_startTransmission.Margin = new System.Windows.Forms.Padding(3, 2, 12, 2);
-			this.btn_startTransmission.Name = "btn_startTransmition";
+			this.btn_startTransmission.Name = "btn_startTransmission";
 			this.btn_startTransmission.Size = new System.Drawing.Size(133, 42);
 			this.btn_startTransmission.TabIndex = 13;
 			this.btn_startTransmission.Text = "Start transmision";
@@ -1571,6 +1572,7 @@
 			this.Controls.Add(this.txt_error);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.connectionTab);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.Name = "WindowStatus";

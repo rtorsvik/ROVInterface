@@ -259,6 +259,7 @@ public static class ProgramSaverLoader {
 				axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, (decimal)d.expo, d.deadband, d.offset, d.max);
 			}
 		}
+
 		// If succesfully loaded indexSettings
 		if (dataHolder.indexSettings != null) {
 			for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
@@ -280,6 +281,7 @@ public static class ProgramSaverLoader {
 			for (int i = 0, j = dataHolder.graphicSettings.Count; i < j; i++)
 				Program.windowStatus.graphicsCreator.Prototype.indexes[i]._idx = dataHolder.graphicSettings[i];
 		}
+		Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
 	}
 
 	private static LoadPosition FindNextAfterError(string next, out bool fin) {
