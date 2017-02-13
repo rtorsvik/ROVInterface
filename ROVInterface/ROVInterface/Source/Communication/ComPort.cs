@@ -233,4 +233,13 @@ class SerialConnection : Port
 
 	}
 
+	public void Recieve(byte[] packet)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void Request(int index)
+	{
+		throw new NotImplementedException();
+	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Windows.Forms;
 
@@ -128,6 +129,9 @@ public class CANPort : Port
 	/// <param name="index"></param>
 	public void Request(int index)
 	{
+		if (index == 10)
+			Console.WriteLine("reading depth_temp");
+
 		byte readIdentifyer = 0x01;
 
 		byte startAddressHi = (byte)(index >> 8);
@@ -143,12 +147,18 @@ public class CANPort : Port
 
 		//TEMP read response
 		// Buffer to store the response bytes.
-		byte[] response = new byte[255];
+		byte[] response = new byte[9];
 
 		//TEMP Read the first batch of the TcpServer response bytes.
 		int numRecieved = stream.Read(response, 0, response.Length);
 
-		CommHandler.AegirConvertData(index, response);
+		KeyValuePair<int, int>[] status;
+		status = CommHandler.AegirConvertData(index, response);
+
+		foreach(KeyValuePair<int, int> s in status)
+		{
+			ST_Register.status[s.Key] = s.Value;
+		}	
 	}
 
 
@@ -182,6 +192,11 @@ public class CANPort : Port
 
 
 	public void Send(int index, int value)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void Recieve(byte[] packet)
 	{
 		throw new NotImplementedException();
 	}

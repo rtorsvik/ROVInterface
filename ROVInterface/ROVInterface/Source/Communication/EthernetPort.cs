@@ -70,11 +70,20 @@ public class EthernetPort : Port
 		throw new NotImplementedException();
 	}
 
+	public void Recieve(byte[] packet)
+	{
+		throw new NotImplementedException();
+	}
+
 	public void Recieve<T>(object sender, T e)
 	{
 		throw new NotImplementedException();
 	}
 
+	public void Request(int index)
+	{
+		throw new NotImplementedException();
+	}
 
 	public void Send(byte[] packet)
 	{

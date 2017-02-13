@@ -76,11 +76,12 @@ public partial class WindowStatus : Form
 		txt_comm_serverport.Text = "80";
 	}
 
-	
+
 
 
 
 	//tick updates all the elements in the window
+	int ADFwebRequest;
 	private void tim_10ms_update_Tick(object sender, EventArgs e)
 	{
 		//update values from joystick
@@ -107,7 +108,10 @@ public partial class WindowStatus : Form
 		if (pulse)
 			pbr_heartBeat.Value = 100;
 		else
-			pbr_heartBeat.Value = 0;		
+			pbr_heartBeat.Value = 0;
+
+		if(CommHandler.connectionType == CommHandler.ConnectionType.CANbus)
+			CommHandler.port.Request(ADFwebRequest++ % 72 + 1);
 
 	}
 
@@ -653,6 +657,8 @@ public partial class WindowStatus : Form
 			CommHandler.Open();
 			btn_comm_CANsend.Enabled = true;
 		}
+
+		//bgw_aegirMessageRequest.RunWorkerAsync();
 	}
 
 	private void btn_comm_CANsend_Click(object sender, EventArgs e)
@@ -739,7 +745,7 @@ public partial class WindowStatus : Form
 	}
 
 
-
+	
 	/// <summary>
 	/// Backgroundworker to request values from ADFweb ethernet/CAN transformer
 	/// </summary>
@@ -747,6 +753,7 @@ public partial class WindowStatus : Form
 	/// <param name="e"></param>
 	private void bgw_aegirMessageRequest_DoWork(object sender, DoWorkEventArgs e)
 	{
+		/*
 		while (true)
 		{
 			//Ask for the Cob_IDs from ADFweb ethernet/CAN transformer
@@ -755,5 +762,6 @@ public partial class WindowStatus : Form
 				CommHandler.port.Request(i);
 			}
 		}
+		*/
 	}
 }
