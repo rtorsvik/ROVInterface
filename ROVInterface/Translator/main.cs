@@ -212,21 +212,23 @@ namespace Translator
 			{
 				//Cob_ID
 				byte[] Cob_ID = BitConverter.GetBytes(m.Key);
+				Array.Reverse(Cob_ID);
 				package.AddRange(Cob_ID);
 
 				//number of bytes
-				package.Add((byte)m.Value.Length);
+				byte numBytes = (byte)m.Value.Length;
+				package.Add(numBytes);
 
 				//data
 				package.AddRange(m.Value);
+
+				//if number of bytes is less than 8, fill rest of frame with zeros
+				byte[] rest = new byte[8 - numBytes];
+				package.AddRange(rest);
 			}
 
+			return package.ToArray();
 
-			byte[] test = new byte[3] { 1, 2, 3 };
-
-			//return package.ToArray();
-			return test;
-		
 		}
 
 
