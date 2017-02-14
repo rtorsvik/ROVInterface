@@ -224,6 +224,7 @@ public class GraphicsCreator {
 			private int? _h = null;       // high
 			private int? _hh = null;      // critical high
 
+			private static Color labelbackcolor = Color.FromArgb(200, 32, 32, 32);
 			private static Font font = new Font("Serif", 12);
 			public  static Brush brushbgr;
 			private int oldvalue = 0;
@@ -285,7 +286,7 @@ public class GraphicsCreator {
 				control_label.Parent = parent;
 				control_label.Location = new Point(_posx, _posy);
 				control_label.AutoSize = true;
-				control_label.BackColor = Color.Transparent;
+				control_label.BackColor = labelbackcolor;
 				control_label.ForeColor = SystemColors.MenuHighlight;
 				control_label.Font = font;
 
