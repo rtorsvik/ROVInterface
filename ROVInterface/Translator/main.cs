@@ -102,6 +102,7 @@ namespace Translator
 				 * So, for each command, if the message is not alreadu created by another command, create a new message with the cached commands, and
 				 * then overwrite and replace these cached values with the new ones from KeyValuePair<int, int>[] commands.
 				 */
+				byte bitmask;
 				switch (p.Key)
 				{
 					case 1: //surge
@@ -111,40 +112,40 @@ namespace Translator
 							message[TOP_XBOX_CTRLS] = TOP_XBOX_CTRLS_cache;
 
 						//Overwrite message and replace cached values with the new ones
-						message[TOP_XBOX_CTRLS][0] = TOP_XBOX_CTRLS_cache[0] = (byte)p.Value; 
-						message[TOP_XBOX_CTRLS][1] = TOP_XBOX_CTRLS_cache[1] = (byte)(p.Value << 8);
+						message[TOP_XBOX_CTRLS][2] = TOP_XBOX_CTRLS_cache[2] = (byte)p.Value; 
+						message[TOP_XBOX_CTRLS][3] = TOP_XBOX_CTRLS_cache[3] = (byte)(p.Value >> 8);
 
 						break;
 
 					case 2: //sway
 						if (!message.ContainsKey(TOP_XBOX_CTRLS))
 							message[TOP_XBOX_CTRLS] = TOP_XBOX_CTRLS_cache;
-						message[TOP_XBOX_CTRLS][2] = TOP_XBOX_CTRLS_cache[2] = (byte)p.Value; 
-						message[TOP_XBOX_CTRLS][3] = TOP_XBOX_CTRLS_cache[3] = (byte)(p.Value << 8);
+						message[TOP_XBOX_CTRLS][0] = TOP_XBOX_CTRLS_cache[0] = (byte)p.Value; 
+						message[TOP_XBOX_CTRLS][1] = TOP_XBOX_CTRLS_cache[1] = (byte)(p.Value >> 8);
 						break;
 					case 3: //heave
 						if (!message.ContainsKey(TOP_XBOX_CTRLS))
 							message[TOP_XBOX_CTRLS] = TOP_XBOX_CTRLS_cache;
 						message[TOP_XBOX_CTRLS][4] = TOP_XBOX_CTRLS_cache[4] = (byte)p.Value; 
-						message[TOP_XBOX_CTRLS][5] = TOP_XBOX_CTRLS_cache[5] = (byte)(p.Value << 8);
+						message[TOP_XBOX_CTRLS][5] = TOP_XBOX_CTRLS_cache[5] = (byte)(p.Value >> 8);
 						break;
 					case 4: //pitch
 						if (!message.ContainsKey(TOP_XBOX_CTRLS))
 							message[TOP_XBOX_CTRLS] = TOP_XBOX_CTRLS_cache;
 						message[TOP_XBOX_CTRLS][6] = TOP_XBOX_CTRLS_cache[6] = (byte)p.Value; 
-						message[TOP_XBOX_CTRLS][7] = TOP_XBOX_CTRLS_cache[7] = (byte)(p.Value << 8);
+						message[TOP_XBOX_CTRLS][7] = TOP_XBOX_CTRLS_cache[7] = (byte)(p.Value >> 8);
 						break;
 					case 5: //roll
 						if (!message.ContainsKey(TOP_XBOX_AXES))
 							message[TOP_XBOX_AXES] = TOP_XBOX_AXES_cache;
 						message[TOP_XBOX_AXES][0] = TOP_XBOX_AXES_cache[0] = (byte)p.Value; 
-						message[TOP_XBOX_AXES][1] = TOP_XBOX_AXES_cache[1] = (byte)(p.Value << 8);
+						message[TOP_XBOX_AXES][1] = TOP_XBOX_AXES_cache[1] = (byte)(p.Value >> 8);
 						break;
 					case 6: //yaw
 						if (!message.ContainsKey(TOP_XBOX_AXES))
 							message[TOP_XBOX_AXES] = TOP_XBOX_AXES_cache;
 						message[TOP_XBOX_AXES][2] = TOP_XBOX_AXES_cache[2] = (byte)p.Value; 
-						message[TOP_XBOX_AXES][3] = TOP_XBOX_AXES_cache[3] = (byte)(p.Value << 8);
+						message[TOP_XBOX_AXES][3] = TOP_XBOX_AXES_cache[3] = (byte)(p.Value >> 8);
 						break;
 					case 53: //zero depth
 						if (!message.ContainsKey(TOP_SENS_CTRL))
@@ -154,19 +155,21 @@ namespace Translator
 					case 100: //Set motors and coolingfan in auto or manual mode (turn them on or off)
 						if (!message.ContainsKey(TOP_POWR_CTRL))
 							message[TOP_POWR_CTRL] = TOP_POWR_CTRL_cache;
-						message[TOP_POWR_CTRL][0] = TOP_POWR_CTRL_cache[0] += (byte)(p.Value & 0x1);
-						message[TOP_POWR_CTRL][0] = TOP_POWR_CTRL_cache[0] += (byte)(p.Value & 0x4);
+						message[TOP_POWR_CTRL][0] = TOP_POWR_CTRL_cache[0] = (byte)(TOP_POWR_CTRL_cache[0] & ~0x1 | p.Value);
+						message[TOP_POWR_CTRL][0] = TOP_POWR_CTRL_cache[0] = (byte)(TOP_POWR_CTRL_cache[0] & ~0x4 | p.Value);
 						break;
 					case 400: //Turn light on
 						if (!message.ContainsKey(TOP_POWR_CTRL))
 							message[TOP_POWR_CTRL] = TOP_POWR_CTRL_cache;
-						message[TOP_POWR_CTRL][0] = TOP_POWR_CTRL_cache[0] += (byte)((p.Value & 0x1) << 1);
+						bitmask = 0xfd;
+						message[TOP_POWR_CTRL][0] = TOP_POWR_CTRL_cache[0] = (byte)(TOP_POWR_CTRL_cache[0] & bitmask | ((p.Value & 0x1) << 1));
 						break;
 					case 401: //Turn light on
 						if (!message.ContainsKey(TOP_POWR_CTRL))
 							message[TOP_POWR_CTRL] = TOP_POWR_CTRL_cache;
-						byte intensity = (byte)((p.Value + 32768) * 10 / 65535f);
-						message[TOP_POWR_CTRL][0] = TOP_POWR_CTRL_cache[0] += (byte)(intensity << 3);
+						byte intensity = (byte)p.Value;
+						bitmask = 0x87;
+						message[TOP_POWR_CTRL][0] = TOP_POWR_CTRL_cache[0] = (byte)(TOP_POWR_CTRL_cache[0] & bitmask | (intensity << 3));
 						break;
 					case 800: //reg-sys Auto/Man
 						if (!message.ContainsKey(TOP_REG_PARAM1))
@@ -177,19 +180,19 @@ namespace Translator
 						if (!message.ContainsKey(TOP_REG_PARAM1))
 							message[TOP_REG_PARAM1] = TOP_REG_PARAM1_cache;
 						message[TOP_REG_PARAM1][0] = TOP_REG_PARAM1_cache[0] = (byte)p.Value;
-						message[TOP_REG_PARAM1][1] = TOP_REG_PARAM1_cache[1] = (byte)(p.Value << 8);
+						message[TOP_REG_PARAM1][1] = TOP_REG_PARAM1_cache[1] = (byte)(p.Value >> 8);
 						break;
 					case 805: //regparam I (x10) Trans
 						if (!message.ContainsKey(TOP_REG_PARAM1))
 							message[TOP_REG_PARAM1] = TOP_REG_PARAM1_cache;
 						message[TOP_REG_PARAM1][2] = TOP_REG_PARAM1_cache[2] = (byte)p.Value;
-						message[TOP_REG_PARAM1][3] = TOP_REG_PARAM1_cache[3] = (byte)(p.Value << 8);
+						message[TOP_REG_PARAM1][3] = TOP_REG_PARAM1_cache[3] = (byte)(p.Value >> 8);
 						break;
 					case 806: //regparam D (x10) Trans
 						if (!message.ContainsKey(TOP_REG_PARAM1))
 							message[TOP_REG_PARAM1] = TOP_REG_PARAM1_cache;
 						message[TOP_REG_PARAM1][4] = TOP_REG_PARAM1_cache[4] = (byte)p.Value;
-						message[TOP_REG_PARAM1][5] = TOP_REG_PARAM1_cache[5] = (byte)(p.Value << 8);
+						message[TOP_REG_PARAM1][5] = TOP_REG_PARAM1_cache[5] = (byte)(p.Value >> 8);
 						break;
 					default: //unknown data should not be sendt
 						break;

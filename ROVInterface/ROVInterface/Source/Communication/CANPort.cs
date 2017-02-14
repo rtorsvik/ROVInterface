@@ -150,7 +150,14 @@ public class CANPort : Port
 		byte[] response = new byte[9];
 
 		//TEMP Read the first batch of the TcpServer response bytes.
-		int numRecieved = stream.Read(response, 0, response.Length);
+		try
+		{
+			int numRecieved = stream.Read(response, 0, response.Length);
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e.ToString());
+		}
 
 		KeyValuePair<int, int>[] status;
 		status = CommHandler.AegirConvertData(index, response);

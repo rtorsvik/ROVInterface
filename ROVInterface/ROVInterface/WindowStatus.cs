@@ -330,8 +330,6 @@ public partial class WindowStatus : Form
 			tim_SendCommandsDelay.Enabled = false;
 			tim_heartBeat.Enabled = false;
 			btn_startTransmission.UseVisualStyleBackColor = true;
-
-
 		}
 		else
 		{
@@ -752,8 +750,27 @@ public partial class WindowStatus : Form
 		ST_Register.commands[100] = aegirMotorcommandCache = aegirMotorcommandCache & ~0x1 | Convert.ToInt32(aegirArmmotorsOn);
 	}
 
+	bool aegirRegAuto = false;
+	private void btn_aegir_RegAuto_Click(object sender, EventArgs e)
+	{
+		if (aegirRegAuto)
+		{
+			aegirRegAuto = false;
+			btn_aegir_RegAuto.Text = "Possition control [Auto]";
+			btn_aegir_RegAuto.UseVisualStyleBackColor = true;
+		}
+		else
+		{
+			aegirRegAuto = true;
+			btn_aegir_RegAuto.Text = "Possition control [Manual]";
+			btn_aegir_RegAuto.BackColor = System.Drawing.Color.Aquamarine;
+		}
 
-	
+		ST_Register.commands[800] = aegirMotorcommandCache = aegirMotorcommandCache & ~0x1 | Convert.ToInt32(aegirRegAuto);
+	}
+
+
+
 	/// <summary>
 	/// Backgroundworker to request values from ADFweb ethernet/CAN transformer
 	/// </summary>
@@ -782,4 +799,11 @@ public partial class WindowStatus : Form
 		graphicsCreator.DrawBackgroundImage(e);
 		base.OnPaint(e);
 	}
+
+	private void tim_SendCommandsDelay_Tick(object sender, EventArgs e)
+	{
+		Console.WriteLine("timSendcommandTick");
+	}
+
+	
 }
