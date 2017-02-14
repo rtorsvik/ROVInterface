@@ -7,6 +7,8 @@ public class IndexSettings {
 	private FlowLayoutPanel panelIndexSettings;
 	public List<Setting> allSettings;
 
+	private static readonly string[] cmbprefixlist = { "m/s", "°C", "%", "‰" };
+
 	public IndexSettings (FlowLayoutPanel pan) {
 		panelIndexSettings = pan;
 		allSettings = new List<Setting>();
@@ -121,6 +123,7 @@ public class IndexSettings {
 		cmb.Parent = temp;
 		cmb.Width = 70;
 		cmb.Text = suffix;
+		cmb.Items.AddRange(cmbprefixlist);
 		cmb.TextChanged += setting.UpdateStats;
 		cmb.Margin = new Padding(3, 3, 30, 3);
 		setting.suffix = cmb;
@@ -430,7 +433,7 @@ public class IndexStats {
 			if (found || resetval) {
 				if (value != v || resetval) {
 					value = v;
-					name.Text = _setting.ToString() + ": " + (value * scale + offset) + " " + _setting.suffix.Text;
+					name.Text = _setting.ToString() + ": " + (value * scale + offset).ToString("N" + _setting.digit.Value) + " " + _setting.suffix.Text;
 					resetval = false;
 				}
 			} else

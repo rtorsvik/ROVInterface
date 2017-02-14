@@ -498,7 +498,19 @@ public static class ProgramSaverLoader {
 		}
 
 		public void Clear() {
-			// Clear all data -- TODO
+			// Clear all data
+			cur_graphicSetting = null;
+			cur_joystickSetting = null;
+			cur_indexSetting = null;
+
+			joystickSettings.Clear();
+			indexSettings.Clear();
+			indexStats.Clear();
+			graphicSettings.Clear();
+			joystickSettings = null;
+			indexSettings = null;
+			indexStats = null;
+			graphicSettings = null;
 		}
 
 		public interface DataHolderTemplate {

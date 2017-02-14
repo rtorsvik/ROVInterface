@@ -7,12 +7,9 @@ public class GraphicsCreator {
 	public graphicPrototype Prototype { get { return prototype; } }
 
 	private Control parent;
-	private bool editMode = false;
 	private graphicPrototype prototype;
 	
 	private Color bgrColor = Color.FromArgb(255, 32, 32, 32);
-	private int gridsquaresize = 50;
-	private bool fullredraw = true; // If the redrawscene function should redraw everything or just update values
 	private Form indexDialogForm;
 	private FlowLayoutPanel indexDialogItemContainer;
 
@@ -26,13 +23,13 @@ public class GraphicsCreator {
 
 		try {
 			iconWarning = new Bitmap(Image.FromFile("./Graphics/Warning.png"));
-		} catch (Exception e) {
+		} catch {
 			Console.WriteLine("Failed to load/find \"./Graphics/Warning.png\".");
 			Program.errors.Add("Failed to load/find \"./Graphics/Warning.png\".");
 		}
 		try {
 			iconDanger = new Bitmap(Image.FromFile("./Graphics/Danger.png"));
-		} catch (Exception e) {
+		} catch {
 			Console.WriteLine("Failed to load/find \"./Graphics/Danger.png\".");
 			Program.errors.Add("Failed to load/find \"./Graphics/Danger.png\".");
 		}
@@ -228,18 +225,10 @@ public class GraphicsCreator {
 			private int? _hh = null;      // critical high
 
 			private static Font font = new Font("Serif", 12);
-			private static Brush brush = SystemBrushes.MenuHighlight;
 			public  static Brush brushbgr;
 			private int oldvalue = 0;
-			private icontype didshowicon = icontype.none;
-			private icontype doshowicon = icontype.none;
 			private icontype oldicontype = icontype.none;
 			private bool refresh = true;
-			
-			private Rectangle oldrect = new Rectangle();
-			private Rectangle oldrectfull = new Rectangle();
-			private Rectangle oldrecticon = new Rectangle();
-			private Rectangle oldrectfullicon = new Rectangle();
 
 			public Label control_label;
 			public PictureBox control_icon;
@@ -284,6 +273,9 @@ public class GraphicsCreator {
 						scale = (float)(settingswithidx.val2scaled.Value - settingswithidx.val1scaled.Value) / (float)(settingswithidx.val2raw.Value - settingswithidx.val1raw.Value);
 						offset = scale * (float)settingswithidx.val1raw.Value - (float)settingswithidx.val1scaled.Value;
 					}
+				} else {
+					scale = 1f;
+					offset = 0f;
 				}
 			}
 
@@ -340,7 +332,7 @@ public class GraphicsCreator {
 								}
 							}
 
-							control_label.Text = (settingswithidx == null ? value.ToString() : (v.ToString() + " " + settingswithidx.suffix.Text));
+							control_label.Text = (settingswithidx == null ? value.ToString() : (v.ToString("N" + settingswithidx.digit.Value) + " " + settingswithidx.suffix.Text));
 						}
 					}
 				} else {
