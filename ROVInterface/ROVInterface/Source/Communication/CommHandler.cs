@@ -174,7 +174,7 @@ public static class CommHandler
 				packet = dllConvertCommands.Invoke(null, o) as byte[];
 				fail = false;
 			}
-			catch (Exception e)
+			catch
 			{
 				fail = true;
 			}
