@@ -144,6 +144,7 @@
 			this.bgw_ethernetMessageRecieveHandler = new System.ComponentModel.BackgroundWorker();
 			this.bgw_ethernetMessageSendHandler = new System.ComponentModel.BackgroundWorker();
 			this.bgw_aegirMessageRequest = new System.ComponentModel.BackgroundWorker();
+			this.btn_aegir_RegAuto = new System.Windows.Forms.Button();
 			this.connectionTab.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.pan_graphicsCreator.SuspendLayout();
@@ -225,6 +226,7 @@
 			// 
 			this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox11.Controls.Add(this.btn_aegir_RegAuto);
 			this.groupBox11.Controls.Add(this.label37);
 			this.groupBox11.Controls.Add(this.btn_aegir_coolingfan);
 			this.groupBox11.Controls.Add(this.btn_aegir_armmotors);
@@ -1551,6 +1553,10 @@
 			this.tim_100ms_update.Enabled = true;
 			this.tim_100ms_update.Tick += new System.EventHandler(this.tim_100ms_update_Tick);
 			// 
+			// tim_SendCommandsDelay
+			// 
+			this.tim_SendCommandsDelay.Tick += new System.EventHandler(this.tim_SendCommandsDelay_Tick);
+			// 
 			// bgw_ethernetMessageRecieveHandler
 			// 
 			this.bgw_ethernetMessageRecieveHandler.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_ethernetMessageRecieveHandler_DoWork);
@@ -1562,6 +1568,18 @@
 			// bgw_aegirMessageRequest
 			// 
 			this.bgw_aegirMessageRequest.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_aegirMessageRequest_DoWork);
+			// 
+			// btn_aegir_RegAuto
+			// 
+			this.btn_aegir_RegAuto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_aegir_RegAuto.Location = new System.Drawing.Point(19, 276);
+			this.btn_aegir_RegAuto.Name = "btn_aegir_RegAuto";
+			this.btn_aegir_RegAuto.Size = new System.Drawing.Size(313, 39);
+			this.btn_aegir_RegAuto.TabIndex = 5;
+			this.btn_aegir_RegAuto.Text = "Possition control [Auto]";
+			this.btn_aegir_RegAuto.UseVisualStyleBackColor = true;
+			this.btn_aegir_RegAuto.Click += new System.EventHandler(this.btn_aegir_RegAuto_Click);
 			// 
 			// WindowStatus
 			// 
@@ -1749,4 +1767,5 @@
 	private System.Windows.Forms.Button btn_aegir_coolingfan;
 	private System.Windows.Forms.Button btn_aegir_armmotors;
 	private System.ComponentModel.BackgroundWorker bgw_aegirMessageRequest;
+	private System.Windows.Forms.Button btn_aegir_RegAuto;
 }

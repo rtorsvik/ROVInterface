@@ -26,21 +26,22 @@ public static class ST_Register {
 			return;
 		}
 
+		ST_Array.arrelement[] data = commands.GetAllValues();
+
+		// Return if there are no elements to send
+		if (data.Length == 0)
+			return;
+
 		// Stop the timer for next update, to start again when finished with sending these commands
 		Program.windowStatus.tim_SendCommandsDelay.Stop();
 
-		ST_Array.arrelement[] data = commands.GetAllValues();
-		// Check if there is no elements to be sent
-		if (data.Length == 0)
-			return;
+		// Send commands
 		KeyValuePair<int, int>[] tosend = new KeyValuePair<int, int>[data.Length];
 		for (int i = 0, j = data.Length; i < j; i++)
 			tosend[i] = new KeyValuePair<int, int>(data[i].index, data[i].value);
 		CommHandler.Send(tosend);
 		Program.windowStatus.tim_SendCommandsDelay.Start();
-		/*for (int i = 0, j = data.Length; i < j; i++)
-			CommHandler.Send(data[i].index, data[i].value);
-		*/
+
 		// Reset the command array
 		commands.ResetArray();
 	}

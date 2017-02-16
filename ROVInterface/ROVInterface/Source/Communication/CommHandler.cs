@@ -1015,7 +1015,7 @@ public static class CommHandler
 				message.Add(new KeyValuePair<int, int>(118, V));
 				break;
 			default:
-				Console.WriteLine("Recieved data from Ægir that is not handled");
+				//Console.WriteLine("Recieved data from Ægir that is not handled");
 				break;
 		}
 
