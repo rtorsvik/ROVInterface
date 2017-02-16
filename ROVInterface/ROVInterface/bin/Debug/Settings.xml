@@ -1,22 +1,22 @@
 <Settings>
 	<JoystickSettings>
 		<Setting>
-			<jindex>-1</jindex><aindex>-1</aindex><reverse>True</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>0</jindex><aindex>23</aindex><reverse>True</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>21</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>0</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>22</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>0</jindex><aindex>22</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>50</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>13</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>0</jindex><aindex>13</aindex><reverse>False</reverse><expo>3</expo><deadband>0</deadband><offset>0</offset><max>8</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>12</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>0</jindex><aindex>12</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>21</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<jindex>0</jindex><aindex>0</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
 		</Setting>
 	</JoystickSettings>
 	<IndexSettings>
@@ -51,6 +51,6 @@
 		<Stats>502</Stats>
 	</IndexStats>
 	<GraphicSettings>
-		101,102,103,104,105,106,107,108,501,503,502;
+		105,106,107,108,101,102,103,104,501,503,502;
 	</GraphicSettings>
 </Settings>

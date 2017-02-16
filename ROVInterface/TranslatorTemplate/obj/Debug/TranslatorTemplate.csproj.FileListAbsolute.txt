@@ -1,4 +1,3 @@
-C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\TranslatorTemplate\obj\Debug\TranslatorTemplate.csprojResolveAssemblyReference.cache
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\TranslatorTemplate\obj\Debug\TranslatorTemplate.Properties.Resources.resources
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\TranslatorTemplate\obj\Debug\TranslatorTemplate.csproj.GenerateResource.Cache
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\TranslatorTemplate\bin\Debug\TranslatorTemplate.dll

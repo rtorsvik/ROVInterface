@@ -138,14 +138,14 @@ namespace Translator
 					case 5: //roll
 						if (!message.ContainsKey(TOP_XBOX_AXES))
 							message[TOP_XBOX_AXES] = TOP_XBOX_AXES_cache;
-						message[TOP_XBOX_AXES][0] = TOP_XBOX_AXES_cache[0] = (byte)p.Value; 
-						message[TOP_XBOX_AXES][1] = TOP_XBOX_AXES_cache[1] = (byte)(p.Value >> 8);
+						message[TOP_XBOX_AXES][2] = TOP_XBOX_AXES_cache[2] = (byte)p.Value;
+						message[TOP_XBOX_AXES][3] = TOP_XBOX_AXES_cache[3] = (byte)(p.Value >> 8);
 						break;
 					case 6: //yaw
 						if (!message.ContainsKey(TOP_XBOX_AXES))
 							message[TOP_XBOX_AXES] = TOP_XBOX_AXES_cache;
-						message[TOP_XBOX_AXES][2] = TOP_XBOX_AXES_cache[2] = (byte)p.Value; 
-						message[TOP_XBOX_AXES][3] = TOP_XBOX_AXES_cache[3] = (byte)(p.Value >> 8);
+						message[TOP_XBOX_AXES][0] = TOP_XBOX_AXES_cache[0] = (byte)p.Value;
+						message[TOP_XBOX_AXES][1] = TOP_XBOX_AXES_cache[1] = (byte)(p.Value >> 8);
 						break;
 					case 53: //zero depth
 						if (!message.ContainsKey(TOP_SENS_CTRL))
@@ -335,14 +335,14 @@ namespace Translator
 					message.Add(new KeyValuePair<int, int>(12, av_z));
 					break;
 				case SENSOR_THRUSTER_DUTY: // power to motors -100...100 [%]
-					message.Add(new KeyValuePair<int, int>(101, data[0])); //th1
-					message.Add(new KeyValuePair<int, int>(102, data[1])); //th2
-					message.Add(new KeyValuePair<int, int>(103, data[2])); //and so on...
-					message.Add(new KeyValuePair<int, int>(104, data[3]));
-					message.Add(new KeyValuePair<int, int>(105, data[4]));
-					message.Add(new KeyValuePair<int, int>(106, data[5]));
-					message.Add(new KeyValuePair<int, int>(107, data[6]));
-					message.Add(new KeyValuePair<int, int>(108, data[7]));
+					message.Add(new KeyValuePair<int, int>(101, (sbyte)data[0])); //th1
+					message.Add(new KeyValuePair<int, int>(102, (sbyte)data[1])); //th2
+					message.Add(new KeyValuePair<int, int>(103, (sbyte)data[2])); //and so on...
+					message.Add(new KeyValuePair<int, int>(104, (sbyte)data[3]));
+					message.Add(new KeyValuePair<int, int>(105, (sbyte)data[4]));
+					message.Add(new KeyValuePair<int, int>(106, (sbyte)data[5]));
+					message.Add(new KeyValuePair<int, int>(107, (sbyte)data[6]));
+					message.Add(new KeyValuePair<int, int>(108, (sbyte)data[7]));
 					break;
 				case SENSOR_DEPTH_SETPOINT: // [mm]
 					int depth_SP;

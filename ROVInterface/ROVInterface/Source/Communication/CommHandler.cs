@@ -157,7 +157,10 @@ public static class CommHandler
 		Send(kvp_arr);
 	}
 
-
+	/// <summary>
+	/// Sends a list of commands (as bytes) to the port
+	/// </summary>
+	/// <param name="commands"></param>
 	public static void Send(KeyValuePair<int, int>[] commands)
 	{
 		// Packet to be sent forward
@@ -200,11 +203,6 @@ public static class CommHandler
 
 		if (packet == null || packet.Length == 0)
 			return;
-
-
-
-		//TEMP ÆgirTest
-		//packet = AEgirConvertCommands(commands);
 
 
 
