@@ -32,6 +32,7 @@
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.pan_graphicsCreator = new System.Windows.Forms.Panel();
 			this.groupBox11 = new System.Windows.Forms.GroupBox();
+			this.btn_aegir_RegAuto = new System.Windows.Forms.Button();
 			this.label37 = new System.Windows.Forms.Label();
 			this.btn_aegir_coolingfan = new System.Windows.Forms.Button();
 			this.btn_aegir_armmotors = new System.Windows.Forms.Button();
@@ -144,7 +145,13 @@
 			this.bgw_ethernetMessageRecieveHandler = new System.ComponentModel.BackgroundWorker();
 			this.bgw_ethernetMessageSendHandler = new System.ComponentModel.BackgroundWorker();
 			this.bgw_aegirMessageRequest = new System.ComponentModel.BackgroundWorker();
-			this.btn_aegir_RegAuto = new System.Windows.Forms.Button();
+			this.groupBox12 = new System.Windows.Forms.GroupBox();
+			this.pan_graphicToolbox = new System.Windows.Forms.FlowLayoutPanel();
+			this.rightclickMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.btn_MenuReposition = new System.Windows.Forms.ToolStripMenuItem();
+			this.btn_MenuSettings = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.btn_MenuDeleteControl = new System.Windows.Forms.ToolStripMenuItem();
 			this.connectionTab.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.pan_graphicsCreator.SuspendLayout();
@@ -178,6 +185,8 @@
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
+			this.groupBox12.SuspendLayout();
+			this.rightclickMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -213,6 +222,7 @@
 			// pan_graphicsCreator
 			// 
 			this.pan_graphicsCreator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+			this.pan_graphicsCreator.Controls.Add(this.groupBox12);
 			this.pan_graphicsCreator.Controls.Add(this.groupBox11);
 			this.pan_graphicsCreator.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pan_graphicsCreator.Location = new System.Drawing.Point(3, 2);
@@ -239,6 +249,18 @@
 			this.groupBox11.TabIndex = 0;
 			this.groupBox11.TabStop = false;
 			this.groupBox11.Text = "Ægir TEMP";
+			// 
+			// btn_aegir_RegAuto
+			// 
+			this.btn_aegir_RegAuto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_aegir_RegAuto.Location = new System.Drawing.Point(19, 276);
+			this.btn_aegir_RegAuto.Name = "btn_aegir_RegAuto";
+			this.btn_aegir_RegAuto.Size = new System.Drawing.Size(313, 39);
+			this.btn_aegir_RegAuto.TabIndex = 5;
+			this.btn_aegir_RegAuto.Text = "Possition control [Auto]";
+			this.btn_aegir_RegAuto.UseVisualStyleBackColor = true;
+			this.btn_aegir_RegAuto.Click += new System.EventHandler(this.btn_aegir_RegAuto_Click);
 			// 
 			// label37
 			// 
@@ -1569,17 +1591,57 @@
 			// 
 			this.bgw_aegirMessageRequest.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_aegirMessageRequest_DoWork);
 			// 
-			// btn_aegir_RegAuto
+			// groupBox12
 			// 
-			this.btn_aegir_RegAuto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_aegir_RegAuto.Location = new System.Drawing.Point(19, 276);
-			this.btn_aegir_RegAuto.Name = "btn_aegir_RegAuto";
-			this.btn_aegir_RegAuto.Size = new System.Drawing.Size(313, 39);
-			this.btn_aegir_RegAuto.TabIndex = 5;
-			this.btn_aegir_RegAuto.Text = "Possition control [Auto]";
-			this.btn_aegir_RegAuto.UseVisualStyleBackColor = true;
-			this.btn_aegir_RegAuto.Click += new System.EventHandler(this.btn_aegir_RegAuto_Click);
+			this.groupBox12.Controls.Add(this.pan_graphicToolbox);
+			this.groupBox12.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox12.Location = new System.Drawing.Point(826, 3);
+			this.groupBox12.Name = "groupBox12";
+			this.groupBox12.Size = new System.Drawing.Size(200, 590);
+			this.groupBox12.TabIndex = 2;
+			this.groupBox12.TabStop = false;
+			this.groupBox12.Text = "Toolbox";
+			// 
+			// pan_graphicToolbox
+			// 
+			this.pan_graphicToolbox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pan_graphicToolbox.Location = new System.Drawing.Point(3, 19);
+			this.pan_graphicToolbox.Name = "pan_graphicToolbox";
+			this.pan_graphicToolbox.Size = new System.Drawing.Size(194, 568);
+			this.pan_graphicToolbox.TabIndex = 0;
+			// 
+			// rightclickMenu
+			// 
+			this.rightclickMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_MenuReposition,
+            this.btn_MenuSettings,
+            this.toolStripSeparator1,
+            this.btn_MenuDeleteControl});
+			this.rightclickMenu.Name = "rightclickMenu";
+			this.rightclickMenu.Size = new System.Drawing.Size(153, 98);
+			// 
+			// btn_MenuReposition
+			// 
+			this.btn_MenuReposition.Name = "btn_MenuReposition";
+			this.btn_MenuReposition.Size = new System.Drawing.Size(152, 22);
+			this.btn_MenuReposition.Text = "Reposition";
+			// 
+			// btn_MenuSettings
+			// 
+			this.btn_MenuSettings.Name = "btn_MenuSettings";
+			this.btn_MenuSettings.Size = new System.Drawing.Size(152, 22);
+			this.btn_MenuSettings.Text = "Settings";
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+			// 
+			// btn_MenuDeleteControl
+			// 
+			this.btn_MenuDeleteControl.Name = "btn_MenuDeleteControl";
+			this.btn_MenuDeleteControl.Size = new System.Drawing.Size(152, 22);
+			this.btn_MenuDeleteControl.Text = "Delete Control";
 			// 
 			// WindowStatus
 			// 
@@ -1645,6 +1707,8 @@
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
+			this.groupBox12.ResumeLayout(false);
+			this.rightclickMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1768,4 +1832,11 @@
 	private System.Windows.Forms.Button btn_aegir_armmotors;
 	private System.ComponentModel.BackgroundWorker bgw_aegirMessageRequest;
 	private System.Windows.Forms.Button btn_aegir_RegAuto;
+	private System.Windows.Forms.GroupBox groupBox12;
+	private System.Windows.Forms.FlowLayoutPanel pan_graphicToolbox;
+	private System.Windows.Forms.ContextMenuStrip rightclickMenu;
+	private System.Windows.Forms.ToolStripMenuItem btn_MenuReposition;
+	private System.Windows.Forms.ToolStripMenuItem btn_MenuSettings;
+	private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+	private System.Windows.Forms.ToolStripMenuItem btn_MenuDeleteControl;
 }

@@ -1,30 +1,218 @@
 ﻿<Settings>
   <JoystickSettings>
     <Setting>
-      <jindex>0</jindex>
-      <aindex>0</aindex>
-      <expo>0</expo>
+      <jindex>-1</jindex>
+      <aindex>23</aindex>
+      <reverse>True</reverse>
+      <expo>3</expo>
+      <deadband>10</deadband>
+      <offset>0</offset>
+      <max>8</max>
+    </Setting>
+    <Setting>
+      <jindex>-1</jindex>
+      <aindex>21</aindex>
+      <reverse>False</reverse>
+      <expo>3</expo>
+      <deadband>10</deadband>
+      <offset>0</offset>
+      <max>8</max>
+    </Setting>
+    <Setting>
+      <jindex>-1</jindex>
+      <aindex>22</aindex>
+      <reverse>False</reverse>
+      <expo>3</expo>
+      <deadband>10</deadband>
+      <offset>0</offset>
+      <max>50</max>
+    </Setting>
+    <Setting>
+      <jindex>-1</jindex>
+      <aindex>13</aindex>
+      <reverse>False</reverse>
+      <expo>3</expo>
       <deadband>0</deadband>
       <offset>0</offset>
-      <max>0</max>
+      <max>8</max>
+    </Setting>
+    <Setting>
+      <jindex>-1</jindex>
+      <aindex>12</aindex>
+      <reverse>False</reverse>
+      <expo>3</expo>
+      <deadband>10</deadband>
+      <offset>0</offset>
+      <max>8</max>
+    </Setting>
+    <Setting>
+      <jindex>-1</jindex>
+      <aindex>0</aindex>
+      <reverse>False</reverse>
+      <expo>3</expo>
+      <deadband>10</deadband>
+      <offset>0</offset>
+      <max>8</max>
     </Setting>
   </JoystickSettings>
   <IndexSettings>
     <Setting>
-      <index>2</index>
-      <name>Temp2</name>
+      <index>0</index>
+      <name></name>
       <digit>2</digit>
       <size>12</size>
-      <color>=</color>
+      <color>-1</color>
       <raw>0</raw>
       <scaled>0</scaled>
-      <raw>1</raw>
-      <scaled>1</scaled>
-      <suffix>m/s</suffix>
+      <raw>100</raw>
+      <scaled>100</scaled>
+      <suffix></suffix>
+    </Setting>
+    <Setting>
+      <index>0</index>
+      <name></name>
+      <digit>2</digit>
+      <size>12</size>
+      <color>-1</color>
+      <raw>0</raw>
+      <scaled>0</scaled>
+      <raw>100</raw>
+      <scaled>100</scaled>
+      <suffix></suffix>
+    </Setting>
+    <Setting>
+      <index>0</index>
+      <name></name>
+      <digit>2</digit>
+      <size>12</size>
+      <color>-1</color>
+      <raw>0</raw>
+      <scaled>0</scaled>
+      <raw>100</raw>
+      <scaled>100</scaled>
+      <suffix></suffix>
+    </Setting>
+    <Setting>
+      <index>0</index>
+      <name></name>
+      <digit>2</digit>
+      <size>12</size>
+      <color>-1</color>
+      <raw>0</raw>
+      <scaled>0</scaled>
+      <raw>100</raw>
+      <scaled>100</scaled>
+      <suffix></suffix>
+    </Setting>
+    <Setting>
+      <index>0</index>
+      <name></name>
+      <digit>2</digit>
+      <size>12</size>
+      <color>-1</color>
+      <raw>0</raw>
+      <scaled>0</scaled>
+      <raw>100</raw>
+      <scaled>100</scaled>
+      <suffix></suffix>
+    </Setting>
+    <Setting>
+      <index>501</index>
+      <name>Pod temp</name>
+      <digit>2</digit>
+      <size>12</size>
+      <color>-65536</color>
+      <raw>0</raw>
+      <scaled>0</scaled>
+      <raw>10000</raw>
+      <scaled>100</scaled>
+      <suffix>⁰C</suffix>
+    </Setting>
+    <Setting>
+      <index>502</index>
+      <name>Water temp</name>
+      <digit>2</digit>
+      <size>12</size>
+      <color>-16711681</color>
+      <raw>0</raw>
+      <scaled>0</scaled>
+      <raw>10000</raw>
+      <scaled>100</scaled>
+      <suffix>⁰C</suffix>
+    </Setting>
+    <Setting>
+      <index>503</index>
+      <name>DCDC temp</name>
+      <digit>2</digit>
+      <size>12</size>
+      <color>-65536</color>
+      <raw>0</raw>
+      <scaled>0</scaled>
+      <raw>10000</raw>
+      <scaled>100</scaled>
+      <suffix>⁰C</suffix>
+    </Setting>
+    <Setting>
+      <index>13</index>
+      <name>random</name>
+      <digit>2</digit>
+      <size>12</size>
+      <color>-1</color>
+      <raw>0</raw>
+      <scaled>0</scaled>
+      <raw>100</raw>
+      <scaled>100</scaled>
+      <suffix></suffix>
+    </Setting>
+    <Setting>
+      <index>17</index>
+      <name>sinus</name>
+      <digit>2</digit>
+      <size>12</size>
+      <color>-1</color>
+      <raw>0</raw>
+      <scaled>0</scaled>
+      <raw>100</raw>
+      <scaled>100</scaled>
+      <suffix></suffix>
     </Setting>
   </IndexSettings>
   <IndexStats>
-    <Stats>1</Stats>
-    <Stats>2</Stats>
+    <Stats>501</Stats>
+    <Stats>503</Stats>
+    <Stats>502</Stats>
+    <Stats>13</Stats>
+    <Stats>17</Stats>
   </IndexStats>
+  <GraphicSettings>
+    105,106,107,108,101,102,103,104,501,503,502;
+  </GraphicSettings>
+  <ToolboxSettings>
+    <SimpleButton>
+      <name></name>
+      <x></x>
+      <y></y>
+      <msg1_index></msg1_index>
+      <msg1_value></msg1_value>
+    </SimpleButton>
+    <OnOffButton Delay>
+      <name></name>
+      <x></x>
+      <y></y>
+      <msg1_index></msg1_index>
+      <msg1_value></msg1_value>
+      <msg2_index></msg2_index>
+      <msg2_value></msg2_value>
+      <delay></delay>
+    </OnOffButton>
+    <Slider Cont>
+      <name></name>
+      <x></x>
+      <y></y>
+      <index></index>
+      <interval></interval>
+      <min></min>
+      <max></max>
+    </Slider>
+  </ToolboxSettings>
 </Settings>

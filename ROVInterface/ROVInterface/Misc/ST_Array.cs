@@ -5,6 +5,9 @@ public class ST_Array {
 	private int sizemax;
 	private int sizecur;
 
+	private bool hashiddenarr = false;
+	private ST_Array hiddenarr;
+
 	public ST_Array() {
 		sizemax = 8;
 		sizecur = 0;
@@ -15,16 +18,26 @@ public class ST_Array {
 		sizecur = 0;
 		arr = new arrelement[sizemax];
 	}
+	public ST_Array(ST_Array hidden) : this() {
+		hashiddenarr = true;
+		hiddenarr = hidden;
+	}
 
 	// Indexer, so this array instance can be used as a[i];
 	public int? this[int i] {
 		get {
+			if (hashiddenarr)
+				return hiddenarr[i];
 			i = BinarySearchAlgorithm(i, 0, sizecur);
 			if (i < 0)
 				return null;
 			return arr[i].value;
 		}
-		set { SearchAndSet(i, value); }
+		set {
+			SearchAndSet(i, value);
+			if (hashiddenarr)
+				hiddenarr.SearchAndSet(i, value);
+		}
 	}
 
 	// Takes an index and insert it into arr

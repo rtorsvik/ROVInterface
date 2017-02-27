@@ -70,6 +70,13 @@
   <ItemGroup>
     <Compile Include="Misc\ErrorManager.cs" />
     <Compile Include="Misc\GraphicsCreator.cs" />
+    <Compile Include="Misc\GraphicToolbox.cs" />
+    <Compile Include="Misc\ToolboxControlSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\ToolboxControlSettings.Designer.cs">
+      <DependentUpon>ToolboxControlSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\Communication\CANPort.cs" />
     <Compile Include="Source\JoystickHandler.cs" />
     <Compile Include="Source\Communication\ComPort.cs" />
@@ -95,6 +102,9 @@
     <Compile Include="WindowStatus.Designer.cs">
       <DependentUpon>WindowStatus.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Misc\ToolboxControlSettings.resx">
+      <DependentUpon>ToolboxControlSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -111,6 +121,7 @@
     <EmbeddedResource Include="WindowStatus.resx">
       <DependentUpon>WindowStatus.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,7 +153,9 @@
     </Content>
     <Content Include="Images\Aegir.png" />
     <Content Include="Images\joystickrescale dark.jpg" />
-    <Content Include="Misc\Settings.xml" />
+    <Content Include="Misc\Settings.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Misc\Terje%27s To Do.txt" />
     <None Include="Resources\joystickscale dark test.png" />
     <None Include="Resources\joystickrescale dark 3.jpg" />

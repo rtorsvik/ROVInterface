@@ -63,6 +63,11 @@ public class GraphicsCreator {
 		indexDialogForm.BackColor = Color.FromArgb(32, 32, 32);
 		indexDialogForm.ForeColor = SystemColors.MenuHighlight;
 		indexDialogForm.Font = new Font(indexDialogForm.Font.FontFamily, 10);
+		indexDialogForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+		indexDialogForm.ShowIcon = false;
+		indexDialogForm.ShowInTaskbar = false;
+		indexDialogForm.MaximizeBox = false;
+		indexDialogForm.MinimizeBox = false;
 
 		TableLayoutPanel table = new TableLayoutPanel();
 		indexDialogForm.Controls.Add(table);
