@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Windows.Forms;
 
@@ -12,8 +13,9 @@ public class CANPort : Port
 	private string _hostname;
 	private int _port;
 
-	private CommHandler.ConnectionStatus connectionStatus;
 	private bool connectionEstablished;
+	private CommHandler.ConnectionStatus connectionStatus;
+
 
 
 	/// <summary>
@@ -26,6 +28,8 @@ public class CANPort : Port
 		_hostname = hostname;
 		_port = port;
 
+		client = new TcpClient();
+		/* this part moved to Open() instead
 		// Create a TcpClient.
 		// Note, for this client to work you need to have a TcpServer 
 		// connected to the same address as specified by the server, port
@@ -36,6 +40,7 @@ public class CANPort : Port
 		stream = client.GetStream();
 
 		connectionEstablished = true;
+		*/
 	}
 
 	
@@ -48,7 +53,15 @@ public class CANPort : Port
 	{
 		try
 		{
-			client.Connect(_hostname, _port);
+			// Create a TcpClient.
+			// Note, for this client to work you need to have a TcpServer 
+			// connected to the same address as specified by the server, port
+			// combination.
+			client = new TcpClient(_hostname, _port); //TEMP, should these be deconstructed for each time Cloes() is called?
+			//client.Connect(_hostname, _port); this does not seem to work (cant access removed object)
+
+			// Get a client stream for reading and writing.
+			stream = client.GetStream();
 
 			connectionEstablished = true;
 			connectionStatus = CommHandler.ConnectionStatus.Connected;
@@ -57,9 +70,6 @@ public class CANPort : Port
 		{
 			Console.WriteLine("Could not open CAN bus connection\n\n Exception: " + CANConnectException.ToString());
 		}
-
-		// Get a client stream for reading and writing.
-		stream = client.GetStream();
 
 		//return true if the port managed to open
 		return IsOpen();
@@ -91,7 +101,22 @@ public class CANPort : Port
 	/// <returns>Returns true if the port is open, connection is established</returns>
 	public bool IsOpen()
 	{
-		return client.Connected;
+		bool pingable = false;
+		Ping ping = new Ping();
+		PingReply reply = null;
+		try
+		{
+			reply = ping.Send(_hostname);
+		}
+		catch (PingException)
+		{
+			// Discard PingExceptions and return false;
+		}
+
+		if(reply.Status == IPStatus.Success && client.Connected)
+			return true;
+
+		return false;
 	}
 
 
@@ -129,8 +154,8 @@ public class CANPort : Port
 	/// <param name="index"></param>
 	public void Request(int index)
 	{
-		if (index == 15)
-			Console.WriteLine("TEMP id2");
+		if (!IsOpen())
+			return;
 
 		byte readIdentifyer = 0x01;
 
