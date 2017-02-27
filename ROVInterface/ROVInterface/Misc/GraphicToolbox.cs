@@ -115,26 +115,15 @@ public class GraphicToolbox {
 		// Create the control at mouse position
 		if (selectedControl.Equals(labSimpleButton)) {
 
-			Button btn = setDefaultSettingsOnGraphicControls(new Button(), e.Location, new ToolboxSimpleButton()) as Button;
-			btn.UseVisualStyleBackColor = true;
-			btn.Text = "Simple Button";
-			btn.Font = font;
+			Create_SimpleButton(new ToolboxSimpleButton(e.Location.X, e.Location.Y, "Simple Button", 0, 0));
 
 		} else if (selectedControl.Equals(labOnOffButton)) {
 
-			Button btn = setDefaultSettingsOnGraphicControls(new Button(), e.Location, new ToolboxOnOffButton()) as Button;
-			btn.UseVisualStyleBackColor = true;
-			btn.Text = "OnOff Button";
-			btn.Font = font;
+			Create_OnOffButton(new ToolboxOnOffButton(e.Location.X, e.Location.Y, "OnOff Button", 0, 0, true, 100, 0, 0));
 
 		} else if (selectedControl.Equals(labSlider)) {
 
-			// Dunno yet
-			//setDefaultSettingsOnGraphicControls(new Control(), e.Location);
-
-			// TEMP
-			TrackBar pan = setDefaultSettingsOnGraphicControls(new TrackBar(), e.Location, new ToolboxSlider()) as TrackBar;
-			
+			Create_Slider(0, new ToolboxSlider(e.Location.X, e.Location.Y, "Slider", 0, 1, -100, 100, true));
 			
 		} else {
 			throw new Exception("Not implemented toolbox selected control.");
@@ -144,21 +133,41 @@ public class GraphicToolbox {
 		selectedControl = null;
 	}
 
-	private Control setDefaultSettingsOnGraphicControls(Control control, Point pos, ToolboxControl ctrl) {
+	public void Create_SimpleButton(ToolboxSimpleButton tsb) {
+		Button btn = setDefaultSettingsOnGraphicControls(new Button(), tsb) as Button;
+		btn.UseVisualStyleBackColor = true;
+		btn.Font = font;
+	}
+	public void Create_OnOffButton(ToolboxOnOffButton toob) {
+		Button btn = setDefaultSettingsOnGraphicControls(new Button(), toob) as Button;
+		btn.UseVisualStyleBackColor = true;
+		btn.Font = font;
+	}
+	public void Create_Slider(int slidervalue, ToolboxSlider ts) {
+		TrackBar pan = setDefaultSettingsOnGraphicControls(new TrackBar(), ts) as TrackBar;
+		pan.TickFrequency = ts.interval;
+		pan.Minimum = ts.min;
+		pan.Maximum = ts.max;
+		pan.Value = slidervalue;
+	}
+
+	private Control setDefaultSettingsOnGraphicControls(Control control, ToolboxControl ctrl) {
 		parentGraphic.Controls.Add(control);
-		control.Location = pos;
 		control.Size = new Size(200, 50);
 		control.BackColor = colorIdle;
-		control.ForeColor = SystemColors.MenuHighlight;
-
+		control.ForeColor = SystemColors.ControlText;
 		control.MouseDown += Control_MouseClick;
 
 		ctrl.control = control;
 		allControls.Add(new KeyValuePair<Control, ToolboxControl>(control, ctrl));
 
+		control.Text = ctrl.name;
+		control.Location = new Point(ctrl.posx, ctrl.posy);
+
 		return control;
 	}
 
+	// Happens when any created control is clicked
 	private void Control_MouseClick(object sender, MouseEventArgs e) {
 		if (e.Button == MouseButtons.Right) {
 
@@ -218,6 +227,7 @@ public class GraphicToolbox {
 		lab.Size = new Size(parentToolbox.Width - lab.Margin.Horizontal - lab.Padding.Horizontal, 30);
 		lab.TextAlign = ContentAlignment.MiddleCenter;
 		lab.BackColor = colorIdle;
+		lab.ForeColor = SystemColors.ControlText;
 
 		lab.MouseEnter += Lab_MouseEnter;
 		lab.MouseLeave += Lab_MouseLeave;
@@ -268,27 +278,17 @@ public class GraphicToolbox {
 		private int _posy;
 		private string _name;
 
-
-		public ToolboxControl () {
+		public ToolboxControl(int posx, int posy, string name) {
 			_control = null;
-		}
-		public ToolboxControl (Control control) {
-			this.control = control;
+
+			_posx = posx;
+			_posy = posy;
+			_name = name;
 		}
 
 		public void SetPosition() {
 			_posx = control.Location.X;
 			_posy = control.Location.Y;
-		}
-
-		private void SetControl(Control control) {
-			_control = control;
-			_name = _control.Text;
-			_posx = _control.Location.X;
-			_posy = _control.Location.Y;
-			
-
-
 		}
 
 		public void ResetControlPosition() {
@@ -297,6 +297,10 @@ public class GraphicToolbox {
 
 		public abstract void ShowForm();
 		public abstract void Send();
+
+		public virtual void SetControl(Control c) {
+			_control = c;
+		}
 
 		public virtual void SetSettings(ToolboxControlSettings form) {
 			_posx = (int)form.nud_PosX.Value;
@@ -313,14 +317,15 @@ public class GraphicToolbox {
 		}
 	}
 
-	// Done
 	public class ToolboxSimpleButton : ToolboxControl {
 
 		public int msg_index;
 		public int msg_value;
 
-		public ToolboxSimpleButton() : base() { }
-		public ToolboxSimpleButton(Control control) : base(control) { }
+		public ToolboxSimpleButton(int posx, int posy, string name, int msg_index, int msg_value) : base(posx, posy, name) {
+			this.msg_index = msg_index;
+			this.msg_value = msg_value;
+		}
 
 		public override void ShowForm() {
 			// Set up generic settings
@@ -348,7 +353,6 @@ public class GraphicToolbox {
 		}
 	}
 
-	// Done
 	public class ToolboxOnOffButton : ToolboxControl {
 
 		public int msg1_index;
@@ -360,8 +364,23 @@ public class GraphicToolbox {
 
 		private Timer curtimer;
 
-		public ToolboxOnOffButton() : base() { }
-		public ToolboxOnOffButton(Control control) : base(control) { }
+		public ToolboxOnOffButton(int posx, int posy, string name, int msg1_index, int msg1_value, bool ifdelay, int delayms, int msg2_index, int msg2_value) : base(posx, posy, name) {
+			this.msg1_index = msg1_index;
+			this.msg1_value = msg1_value;
+			this.ifdelay = ifdelay;
+			this.delayms = delayms;
+			this.msg2_index = msg2_index;
+			this.msg2_value = msg2_value;
+		}
+
+		public override void SetControl(Control c) {
+			base.SetControl(c);
+			// Set up send events
+			if (ifdelay)
+				control.MouseUp -= SendOnRelease;
+			else
+				control.MouseUp += SendOnRelease;
+		}
 
 		public override void ShowForm() {
 			// Set up generic settings
@@ -436,8 +455,25 @@ public class GraphicToolbox {
 		public int max = 100;
 		public bool ifcont = true;
 
-		public ToolboxSlider() : base() { }
-		public ToolboxSlider(Control control) : base(control) { }
+		public ToolboxSlider(int posx, int posy, string name, int index, int interval, int min, int max, bool ifcont) : base(posx, posy, name) {
+			this.index = index;
+			this.interval = interval;
+			this.min = min;
+			this.max = max;
+			this.ifcont = ifcont;
+		}
+
+		public override void SetControl(Control c) {
+			base.SetControl(c);
+			// Set up send event
+			if (ifcont) {
+				control.MouseUp -= SendOnRelease;
+				((TrackBar)control).ValueChanged += SendOnValueChange;
+			} else {
+				control.MouseUp += SendOnRelease;
+				((TrackBar)control).ValueChanged -= SendOnValueChange;
+			}
+		}
 
 		public override void ShowForm() {
 			// Set up generic settings
