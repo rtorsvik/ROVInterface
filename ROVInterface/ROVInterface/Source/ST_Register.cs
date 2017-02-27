@@ -16,7 +16,7 @@ public static class ST_Register {
 	/// </summary>
 	public static void Init() {
 		status = new ST_Array();
-		commands = new ST_Array();
+		commands = new ST_Array(new ST_Array());
 	}
 
 	public static void SendCommands(object sender, EventArgs e) {

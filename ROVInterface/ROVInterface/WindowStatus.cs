@@ -22,6 +22,7 @@ public partial class WindowStatus : Form
 	public IndexSettings indexSettings;
 	public IndexStats indexStats;
 	public GraphicsCreator graphicsCreator;
+	public GraphicToolbox graphicToolbox;
 
 	public JoystickSettings joystickSettings;
 
@@ -66,6 +67,7 @@ public partial class WindowStatus : Form
 
 		// Load all settings
 		graphicsCreator = new GraphicsCreator(pan_graphicsCreator);
+		graphicToolbox = new GraphicToolbox(pan_graphicsCreator, pan_graphicToolbox, rightclickMenu);
 		ProgramSaverLoader.Load();
 
 		// Start the st_register send timer

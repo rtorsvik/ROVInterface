@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 
 public static class ProgramSaverLoader {
 
@@ -323,28 +324,28 @@ public static class ProgramSaverLoader {
 		src += "<Settings>\n";
 
 		// Loop through and add JoystickSettings
-		src += "	<JoystickSettings>\n";
+		src += "\t<JoystickSettings>\n";
 		JoystickSettings js = Program.windowStatus.joystickSettings;
 		JoystickSettings.AxisSetting[] axiss = js.axisSetting;
 		for (int i = 0, j = 6; i < j; i++) {
-			src += "		<Setting>\n";
-			src += "			<jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><reverse>" + axiss[i].reverse.ToString() + "</reverse><expo>" + axiss[i].expo + 
+			src += "\t\t<Setting>\n";
+			src += "\t\t\t<jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><reverse>" + axiss[i].reverse.ToString() + "</reverse><expo>" + axiss[i].expo + 
 				"</expo><deadband>" + axiss[i].deadband + "</deadband><offset>" + axiss[i].offset + "</offset><max>" + axiss[i].max + "</max>\n";
-			src += "		</Setting>\n";
+			src += "\t\t</Setting>\n";
 		}
-		src += "	</JoystickSettings>\n";
+		src += "\t</JoystickSettings>\n";
 
 		// Loop through and add IndexSettings
-		src += "	<IndexSettings>\n";
+		src += "\t<IndexSettings>\n";
 		List<IndexSettings.Setting> li = Program.windowStatus.indexSettings.allSettings;
 		for (int i = 0, j = li.Count; i < j; i++) {
-			src += "		<Setting>\n			<index>" +
+			src += "\t\t<Setting>\n\t\t\t<index>" +
 				li[i].index.Value + "</index><name>" + li[i].name.Text + "</name><digit>" + li[i].digit.Value +
 				"</digit><size>" + li[i].size.Value + "</size><color>" + li[i].color.BackColor.ToArgb() + "</color><raw>" + li[i].val1raw.Value +
 				"</raw><scaled>" + li[i].val1scaled.Value + "</scaled><raw>" + li[i].val2raw.Value + "</raw><scaled>" + li[i].val2scaled.Value +
-				"</scaled><suffix>" + li[i].suffix.Text + "</suffix>\n		</Setting>\n";
+				"</scaled><suffix>" + li[i].suffix.Text + "</suffix>\n\t\t</Setting>\n";
 		}
-		src += "	</IndexSettings>\n";
+		src += "\t</IndexSettings>\n";
 
 		// Loop through and add IndexStats
 		src += "	<IndexStats>\n";
@@ -352,10 +353,10 @@ public static class ProgramSaverLoader {
 		for (int i = 0, j = ls.Count; i < j; i++) {
 			src += "		<Stats>" + ((IndexSettings.Setting)ls[i].index.SelectedItem).index.Value + "</Stats>\n";
 		}
-		src += "	</IndexStats>\n";
+		src += "\t</IndexStats>\n";
 
 		// Loop through and add GraphicSettings
-		src += "	<GraphicSettings>\n		";
+		src += "\t<GraphicSettings>\n\t\t";
 		GraphicsCreator.graphicPrototype.prototypeIndex[] pi = Program.windowStatus.graphicsCreator.Prototype.indexes;
 		for (int i = 0, j = pi.Length; i < j; i++) {
 			src += pi[i]._idx;
@@ -365,6 +366,37 @@ public static class ProgramSaverLoader {
 				src += ";";
 		}
 		src += "\n	</GraphicSettings>\n";
+		/*
+		// Loop through and add ToolboxSettings
+		src += "\t<ToolboxSettings>\n";
+		List< KeyValuePair<Control, GraphicToolbox.ToolboxControl> > at = Program.windowStatus.graphicToolbox.allControls;
+		for (int i = 0, j = at.Count; i < j; i++) {
+			if (at[i].Value.GetType() == typeof(GraphicToolbox.ToolboxSimpleButton)) {
+				// Save <SimpleButton>
+				GraphicToolbox.ToolboxSimpleButton o = (GraphicToolbox.ToolboxSimpleButton)at[i].Value;
+				src += "\t\t<SimpleButton>\n";
+				src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<msg_index>" +
+						o.msg_index + "</msg_index>\n\t\t\t<msg_value>" + o.msg_value + "</msg_value>\n";
+				src += "\t\t</SimpleButton>\n";
+			} else if (at[i].Value.GetType() == typeof(GraphicToolbox.ToolboxOnOffButton)) {
+				// Save <OnOffButton Delay>
+				GraphicToolbox.ToolboxOnOffButton o = (GraphicToolbox.ToolboxOnOffButton)at[i].Value;
+				src += "\t\t<OnOffButton" + (o.ifdelay ? "Delay" : "") + ">\n";
+				src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<msg1_index>" +
+						o.msg1_index + "</msg1_index>\n\t\t\t<msg1_value>" + o.msg1_value + "</msg1_value>\n\t\t\t<msg2_index>" +
+						o.msg2_index + "</msg2_index>\n\t\t\t<msg2_value>" + o.msg2_value + "</msg2_value>\n\t\t\t<delay>" + o.delayms + "</delay>\n";
+				src += "\t\t</OnOffButton>\n";
+			} else if (at[i].Value.GetType() == typeof(GraphicToolbox.ToolboxSlider)) {
+				// Save <Slider Cont>
+				GraphicToolbox.ToolboxSlider o = (GraphicToolbox.ToolboxSlider)at[i].Value;
+				src += "\t\t<Slider" + (o.ifcont ? "Cont" : "") + ">\n";
+				src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<index>" + o.index + "</index>\n\t\t\t<interval>" +
+						o.interval + "</interval>\n\t\t\t<min>" + o.min + "</min>\n\t\t\t<max>" + o.max + "</max>\n";
+				src += "\t\t</Slider>\n";
+			}
+		}
+		src += "\t</ToolboxSettings>\n";
+		*/
 
 		src += "</Settings>";
 

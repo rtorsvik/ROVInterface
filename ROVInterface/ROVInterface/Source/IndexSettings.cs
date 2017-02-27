@@ -70,6 +70,7 @@ public class IndexSettings {
 		
 		// Color handler
 		Button btn = new Button();
+		btn.UseVisualStyleBackColor = true;
 		btn.BackColor = color;
 		btn.Parent = temp;
 		btn.Text = "";
@@ -130,7 +131,7 @@ public class IndexSettings {
 
 		// Delete handler
 		btn = new Button();
-		btn.BackColor = System.Drawing.Color.White;
+		btn.UseVisualStyleBackColor = true;
 		btn.Parent = temp;
 		btn.Text = "X";
 		btn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
