@@ -276,18 +276,26 @@ public partial class WindowStatus : Form
 	/// <param name="e"></param>
 	private void btn_connect_serial_Click(object sender, EventArgs e)
 	{
+		//If communication port is not initialized yet, initialize
 		if (!CommHandler.initialized)
 			CommHandler.InitSerial(cmb_comport.SelectedItem.ToString(), int.Parse(cmb_baudrate.SelectedItem.ToString()));
 
+		// If port is open, close it. Else, open the port.
 		if (CommHandler.IsOpen())
 		{
-			CommHandler.Close();
-			btn_comm_serialSend.Enabled = false;
+			if(CommHandler.Close())
+			{
+				btn_comm_serialSend.Enabled = false;
+				btn_comm_CANconnect.Enabled = true;
+			}
 		}
 		else
 		{
-			CommHandler.Open();
-			btn_comm_serialSend.Enabled = true;
+			if(CommHandler.Open())
+			{
+				btn_comm_serialSend.Enabled = true;
+				btn_comm_CANconnect.Enabled = false;
+			}
 		}
 
 	}
@@ -634,6 +642,7 @@ public partial class WindowStatus : Form
 	/// <param name="e"></param>
 	private void btn_comm_CANconnect_Click(object sender, EventArgs e)
 	{
+		//If communication port is not initialized yet, initialize
 		if (!CommHandler.initialized)
 		{
 			string ip;
@@ -651,19 +660,25 @@ public partial class WindowStatus : Form
 			}
 
 			CommHandler.InitCAN(ip, port);
-			btn_comm_CANsend.Enabled = true;
 		}
 
-		else if (CommHandler.IsOpen())
+		// If port is open, close it. Else, open the port.
+		if (CommHandler.IsOpen())
 		{
-			CommHandler.Close();
-			btn_comm_CANsend.Enabled = false;
+			if (CommHandler.Close())
+			{
+				btn_comm_CANsend.Enabled = false;
+				btn_comm_serialConnect.Enabled = true;
+			}
 		}
 
 		else
 		{
-			CommHandler.Open();
-			btn_comm_CANsend.Enabled = true;
+			if (CommHandler.Open())
+			{
+				btn_comm_CANsend.Enabled = true;
+				btn_comm_serialConnect.Enabled = false;
+			}
 		}
 
 		//bgw_aegirMessageRequest.RunWorkerAsync();
@@ -802,9 +817,10 @@ public partial class WindowStatus : Form
 		base.OnPaint(e);
 	}
 
+	//TEMP
 	private void tim_SendCommandsDelay_Tick(object sender, EventArgs e)
 	{
-		Console.WriteLine("timSendcommandTick");
+		
 	}
 
 	

@@ -1,27 +1,27 @@
 <Settings>
 	<JoystickSettings>
 		<Setting>
-			<jindex>-1</jindex><aindex>23</aindex><reverse>True</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
+			<jindex>0</jindex><aindex>23</aindex><reverse>True</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
+			<jindex>0</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>22</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>50</max>
+			<jindex>0</jindex><aindex>22</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>13</aindex><reverse>False</reverse><expo>3</expo><deadband>0</deadband><offset>0</offset><max>8</max>
+			<jindex>0</jindex><aindex>13</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>12</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
+			<jindex>0</jindex><aindex>12</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>0</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
+			<jindex>0</jindex><aindex>0</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 	</JoystickSettings>
 	<IndexSettings>
 		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+			<index>0</index><name>Alive cnt</name><digit>0</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 		<Setting>
 			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
@@ -30,63 +30,54 @@
 			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+			<index>52</index><name>Depth</name><digit>0</digit><size>25</size><color>-16744193</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>mm</suffix>
 		</Setting>
 		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+			<index>54</index><name>Tempeature probe</name><digit>0</digit><size>12</size><color>-65408</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>°C</suffix>
 		</Setting>
 		<Setting>
-			<index>501</index><name>Pod temp</name><digit>2</digit><size>12</size><color>-65536</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix>⁰C</suffix>
+			<index>501</index><name>Pod</name><digit>1</digit><size>25</size><color>-65408</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix>⁰C</suffix>
 		</Setting>
 		<Setting>
-			<index>502</index><name>Water temp</name><digit>2</digit><size>12</size><color>-16711681</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix>⁰C</suffix>
+			<index>502</index><name>Water temp</name><digit>1</digit><size>25</size><color>-16711681</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix>⁰C</suffix>
 		</Setting>
 		<Setting>
-			<index>503</index><name>DCDC temp</name><digit>2</digit><size>12</size><color>-65536</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix>⁰C</suffix>
+			<index>503</index><name>DCDC temp</name><digit>0</digit><size>12</size><color>-65408</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix>⁰C</suffix>
 		</Setting>
 		<Setting>
-			<index>13</index><name>random</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+			<index>101</index><name>Motor 1 duty</name><digit>0</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>%</suffix>
 		</Setting>
 		<Setting>
-			<index>17</index><name>sinus</name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+			<index>102</index><name>Motor 2 duty</name><digit>0</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>%</suffix>
+		</Setting>
+		<Setting>
+			<index>103</index><name>Motor 3 duty</name><digit>0</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>%</suffix>
+		</Setting>
+		<Setting>
+			<index>104</index><name>Motor 4 duty</name><digit>0</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>%</suffix>
+		</Setting>
+		<Setting>
+			<index>105</index><name>Motor 5 duty</name><digit>0</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>%</suffix>
+		</Setting>
+		<Setting>
+			<index>106</index><name>Motor 6 duty</name><digit>0</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>%</suffix>
+		</Setting>
+		<Setting>
+			<index>107</index><name>Motor 7 duty</name><digit>0</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>%</suffix>
+		</Setting>
+		<Setting>
+			<index>108</index><name>Motor 8 duty</name><digit>0</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>%</suffix>
 		</Setting>
 	</IndexSettings>
 	<IndexStats>
 		<Stats>501</Stats>
-		<Stats>503</Stats>
 		<Stats>502</Stats>
-		<Stats>13</Stats>
-		<Stats>17</Stats>
+		<Stats>52</Stats>
+		<Stats>0</Stats>
+		<Stats>54</Stats>
+		<Stats>503</Stats>
 	</IndexStats>
 	<GraphicSettings>
-		105,106,107,108,101,102,103,104,501,503,502;
+		108,106,107,105,102,101,103,104,501,503,502;
 	</GraphicSettings>
-	<ToolboxSettings>
-		<SimpleButton>
-			<name>SButton</name>
-			<x>565</x>
-			<y>37</y>
-			<msg_index>15</msg_index>
-			<msg_value>100</msg_value>
-		</SimpleButton>
-		<OnOffButtonDelay>
-			<name>OOB</name>
-			<x>649</x>
-			<y>189</y>
-			<msg1_index>1</msg1_index>
-			<msg1_value>0</msg1_value>
-			<msg2_index>1</msg2_index>
-			<msg2_value>256</msg2_value>
-			<delay>103</delay>
-		</OnOffButton>
-		<SliderCont>
-			<name>Sli</name>
-			<x>539</x>
-			<y>352</y>
-			<index>2</index>
-			<interval>100</interval>
-			<min>0</min>
-			<max>32167</max>
-		</Slider>
-	</ToolboxSettings>
 </Settings>
