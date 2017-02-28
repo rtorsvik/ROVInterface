@@ -45,7 +45,8 @@ public class GraphicsCreator {
 	}
 
 	public void DrawBackgroundImage(PaintEventArgs e) {
-		e.Graphics.DrawImage(prototype.image, new Point(0, 0));
+		if (prototype.hasImage)
+			e.Graphics.DrawImage(prototype.image, new Point(0, 0));
 	}
 
 	public void SetPrototype(graphicPrototype ps) {
@@ -172,15 +173,17 @@ public class GraphicsCreator {
 	public class graphicPrototype {
 
 		public bool hasImage = true;
+		public string path;
 		public Bitmap image;
 		public prototypeIndex[] indexes;
 
 		public graphicPrototype(string path, prototypeIndex[] indexes) {
+			this.path = path;
 			if (path == "")
 				hasImage = false;
 			else {
 				try {
-					image = new Bitmap(Image.FromFile(".\\Graphics\\" + path));
+					image = new Bitmap(Image.FromFile(path));
 				} catch {
 					hasImage = false;
 				}
@@ -239,8 +242,7 @@ public class GraphicsCreator {
 			public Label control_label;
 			public PictureBox control_icon;
 
-
-			public prototypeIndex(bool hidden, int x, int y, int? ll, int? l, int? h, int? hh) {
+			public prototypeIndex(bool hidden, int x, int y, int? ll, int? l, int? h, int? hh, int index) {
 				_hidden = hidden;
 				_posx = x;
 				_posy = y;
@@ -248,6 +250,7 @@ public class GraphicsCreator {
 				_l = l;
 				_h = h;
 				_hh = hh;
+				_idx = index;
 			}
 
 			public void UpdateIdxReference() {

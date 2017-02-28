@@ -1,22 +1,22 @@
 <Settings>
 	<JoystickSettings>
 		<Setting>
-			<jindex>0</jindex><aindex>23</aindex><reverse>True</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
+			<jindex>-1</jindex><aindex>23</aindex><reverse>True</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
+			<jindex>-1</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>22</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
+			<jindex>-1</jindex><aindex>22</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>13</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
+			<jindex>-1</jindex><aindex>13</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>12</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
+			<jindex>-1</jindex><aindex>12</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>0</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
+			<jindex>-1</jindex><aindex>0</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 	</JoystickSettings>
 	<IndexSettings>
@@ -80,4 +80,13 @@
 	<GraphicSettings>
 		108,106,107,105,102,101,103,104,501,503,502;
 	</GraphicSettings>
+	<ToolboxSettings>
+		<SimpleButton>
+			<name>Simple Button</name>
+			<x>553</x>
+			<y>119</y>
+			<msg1_index>0</msg1_index>
+			<msg1_value>0</msg1_value>
+		</SimpleButton>
+	</ToolboxSettings>
 </Settings>

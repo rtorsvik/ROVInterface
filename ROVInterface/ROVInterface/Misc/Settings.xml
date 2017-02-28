@@ -187,6 +187,17 @@
   <GraphicSettings>
     105,106,107,108,101,102,103,104,501,503,502;
   </GraphicSettings>
+  <GraphicSettings>
+    <Index>
+      <x>50</x>
+      <y>70</y>
+      <ll>-50</ll>
+      <l>-39</l>
+      <h>39</h>
+      <hh>50</hh>
+      <index>105</index>
+    </Index>
+  </GraphicSettings>
   <ToolboxSettings>
     <SimpleButton>
       <name></name>

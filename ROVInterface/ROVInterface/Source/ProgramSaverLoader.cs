@@ -312,7 +312,8 @@ public static class ProgramSaverLoader {
 				DataHolder.joystickSettings_Setting d = dataHolder.joystickSettings[i];
 				axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, (decimal)d.expo, d.deadband, d.offset, d.max);
 			}
-		}
+		} else
+			Program.errors.Add("Failed to load <JoystickSettings>");
 
 		// If succesfully loaded indexSettings
 		if (dataHolder.indexSettings != null) {
@@ -320,7 +321,8 @@ public static class ProgramSaverLoader {
 				DataHolder.indexSettings_Setting d = dataHolder.indexSettings[i];
 				Program.windowStatus.indexSettings.CreateElement(d.index, d.name, d.digit, d.size, d.color, d.v1raw, d.v1scaled, d.v2raw, d.v2scaled, d.suffix);
 			}
-		}
+		} else
+			Program.errors.Add("Failed to load <IndexSettings>");
 
 		// If succesfully loaded indexStats
 		if (dataHolder.indexStats != null) {
@@ -328,14 +330,16 @@ public static class ProgramSaverLoader {
 				int e = dataHolder.indexStats[i];
 				Program.windowStatus.indexStats.CreateElement(e);
 			}
-		}
+		} else
+			Program.errors.Add("Failed to load <IndexStats>");
 
 		// If succesfully loaded graphicSettings
 		if (dataHolder.graphicSettings != null) {
 			for (int i = 0, j = dataHolder.graphicSettings.Count; i < j; i++)
 				Program.windowStatus.graphicsCreator.Prototype.indexes[i]._idx = dataHolder.graphicSettings[i];
-		}
-		Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
+			Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
+		} else
+			Program.errors.Add("Failed to load <GraphicSettings>");
 
 		// If succesfully loaded toolboxSettings
 		if (dataHolder.toolboxSettings != null) {
@@ -352,9 +356,10 @@ public static class ProgramSaverLoader {
 						Program.windowStatus.graphicToolbox.Create_Slider(d.delayms, new GraphicToolbox.ToolboxSlider(d.x, d.y, d.name, d.msg1_index, d.msg1_value, d.msg2_index, d.msg2_value, d.pam));
 						break;
 				}
-				
+
 			}
-		}
+		} else
+			Program.errors.Add("Failed to load <ToolboxSettings>");
 	}
 
 	private static LoadPosition FindNextAfterError(string next, out bool fin) {
@@ -655,13 +660,14 @@ public static class ProgramSaverLoader {
 				public bool hidden = false;
 				public int x;
 				public int y;
-				public int? ll = null;		// critical low
-				public int? l = null;		// low
-				public int? h = null;		// high
-				public int? hh = null;		// critical high
+				public float? ll = null;	// critical low
+				public float? l = null;		// low
+				public float? h = null;		// high
+				public float? hh = null;	// critical high
+				public int index;
 
 				private int readindex = -1;
-				private readonly string[] req = { "<x>", "</x>", "<y>", "</y>", "<ll>", "</ll>", "<l>", "</l>", "<h>", "</h>", "<hh>", "</hh>" };
+				private readonly string[] req = { "<x>", "</x>", "<y>", "</y>", "<ll>", "</ll>", "<l>", "</l>", "<h>", "</h>", "<hh>", "</hh>", "<index>", "</index>" };
 
 				public graphics_ObjectIndex(bool hidden) {
 					this.hidden = hidden;
@@ -688,10 +694,11 @@ public static class ProgramSaverLoader {
 							switch(readindex) {
 								case 0: x = int.Parse(s); break;
 								case 2: y = int.Parse(s); break;
-								case 4: ll = int.Parse(s); break;
-								case 6: l = int.Parse(s); break;
-								case 8: h = int.Parse(s); break;
-								case 10: hh = int.Parse(s); break;
+								case 4: ll = float.Parse(s); break;
+								case 6: l = float.Parse(s); break;
+								case 8: h = float.Parse(s); break;
+								case 10: hh = float.Parse(s); break;
+								case 12: index = int.Parse(s); break;
 							}
 
 							readindex++;
@@ -897,7 +904,8 @@ public static class ProgramSaverLoader {
 		IndexStats = 6,
 		IndexStatsChild = 7,
 		GraphicSettings = 8,
-		ToolboxSettings = 9,
-		ToolboxSettingsChild = 10
+		GraphicSettingsChild = 9,
+		ToolboxSettings = 10,
+		ToolboxSettingsChild = 11
 	}
 }
