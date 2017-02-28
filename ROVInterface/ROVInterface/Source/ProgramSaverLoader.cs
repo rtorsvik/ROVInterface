@@ -128,6 +128,9 @@ public static class ProgramSaverLoader {
 						case "<GraphicSettings>":
 							pos = LoadPosition.GraphicSettings;
 							break;
+						case "<ToolboxSettings>":
+							pos = LoadPosition.ToolboxSettings;
+							break;
 						case "</Settings>":
 							fin = true;
 							break;
@@ -248,6 +251,56 @@ public static class ProgramSaverLoader {
 					}
 
 					break;
+				case LoadPosition.ToolboxSettings:
+					switch (next) {
+						case "<SimpleButton>":
+							dataHolder.cur_toolboxSetting = new DataHolder.toolboxSettings_Control(DataHolder.toolboxSettings_Control.controltype.SimpleButton, false);
+							pos = LoadPosition.ToolboxSettingsChild;
+							break;
+						case "<OnOffButton>":
+							dataHolder.cur_toolboxSetting = new DataHolder.toolboxSettings_Control(DataHolder.toolboxSettings_Control.controltype.OnOffButton, false);
+							pos = LoadPosition.ToolboxSettingsChild;
+							break;
+						case "<OnOffButton Delay>":
+							dataHolder.cur_toolboxSetting = new DataHolder.toolboxSettings_Control(DataHolder.toolboxSettings_Control.controltype.OnOffButton, true);
+							pos = LoadPosition.ToolboxSettingsChild;
+							break;
+						case "<Slider>":
+							dataHolder.cur_toolboxSetting = new DataHolder.toolboxSettings_Control(DataHolder.toolboxSettings_Control.controltype.Slider, false);
+							pos = LoadPosition.ToolboxSettingsChild;
+							break;
+						case "<Slider Cont>":
+							dataHolder.cur_toolboxSetting = new DataHolder.toolboxSettings_Control(DataHolder.toolboxSettings_Control.controltype.Slider, true);
+							pos = LoadPosition.ToolboxSettingsChild;
+							break;
+						case "</ToolboxSettings>":
+							pos = LoadPosition.Settings;
+							break;
+						default:
+							dataHolder.toolboxSettings = null;
+							pos = FindNextAfterError(next, out fin);
+							break;
+					}
+					break;
+				case LoadPosition.ToolboxSettingsChild:
+					switch (next) {
+						case "</SimpleButton>":
+							dataHolder.toolboxSettings.Add(dataHolder.cur_toolboxSetting);
+							pos = LoadPosition.ToolboxSettings;
+							break;
+						case "</OnOffButton>":
+							dataHolder.toolboxSettings.Add(dataHolder.cur_toolboxSetting);
+							pos = LoadPosition.ToolboxSettings;
+							break;
+						case "</Slider>":
+							dataHolder.toolboxSettings.Add(dataHolder.cur_toolboxSetting);
+							pos = LoadPosition.ToolboxSettings;
+							break;
+						default:
+							dataHolder.cur_toolboxSetting.Insert(next);
+							break;
+					}
+					break;
 			}
 		}
 
@@ -283,6 +336,25 @@ public static class ProgramSaverLoader {
 				Program.windowStatus.graphicsCreator.Prototype.indexes[i]._idx = dataHolder.graphicSettings[i];
 		}
 		Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
+
+		// If succesfully loaded toolboxSettings
+		if (dataHolder.toolboxSettings != null) {
+			for (int i = 0; i < dataHolder.toolboxSettings.Count; i++) {
+				DataHolder.toolboxSettings_Control d = dataHolder.toolboxSettings[i];
+				switch (d.type) {
+					case DataHolder.toolboxSettings_Control.controltype.SimpleButton:
+						Program.windowStatus.graphicToolbox.Create_SimpleButton(new GraphicToolbox.ToolboxSimpleButton(d.x, d.y, d.name, d.msg1_index, d.msg1_value));
+						break;
+					case DataHolder.toolboxSettings_Control.controltype.OnOffButton:
+						Program.windowStatus.graphicToolbox.Create_OnOffButton(new GraphicToolbox.ToolboxOnOffButton(d.x, d.y, d.name, d.msg1_index, d.msg1_value, d.pam, d.delayms, d.msg2_index, d.msg2_value));
+						break;
+					case DataHolder.toolboxSettings_Control.controltype.Slider:
+						Program.windowStatus.graphicToolbox.Create_Slider(d.delayms, new GraphicToolbox.ToolboxSlider(d.x, d.y, d.name, d.msg1_index, d.msg1_value, d.msg2_index, d.msg2_value, d.pam));
+						break;
+				}
+				
+			}
+		}
 	}
 
 	private static LoadPosition FindNextAfterError(string next, out bool fin) {
@@ -303,6 +375,9 @@ public static class ProgramSaverLoader {
 					break;
 				case "<GraphicSettings>":
 					pos = LoadPosition.GraphicSettings;
+					break;
+				case "<ToolboxSettings>":
+					pos = LoadPosition.ToolboxSettings;
 					break;
 				case "</Settings>":
 					pos = LoadPosition.Settings;
@@ -366,7 +441,7 @@ public static class ProgramSaverLoader {
 				src += ";";
 		}
 		src += "\n	</GraphicSettings>\n";
-		/*
+		
 		// Loop through and add ToolboxSettings
 		src += "\t<ToolboxSettings>\n";
 		List< KeyValuePair<Control, GraphicToolbox.ToolboxControl> > at = Program.windowStatus.graphicToolbox.allControls;
@@ -375,13 +450,13 @@ public static class ProgramSaverLoader {
 				// Save <SimpleButton>
 				GraphicToolbox.ToolboxSimpleButton o = (GraphicToolbox.ToolboxSimpleButton)at[i].Value;
 				src += "\t\t<SimpleButton>\n";
-				src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<msg_index>" +
-						o.msg_index + "</msg_index>\n\t\t\t<msg_value>" + o.msg_value + "</msg_value>\n";
+				src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<msg1_index>" +
+						o.msg_index + "</msg1_index>\n\t\t\t<msg1_value>" + o.msg_value + "</msg1_value>\n";
 				src += "\t\t</SimpleButton>\n";
 			} else if (at[i].Value.GetType() == typeof(GraphicToolbox.ToolboxOnOffButton)) {
 				// Save <OnOffButton Delay>
 				GraphicToolbox.ToolboxOnOffButton o = (GraphicToolbox.ToolboxOnOffButton)at[i].Value;
-				src += "\t\t<OnOffButton" + (o.ifdelay ? "Delay" : "") + ">\n";
+				src += "\t\t<OnOffButton" + (o.ifdelay ? " Delay" : "") + ">\n";
 				src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<msg1_index>" +
 						o.msg1_index + "</msg1_index>\n\t\t\t<msg1_value>" + o.msg1_value + "</msg1_value>\n\t\t\t<msg2_index>" +
 						o.msg2_index + "</msg2_index>\n\t\t\t<msg2_value>" + o.msg2_value + "</msg2_value>\n\t\t\t<delay>" + o.delayms + "</delay>\n";
@@ -389,14 +464,14 @@ public static class ProgramSaverLoader {
 			} else if (at[i].Value.GetType() == typeof(GraphicToolbox.ToolboxSlider)) {
 				// Save <Slider Cont>
 				GraphicToolbox.ToolboxSlider o = (GraphicToolbox.ToolboxSlider)at[i].Value;
-				src += "\t\t<Slider" + (o.ifcont ? "Cont" : "") + ">\n";
+				src += "\t\t<Slider" + (o.ifcont ? " Cont" : "") + ">\n";
 				src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<index>" + o.index + "</index>\n\t\t\t<interval>" +
-						o.interval + "</interval>\n\t\t\t<min>" + o.min + "</min>\n\t\t\t<max>" + o.max + "</max>\n";
+						o.interval + "</interval>\n\t\t\t<min>" + o.min + "</min>\n\t\t\t<max>" + o.max + "</max>\n\t\t\t<curvalue>" + ((TrackBar)o.control).Value + "</curvalue>\n";
 				src += "\t\t</Slider>\n";
 			}
 		}
 		src += "\t</ToolboxSettings>\n";
-		*/
+		
 
 		src += "</Settings>";
 
@@ -519,6 +594,8 @@ public static class ProgramSaverLoader {
 		public indexSettings_Setting cur_indexSetting;
 		public List<int> indexStats;
 		public List<int> graphicSettings;
+		public toolboxSettings_Control cur_toolboxSetting;
+		public List<toolboxSettings_Control> toolboxSettings;
 
 		public DataHolder() {
 			cur_graphicSetting = new graphics_Object();
@@ -527,6 +604,7 @@ public static class ProgramSaverLoader {
 			cur_indexSetting = new indexSettings_Setting();
 			indexSettings = new List<indexSettings_Setting>();
 			indexStats = new List<int>();
+			toolboxSettings = new List<toolboxSettings_Control>();
 		}
 
 		public void Clear() {
@@ -608,24 +686,12 @@ public static class ProgramSaverLoader {
 						if (readindex % 2 == 0) { // If last looked at was an open tag, look for a value
 
 							switch(readindex) {
-								case 0:
-									x = int.Parse(s);
-									break;
-								case 2:
-									y = int.Parse(s);
-									break;
-								case 4:
-									ll = int.Parse(s);
-									break;
-								case 6:
-									l = int.Parse(s);
-									break;
-								case 8:
-									h = int.Parse(s);
-									break;
-								case 10:
-									hh = int.Parse(s);
-									break;
+								case 0: x = int.Parse(s); break;
+								case 2: y = int.Parse(s); break;
+								case 4: ll = int.Parse(s); break;
+								case 6: l = int.Parse(s); break;
+								case 8: h = int.Parse(s); break;
+								case 10: hh = int.Parse(s); break;
 							}
 
 							readindex++;
@@ -733,6 +799,86 @@ public static class ProgramSaverLoader {
 				}
 			}
 		}
+
+		public class toolboxSettings_Control {
+
+			public controltype type;
+
+			public string name;
+			public int x;
+			public int y;
+			public bool pam = false; // set for OnOffButton == Delay, Slider == Cont
+			public int msg1_index;
+			public int msg1_value; // interval for slider
+			public int msg2_index; // min for slider
+			public int msg2_value; // max slider
+			public int delayms;    // curvalue slider
+
+			private int readindex = -1;
+			private readonly string[] req = { "<name>", "</name>", "<x>", "</x>", "<y>", "</y>", "<msg1_index>", "</msg1_index>", "<msg1_value>", "</msg1_value>",
+											  "<msg2_index>", "</msg2_index>", "<msg2_value>", "</msg2_value>", "<delay>", "</delay>", "<index>", "</index>",
+											  "<interval>", "</interval>", "<min>", "</min>", "<max>", "</max>", "<curvalue>", "</curvalue>" };
+
+			public toolboxSettings_Control (controltype type, bool pam) {
+				this.type = type;
+				this.pam = pam;
+			}
+
+			public void Insert(string s) {
+				if (readindex == -1) { // Waiting for a open tag
+					int found = -1;
+					for (int i = 0, j = req.Length; i < j; i += 2) {
+						if (s == req[i]) {
+							found = i;
+							break;
+						}
+					}
+					// If no tags required were correct, give an error
+					if (found == -1)
+						throw new Exception("Did not find a correct open tag.");
+
+					readindex = found;
+					return;
+				} else {
+					if (readindex % 2 == 0) { // If last looked at was an open tag, look for a value
+
+						// Check if the value was empty, which then the closing tag was read instead
+						if (s == req[readindex])
+							readindex = -1;
+						else {
+							switch (readindex) {
+								case 0: name = s; break;
+								case 2: x = int.Parse(s); break;
+								case 4: y = int.Parse(s); break;
+								case 6: msg1_index = int.Parse(s); break;
+								case 8: msg1_value = int.Parse(s); break;
+								case 10: msg2_index = int.Parse(s); break;
+								case 12: msg2_value = int.Parse(s); break;
+								case 14: delayms = int.Parse(s); break;
+								case 16: msg1_index = int.Parse(s); break; // for <index>
+								case 18: msg1_value = int.Parse(s); break; // for <interval>
+								case 20: msg2_index = int.Parse(s); break; // for <min>
+								case 22: msg2_value = int.Parse(s); break; // for <max>
+								case 24: delayms = int.Parse(s); break;    // for <curvalue>
+							}
+
+							readindex++;
+						}
+					} else { // If last looked at was a value, look for closing tag
+						if (s == req[readindex])
+							readindex = -1;
+						else
+							throw new Exception("Did not find a correct closing tag.");
+					}
+				}
+			}
+
+			public enum controltype {
+				SimpleButton,
+				OnOffButton,
+				Slider
+			}
+		}
 	}
 
 	private enum LoadPositionGraphics {
@@ -750,6 +896,8 @@ public static class ProgramSaverLoader {
 		IndexSettingsChild = 5,
 		IndexStats = 6,
 		IndexStatsChild = 7,
-		GraphicSettings = 8
+		GraphicSettings = 8,
+		ToolboxSettings = 9,
+		ToolboxSettingsChild = 10
 	}
 }
