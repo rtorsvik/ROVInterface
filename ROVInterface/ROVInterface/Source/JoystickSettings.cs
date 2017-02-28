@@ -65,10 +65,16 @@ public class JoystickSettings
 		for (int i = 0; i < buttonLabels.Length; i++)
 		{
 			buttonSetting[i].Update();
-			int a = 0;
+			int? a = 0;
 			//TEMP: finn ut sammen med terje hvor disse egentlig skal kalles hen
 			if (buttonSetting[i].outValue != prevOutB[i])
-				ST_Register.commands[buttonSetting[i].index] = a = (Convert.ToInt32(buttonSetting[i].outValue) << buttonSetting[i].bitnr);
+			{
+				if (ST_Register.commands[buttonSetting[i].index] == null)
+					ST_Register.commands[buttonSetting[i].index] = 0;
+				ST_Register.commands[buttonSetting[i].index] = ST_Register.commands[buttonSetting[i].index] & ~(1 << buttonSetting[i].bitnr) | (Convert.ToInt32(buttonSetting[i].outValue) << buttonSetting[i].bitnr);
+				a = ST_Register.commands[buttonSetting[i].index];
+			}
+			
 			prevOutB[i] = buttonSetting[i].outValue;
 		}
 

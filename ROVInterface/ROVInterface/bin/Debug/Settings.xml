@@ -30,7 +30,7 @@
 			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 		<Setting>
-			<index>52</index><name>Depth</name><digit>0</digit><size>25</size><color>-16744193</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>mm</suffix>
+			<index>52</index><name>Depth</name><digit>0</digit><size>25</size><color>-16711872</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>mm</suffix>
 		</Setting>
 		<Setting>
 			<index>54</index><name>Tempeature probe</name><digit>0</digit><size>12</size><color>-65408</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>°C</suffix>
@@ -73,9 +73,6 @@
 		<Stats>501</Stats>
 		<Stats>502</Stats>
 		<Stats>52</Stats>
-		<Stats>0</Stats>
-		<Stats>54</Stats>
-		<Stats>503</Stats>
 	</IndexStats>
 	<GraphicSettings>
 		108,106,107,105,102,101,103,104,501,503,502;
