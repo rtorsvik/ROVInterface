@@ -169,6 +169,7 @@ public class JoystickSettings
 			c_reverse.Text = "";
 			c_reverse.AutoSize = true;
 			c_reverse.Margin = new Padding(30, 3, 30, 3);
+			c_reverse.CheckedChanged += this.UpdateGraph;
 
 			c_expo = new NumericUpDown();
 			c_expo.DecimalPlaces = 1;
@@ -177,22 +178,26 @@ public class JoystickSettings
 			c_expo.Maximum = 3;
 			c_expo.Size = new System.Drawing.Size(40, 22);
 			c_expo.Margin = new Padding(8, 3, 8, 3);
+			c_expo.ValueChanged += this.UpdateGraph;
 
 			c_deadband = new NumericUpDown();
 			c_deadband.Maximum = 100;
 			c_deadband.Size = new System.Drawing.Size(50, 22);
 			c_deadband.Margin = new Padding(8, 3, 8, 3);
+			c_deadband.ValueChanged += this.UpdateGraph;
 
 			c_offset = new NumericUpDown();
 			c_offset.Maximum = 100;
 			c_offset.Size = new System.Drawing.Size(50, 22);
 			c_offset.Margin = new Padding(8, 3, 8, 3);
+			c_offset.ValueChanged += this.UpdateGraph;
 
 			c_max = new NumericUpDown();
 			c_max.Value = 100;
 			c_max.Maximum = 100;
 			c_max.Size = new System.Drawing.Size(50, 22);
 			c_max.Margin = new Padding(8, 3, 8, 3);
+			c_max.ValueChanged += this.UpdateGraph;
 
 			c_outValue_bar = new ProgressBar();
 			c_outValue_bar.Maximum = 65535;
@@ -446,6 +451,12 @@ public class JoystickSettings
 			c_autoDetect.UseVisualStyleBackColor = true;
 			c_autoDetect.Update();
 
+		}
+
+		public void UpdateGraph(object sender, EventArgs e)
+		{
+			Update();
+			Program.windowStatus.DrawGraph(deadband, offset, max, expo, reverse);
 		}
 
 

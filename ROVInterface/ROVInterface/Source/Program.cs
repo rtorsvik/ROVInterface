@@ -36,7 +36,7 @@ static class Program
 
 		//Sandbox
 		//#############################################################################
-		
+		Avionics.HeadingIndicatorInstrumentControl h = new Avionics.HeadingIndicatorInstrumentControl();
 
 
 		//KeyValuePair<int, int>[] kvp = new KeyValuePair<int, int>[2] { new KeyValuePair<int, int>(400, 0x0001), new KeyValuePair<int, int>(401, 32767) };
