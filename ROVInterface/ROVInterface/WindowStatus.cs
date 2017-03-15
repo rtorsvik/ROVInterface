@@ -1014,7 +1014,7 @@ public partial class WindowStatus : Form
 		{
 			//Function might not have real solutins for negative values of x, 
 			//so calculate only for asolute values of x, and convert later
-			y = (float)(r * (Math.Pow((Math.Abs(x) - x0), e)) * (y1 - y0) / (Math.Pow((x1 - x0), e)) + y0);
+			y = (float)(r * ((Math.Pow((Math.Abs(x) - x0), e)) * (y1 - y0) / (Math.Pow((x1 - x0), e)) + y0));
 		}
 
 		//for negative values of x, invert y value 
