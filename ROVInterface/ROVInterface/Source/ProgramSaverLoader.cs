@@ -17,6 +17,8 @@ public static class ProgramSaverLoader {
 	public static void Load() {
 
 		dataHolder = new DataHolder();
+		// Set up failproof values if the load fails
+		Program.windowStatus.graphicsCreator.SetPrototype(new GraphicsCreator.graphicPrototype("", new GraphicsCreator.graphicPrototype.prototypeIndex[0]));
 
 		try { _Load(); }
 		catch (Exception e) {

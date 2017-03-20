@@ -68,6 +68,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AGauge2\AGauge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AGauge2\AGauge.Designer.cs" />
+    <Compile Include="AGauge\AGauge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AGauge\AGauge.Designer.cs" />
+    <Compile Include="AvionicsInstrumentsControls\AirSpeedIndicatorInstrumentControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AvionicsInstrumentsControls\AltimeterInstrumentControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AvionicsInstrumentsControls\AttitudeIndicatorInstrumentControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AvionicsInstrumentsControls\AvionicsInstrumentsControlsRessources.Designer.cs" />
+    <Compile Include="AvionicsInstrumentsControls\HeadingIndicatorInstrumentControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AvionicsInstrumentsControls\InstrumentControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AvionicsInstrumentsControls\TurnCoordinatorInstrumentControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AvionicsInstrumentsControls\VerticalSpeedIndicatorInstrumentControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Misc\ErrorManager.cs" />
     <Compile Include="Misc\GraphicsCreator.cs" />
     <Compile Include="Misc\GraphicToolbox.cs" />
@@ -108,6 +138,9 @@
     <Compile Include="WindowStatus.Designer.cs">
       <DependentUpon>WindowStatus.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AvionicsInstrumentsControls\AvionicsInstrumentsControlsRessources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Misc\IndexDialogForm.resx">
       <DependentUpon>IndexDialogForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -145,6 +178,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AvionicsInstrumentsControlsResources\AirSpeedIndicator_Background.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\AirSpeedNeedle.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\Altimeter_Background.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\Bandeau_Dérouleur.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\HeadingIndicator_Aircraft.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\HeadingIndicator_Background.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\HeadingWeel.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\Horizon_Background.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\Horizon_GroundSky.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\Indicator_Background.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\LongNeedleAltimeter.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\Maquette_Avion.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\SmallNeedleAltimeter.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\TurnCoordinatorAircraft.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\TurnCoordinatorBall.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\TurnCoordinatorMarks.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\TurnCoordinator_Background.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\VerticalSpeedIndicator_Background.bmp" />
+    <Content Include="AvionicsInstrumentsControlsResources\VerticalSpeedNeedle.bmp" />
     <Content Include="Graphics\Aegir.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -183,6 +235,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

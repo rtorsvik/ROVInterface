@@ -190,92 +190,75 @@
       <y>70</y>
       <l>-39</l>
       <h>39</h>
+	  <index>0</index>
     </Index>
     <Index>
       <x>50</x>
       <y>500</y>
       <l>-39</l>
       <h>39</h>
+	  <index>0</index>
     </Index>
     <Index>
       <x>350</x>
       <y>70</y>
       <l>-39</l>
       <h>39</h>
+	  <index>0</index>
     </Index>
     <Index>
       <x>350</x>
       <y>500</y>
       <l>-39</l>
       <h>39</h>
+	  <index>0</index>
     </Index>
     <Index>
       <x>125</x>
       <y>150</y>
       <l>-39</l>
       <h>39</h>
+	  <index>0</index>
     </Index>
     <Index>
       <x>125</x>
       <y>425</y>
       <l>-39</l>
       <h>39</h>
+	  <index>0</index>
     </Index>
     <Index>
       <x>275</x>
       <y>150</y>
       <l>-39</l>
       <h>39</h>
+	  <index>0</index>
     </Index>
     <Index>
       <x>275</x>
       <y>425</y>
       <l>-39</l>
       <h>39</h>
+	  <index>0</index>
     </Index>
     <Index>
       <x>200</x>
       <y>250</y>
       <h>70</h>
       <hh>80</hh>
+	  <index>0</index>
     </Index>
     <Index>
       <x>200</x>
       <y>325</y>
       <h>70</h>
       <hh>80</hh>
+	  <index>0</index>
     </Index>
     <Index>
       <x>400</x>
       <y>250</y>
+	  <index>0</index>
     </Index>
   </GraphicSettings>
-  <ToolboxSettings>
-    <SimpleButton>
-      <name></name>
-      <x></x>
-      <y></y>
-      <msg1_index></msg1_index>
-      <msg1_value></msg1_value>
-    </SimpleButton>
-    <OnOffButton Delay>
-      <name></name>
-      <x></x>
-      <y></y>
-      <msg1_index></msg1_index>
-      <msg1_value></msg1_value>
-      <msg2_index></msg2_index>
-      <msg2_value></msg2_value>
-      <delay></delay>
-    </OnOffButton>
-    <Slider Cont>
-      <name></name>
-      <x></x>
-      <y></y>
-      <index></index>
-      <interval></interval>
-      <min></min>
-      <max></max>
-    </Slider>
-  </ToolboxSettings>
 </Settings>
