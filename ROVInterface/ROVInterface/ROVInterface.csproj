@@ -71,6 +71,12 @@
     <Compile Include="Misc\ErrorManager.cs" />
     <Compile Include="Misc\GraphicsCreator.cs" />
     <Compile Include="Misc\GraphicToolbox.cs" />
+    <Compile Include="Misc\IndexDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\IndexDialogForm.Designer.cs">
+      <DependentUpon>IndexDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\ToolboxControlSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     <Compile Include="WindowStatus.Designer.cs">
       <DependentUpon>WindowStatus.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Misc\IndexDialogForm.resx">
+      <DependentUpon>IndexDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Misc\ToolboxControlSettings.resx">
       <DependentUpon>ToolboxControlSettings.cs</DependentUpon>
     </EmbeddedResource>

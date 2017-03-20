@@ -10,7 +10,8 @@ public class GraphicsCreator {
 	private graphicPrototype prototype;
 	
 	private Color bgrColor = Color.FromArgb(255, 32, 32, 32);
-	private Form indexDialogForm;
+	//private Form indexDialogForm;
+	private IndexDialogForm indexDialogForm;
 	private FlowLayoutPanel indexDialogItemContainer;
 
 	private static Bitmap iconWarning;
@@ -57,8 +58,10 @@ public class GraphicsCreator {
 			// If an old form exists, clean it up --- TO DO ---
 		}
 
+		
+
 		// Set up the form for showing the indexes
-		indexDialogForm = new Form();
+		/*indexDialogForm = new Form();
 		indexDialogForm.Size = new Size(400, 400);
 		indexDialogForm.Text = "Set Graphic Index Settings";
 		indexDialogForm.BackColor = Color.FromArgb(32, 32, 32);
@@ -146,7 +149,7 @@ public class GraphicsCreator {
 			l.AutoSize = true;
 			l.Margin = new Padding(2, 4, 2, 2);
 
-		}
+		}*/
 	}
 
 	public void UpdateValues() {
@@ -211,12 +214,13 @@ public class GraphicsCreator {
 
 		public class prototypeIndex {
 			// Store settings for the indexes
+			public bool hidden { get { return _hidden; } }
 			public int posx { get { return _posx; } }
 			public int posy { get { return _posy; } }
-			public int? ll { get { return _ll; } }
-			public int? l { get { return _l; } }
-			public int? h { get { return _h; } }
-			public int? hh { get { return _hh; } }
+			public float? ll { get { return _ll; } }
+			public float? l { get { return _l; } }
+			public float? h { get { return _h; } }
+			public float? hh { get { return _hh; } }
 
 			public int _idx = 0;
 			// Some holders to remember the index scalings
@@ -227,10 +231,10 @@ public class GraphicsCreator {
 			private bool _hidden;
 			private int _posx;
 			private int _posy;
-			private int? _ll = null;      // critical low
-			private int? _l = null;       // low
-			private int? _h = null;       // high
-			private int? _hh = null;      // critical high
+			private float? _ll = null;      // critical low
+			private float? _l = null;       // low
+			private float? _h = null;       // high
+			private float? _hh = null;      // critical high
 
 			private static Color labelbackcolor = Color.FromArgb(200, 32, 32, 32);
 			private static Font font = new Font("Serif", 12);
@@ -242,7 +246,7 @@ public class GraphicsCreator {
 			public Label control_label;
 			public PictureBox control_icon;
 
-			public prototypeIndex(bool hidden, int x, int y, int? ll, int? l, int? h, int? hh, int index) {
+			public prototypeIndex(bool hidden, int x, int y, float? ll, float? l, float? h, float? hh, int index) {
 				_hidden = hidden;
 				_posx = x;
 				_posy = y;

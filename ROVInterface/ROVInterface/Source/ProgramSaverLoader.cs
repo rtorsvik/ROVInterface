@@ -18,12 +18,6 @@ public static class ProgramSaverLoader {
 
 		dataHolder = new DataHolder();
 
-		try { _LoadGraphicsPrototype(); }
-		catch (Exception e) {
-			Console.WriteLine(e);
-			Program.errors.Add("Failed to load Graphics Prototype.");
-		}
-
 		try { _Load(); }
 		catch (Exception e) {
 			Console.WriteLine(e);
@@ -32,68 +26,6 @@ public static class ProgramSaverLoader {
 
 		dataHolder.Clear();
 		dataHolder = null;
-	}
-
-	private static void _LoadGraphicsPrototype() {
-		Reader r = new Reader(".\\Graphics\\Graphics.xml");
-		if (!r.FindFileFromPath()) {
-			throw new FileNotFoundException();
-		}
-		bool fin = false;
-		LoadPositionGraphics pos = LoadPositionGraphics.gStart;
-
-		while (!r.IsEmpty() && !fin) {
-			string next = r.ReadNext();
-			switch (pos) {
-				case LoadPositionGraphics.gStart:
-					if (next == "<Graphics>")
-						pos = LoadPositionGraphics.gGraphics;
-					else {
-						pos = LoadPositionGraphics.gGraphics;
-						dataHolder.cur_graphicSetting = new DataHolder.graphics_Object();
-
-						if (string.Compare(next, 0, "<Graphics img=\"", 0, 15) == 0 && next[next.Length - 1] == '>' && next[next.Length - 2] == '"') { // If start with that string, and ends with '">'
-							dataHolder.cur_graphicSetting.image = next.Substring(15, next.Length - 17);
-						} else
-							throw new Exception("Did not find root tag '<Graphics>' or '<Graphics img=\"%%\">'.");
-					}
-					break;
-				case LoadPositionGraphics.gGraphics:
-					switch (next) {
-						case "<Index>":
-							pos = LoadPositionGraphics.gIndex;
-							dataHolder.cur_graphicSetting.Insert(next);
-							break;
-						case "<Index hidden>":
-							pos = LoadPositionGraphics.gIndex;
-							dataHolder.cur_graphicSetting.Insert(next);
-							break;
-						case "</Graphics>":
-							fin = true;
-							break;
-						default:
-							throw new Exception("Did not find correct next tag, of either '<Index>', '<Index hidden>' or '</Object>'.");
-					}
-					break;
-				case LoadPositionGraphics.gIndex:
-					dataHolder.cur_graphicSetting.Insert(next);
-					if (next == "</Index>")
-						pos = LoadPositionGraphics.gGraphics;
-					break;
-				default:
-					break;
-			}
-		}
-
-		int l = dataHolder.cur_graphicSetting.indexes.Count;
-		GraphicsCreator.graphicPrototype.prototypeIndex[] ix = new GraphicsCreator.graphicPrototype.prototypeIndex[l];
-		DataHolder.graphics_Object o = dataHolder.cur_graphicSetting;
-		for (int k = 0; k < l; k++)
-			ix[k] = new GraphicsCreator.graphicPrototype.prototypeIndex(o.indexes[k].hidden, o.indexes[k].x, o.indexes[k].y, o.indexes[k].ll, o.indexes[k].l, o.indexes[k].h, o.indexes[k].hh);
-
-		GraphicsCreator.graphicPrototype p = new GraphicsCreator.graphicPrototype(o.image, ix);
-
-		Program.windowStatus.graphicsCreator.SetPrototype(p);
 	}
 
 	private static void _Load() {
@@ -127,6 +59,8 @@ public static class ProgramSaverLoader {
 							break;
 						case "<GraphicSettings>":
 							pos = LoadPosition.GraphicSettings;
+							dataHolder.cur_graphicSetting = new DataHolder.graphics_Object();
+							dataHolder.cur_graphicSetting.image = ""; // will make the image never be loaded with empty path
 							break;
 						case "<ToolboxSettings>":
 							pos = LoadPosition.ToolboxSettings;
@@ -135,7 +69,17 @@ public static class ProgramSaverLoader {
 							fin = true;
 							break;
 						default:
-							throw new Exception("Did not find correct next tag, of either '<JoystickSettings>', '<IndexSettings>', '<IndexStats>' or '</Settings>'.");
+							pos = LoadPosition.GraphicSettings;
+							dataHolder.cur_graphicSetting = new DataHolder.graphics_Object();
+
+							if (string.Compare(next, 0, "<GraphicSettings img=\"", 0, 22) == 0 && next[next.Length - 1] == '>' && next[next.Length - 2] == '"') { // If start with that string, and ends with '">'
+								dataHolder.cur_graphicSetting.image = next.Substring(22, next.Length - 24);
+							} else {
+								dataHolder.cur_graphicSetting = null;
+								pos = FindNextAfterError(next, out fin);
+							}
+
+							break;
 					}
 					break;
 				case LoadPosition.JoystickSettings:
@@ -228,28 +172,28 @@ public static class ProgramSaverLoader {
 					pos = LoadPosition.IndexStats;
 					break;
 				case LoadPosition.GraphicSettings:
-					if (next == "</GraphicSettings>") {
-						pos = LoadPosition.Settings;
-						break;
+					switch (next) {
+						case "<Index>":
+							pos = LoadPosition.GraphicSettingsChild;
+							dataHolder.cur_graphicSetting.Insert(next);
+							break;
+						case "<Index hidden>":
+							pos = LoadPosition.GraphicSettingsChild;
+							dataHolder.cur_graphicSetting.Insert(next);
+							break;
+						case "</GraphicSettings>":
+							pos = LoadPosition.Settings;
+							break;
+						default:
+							dataHolder.cur_graphicSetting = null;
+							pos = FindNextAfterError(next, out fin);
+							break;
 					}
-
-					// Try to convert x0,x1,x2,...,xn to a list<int>
-					dataHolder.graphicSettings = new List<int>();
-					string cur = "";
-					for (int i = 0, j = next.Length; i < j; i++) {
-						if (next[i] == ',' || next[i] == ';') {
-							if (cur == "")
-								dataHolder.graphicSettings.Add(0);
-							else
-								dataHolder.graphicSettings.Add(int.Parse(cur));
-							cur = "";
-
-							if (next[i] == ';')
-								break;
-						} else
-							cur += next[i];
-					}
-
+					break;
+				case LoadPosition.GraphicSettingsChild:
+					dataHolder.cur_graphicSetting.Insert(next);
+					if (next == "</Index>")
+						pos = LoadPosition.GraphicSettings;
 					break;
 				case LoadPosition.ToolboxSettings:
 					switch (next) {
@@ -315,14 +259,25 @@ public static class ProgramSaverLoader {
 		} else
 			Program.errors.Add("Failed to load <JoystickSettings>");
 
-		// If succesfully loaded indexSettings
-		if (dataHolder.indexSettings != null) {
-			for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
-				DataHolder.indexSettings_Setting d = dataHolder.indexSettings[i];
-				Program.windowStatus.indexSettings.CreateElement(d.index, d.name, d.digit, d.size, d.color, d.v1raw, d.v1scaled, d.v2raw, d.v2scaled, d.suffix);
-			}
+		// If succesfully loaded graphicSettings
+		if (dataHolder.cur_graphicSetting != null) {
+			List<DataHolder.graphics_Object.graphics_ObjectIndex> d = dataHolder.cur_graphicSetting.indexes;
+			GraphicsCreator.graphicPrototype.prototypeIndex[] li = new GraphicsCreator.graphicPrototype.prototypeIndex[d.Count];
+			for (int i = 0, j = dataHolder.cur_graphicSetting.indexes.Count; i < j; i++)
+				li[i] = new GraphicsCreator.graphicPrototype.prototypeIndex(d[i].hidden, d[i].x, d[i].y, d[i].ll, d[i].l, d[i].h, d[i].hh, d[i].index);
+			Program.windowStatus.graphicsCreator.SetPrototype(new GraphicsCreator.graphicPrototype(dataHolder.cur_graphicSetting.image, li));
+			Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
+
+			// If succesfully loaded indexSettings
+			if (dataHolder.indexSettings != null) {
+				for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
+					DataHolder.indexSettings_Setting dd = dataHolder.indexSettings[i];
+					Program.windowStatus.indexSettings.CreateElement(dd.index, dd.name, dd.digit, dd.size, dd.color, dd.v1raw, dd.v1scaled, dd.v2raw, dd.v2scaled, dd.suffix);
+				}
+			} else
+				Program.errors.Add("Failed to load <IndexSettings>");
 		} else
-			Program.errors.Add("Failed to load <IndexSettings>");
+			Program.errors.Add("Failed to load <GraphicSettings>");
 
 		// If succesfully loaded indexStats
 		if (dataHolder.indexStats != null) {
@@ -332,14 +287,6 @@ public static class ProgramSaverLoader {
 			}
 		} else
 			Program.errors.Add("Failed to load <IndexStats>");
-
-		// If succesfully loaded graphicSettings
-		if (dataHolder.graphicSettings != null) {
-			for (int i = 0, j = dataHolder.graphicSettings.Count; i < j; i++)
-				Program.windowStatus.graphicsCreator.Prototype.indexes[i]._idx = dataHolder.graphicSettings[i];
-			Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
-		} else
-			Program.errors.Add("Failed to load <GraphicSettings>");
 
 		// If succesfully loaded toolboxSettings
 		if (dataHolder.toolboxSettings != null) {
@@ -436,16 +383,21 @@ public static class ProgramSaverLoader {
 		src += "\t</IndexStats>\n";
 
 		// Loop through and add GraphicSettings
-		src += "\t<GraphicSettings>\n\t\t";
+		src += "\t<GraphicSettings img=\"" + Program.windowStatus.graphicsCreator.Prototype.path + "\">\n";
 		GraphicsCreator.graphicPrototype.prototypeIndex[] pi = Program.windowStatus.graphicsCreator.Prototype.indexes;
-		for (int i = 0, j = pi.Length; i < j; i++) {
-			src += pi[i]._idx;
-			if (i + 1 != j)
-				src += ",";
-			else
-				src += ";";
+		for (int i = 0; i < pi.Length; i++) {
+			src += "\t\t<Index" + (pi[i].hidden ? " hidden" : "") + ">\n\t\t\t<x>" + pi[i].posx + "</x>\n\t\t\t<y>" + pi[i].posy + "</y>\n";
+			if (pi[i].ll != null)
+				src += "\t\t\t<ll>" + pi[i].ll.Value + "</ll>\n";
+			if (pi[i].l != null)
+				src += "\t\t\t<l>" + pi[i].l.Value + "</l>\n";
+			if (pi[i].h != null)
+				src += "\t\t\t<h>" + pi[i].h.Value + "</h>\n";
+			if (pi[i].hh != null)
+				src += "\t\t\t<hh>" + pi[i].hh.Value + "</hh>\n";
+			src += "\t\t\t<index>" + pi[i]._idx + "</index>\n\t\t</Index>\n";
 		}
-		src += "\n	</GraphicSettings>\n";
+		src += "\t</GraphicSettings>\n";
 		
 		// Loop through and add ToolboxSettings
 		src += "\t<ToolboxSettings>\n";
@@ -598,7 +550,6 @@ public static class ProgramSaverLoader {
 		public List<indexSettings_Setting> indexSettings;
 		public indexSettings_Setting cur_indexSetting;
 		public List<int> indexStats;
-		public List<int> graphicSettings;
 		public toolboxSettings_Control cur_toolboxSetting;
 		public List<toolboxSettings_Control> toolboxSettings;
 
@@ -621,11 +572,9 @@ public static class ProgramSaverLoader {
 			joystickSettings.Clear();
 			indexSettings.Clear();
 			indexStats.Clear();
-			graphicSettings.Clear();
 			joystickSettings = null;
 			indexSettings = null;
 			indexStats = null;
-			graphicSettings = null;
 		}
 
 		public interface DataHolderTemplate {
@@ -667,7 +616,7 @@ public static class ProgramSaverLoader {
 				public int index;
 
 				private int readindex = -1;
-				private readonly string[] req = { "<x>", "</x>", "<y>", "</y>", "<ll>", "</ll>", "<l>", "</l>", "<h>", "</h>", "<hh>", "</hh>", "<index>", "</index>" };
+				private static readonly string[] req = { "<x>", "</x>", "<y>", "</y>", "<ll>", "</ll>", "<l>", "</l>", "<h>", "</h>", "<hh>", "</hh>", "<index>", "</index>" };
 
 				public graphics_ObjectIndex(bool hidden) {
 					this.hidden = hidden;
@@ -727,7 +676,7 @@ public static class ProgramSaverLoader {
 
 			private bool waitforval = false;
 			private int readindex = 0;
-			private readonly string[] req = { "<index>", "</index>", "<name>", "</name>", "<digit>", "</digit>", "<size>", "</size>", "<color>", "</color>",
+			private static readonly string[] req = { "<index>", "</index>", "<name>", "</name>", "<digit>", "</digit>", "<size>", "</size>", "<color>", "</color>",
 											  "<raw>", "</raw>", "<scaled>", "</scaled>", "<raw>", "</raw>", "<scaled>", "</scaled>", "<suffix>", "</suffix>" };
 
 			public string NextData() {
@@ -774,7 +723,7 @@ public static class ProgramSaverLoader {
 
 			private bool waitforval = false;
 			private int readindex = 0;
-			private readonly string[] req = { "<jindex>", "</jindex>", "<aindex>", "</aindex>", "<reverse>", "</reverse>", "<expo>", "</expo>",
+			private static readonly string[] req = { "<jindex>", "</jindex>", "<aindex>", "</aindex>", "<reverse>", "</reverse>", "<expo>", "</expo>",
 											  "<deadband>", "</deadband>", "<offset>", "</offset>", "<max>", "</max>" };
 
 			public string NextData() {
@@ -822,7 +771,7 @@ public static class ProgramSaverLoader {
 			public int delayms;    // curvalue slider
 
 			private int readindex = -1;
-			private readonly string[] req = { "<name>", "</name>", "<x>", "</x>", "<y>", "</y>", "<msg1_index>", "</msg1_index>", "<msg1_value>", "</msg1_value>",
+			private static readonly string[] req = { "<name>", "</name>", "<x>", "</x>", "<y>", "</y>", "<msg1_index>", "</msg1_index>", "<msg1_value>", "</msg1_value>",
 											  "<msg2_index>", "</msg2_index>", "<msg2_value>", "</msg2_value>", "<delay>", "</delay>", "<index>", "</index>",
 											  "<interval>", "</interval>", "<min>", "</min>", "<max>", "</max>", "<curvalue>", "</curvalue>" };
 
@@ -886,12 +835,6 @@ public static class ProgramSaverLoader {
 				Slider
 			}
 		}
-	}
-
-	private enum LoadPositionGraphics {
-		gStart = 0,
-		gGraphics = 1,
-		gIndex = 2
 	}
 
 	private enum LoadPosition {

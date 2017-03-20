@@ -5,3 +5,4 @@
 - Make the toolbox Sliders have a label with its name and its current value, and its value while moving the slider.
 - Add graphics.xml to settings.xml
 	- Make everything able to change in the software, including warning values.
+- Make the FindNextAfterError() in ProgramSaverLoader, look for "<GraphicSettings>" and "<GraphicSettings img="%">".
