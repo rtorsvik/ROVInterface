@@ -23,7 +23,7 @@ public static class CommHandler
 
 	// Dll variables
 	private static bool loadedDll = false;
-	private const string dllpath = "./gTranslator.dll";
+	private const string dllpath = "./Translator.dll";
 	private static Assembly dll;
 	private static MethodInfo dllConvertCommands;
 	private static MethodInfo dllConvertData;
@@ -723,12 +723,12 @@ public static class CommHandler
 				message.Add(new KeyValuePair<int, int>(64, cnt));
 				break;
 			case SENSOR_AHRS: //pitch roll yaw and heading
-				int pitch;
-				pitch = data[0] << 8;
+				short pitch;
+				pitch = (short)(data[0] << 8);
 				pitch |= data[1];
 				message.Add(new KeyValuePair<int, int>(4, pitch));
-				int roll;
-				roll = data[2] << 8;
+				short roll;
+				roll = (short)(data[2] << 8);
 				roll |= data[3];
 				message.Add(new KeyValuePair<int, int>(5, roll));
 				int yaw;

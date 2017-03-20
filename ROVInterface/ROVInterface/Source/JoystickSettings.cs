@@ -65,10 +65,16 @@ public class JoystickSettings
 		for (int i = 0; i < buttonLabels.Length; i++)
 		{
 			buttonSetting[i].Update();
-			int a = 0;
+			int? a = 0;
 			//TEMP: finn ut sammen med terje hvor disse egentlig skal kalles hen
 			if (buttonSetting[i].outValue != prevOutB[i])
-				ST_Register.commands[buttonSetting[i].index] = a = (Convert.ToInt32(buttonSetting[i].outValue) << buttonSetting[i].bitnr);
+			{
+				if (ST_Register.commands[buttonSetting[i].index] == null)
+					ST_Register.commands[buttonSetting[i].index] = 0;
+				ST_Register.commands[buttonSetting[i].index] = ST_Register.commands[buttonSetting[i].index] & ~(1 << buttonSetting[i].bitnr) | (Convert.ToInt32(buttonSetting[i].outValue) << buttonSetting[i].bitnr);
+				a = ST_Register.commands[buttonSetting[i].index];
+			}
+			
 			prevOutB[i] = buttonSetting[i].outValue;
 		}
 
@@ -163,6 +169,7 @@ public class JoystickSettings
 			c_reverse.Text = "";
 			c_reverse.AutoSize = true;
 			c_reverse.Margin = new Padding(30, 3, 30, 3);
+			c_reverse.CheckedChanged += this.UpdateGraph;
 
 			c_expo = new NumericUpDown();
 			c_expo.DecimalPlaces = 1;
@@ -171,22 +178,26 @@ public class JoystickSettings
 			c_expo.Maximum = 3;
 			c_expo.Size = new System.Drawing.Size(40, 22);
 			c_expo.Margin = new Padding(8, 3, 8, 3);
+			c_expo.ValueChanged += this.UpdateGraph;
 
 			c_deadband = new NumericUpDown();
 			c_deadband.Maximum = 100;
 			c_deadband.Size = new System.Drawing.Size(50, 22);
 			c_deadband.Margin = new Padding(8, 3, 8, 3);
+			c_deadband.ValueChanged += this.UpdateGraph;
 
 			c_offset = new NumericUpDown();
 			c_offset.Maximum = 100;
 			c_offset.Size = new System.Drawing.Size(50, 22);
 			c_offset.Margin = new Padding(8, 3, 8, 3);
+			c_offset.ValueChanged += this.UpdateGraph;
 
 			c_max = new NumericUpDown();
 			c_max.Value = 100;
 			c_max.Maximum = 100;
 			c_max.Size = new System.Drawing.Size(50, 22);
 			c_max.Margin = new Padding(8, 3, 8, 3);
+			c_max.ValueChanged += this.UpdateGraph;
 
 			c_outValue_bar = new ProgressBar();
 			c_outValue_bar.Maximum = 65535;
@@ -306,7 +317,7 @@ public class JoystickSettings
 			{
 				//Function might not have real solutins for negative values of x, 
 				//so calculate only for asolute values of x, and convert later
-				y = (r * (Math.Pow((Math.Abs(x) - x0), e)) * (y1 - y0) / (Math.Pow((x1 - x0), e)) + y0);
+				y = r * ((Math.Pow((Math.Abs(x) - x0), e)) * (y1 - y0) / (Math.Pow((x1 - x0), e)) + y0);
 			}
 
 			//for negative values of x, invert y value 
@@ -442,6 +453,12 @@ public class JoystickSettings
 
 		}
 
+		public void UpdateGraph(object sender, EventArgs e)
+		{
+			Update();
+			Program.windowStatus.DrawGraph(deadband, offset, max, expo, reverse);
+		}
+
 
 
 		/// <summary>
@@ -541,7 +558,7 @@ public class JoystickSettings
 			c_button.Size = new System.Drawing.Size(50, 24);
 
 			c_autoDetect = new Button();
-			c_autoDetect.Click += this.AutoDetect;
+			c_autoDetect.Click += this.AutoDetect2;
 			c_autoDetect.Text = "A";
 			c_autoDetect.Size = new System.Drawing.Size(23, 23);
 			c_autoDetect.Margin = new Padding(3, 2, 3, 3);
@@ -672,7 +689,7 @@ public class JoystickSettings
 			{
 				jh.Update();
 
-				for (int i = 0; i < joystick.axis.Length; i++)
+				for (int i = 0; i < joystick.button.Length; i++)
 				{
 					buttonValue = joystick.button[i];
 					if (buttonValue)
@@ -684,6 +701,56 @@ public class JoystickSettings
 			if (index == -1) index = 0;
 
 			c_button.Value = index;
+			c_autoDetect.UseVisualStyleBackColor = true;
+			c_autoDetect.Update();
+
+		}
+
+		/// <summary>
+		/// Autodetect button and joystick
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		public void AutoDetect2(object sender, EventArgs e) //(object sender, EventArgs e) ??? make this function run when hitting button
+		{
+			//Change color of button to indicate that autotedect is running
+			c_autoDetect.BackColor = System.Drawing.Color.Aquamarine;
+			c_autoDetect.Update();
+
+			Stopwatch stopWatch = new Stopwatch();
+			stopWatch.Start();
+
+			//if none of the axes changes enough within 3 seconds, stop this autodetect processs and use -1 as index and joystick
+			int joystickIndex = -1;
+			int buttonIndex = -1;
+			while (stopWatch.ElapsedMilliseconds < 3000 && buttonIndex == -1)
+			{
+				jh.Update();
+
+				//for each joystick, check each axis
+				for (int ji = 0; ji < jh.joystick.Length; ji++)
+				{
+					TJoystick joystick = jh.joystick[ji];
+
+					for (int bi = 0; bi < joystick.button.Length; bi++)
+					{
+						bool buttonValue = joystick.button[bi];
+
+						//if a button is pressed, set this as the button to use
+						if (buttonValue)
+						{
+							joystickIndex = ji;
+							buttonIndex = bi;
+						}
+
+					}
+
+				}
+
+			}
+
+			c_joystick.SelectedIndex = joystickIndex;
+			c_button.Value = buttonIndex;
 			c_autoDetect.UseVisualStyleBackColor = true;
 			c_autoDetect.Update();
 

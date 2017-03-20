@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -37,6 +38,8 @@ public partial class WindowStatus : Form
 
 	//temp serialtesting
 	bool sendHeartbeat;
+
+	
 
 
 	public WindowStatus()
@@ -118,6 +121,47 @@ public partial class WindowStatus : Form
 			CommHandler.port.Request(ADFwebRequest++ % 72);
 		}
 
+		#region navigation window updates
+
+		double pitch = Convert.ToDouble(ST_Register.status[(int)nud_navigation_attitude_pitchindex.Value]);		
+		double roll = Convert.ToDouble(ST_Register.status[(int)nud_navigation_attitude_rollindex.Value]);
+
+		if (pitch == null)
+			pitch = 0;
+		if (roll == null)
+			roll = 0;
+
+		aii_navigation_attitude_instrument.SetAttitudeIndicatorParameters(pitch / (float)nud_navigation_attitude_pitchdiv.Value, roll / (float)nud_navigation_attitude_pitchdiv.Value);
+
+
+
+		int height = Convert.ToInt32(ST_Register.status[(int)nud_navigation_height_index.Value]);
+
+		if (height == null)
+			height = 0;
+
+		ali_navigation_height_instrument.SetAlimeterParameters(height);
+
+
+
+		int depth = Convert.ToInt32(ST_Register.status[(int)nud_navigation_depth_index.Value]);
+
+		if (depth == null)
+			depth = 0;
+
+		ali_navigation_depth_instrument.SetAlimeterParameters(depth);
+
+
+
+		int heading = Convert.ToInt32(ST_Register.status[(int)nud_navigation_heading_index.Value]);
+
+		if (heading == null)
+			heading = 0;
+
+		hdi_navigation_heading_instrument.SetHeadingIndicatorParameters(heading);
+
+		#endregion
+
 	}
 
 
@@ -189,7 +233,19 @@ public partial class WindowStatus : Form
 				CommHandler.newMessage = false;
 			}
 
+			
+
 		}
+
+
+
+		//temp
+		/*
+		byte[] b = new byte[9] { 0xff, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+		KeyValuePair<int, int>[] a;
+		a = CommHandler.AegirConvertData(13, b);
+		ST_Register.status[4] = a[0].Value;
+		*/
 
 
 
@@ -211,6 +267,8 @@ public partial class WindowStatus : Form
 		//display error messages if they are updated
 		if (Program.errors.HaveUpdated())
 			txt_error.Text = Program.errors.ToString();
+
+
 	}
 
 
@@ -823,5 +881,148 @@ public partial class WindowStatus : Form
 		
 	}
 
-	
+	private void tabPage1_Click(object sender, EventArgs e)
+	{
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	public void DrawGraph(int deadband, int offset, int max, double expo, bool reverse)
+	{
+
+		// The bounds to draw.
+		float xmin = -32767;
+		float xmax = 32767;
+		float ymin = -32767;
+		float ymax = 32767;
+
+		// Make the Bitmap.
+		int wid = picGraph.ClientSize.Width;
+		int hgt = picGraph.ClientSize.Height;
+
+		Bitmap bmp = new Bitmap(new Bitmap("./Graphics/Grid.png"), wid, hgt);
+
+		using (Graphics gr = Graphics.FromImage(bmp))
+		{
+			gr.SmoothingMode = SmoothingMode.AntiAlias;
+
+			// Transform to map the graph bounds to the Bitmap.
+			RectangleF rect = new RectangleF(
+				xmin, ymin, xmax - xmin, ymax - ymin);
+			PointF[] pts =
+					{
+					new PointF(0, hgt),
+					new PointF(wid, hgt),
+					new PointF(0, 0),
+				};
+			gr.Transform = new Matrix(rect, pts);
+
+			// Draw the graph.
+			using (Pen graph_pen = new Pen(System.Drawing.SystemColors.MenuHighlight, 3))
+			{
+				// See how big 1 pixel is horizontally.
+				Matrix inverse = gr.Transform;
+				inverse.Invert();
+				PointF[] pixel_pts =
+					{
+						new PointF(0, 0),
+						new PointF(1, 0)
+					};
+				inverse.TransformPoints(pixel_pts);
+				float dx = pixel_pts[1].X - pixel_pts[0].X;
+				dx /= 2;
+
+				// Loop over x values to generate points.
+				List<PointF> points = new List<PointF>();
+				for (float x = xmin; x <= xmax; x += dx)
+				{
+					bool valid_point = false;
+					try
+					{
+						// Get the next point.
+						float y = F(x, deadband, offset, max, expo, reverse);
+
+						// If the slope is reasonable,
+						// this is a valid point.
+						if (points.Count == 0) valid_point = true;
+						else
+						{
+							float dy = y - points[points.Count - 1].Y;
+							if (Math.Abs(dy / dx) < 1000)
+								valid_point = true;
+						}
+						if (valid_point) points.Add(new PointF(x, y));
+					}
+					catch
+					{
+					}
+
+					// If the new point is invalid, draw
+					// the points in the latest batch.
+					if (!valid_point)
+					{
+						if (points.Count > 1)
+							gr.DrawLines(graph_pen, points.ToArray());
+						points.Clear();
+					}
+
+				}
+
+				// Draw the last batch of points.
+				if (points.Count > 1)
+					gr.DrawLines(graph_pen, points.ToArray());
+			}
+		}
+
+		// Display the result.
+		picGraph.Image = bmp;
+	}
+
+	// The function to graph.
+	private float F(float x, int deadband, int offset, int max, double expo, bool reverse)
+	{
+		
+
+		//Do math
+		double x0 = 32767 * (deadband / 100d);
+		double y0 = 32767 * (offset / 100d);
+
+		double x1 = 32767;
+		double y1 = 32767 * (max / 100d);
+
+		double e = expo;
+
+		int r = reverse ? -1 : 1;
+
+		//in the "dead" zone of the deadband, y = 0, else, calculate y value
+		float y;
+		if (-x0 < x && x < x0)
+		{
+			y = 0;
+		}
+		else
+		{
+			//Function might not have real solutins for negative values of x, 
+			//so calculate only for asolute values of x, and convert later
+			y = (float)(r * ((Math.Pow((Math.Abs(x) - x0), e)) * (y1 - y0) / (Math.Pow((x1 - x0), e)) + y0));
+		}
+
+		//for negative values of x, invert y value 
+		if (x < 0)
+			y = -y;
+
+		return y;
+	}
+
+
 }

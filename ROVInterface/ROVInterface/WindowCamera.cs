@@ -56,5 +56,10 @@ public partial class WindowCamera : Form
 	{
 		webBrowser1.Url = new System.Uri("http://explore.org/live-cams/player/shark-cam", System.UriKind.Absolute);
 	}
+
+	private void button2_Click(object sender, EventArgs e)
+	{
+		webBrowser1.Url = new System.Uri("https://www.youtube.com/watch?v=r9y_yW9snug", System.UriKind.Absolute);
+	}
 }
 

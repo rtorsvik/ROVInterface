@@ -29,8 +29,22 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowStatus));
 			this.connectionTab = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.nud_navigation_attitude_rolldiv = new System.Windows.Forms.NumericUpDown();
+			this.nud_navigation_attitude_pitchdiv = new System.Windows.Forms.NumericUpDown();
+			this.nud_navigation_attitude_rollindex = new System.Windows.Forms.NumericUpDown();
+			this.nud_navigation_heading_index = new System.Windows.Forms.NumericUpDown();
+			this.nud_navigation_attitude_pitchindex = new System.Windows.Forms.NumericUpDown();
+			this.nud_navigation_depth_index = new System.Windows.Forms.NumericUpDown();
+			this.nud_navigation_height_index = new System.Windows.Forms.NumericUpDown();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.pan_graphicsCreator = new System.Windows.Forms.Panel();
+			this.groupBox12 = new System.Windows.Forms.GroupBox();
+			this.pan_graphicToolbox = new System.Windows.Forms.FlowLayoutPanel();
 			this.groupBox11 = new System.Windows.Forms.GroupBox();
 			this.btn_aegir_RegAuto = new System.Windows.Forms.Button();
 			this.label37 = new System.Windows.Forms.Label();
@@ -114,6 +128,7 @@
 			this.label24 = new System.Windows.Forms.Label();
 			this.label25 = new System.Windows.Forms.Label();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.picGraph = new System.Windows.Forms.PictureBox();
 			this.btn_joystick_instruction = new System.Windows.Forms.Button();
 			this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label27 = new System.Windows.Forms.Label();
@@ -129,7 +144,7 @@
 			this.grp_JoystickInstructions = new System.Windows.Forms.GroupBox();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.label17 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.tabPage6 = new System.Windows.Forms.TabPage();
 			this.tim_10ms_update = new System.Windows.Forms.Timer(this.components);
 			this.panel_IndexStats = new System.Windows.Forms.FlowLayoutPanel();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -145,16 +160,31 @@
 			this.bgw_ethernetMessageRecieveHandler = new System.ComponentModel.BackgroundWorker();
 			this.bgw_ethernetMessageSendHandler = new System.ComponentModel.BackgroundWorker();
 			this.bgw_aegirMessageRequest = new System.ComponentModel.BackgroundWorker();
-			this.groupBox12 = new System.Windows.Forms.GroupBox();
-			this.pan_graphicToolbox = new System.Windows.Forms.FlowLayoutPanel();
 			this.rightclickMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.btn_MenuReposition = new System.Windows.Forms.ToolStripMenuItem();
 			this.btn_MenuSettings = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.btn_MenuDeleteControl = new System.Windows.Forms.ToolStripMenuItem();
+			this.aGauge2 = new AGaugeApp.AGauge();
+			this.aGauge1 = new AGaugeApp.AGauge();
+			this.ali_navigation_depth_instrument = new Avionics.AltimeterInstrumentControl();
+			this.airSpeedIndicatorInstrumentControl1 = new Avionics.AirSpeedIndicatorInstrumentControl();
+			this.verticalSpeedIndicatorInstrumentControl1 = new Avionics.VerticalSpeedIndicatorInstrumentControl();
+			this.aii_navigation_attitude_instrument = new Avionics.AttitudeIndicatorInstrumentControl();
+			this.ali_navigation_height_instrument = new Avionics.AltimeterInstrumentControl();
+			this.hdi_navigation_heading_instrument = new Avionics.HeadingIndicatorInstrumentControl();
 			this.connectionTab.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_attitude_rolldiv)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_attitude_pitchdiv)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_attitude_rollindex)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_heading_index)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_attitude_pitchindex)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_depth_index)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_height_index)).BeginInit();
 			this.tabPage2.SuspendLayout();
 			this.pan_graphicsCreator.SuspendLayout();
+			this.groupBox12.SuspendLayout();
 			this.groupBox11.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_lightdim)).BeginInit();
 			this.tabPage3.SuspendLayout();
@@ -178,14 +208,13 @@
 			this.flowLayoutPanel2.SuspendLayout();
 			this.flowLayoutPanel3.SuspendLayout();
 			this.tabPage5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picGraph)).BeginInit();
 			this.flowLayoutPanel5.SuspendLayout();
 			this.grp_JoystickInstructions.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
-			this.groupBox12.SuspendLayout();
 			this.rightclickMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -194,10 +223,12 @@
 			this.connectionTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.connectionTab.Controls.Add(this.tabPage1);
 			this.connectionTab.Controls.Add(this.tabPage2);
 			this.connectionTab.Controls.Add(this.tabPage3);
 			this.connectionTab.Controls.Add(this.tabPage4);
 			this.connectionTab.Controls.Add(this.tabPage5);
+			this.connectionTab.Controls.Add(this.tabPage6);
 			this.connectionTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.connectionTab.ItemSize = new System.Drawing.Size(72, 21);
 			this.connectionTab.Location = new System.Drawing.Point(12, 12);
@@ -206,6 +237,177 @@
 			this.connectionTab.SelectedIndex = 0;
 			this.connectionTab.Size = new System.Drawing.Size(1400, 629);
 			this.connectionTab.TabIndex = 0;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+			this.tabPage1.Controls.Add(this.nud_navigation_attitude_rolldiv);
+			this.tabPage1.Controls.Add(this.nud_navigation_attitude_pitchdiv);
+			this.tabPage1.Controls.Add(this.aGauge2);
+			this.tabPage1.Controls.Add(this.aGauge1);
+			this.tabPage1.Controls.Add(this.nud_navigation_attitude_rollindex);
+			this.tabPage1.Controls.Add(this.nud_navigation_heading_index);
+			this.tabPage1.Controls.Add(this.nud_navigation_attitude_pitchindex);
+			this.tabPage1.Controls.Add(this.nud_navigation_depth_index);
+			this.tabPage1.Controls.Add(this.nud_navigation_height_index);
+			this.tabPage1.Controls.Add(this.textBox4);
+			this.tabPage1.Controls.Add(this.textBox3);
+			this.tabPage1.Controls.Add(this.textBox2);
+			this.tabPage1.Controls.Add(this.textBox1);
+			this.tabPage1.Controls.Add(this.ali_navigation_depth_instrument);
+			this.tabPage1.Controls.Add(this.airSpeedIndicatorInstrumentControl1);
+			this.tabPage1.Controls.Add(this.verticalSpeedIndicatorInstrumentControl1);
+			this.tabPage1.Controls.Add(this.aii_navigation_attitude_instrument);
+			this.tabPage1.Controls.Add(this.ali_navigation_height_instrument);
+			this.tabPage1.Controls.Add(this.hdi_navigation_heading_instrument);
+			this.tabPage1.Location = new System.Drawing.Point(4, 25);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Size = new System.Drawing.Size(1392, 600);
+			this.tabPage1.TabIndex = 5;
+			this.tabPage1.Text = "Navigation";
+			this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+			// 
+			// nud_navigation_attitude_rolldiv
+			// 
+			this.nud_navigation_attitude_rolldiv.Location = new System.Drawing.Point(890, 200);
+			this.nud_navigation_attitude_rolldiv.Maximum = new decimal(new int[] {
+            32767,
+            0,
+            0,
+            0});
+			this.nud_navigation_attitude_rolldiv.Name = "nud_navigation_attitude_rolldiv";
+			this.nud_navigation_attitude_rolldiv.Size = new System.Drawing.Size(57, 23);
+			this.nud_navigation_attitude_rolldiv.TabIndex = 20;
+			this.nud_navigation_attitude_rolldiv.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			// 
+			// nud_navigation_attitude_pitchdiv
+			// 
+			this.nud_navigation_attitude_pitchdiv.Location = new System.Drawing.Point(889, 171);
+			this.nud_navigation_attitude_pitchdiv.Maximum = new decimal(new int[] {
+            32767,
+            0,
+            0,
+            0});
+			this.nud_navigation_attitude_pitchdiv.Name = "nud_navigation_attitude_pitchdiv";
+			this.nud_navigation_attitude_pitchdiv.Size = new System.Drawing.Size(57, 23);
+			this.nud_navigation_attitude_pitchdiv.TabIndex = 19;
+			this.nud_navigation_attitude_pitchdiv.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			// 
+			// nud_navigation_attitude_rollindex
+			// 
+			this.nud_navigation_attitude_rollindex.Location = new System.Drawing.Point(826, 200);
+			this.nud_navigation_attitude_rollindex.Name = "nud_navigation_attitude_rollindex";
+			this.nud_navigation_attitude_rollindex.Size = new System.Drawing.Size(57, 23);
+			this.nud_navigation_attitude_rollindex.TabIndex = 16;
+			this.nud_navigation_attitude_rollindex.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+			// 
+			// nud_navigation_heading_index
+			// 
+			this.nud_navigation_heading_index.Location = new System.Drawing.Point(772, 4);
+			this.nud_navigation_heading_index.Name = "nud_navigation_heading_index";
+			this.nud_navigation_heading_index.Size = new System.Drawing.Size(57, 23);
+			this.nud_navigation_heading_index.TabIndex = 15;
+			this.nud_navigation_heading_index.Value = new decimal(new int[] {
+            37,
+            0,
+            0,
+            0});
+			// 
+			// nud_navigation_attitude_pitchindex
+			// 
+			this.nud_navigation_attitude_pitchindex.Location = new System.Drawing.Point(826, 171);
+			this.nud_navigation_attitude_pitchindex.Name = "nud_navigation_attitude_pitchindex";
+			this.nud_navigation_attitude_pitchindex.Size = new System.Drawing.Size(57, 23);
+			this.nud_navigation_attitude_pitchindex.TabIndex = 14;
+			this.nud_navigation_attitude_pitchindex.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+			// 
+			// nud_navigation_depth_index
+			// 
+			this.nud_navigation_depth_index.Location = new System.Drawing.Point(1308, 379);
+			this.nud_navigation_depth_index.Name = "nud_navigation_depth_index";
+			this.nud_navigation_depth_index.Size = new System.Drawing.Size(57, 23);
+			this.nud_navigation_depth_index.TabIndex = 13;
+			this.nud_navigation_depth_index.Value = new decimal(new int[] {
+            52,
+            0,
+            0,
+            0});
+			// 
+			// nud_navigation_height_index
+			// 
+			this.nud_navigation_height_index.Location = new System.Drawing.Point(1308, 154);
+			this.nud_navigation_height_index.Name = "nud_navigation_height_index";
+			this.nud_navigation_height_index.Size = new System.Drawing.Size(57, 23);
+			this.nud_navigation_height_index.TabIndex = 12;
+			this.nud_navigation_height_index.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+			// 
+			// textBox4
+			// 
+			this.textBox4.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox4.Location = new System.Drawing.Point(1150, 379);
+			this.textBox4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(152, 23);
+			this.textBox4.TabIndex = 11;
+			this.textBox4.Text = "Depth";
+			this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// textBox3
+			// 
+			this.textBox3.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox3.Location = new System.Drawing.Point(1150, 154);
+			this.textBox3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+			this.textBox3.Name = "textBox3";
+			this.textBox3.Size = new System.Drawing.Size(152, 23);
+			this.textBox3.TabIndex = 10;
+			this.textBox3.Text = "Height";
+			this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// textBox2
+			// 
+			this.textBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox2.Location = new System.Drawing.Point(639, 3);
+			this.textBox2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+			this.textBox2.Name = "textBox2";
+			this.textBox2.Size = new System.Drawing.Size(127, 23);
+			this.textBox2.TabIndex = 9;
+			this.textBox2.Text = "Heading";
+			this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// textBox1
+			// 
+			this.textBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox1.Location = new System.Drawing.Point(583, 170);
+			this.textBox1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(237, 23);
+			this.textBox1.TabIndex = 8;
+			this.textBox1.Text = "Attitude";
+			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// tabPage2
 			// 
@@ -217,7 +419,7 @@
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabPage2.Size = new System.Drawing.Size(1392, 600);
 			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "tabPage2";
+			this.tabPage2.Text = "Robot status";
 			// 
 			// pan_graphicsCreator
 			// 
@@ -231,6 +433,25 @@
 			this.pan_graphicsCreator.TabIndex = 0;
 			this.pan_graphicsCreator.Paint += new System.Windows.Forms.PaintEventHandler(this.pan_graphicsCreator_Paint);
 			this.pan_graphicsCreator.DoubleClick += new System.EventHandler(this.pan_graphicsCreator_DoubleClick);
+			// 
+			// groupBox12
+			// 
+			this.groupBox12.Controls.Add(this.pan_graphicToolbox);
+			this.groupBox12.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox12.Location = new System.Drawing.Point(826, 3);
+			this.groupBox12.Name = "groupBox12";
+			this.groupBox12.Size = new System.Drawing.Size(200, 590);
+			this.groupBox12.TabIndex = 2;
+			this.groupBox12.TabStop = false;
+			this.groupBox12.Text = "Toolbox";
+			// 
+			// pan_graphicToolbox
+			// 
+			this.pan_graphicToolbox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pan_graphicToolbox.Location = new System.Drawing.Point(3, 19);
+			this.pan_graphicToolbox.Name = "pan_graphicToolbox";
+			this.pan_graphicToolbox.Size = new System.Drawing.Size(194, 568);
+			this.pan_graphicToolbox.TabIndex = 0;
 			// 
 			// groupBox11
 			// 
@@ -1265,11 +1486,11 @@
 			// tabPage5
 			// 
 			this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+			this.tabPage5.Controls.Add(this.grp_JoystickInstructions);
+			this.tabPage5.Controls.Add(this.picGraph);
 			this.tabPage5.Controls.Add(this.btn_joystick_instruction);
 			this.tabPage5.Controls.Add(this.flowLayoutPanel5);
-			this.tabPage5.Controls.Add(this.grp_JoystickInstructions);
 			this.tabPage5.Controls.Add(this.label17);
-			this.tabPage5.Controls.Add(this.pictureBox1);
 			this.tabPage5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tabPage5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.tabPage5.Location = new System.Drawing.Point(4, 25);
@@ -1278,6 +1499,15 @@
 			this.tabPage5.Size = new System.Drawing.Size(1392, 600);
 			this.tabPage5.TabIndex = 4;
 			this.tabPage5.Text = "Joystick Settings";
+			// 
+			// picGraph
+			// 
+			this.picGraph.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.picGraph.Location = new System.Drawing.Point(871, 40);
+			this.picGraph.Name = "picGraph";
+			this.picGraph.Size = new System.Drawing.Size(512, 512);
+			this.picGraph.TabIndex = 24;
+			this.picGraph.TabStop = false;
 			// 
 			// btn_joystick_instruction
 			// 
@@ -1456,17 +1686,14 @@
 			this.label17.TabIndex = 19;
 			this.label17.Text = "Function parameters explained";
 			// 
-			// pictureBox1
+			// tabPage6
 			// 
-			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pictureBox1.Image = global::ROVInterface.Properties.Resources.joystickscale_dark_test;
-			this.pictureBox1.Location = new System.Drawing.Point(1013, 41);
-			this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 10, 4);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(369, 357);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 18;
-			this.pictureBox1.TabStop = false;
+			this.tabPage6.Location = new System.Drawing.Point(4, 25);
+			this.tabPage6.Name = "tabPage6";
+			this.tabPage6.Size = new System.Drawing.Size(1392, 600);
+			this.tabPage6.TabIndex = 6;
+			this.tabPage6.Text = "General Settings";
+			this.tabPage6.UseVisualStyleBackColor = true;
 			// 
 			// tim_10ms_update
 			// 
@@ -1591,25 +1818,6 @@
 			// 
 			this.bgw_aegirMessageRequest.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_aegirMessageRequest_DoWork);
 			// 
-			// groupBox12
-			// 
-			this.groupBox12.Controls.Add(this.pan_graphicToolbox);
-			this.groupBox12.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox12.Location = new System.Drawing.Point(826, 3);
-			this.groupBox12.Name = "groupBox12";
-			this.groupBox12.Size = new System.Drawing.Size(200, 590);
-			this.groupBox12.TabIndex = 2;
-			this.groupBox12.TabStop = false;
-			this.groupBox12.Text = "Toolbox";
-			// 
-			// pan_graphicToolbox
-			// 
-			this.pan_graphicToolbox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pan_graphicToolbox.Location = new System.Drawing.Point(3, 19);
-			this.pan_graphicToolbox.Name = "pan_graphicToolbox";
-			this.pan_graphicToolbox.Size = new System.Drawing.Size(194, 568);
-			this.pan_graphicToolbox.TabIndex = 0;
-			// 
 			// rightclickMenu
 			// 
 			this.rightclickMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1618,30 +1826,290 @@
             this.toolStripSeparator1,
             this.btn_MenuDeleteControl});
 			this.rightclickMenu.Name = "rightclickMenu";
-			this.rightclickMenu.Size = new System.Drawing.Size(153, 98);
+			this.rightclickMenu.Size = new System.Drawing.Size(151, 76);
 			// 
 			// btn_MenuReposition
 			// 
 			this.btn_MenuReposition.Name = "btn_MenuReposition";
-			this.btn_MenuReposition.Size = new System.Drawing.Size(152, 22);
+			this.btn_MenuReposition.Size = new System.Drawing.Size(150, 22);
 			this.btn_MenuReposition.Text = "Reposition";
 			// 
 			// btn_MenuSettings
 			// 
 			this.btn_MenuSettings.Name = "btn_MenuSettings";
-			this.btn_MenuSettings.Size = new System.Drawing.Size(152, 22);
+			this.btn_MenuSettings.Size = new System.Drawing.Size(150, 22);
 			this.btn_MenuSettings.Text = "Settings";
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
 			// 
 			// btn_MenuDeleteControl
 			// 
 			this.btn_MenuDeleteControl.Name = "btn_MenuDeleteControl";
-			this.btn_MenuDeleteControl.Size = new System.Drawing.Size(152, 22);
+			this.btn_MenuDeleteControl.Size = new System.Drawing.Size(150, 22);
 			this.btn_MenuDeleteControl.Text = "Delete Control";
+			// 
+			// aGauge2
+			// 
+			this.aGauge2.BaseArcColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge2.BaseArcRadius = 80;
+			this.aGauge2.BaseArcStart = 180;
+			this.aGauge2.BaseArcSweep = 180;
+			this.aGauge2.BaseArcWidth = 5;
+			this.aGauge2.Cap_Idx = ((byte)(1));
+			this.aGauge2.CapColors = new System.Drawing.Color[] {
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black};
+			this.aGauge2.CapPosition = new System.Drawing.Point(10, 10);
+			this.aGauge2.CapsPosition = new System.Drawing.Point[] {
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10)};
+			this.aGauge2.CapsText = new string[] {
+        "",
+        "",
+        "",
+        "",
+        ""};
+			this.aGauge2.CapText = "";
+			this.aGauge2.Center = new System.Drawing.Point(100, 100);
+			this.aGauge2.Location = new System.Drawing.Point(493, 460);
+			this.aGauge2.MaxValue = 100F;
+			this.aGauge2.MinValue = 0F;
+			this.aGauge2.Name = "aGauge2";
+			this.aGauge2.NeedleColor1 = AGaugeApp.AGauge.NeedleColorEnum.Gray;
+			this.aGauge2.NeedleColor2 = System.Drawing.Color.DimGray;
+			this.aGauge2.NeedleRadius = 80;
+			this.aGauge2.NeedleType = 0;
+			this.aGauge2.NeedleWidth = 2;
+			this.aGauge2.Range_Idx = ((byte)(0));
+			this.aGauge2.RangeColor = System.Drawing.Color.Red;
+			this.aGauge2.RangeEnabled = true;
+			this.aGauge2.RangeEndValue = 20F;
+			this.aGauge2.RangeInnerRadius = 60;
+			this.aGauge2.RangeOuterRadius = 80;
+			this.aGauge2.RangesColor = new System.Drawing.Color[] {
+        System.Drawing.Color.Red,
+        System.Drawing.Color.LightGreen,
+        System.Drawing.SystemColors.Control,
+        System.Drawing.SystemColors.Control,
+        System.Drawing.SystemColors.Control};
+			this.aGauge2.RangesEnabled = new bool[] {
+        true,
+        true,
+        false,
+        false,
+        false};
+			this.aGauge2.RangesEndValue = new float[] {
+        20F,
+        100F,
+        0F,
+        0F,
+        0F};
+			this.aGauge2.RangesInnerRadius = new int[] {
+        60,
+        60,
+        60,
+        70,
+        70};
+			this.aGauge2.RangesOuterRadius = new int[] {
+        80,
+        80,
+        80,
+        80,
+        80};
+			this.aGauge2.RangesStartValue = new float[] {
+        0F,
+        20F,
+        0F,
+        0F,
+        0F};
+			this.aGauge2.RangeStartValue = 0F;
+			this.aGauge2.ScaleLinesInterColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge2.ScaleLinesInterInnerRadius = 70;
+			this.aGauge2.ScaleLinesInterOuterRadius = 80;
+			this.aGauge2.ScaleLinesInterWidth = 1;
+			this.aGauge2.ScaleLinesMajorColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge2.ScaleLinesMajorInnerRadius = 70;
+			this.aGauge2.ScaleLinesMajorOuterRadius = 80;
+			this.aGauge2.ScaleLinesMajorStepValue = 20F;
+			this.aGauge2.ScaleLinesMajorWidth = 4;
+			this.aGauge2.ScaleLinesMinorColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge2.ScaleLinesMinorInnerRadius = 75;
+			this.aGauge2.ScaleLinesMinorNumOf = 9;
+			this.aGauge2.ScaleLinesMinorOuterRadius = 80;
+			this.aGauge2.ScaleLinesMinorWidth = 1;
+			this.aGauge2.ScaleNumbersColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge2.ScaleNumbersFormat = null;
+			this.aGauge2.ScaleNumbersRadius = 95;
+			this.aGauge2.ScaleNumbersRotation = 0;
+			this.aGauge2.ScaleNumbersStartScaleLine = 0;
+			this.aGauge2.ScaleNumbersStepScaleLines = 1;
+			this.aGauge2.Size = new System.Drawing.Size(214, 127);
+			this.aGauge2.TabIndex = 18;
+			this.aGauge2.Text = "aGauge2";
+			this.aGauge2.Value = 20F;
+			// 
+			// aGauge1
+			// 
+			this.aGauge1.BaseArcColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge1.BaseArcRadius = 80;
+			this.aGauge1.BaseArcStart = 180;
+			this.aGauge1.BaseArcSweep = 180;
+			this.aGauge1.BaseArcWidth = 5;
+			this.aGauge1.Cap_Idx = ((byte)(1));
+			this.aGauge1.CapColors = new System.Drawing.Color[] {
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black};
+			this.aGauge1.CapPosition = new System.Drawing.Point(10, 10);
+			this.aGauge1.CapsPosition = new System.Drawing.Point[] {
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10)};
+			this.aGauge1.CapsText = new string[] {
+        "",
+        "",
+        "",
+        "",
+        ""};
+			this.aGauge1.CapText = "";
+			this.aGauge1.Center = new System.Drawing.Point(100, 100);
+			this.aGauge1.Location = new System.Drawing.Point(733, 460);
+			this.aGauge1.MaxValue = 100F;
+			this.aGauge1.MinValue = 0F;
+			this.aGauge1.Name = "aGauge1";
+			this.aGauge1.NeedleColor1 = AGaugeApp.AGauge.NeedleColorEnum.Gray;
+			this.aGauge1.NeedleColor2 = System.Drawing.Color.DimGray;
+			this.aGauge1.NeedleRadius = 80;
+			this.aGauge1.NeedleType = 0;
+			this.aGauge1.NeedleWidth = 2;
+			this.aGauge1.Range_Idx = ((byte)(0));
+			this.aGauge1.RangeColor = System.Drawing.Color.Red;
+			this.aGauge1.RangeEnabled = true;
+			this.aGauge1.RangeEndValue = 20F;
+			this.aGauge1.RangeInnerRadius = 60;
+			this.aGauge1.RangeOuterRadius = 80;
+			this.aGauge1.RangesColor = new System.Drawing.Color[] {
+        System.Drawing.Color.Red,
+        System.Drawing.Color.LightGreen,
+        System.Drawing.SystemColors.Control,
+        System.Drawing.SystemColors.Control,
+        System.Drawing.SystemColors.Control};
+			this.aGauge1.RangesEnabled = new bool[] {
+        true,
+        true,
+        false,
+        false,
+        false};
+			this.aGauge1.RangesEndValue = new float[] {
+        20F,
+        100F,
+        0F,
+        0F,
+        0F};
+			this.aGauge1.RangesInnerRadius = new int[] {
+        60,
+        60,
+        60,
+        70,
+        70};
+			this.aGauge1.RangesOuterRadius = new int[] {
+        80,
+        80,
+        80,
+        80,
+        80};
+			this.aGauge1.RangesStartValue = new float[] {
+        0F,
+        20F,
+        0F,
+        0F,
+        0F};
+			this.aGauge1.RangeStartValue = 0F;
+			this.aGauge1.ScaleLinesInterColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge1.ScaleLinesInterInnerRadius = 70;
+			this.aGauge1.ScaleLinesInterOuterRadius = 80;
+			this.aGauge1.ScaleLinesInterWidth = 1;
+			this.aGauge1.ScaleLinesMajorColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge1.ScaleLinesMajorInnerRadius = 70;
+			this.aGauge1.ScaleLinesMajorOuterRadius = 80;
+			this.aGauge1.ScaleLinesMajorStepValue = 20F;
+			this.aGauge1.ScaleLinesMajorWidth = 4;
+			this.aGauge1.ScaleLinesMinorColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge1.ScaleLinesMinorInnerRadius = 75;
+			this.aGauge1.ScaleLinesMinorNumOf = 9;
+			this.aGauge1.ScaleLinesMinorOuterRadius = 80;
+			this.aGauge1.ScaleLinesMinorWidth = 1;
+			this.aGauge1.ScaleNumbersColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge1.ScaleNumbersFormat = null;
+			this.aGauge1.ScaleNumbersRadius = 95;
+			this.aGauge1.ScaleNumbersRotation = 0;
+			this.aGauge1.ScaleNumbersStartScaleLine = 0;
+			this.aGauge1.ScaleNumbersStepScaleLines = 1;
+			this.aGauge1.Size = new System.Drawing.Size(214, 127);
+			this.aGauge1.TabIndex = 17;
+			this.aGauge1.Text = "aGauge1";
+			this.aGauge1.Value = 20F;
+			// 
+			// ali_navigation_depth_instrument
+			// 
+			this.ali_navigation_depth_instrument.Location = new System.Drawing.Point(1150, 406);
+			this.ali_navigation_depth_instrument.Name = "ali_navigation_depth_instrument";
+			this.ali_navigation_depth_instrument.Size = new System.Drawing.Size(152, 154);
+			this.ali_navigation_depth_instrument.TabIndex = 7;
+			this.ali_navigation_depth_instrument.Text = "altimeterInstrumentControl2";
+			// 
+			// airSpeedIndicatorInstrumentControl1
+			// 
+			this.airSpeedIndicatorInstrumentControl1.Location = new System.Drawing.Point(80, 351);
+			this.airSpeedIndicatorInstrumentControl1.Name = "airSpeedIndicatorInstrumentControl1";
+			this.airSpeedIndicatorInstrumentControl1.Size = new System.Drawing.Size(208, 209);
+			this.airSpeedIndicatorInstrumentControl1.TabIndex = 6;
+			this.airSpeedIndicatorInstrumentControl1.Text = "airSpeedIndicatorInstrumentControl1";
+			// 
+			// verticalSpeedIndicatorInstrumentControl1
+			// 
+			this.verticalSpeedIndicatorInstrumentControl1.Location = new System.Drawing.Point(107, 188);
+			this.verticalSpeedIndicatorInstrumentControl1.Name = "verticalSpeedIndicatorInstrumentControl1";
+			this.verticalSpeedIndicatorInstrumentControl1.Size = new System.Drawing.Size(152, 157);
+			this.verticalSpeedIndicatorInstrumentControl1.TabIndex = 5;
+			this.verticalSpeedIndicatorInstrumentControl1.Text = "verticalSpeedIndicatorInstrumentControl1";
+			// 
+			// aii_navigation_attitude_instrument
+			// 
+			this.aii_navigation_attitude_instrument.Location = new System.Drawing.Point(583, 196);
+			this.aii_navigation_attitude_instrument.Name = "aii_navigation_attitude_instrument";
+			this.aii_navigation_attitude_instrument.Size = new System.Drawing.Size(237, 240);
+			this.aii_navigation_attitude_instrument.TabIndex = 1;
+			this.aii_navigation_attitude_instrument.Text = "aii_navigation_attitude_instrument";
+			// 
+			// ali_navigation_height_instrument
+			// 
+			this.ali_navigation_height_instrument.Location = new System.Drawing.Point(1150, 181);
+			this.ali_navigation_height_instrument.Name = "ali_navigation_height_instrument";
+			this.ali_navigation_height_instrument.Size = new System.Drawing.Size(152, 154);
+			this.ali_navigation_height_instrument.TabIndex = 0;
+			this.ali_navigation_height_instrument.Text = "altimeterInstrumentControl1";
+			// 
+			// hdi_navigation_heading_instrument
+			// 
+			this.hdi_navigation_heading_instrument.Location = new System.Drawing.Point(639, 30);
+			this.hdi_navigation_heading_instrument.Name = "hdi_navigation_heading_instrument";
+			this.hdi_navigation_heading_instrument.Size = new System.Drawing.Size(127, 134);
+			this.hdi_navigation_heading_instrument.TabIndex = 3;
+			this.hdi_navigation_heading_instrument.Text = "headingIndicatorInstrumentControl1";
 			// 
 			// WindowStatus
 			// 
@@ -1660,8 +2128,18 @@
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.WindowStatus_Load);
 			this.connectionTab.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_attitude_rolldiv)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_attitude_pitchdiv)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_attitude_rollindex)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_heading_index)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_attitude_pitchindex)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_depth_index)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_height_index)).EndInit();
 			this.tabPage2.ResumeLayout(false);
 			this.pan_graphicsCreator.ResumeLayout(false);
+			this.groupBox12.ResumeLayout(false);
 			this.groupBox11.ResumeLayout(false);
 			this.groupBox11.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_lightdim)).EndInit();
@@ -1699,15 +2177,14 @@
 			this.flowLayoutPanel3.PerformLayout();
 			this.tabPage5.ResumeLayout(false);
 			this.tabPage5.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picGraph)).EndInit();
 			this.flowLayoutPanel5.ResumeLayout(false);
 			this.flowLayoutPanel5.PerformLayout();
 			this.grp_JoystickInstructions.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
-			this.groupBox12.ResumeLayout(false);
 			this.rightclickMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -1747,7 +2224,6 @@
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.GroupBox groupBox4;
-		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label label17;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.ProgressBar pbr_heartBeat;
@@ -1839,4 +2315,26 @@
 	private System.Windows.Forms.ToolStripMenuItem btn_MenuSettings;
 	private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 	private System.Windows.Forms.ToolStripMenuItem btn_MenuDeleteControl;
+	private System.Windows.Forms.TabPage tabPage1;
+	private Avionics.VerticalSpeedIndicatorInstrumentControl verticalSpeedIndicatorInstrumentControl1;
+	private Avionics.HeadingIndicatorInstrumentControl hdi_navigation_heading_instrument;
+	private Avionics.AttitudeIndicatorInstrumentControl aii_navigation_attitude_instrument;
+	private Avionics.AltimeterInstrumentControl ali_navigation_height_instrument;
+	private Avionics.AltimeterInstrumentControl ali_navigation_depth_instrument;
+	private Avionics.AirSpeedIndicatorInstrumentControl airSpeedIndicatorInstrumentControl1;
+	private System.Windows.Forms.NumericUpDown nud_navigation_attitude_rollindex;
+	private System.Windows.Forms.NumericUpDown nud_navigation_heading_index;
+	private System.Windows.Forms.NumericUpDown nud_navigation_attitude_pitchindex;
+	private System.Windows.Forms.NumericUpDown nud_navigation_depth_index;
+	private System.Windows.Forms.NumericUpDown nud_navigation_height_index;
+	private System.Windows.Forms.TextBox textBox4;
+	private System.Windows.Forms.TextBox textBox3;
+	private System.Windows.Forms.TextBox textBox2;
+	private System.Windows.Forms.TextBox textBox1;
+	private System.Windows.Forms.TabPage tabPage6;
+	private AGaugeApp.AGauge aGauge1;
+	private AGaugeApp.AGauge aGauge2;
+	private System.Windows.Forms.NumericUpDown nud_navigation_attitude_rolldiv;
+	private System.Windows.Forms.NumericUpDown nud_navigation_attitude_pitchdiv;
+	private System.Windows.Forms.PictureBox picGraph;
 }
