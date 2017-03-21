@@ -12,7 +12,6 @@ public class GraphicsCreator {
 	private Color bgrColor = Color.FromArgb(255, 32, 32, 32);
 	//private Form indexDialogForm;
 	private IndexDialogForm indexDialogForm;
-	private FlowLayoutPanel indexDialogItemContainer;
 
 	private static Bitmap iconWarning;
 	private static Bitmap iconDanger;
@@ -40,9 +39,10 @@ public class GraphicsCreator {
 	public void ChangeEditMode(object sender, EventArgs e) {
 		// Show the index dialog form
 		for (int i = 0, j = prototype.indexes.Length; i < j; i++) {
-			((NumericUpDown)indexDialogItemContainer.Controls[i].Controls[0]).Value = prototype.indexes[i]._idx;
+			//((NumericUpDown)indexDialogItemContainer.Controls[i].Controls[0]).Value = prototype.indexes[i]._idx;
+			indexDialogForm.UpdateIndexRow(i, prototype.indexes[i].hidden, prototype.indexes[i]._idx, prototype.indexes[i].posx, prototype.indexes[i].posy, prototype.indexes[i].ll, prototype.indexes[i].l, prototype.indexes[i].h, prototype.indexes[i].hh);
 		}
-		indexDialogForm.ShowDialog();
+		indexDialogForm.ShowFormProper();
 	}
 
 	public void DrawBackgroundImage(PaintEventArgs e) {
@@ -54,11 +54,10 @@ public class GraphicsCreator {
 		prototype = ps;
 		prototype.CreateControlsForIdx(parent);
 
-		if (indexDialogForm != null) {
-			// If an old form exists, clean it up --- TO DO ---
-		}
-
+		indexDialogForm = new IndexDialogForm();
 		
+		for (int i = 0; i < prototype.indexes.Length; i++)
+			indexDialogForm.CreateNewIndexRow();
 
 		// Set up the form for showing the indexes
 		/*indexDialogForm = new Form();
@@ -158,18 +157,26 @@ public class GraphicsCreator {
 		prototype.UpdateControlsValuesForIdx();
 	}
 
-	private void AcceptFormValues(object sender, EventArgs e) {
-		indexDialogForm.Close();
+	public void AcceptFormValues() {
 
+		Program.SuspendDrawing(Program.windowStatus, true);
+
+		foreach (graphicPrototype.prototypeIndex pi in prototype.indexes)
+			pi.Dispose();
+
+		prototype.indexes = new graphicPrototype.prototypeIndex[indexDialogForm.allRows.Count];
 		for (int i = 0, j = prototype.indexes.Length; i < j; i++) {
-			prototype.indexes[i]._idx = (int)((NumericUpDown)indexDialogItemContainer.Controls[i].Controls[0]).Value;
+			IndexRowControls irc = indexDialogForm.allRows[i];
+			prototype.indexes[i] = new graphicPrototype.prototypeIndex(irc.hidden.Checked, (int)irc.posx.Value, (int)irc.posy.Value, 
+									(irc.cll.Checked ? (float?)irc.ll.Value : null), (irc.cl.Checked ? (float?)irc.l.Value : null),
+									(irc.ch.Checked ? (float?)irc.h.Value : null), (irc.chh.Checked ? (float?)irc.hh.Value : null), (int)irc.index.Value);
+
+			prototype.indexes[i].CreateControls(parent);
 		}
 
 		prototype.UpdateIdxSettingReference();
-	}
 
-	private void CancelFormValues(object sender, EventArgs e) {
-		indexDialogForm.Close();
+		Program.ResumeDrawing(Program.windowStatus, true);
 	}
 
 	// The prototype, holding all the information for the graphics
@@ -314,6 +321,16 @@ public class GraphicsCreator {
 						control_icon.Location = new Point(_posx - 50, _posy - 15);
 					control_icon.BackColor = Color.Transparent;
 				}
+			}
+
+			public void Dispose() {
+				control_label.Parent.Controls.Remove(control_label);
+				if (control_icon != null)
+					control_icon.Parent.Controls.Remove(control_icon);
+
+				control_label.Dispose();
+				if (control_icon != null)
+					control_icon.Dispose();
 			}
 
 			public void UpdateControlsValues() {
