@@ -26,6 +26,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowCamera));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btn_debug_1 = new System.Windows.Forms.Button();
 			this.txt_debug_3 = new System.Windows.Forms.Label();
@@ -34,11 +35,16 @@
 			this.webBrowser1 = new System.Windows.Forms.WebBrowser();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
-			this.aGauge2 = new AGaugeApp.AGauge();
-			this.attitudeIndicatorInstrumentControl1 = new Avionics.AttitudeIndicatorInstrumentControl();
-			this.turnCoordinatorInstrumentControl1 = new Avionics.TurnCoordinatorInstrumentControl();
+			this.vlcPlayer = new AxAXVLC.AxVLCPlugin2();
+			this.btn_cam1 = new System.Windows.Forms.Button();
+			this.btnStart = new System.Windows.Forms.Button();
+			this.btnStop = new System.Windows.Forms.Button();
 			this.headingIndicatorInstrumentControl1 = new Avionics.HeadingIndicatorInstrumentControl();
+			this.turnCoordinatorInstrumentControl1 = new Avionics.TurnCoordinatorInstrumentControl();
+			this.attitudeIndicatorInstrumentControl1 = new Avionics.AttitudeIndicatorInstrumentControl();
+			this.aGauge2 = new AGaugeApp.AGauge();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.vlcPlayer)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -50,21 +56,18 @@
 			this.groupBox1.Controls.Add(this.txt_debug_2);
 			this.groupBox1.Controls.Add(this.txt_debug_1);
 			this.groupBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox1.Location = new System.Drawing.Point(9, 894);
-			this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+			this.groupBox1.Location = new System.Drawing.Point(14, 1375);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox1.Size = new System.Drawing.Size(1408, 86);
+			this.groupBox1.Size = new System.Drawing.Size(2112, 132);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Debug";
 			// 
 			// btn_debug_1
 			// 
-			this.btn_debug_1.Location = new System.Drawing.Point(139, 21);
-			this.btn_debug_1.Margin = new System.Windows.Forms.Padding(2);
+			this.btn_debug_1.Location = new System.Drawing.Point(208, 32);
 			this.btn_debug_1.Name = "btn_debug_1";
-			this.btn_debug_1.Size = new System.Drawing.Size(78, 51);
+			this.btn_debug_1.Size = new System.Drawing.Size(117, 78);
 			this.btn_debug_1.TabIndex = 3;
 			this.btn_debug_1.Text = "Reconnect joystick";
 			this.btn_debug_1.UseVisualStyleBackColor = true;
@@ -73,49 +76,47 @@
 			// txt_debug_3
 			// 
 			this.txt_debug_3.AutoSize = true;
-			this.txt_debug_3.Location = new System.Drawing.Point(8, 58);
-			this.txt_debug_3.Margin = new System.Windows.Forms.Padding(6, 2, 6, 6);
+			this.txt_debug_3.Location = new System.Drawing.Point(12, 89);
+			this.txt_debug_3.Margin = new System.Windows.Forms.Padding(9, 3, 9, 9);
 			this.txt_debug_3.Name = "txt_debug_3";
-			this.txt_debug_3.Size = new System.Drawing.Size(66, 13);
+			this.txt_debug_3.Size = new System.Drawing.Size(98, 20);
 			this.txt_debug_3.TabIndex = 2;
 			this.txt_debug_3.Text = "txt_debug_3";
 			// 
 			// txt_debug_2
 			// 
 			this.txt_debug_2.AutoSize = true;
-			this.txt_debug_2.Location = new System.Drawing.Point(8, 40);
-			this.txt_debug_2.Margin = new System.Windows.Forms.Padding(6, 2, 6, 6);
+			this.txt_debug_2.Location = new System.Drawing.Point(12, 62);
+			this.txt_debug_2.Margin = new System.Windows.Forms.Padding(9, 3, 9, 9);
 			this.txt_debug_2.Name = "txt_debug_2";
-			this.txt_debug_2.Size = new System.Drawing.Size(66, 13);
+			this.txt_debug_2.Size = new System.Drawing.Size(98, 20);
 			this.txt_debug_2.TabIndex = 1;
 			this.txt_debug_2.Text = "txt_debug_2";
 			// 
 			// txt_debug_1
 			// 
 			this.txt_debug_1.AutoSize = true;
-			this.txt_debug_1.Location = new System.Drawing.Point(8, 21);
-			this.txt_debug_1.Margin = new System.Windows.Forms.Padding(6, 6, 2, 2);
+			this.txt_debug_1.Location = new System.Drawing.Point(12, 32);
+			this.txt_debug_1.Margin = new System.Windows.Forms.Padding(9, 9, 3, 3);
 			this.txt_debug_1.Name = "txt_debug_1";
-			this.txt_debug_1.Size = new System.Drawing.Size(66, 13);
+			this.txt_debug_1.Size = new System.Drawing.Size(98, 20);
 			this.txt_debug_1.TabIndex = 0;
 			this.txt_debug_1.Text = "txt_debug_1";
 			// 
 			// webBrowser1
 			// 
-			this.webBrowser1.Location = new System.Drawing.Point(9, 10);
-			this.webBrowser1.Margin = new System.Windows.Forms.Padding(2);
-			this.webBrowser1.MinimumSize = new System.Drawing.Size(15, 16);
+			this.webBrowser1.Location = new System.Drawing.Point(1718, 15);
+			this.webBrowser1.MinimumSize = new System.Drawing.Size(22, 25);
 			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(1406, 694);
+			this.webBrowser1.Size = new System.Drawing.Size(405, 426);
 			this.webBrowser1.TabIndex = 3;
 			this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(9, 708);
-			this.button1.Margin = new System.Windows.Forms.Padding(2);
+			this.button1.Location = new System.Drawing.Point(14, 1089);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(125, 119);
+			this.button1.Size = new System.Drawing.Size(188, 183);
 			this.button1.TabIndex = 4;
 			this.button1.Text = "Cam 1";
 			this.button1.UseVisualStyleBackColor = true;
@@ -123,14 +124,80 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(138, 708);
-			this.button2.Margin = new System.Windows.Forms.Padding(2);
+			this.button2.Location = new System.Drawing.Point(207, 1089);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(120, 119);
+			this.button2.Size = new System.Drawing.Size(180, 183);
 			this.button2.TabIndex = 5;
 			this.button2.Text = "Cam 2";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// vlcPlayer
+			// 
+			this.vlcPlayer.Enabled = true;
+			this.vlcPlayer.Location = new System.Drawing.Point(383, 287);
+			this.vlcPlayer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.vlcPlayer.Name = "vlcPlayer";
+			this.vlcPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("vlcPlayer.OcxState")));
+			this.vlcPlayer.Size = new System.Drawing.Size(339, 239);
+			this.vlcPlayer.TabIndex = 24;
+			// 
+			// btn_cam1
+			// 
+			this.btn_cam1.Location = new System.Drawing.Point(1935, 1092);
+			this.btn_cam1.Name = "btn_cam1";
+			this.btn_cam1.Size = new System.Drawing.Size(188, 183);
+			this.btn_cam1.TabIndex = 25;
+			this.btn_cam1.Text = "Cam 1";
+			this.btn_cam1.UseVisualStyleBackColor = true;
+			this.btn_cam1.Click += new System.EventHandler(this.btn_cam1_Click);
+			// 
+			// btnStart
+			// 
+			this.btnStart.Location = new System.Drawing.Point(729, 287);
+			this.btnStart.Name = "btnStart";
+			this.btnStart.Size = new System.Drawing.Size(96, 41);
+			this.btnStart.TabIndex = 27;
+			this.btnStart.Text = "Start";
+			this.btnStart.UseVisualStyleBackColor = true;
+			this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+			// 
+			// btnStop
+			// 
+			this.btnStop.Location = new System.Drawing.Point(729, 334);
+			this.btnStop.Name = "btnStop";
+			this.btnStop.Size = new System.Drawing.Size(96, 41);
+			this.btnStop.TabIndex = 28;
+			this.btnStop.Text = "Stop";
+			this.btnStop.UseVisualStyleBackColor = true;
+			this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+			// 
+			// headingIndicatorInstrumentControl1
+			// 
+			this.headingIndicatorInstrumentControl1.Location = new System.Drawing.Point(1204, 1091);
+			this.headingIndicatorInstrumentControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.headingIndicatorInstrumentControl1.Name = "headingIndicatorInstrumentControl1";
+			this.headingIndicatorInstrumentControl1.Size = new System.Drawing.Size(180, 185);
+			this.headingIndicatorInstrumentControl1.TabIndex = 23;
+			this.headingIndicatorInstrumentControl1.Text = "headingIndicatorInstrumentControl1";
+			// 
+			// turnCoordinatorInstrumentControl1
+			// 
+			this.turnCoordinatorInstrumentControl1.Location = new System.Drawing.Point(826, 1091);
+			this.turnCoordinatorInstrumentControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.turnCoordinatorInstrumentControl1.Name = "turnCoordinatorInstrumentControl1";
+			this.turnCoordinatorInstrumentControl1.Size = new System.Drawing.Size(180, 185);
+			this.turnCoordinatorInstrumentControl1.TabIndex = 22;
+			this.turnCoordinatorInstrumentControl1.Text = "turnCoordinatorInstrumentControl1";
+			// 
+			// attitudeIndicatorInstrumentControl1
+			// 
+			this.attitudeIndicatorInstrumentControl1.Location = new System.Drawing.Point(1016, 1091);
+			this.attitudeIndicatorInstrumentControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.attitudeIndicatorInstrumentControl1.Name = "attitudeIndicatorInstrumentControl1";
+			this.attitudeIndicatorInstrumentControl1.Size = new System.Drawing.Size(180, 185);
+			this.attitudeIndicatorInstrumentControl1.TabIndex = 21;
+			this.attitudeIndicatorInstrumentControl1.Text = "attitudeIndicatorInstrumentControl1";
 			// 
 			// aGauge2
 			// 
@@ -161,7 +228,8 @@
         ""};
 			this.aGauge2.CapText = "";
 			this.aGauge2.Center = new System.Drawing.Point(100, 100);
-			this.aGauge2.Location = new System.Drawing.Point(263, 708);
+			this.aGauge2.Location = new System.Drawing.Point(394, 1089);
+			this.aGauge2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.aGauge2.MaxValue = 100F;
 			this.aGauge2.MinValue = 0F;
 			this.aGauge2.Name = "aGauge2";
@@ -233,41 +301,21 @@
 			this.aGauge2.ScaleNumbersRotation = 0;
 			this.aGauge2.ScaleNumbersStartScaleLine = 0;
 			this.aGauge2.ScaleNumbersStepScaleLines = 1;
-			this.aGauge2.Size = new System.Drawing.Size(207, 119);
+			this.aGauge2.Size = new System.Drawing.Size(310, 183);
 			this.aGauge2.TabIndex = 19;
 			this.aGauge2.Text = "aGauge2";
 			this.aGauge2.Value = 20F;
 			// 
-			// attitudeIndicatorInstrumentControl1
-			// 
-			this.attitudeIndicatorInstrumentControl1.Location = new System.Drawing.Point(677, 709);
-			this.attitudeIndicatorInstrumentControl1.Name = "attitudeIndicatorInstrumentControl1";
-			this.attitudeIndicatorInstrumentControl1.Size = new System.Drawing.Size(120, 120);
-			this.attitudeIndicatorInstrumentControl1.TabIndex = 21;
-			this.attitudeIndicatorInstrumentControl1.Text = "attitudeIndicatorInstrumentControl1";
-			// 
-			// turnCoordinatorInstrumentControl1
-			// 
-			this.turnCoordinatorInstrumentControl1.Location = new System.Drawing.Point(551, 709);
-			this.turnCoordinatorInstrumentControl1.Name = "turnCoordinatorInstrumentControl1";
-			this.turnCoordinatorInstrumentControl1.Size = new System.Drawing.Size(120, 120);
-			this.turnCoordinatorInstrumentControl1.TabIndex = 22;
-			this.turnCoordinatorInstrumentControl1.Text = "turnCoordinatorInstrumentControl1";
-			// 
-			// headingIndicatorInstrumentControl1
-			// 
-			this.headingIndicatorInstrumentControl1.Location = new System.Drawing.Point(803, 709);
-			this.headingIndicatorInstrumentControl1.Name = "headingIndicatorInstrumentControl1";
-			this.headingIndicatorInstrumentControl1.Size = new System.Drawing.Size(120, 120);
-			this.headingIndicatorInstrumentControl1.TabIndex = 23;
-			this.headingIndicatorInstrumentControl1.Text = "headingIndicatorInstrumentControl1";
-			// 
 			// WindowCamera
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-			this.ClientSize = new System.Drawing.Size(1426, 860);
+			this.ClientSize = new System.Drawing.Size(2139, 865);
+			this.Controls.Add(this.btnStop);
+			this.Controls.Add(this.btnStart);
+			this.Controls.Add(this.btn_cam1);
+			this.Controls.Add(this.vlcPlayer);
 			this.Controls.Add(this.headingIndicatorInstrumentControl1);
 			this.Controls.Add(this.turnCoordinatorInstrumentControl1);
 			this.Controls.Add(this.attitudeIndicatorInstrumentControl1);
@@ -276,7 +324,6 @@
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.webBrowser1);
 			this.Controls.Add(this.groupBox1);
-			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "WindowCamera";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Camera";
@@ -284,6 +331,7 @@
 			this.Load += new System.EventHandler(this.WindowCamera_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.vlcPlayer)).EndInit();
 			this.ResumeLayout(false);
 
     }
@@ -301,6 +349,10 @@
 	private Avionics.AttitudeIndicatorInstrumentControl attitudeIndicatorInstrumentControl1;
 	private Avionics.TurnCoordinatorInstrumentControl turnCoordinatorInstrumentControl1;
 	private Avionics.HeadingIndicatorInstrumentControl headingIndicatorInstrumentControl1;
+	private AxAXVLC.AxVLCPlugin2 vlcPlayer;
+	private System.Windows.Forms.Button btn_cam1;
+	private System.Windows.Forms.Button btnStart;
+	private System.Windows.Forms.Button btnStop;
 }
 
 

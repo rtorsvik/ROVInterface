@@ -6,3 +6,5 @@
 x Add graphics.xml to settings.xml
 	- Make everything able to change in the software, including warning values.
 - Make the FindNextAfterError() in ProgramSaverLoader, look for "<GraphicSettings>" and "<GraphicSettings img="%">".
+
+raspivid -o - -t 0 -h 540 -w 960 -fps 25 -i record |nc -l 1235
