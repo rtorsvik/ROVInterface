@@ -9,3 +9,5 @@
 	- with graphics importer/ path name
 	- with export of settings, as settings.export.xml, instead of just settings.xml
 		- maybe with load settings also, which will unload everything first
+
+raspivid -o - -t 0 -h 540 -w 960 -fps 25 -i record |nc -l 1235

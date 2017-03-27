@@ -33,6 +33,8 @@ namespace Translator
 		private const int TOP_REG_PARAM1 = 0x203;
 		private const int TOP_REG_PARAM2 = 0x204;
 		private const int TOP_SENS_CTRL = 0x205;
+		private const int TOP_XBOX_CTRLS_2 = 0x206;
+		private const int TOP_XBOX_AXES_2 = 0x207;
 
 		private const int SENSOR_AN_RAW = 0x300;
 		private const int SENSOR_PROCESSED_DATA = 0x301;
@@ -67,6 +69,8 @@ namespace Translator
 		private static byte[] TOP_REG_PARAM1_cache = new byte[7];
 		private static byte[] TOP_REG_PARAM2_cache = new byte[6];
 		private static byte[] TOP_SENS_CTRL_cache = new byte[6];
+		private static byte[] TOP_XBOX_CTRLS_2_cache = new byte[8];
+		private static byte[] TOP_XBOX_AXES_2_cache = new byte[8];
 
 
 

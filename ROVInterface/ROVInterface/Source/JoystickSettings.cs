@@ -21,14 +21,14 @@ public class JoystickSettings
 	private const int SOFF = 40;    //pixels, offset from top
 
 	public AxisSetting[] axisSetting;
-	public string[] axisLabels = new string[6] { "Forward/backward", "Left/right", "Up/Down", "Pitch", "Roll", "Yaw" };
-	public int[] prevOutA = new int[6];
+	public string[] axisLabels = new string[10] { "Forward/backward", "Left/right", "Up/Down", "Pitch", "Roll", "Yaw", "<spare>", "<spare>", "<spare>", "<spare>" };
+	public int[] prevOutA = new int[10];
 
 	public ButtonSetting[] buttonSetting;
-	public string[] buttonLabels = new string[2] { "Arm motors", "Lights on/off" };
-	public bool[] prevOutB = new bool[2];
+	public string[] buttonLabels = new string[8] { "Arm motors", "Lights on/off", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>"};
+	public bool[] prevOutB = new bool[8];
 
-	ButtonSetting bs6;
+
 
 	public JoystickSettings()
 	{
@@ -44,9 +44,9 @@ public class JoystickSettings
 		{
 			buttonSetting[i] = new ButtonSetting(buttonLabels[i]);
 		}
-
-		bs6 = new ButtonSetting("Arm motors");
 	}
+
+
 
 	public void Update()
 	{
@@ -65,20 +65,31 @@ public class JoystickSettings
 		for (int i = 0; i < buttonLabels.Length; i++)
 		{
 			buttonSetting[i].Update();
-			int? a = 0;
+
 			//TEMP: finn ut sammen med terje hvor disse egentlig skal kalles hen
-			if (buttonSetting[i].outValue != prevOutB[i])
+			if (buttonSetting[i].outValueBool != prevOutB[i])
 			{
 				if (ST_Register.commands[buttonSetting[i].index] == null)
 					ST_Register.commands[buttonSetting[i].index] = 0;
-				ST_Register.commands[buttonSetting[i].index] = ST_Register.commands[buttonSetting[i].index] & ~(1 << buttonSetting[i].bitnr) | (Convert.ToInt32(buttonSetting[i].outValue) << buttonSetting[i].bitnr);
-				a = ST_Register.commands[buttonSetting[i].index];
+
+				//if bitnumber is set to -1, dont set a bit, but write a value to the whole index instead
+				if (buttonSetting[i].bitnr == -1) 
+				{
+					ST_Register.commands[buttonSetting[i].index] = buttonSetting[i].outValueInt;
+				}
+				
+				//else, set a bit in the command to the value of the button	
+				else
+					ST_Register.commands[buttonSetting[i].index] = ST_Register.commands[buttonSetting[i].index] & ~(1 << buttonSetting[i].bitnr) | (Convert.ToInt32(buttonSetting[i].outValueBool) << buttonSetting[i].bitnr);
+				
 			}
 			
-			prevOutB[i] = buttonSetting[i].outValue;
+			prevOutB[i] = buttonSetting[i].outValueBool;
 		}
 
 	}
+
+
 
 	public void LoadConnectedJoysticks()
 	{
@@ -87,6 +98,7 @@ public class JoystickSettings
 			axisSetting[i].LoadConnectedJoysticks();
 		}
 	}
+
 
 
 	/// <summary>
@@ -98,6 +110,8 @@ public class JoystickSettings
 		private FlowLayoutPanel c_container;
 
 		private Label c_description;
+
+		private NumericUpDown c_index;
 
 		private ComboBox c_joystick;
 		private ComboBox c_axis;
@@ -122,7 +136,7 @@ public class JoystickSettings
 
 		public int inValue;     //Value of the axis on the joystick
 
-		public bool reverse;           //outValue reversed when true
+		public bool reverse;    //outValue reversed when true
 		public float expo;		//curvature of outValue
 		public int deadband;	//how much does inValue have to travel from midpoint before outValue starts to change [%]
 		public int offset;      //offset, at which value does outValue start when inValue exceeds deadband [%]
@@ -147,9 +161,16 @@ public class JoystickSettings
 			c_description.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
 			c_description.Size = new System.Drawing.Size(130, 24);
 
+			c_index = new NumericUpDown();
+			c_index.Minimum = 0;
+			c_index.Maximum = 32767;
+			c_index.Value = SNUM;
+			c_index.Size = new System.Drawing.Size(50, 24);
+
 			c_joystick = new ComboBox();
 			c_joystick.DropDownStyle = ComboBoxStyle.DropDownList;
 			c_joystick.Size = new System.Drawing.Size(70, 24);
+			c_joystick.Margin = new Padding(44, 3, 3, 3);
 			c_joystick.Items.AddRange(JoystickHandler.joystick);
 
 			c_axis = new ComboBox();
@@ -226,6 +247,8 @@ public class JoystickSettings
 
 			c_container.Controls.Add(c_description);
 
+			c_container.Controls.Add(c_index);
+
 			c_container.Controls.Add(c_joystick);
 			c_container.Controls.Add(c_axis);
 
@@ -247,8 +270,6 @@ public class JoystickSettings
 
 			page.Controls.Add(c_container);
 		}
-
-
 
 		/// <summary>
 		/// Update values in 
@@ -287,8 +308,6 @@ public class JoystickSettings
 
 			} catch (Exception e) { }
 		}
-
-
 
 		/// <summary>
 		/// rescale the input value
@@ -355,8 +374,6 @@ public class JoystickSettings
 			c_max.Value = max;
 		}
 
-
-
 		/// <summary>
 		/// Autodetect axis
 		/// </summary>
@@ -400,8 +417,6 @@ public class JoystickSettings
 
 		}
 
-
-
 		/// <summary>
 		/// Autodetect axis and joystick
 		/// </summary>
@@ -409,6 +424,9 @@ public class JoystickSettings
 		/// <param name="e"></param>
 		public void AutoDetect2(object sender, EventArgs e) //(object sender, EventArgs e) ??? make this function run when hitting button
 		{
+			//detection threshold
+			float dth = 255;
+
 			//Change color of button to indicate that autotedect is running
 			c_autoDetect.BackColor = System.Drawing.Color.Aquamarine;
 			c_autoDetect.Update();
@@ -431,9 +449,10 @@ public class JoystickSettings
 					for (int ai = 0; ai < joystick.axis.Length; ai++)
 					{
 						int axisValue = joystick.axis[ai];
+						int oldAxisValue = joystick.axisPrev[ai];
 
 						//if the value of the axis is over a sertain value, save thisjoystick and axis as the detected axis
-						if (axisValue < -32767 * 0.5 || axisValue > 32767 * 0.5)
+						if (axisValue < oldAxisValue - dth || axisValue > oldAxisValue + dth)
 						{
 							joystickIndex = ji;
 							axisIndex = ai;
@@ -459,8 +478,6 @@ public class JoystickSettings
 			Program.windowStatus.DrawGraph(deadband, offset, max, expo, reverse);
 		}
 
-
-
 		/// <summary>
 		/// Update the select joystick combobox control
 		/// </summary>
@@ -480,12 +497,16 @@ public class JoystickSettings
 			"RX",	"RY",	"RZ",
 			"VRx",	"VRy",	"VRz",
 			"VX",	"VY",	"VZ",
-			"X",	"Y",	"Z"};
+			"X",	"Y",	"Z",
+			"ASlider0", "ASlider1",
+			"FSlider0", "FSlider0",
+			"VSlider0", "VSlider1",
+			"Slider0",  "Slider1"};
 
 
 	}
 
-
+	
 
 	public class ButtonSetting
 	{
@@ -506,20 +527,27 @@ public class JoystickSettings
 		private RadioButton c_toggle;
 		private RadioButton c_push;
 
-		private CheckBox c_outValue;
+		private NumericUpDown c_offValue;
+		private NumericUpDown c_onValue;
+
+		private TextBox c_outValue;
 
 		//Settings
-		public int index;		//ST_Register command index
-		public int bitnr;		//Which bit to set/reset
+		public int index;			//ST_Register command index
+		public int bitnr;			//Which bit to set/reset
 
 		public int joystick_idx;	//index of the selected joystick
 		public int button_idx;      //index of the selected axis
 
-		public bool inValue;    //Value of the axis on the joystick
+		public bool inValue;		//Value of the axis on the joystick
 
-		public bool toggle_push;//If button is a toggle or pushbutton
+		public bool toggle_push;	//If button is a toggle or pushbutton
 
-		public bool outValue;   //Value of the axis on the joystick
+		public int offValue;        //The value to send when button is off
+		public int onValue;         //The value to send when button is on
+
+		public bool outValueBool;   //Value of the axis on the joystick
+		public int outValueInt;		//Value of the axis on the joystick
 
 		/// <summary>
 		/// Create new set of settings for a joystick button
@@ -543,9 +571,10 @@ public class JoystickSettings
 			c_index.Size = new System.Drawing.Size(50, 24);
 
 			c_bitnr = new NumericUpDown();
-			c_bitnr.Minimum = 0;
+			c_bitnr.Minimum = -1;
 			c_bitnr.Maximum = 31;
-			c_bitnr.Size = new System.Drawing.Size(50, 24);
+			c_bitnr.Value = 0;
+			c_bitnr.Size = new System.Drawing.Size(35, 24);
 
 			c_joystick = new ComboBox();
 			c_joystick.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -554,7 +583,7 @@ public class JoystickSettings
 
 			c_button = new NumericUpDown();
 			c_button.Minimum = 0;
-			c_button.Maximum = 127;
+			c_button.Maximum = 159;
 			c_button.Size = new System.Drawing.Size(50, 24);
 
 			c_autoDetect = new Button();
@@ -571,15 +600,29 @@ public class JoystickSettings
 
 			c_toggle = new RadioButton();
 			c_toggle.Text = "Toggle";
+			c_toggle.AutoSize = true;
+			c_toggle.Margin = new Padding(189, 3, 0, 3);
 
 			c_push = new RadioButton();
 			c_push.Text = "Pushbutton";
+			c_push.AutoSize = true;
+			c_push.Margin = new Padding(0, 3, 0, 3);
 			c_push.Checked = true;
 
-			c_outValue = new CheckBox();
-			c_outValue.Text = "";
-			c_outValue.AutoSize = true;
-			c_outValue.Margin = new Padding(30, 3, 30, 3);
+			c_offValue = new NumericUpDown();
+			c_offValue.Minimum = int.MinValue;
+			c_offValue.Maximum = int.MaxValue;
+			c_offValue.Size = new System.Drawing.Size(50, 24);
+
+			c_onValue = new NumericUpDown();
+			c_onValue.Minimum = int.MinValue;
+			c_onValue.Maximum = int.MaxValue;
+			c_onValue.Value = 1;
+			c_onValue.Size = new System.Drawing.Size(50, 24);
+
+			c_outValue = new TextBox();
+			c_outValue.Margin = new Padding(141, 3, 30, 3);
+			c_outValue.Size = new System.Drawing.Size(50, 24);
 
 			DrawItems();
 			SNUM++;
@@ -604,6 +647,9 @@ public class JoystickSettings
 
 			c_container.Controls.Add(c_toggle);
 			c_container.Controls.Add(c_push);
+
+			c_container.Controls.Add(c_offValue);
+			c_container.Controls.Add(c_onValue);
 
 			c_container.Controls.Add(c_outValue);
 
@@ -633,6 +679,9 @@ public class JoystickSettings
 
 				toggle_push = c_toggle.Checked;
 
+				offValue = (int)c_offValue.Value;
+				onValue = (int)c_onValue.Value;
+
 				if (toggle_push)
 				{
 					if (jh.joystick[joystick_idx].button[button_idx])
@@ -647,15 +696,17 @@ public class JoystickSettings
 						buttonDown = false;
 					}
 
-					outValue = toggled;
+					outValueBool = toggled;
+					outValueInt = toggled ? onValue : offValue;
 				}
 
 				else
 				{
-					outValue = inValue;
+					outValueBool = inValue;
+					outValueInt = inValue ? onValue : offValue;
 				}
 
-				c_outValue.Checked = outValue;
+				c_outValue.Text = outValueInt.ToString();
 
 			}
 			catch (Exception e) { }
@@ -735,9 +786,10 @@ public class JoystickSettings
 					for (int bi = 0; bi < joystick.button.Length; bi++)
 					{
 						bool buttonValue = joystick.button[bi];
+						bool oldButtonValue = joystick.buttonPrev[bi];
 
 						//if a button is pressed, set this as the button to use
-						if (buttonValue)
+						if (buttonValue != oldButtonValue)
 						{
 							joystickIndex = ji;
 							buttonIndex = bi;
@@ -749,8 +801,12 @@ public class JoystickSettings
 
 			}
 
-			c_joystick.SelectedIndex = joystickIndex;
-			c_button.Value = buttonIndex;
+			if (buttonIndex != -1) //if a button was detected, save this as the button to use
+			{
+				c_joystick.SelectedIndex = joystickIndex;
+				c_button.Value = buttonIndex;
+			}
+			
 			c_autoDetect.UseVisualStyleBackColor = true;
 			c_autoDetect.Update();
 

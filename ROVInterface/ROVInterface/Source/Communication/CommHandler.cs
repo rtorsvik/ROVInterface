@@ -387,6 +387,8 @@ public static class CommHandler
 	private const int TOP_REG_PARAM1 = 0x203;
 	private const int TOP_REG_PARAM2 = 0x204;
 	private const int TOP_SENS_CTRL = 0x205;
+	private const int TOP_XBOX_CTRLS_2 = 0x206;
+	private const int TOP_XBOX_AXES_2 = 0x207;
 
 	private const int SENSOR_AN_RAW = 0x300;
 	private const int SENSOR_PROCESSED_DATA = 0x301;
@@ -413,13 +415,15 @@ public static class CommHandler
 	private const int ENC_POS = 0x600;
 
 	//Cob_ID
-	private static int[] Cob_ID = new int[72] {
+	private static int[] Cob_ID = new int[74] {
 		TOP_XBOX_CTRLS,
 		TOP_XBOX_AXES,
 		TOP_POWR_CTRL,
 		TOP_REG_PARAM1,
 		TOP_REG_PARAM2,
 		TOP_SENS_CTRL,
+		TOP_XBOX_CTRLS_2,
+		TOP_XBOX_AXES_2,
 		SENSOR_AN_RAW,
 		SENSOR_PROCESSED_DATA,
 		SENSOR_ACCELERATION,

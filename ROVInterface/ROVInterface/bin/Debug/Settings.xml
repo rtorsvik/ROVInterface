@@ -1,22 +1,22 @@
 <Settings>
 	<JoystickSettings>
 		<Setting>
-			<jindex>-1</jindex><aindex>23</aindex><reverse>True</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
+			<jindex>0</jindex><aindex>22</aindex><reverse>True</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
+			<jindex>0</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>1</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>22</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>50</max>
+			<jindex>1</jindex><aindex>22</aindex><reverse>True</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>13</aindex><reverse>False</reverse><expo>3</expo><deadband>0</deadband><offset>0</offset><max>8</max>
+			<jindex>0</jindex><aindex>12</aindex><reverse>False</reverse><expo>3</expo><deadband>0</deadband><offset>0</offset><max>8</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>12</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
+			<jindex>0</jindex><aindex>13</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>0</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
+			<jindex>0</jindex><aindex>14</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
 		</Setting>
 	</JoystickSettings>
 	<IndexSettings>
@@ -64,7 +64,7 @@
 			<y>70</y>
 			<l>-39</l>
 			<h>39</h>
-			<index>1</index>
+			<index>0</index>
 		</Index>
 		<Index>
 			<x>50</x>

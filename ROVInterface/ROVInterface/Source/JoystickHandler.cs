@@ -86,8 +86,11 @@ public class TJoystick
 	private Joystick joystick;
 	private int joystickNumber;
 	public int[] axis_raw;			//TEMP Should contain the raw value from the joystick
-	public int[] axis;				//contains the value from each axis of the joystick, TEMP should contain scaled value of axis
+	public int[] axis;              //contains the value from each axis of the joystick, TEMP should contain scaled value of axis
+	public int[] axisPrev;
+	public string[] axisLabels;
 	public bool[] button;
+	public bool[] buttonPrev;
 
 	public static int JOYSTICKNUM = 0;
 
@@ -99,12 +102,79 @@ public class TJoystick
 	public TJoystick(Joystick joystick)
 	{
 		this.joystick = joystick;
-		axis = new int[24];
-		button = new bool[128];
+
+		axis = new int[24
+			+ joystick.GetCurrentState().GetAccelerationSliders().Length
+			+ joystick.GetCurrentState().GetForceSliders().Length
+			+ joystick.GetCurrentState().GetSliders().Length
+			+ joystick.GetCurrentState().GetVelocitySliders().Length];
+
+		axisPrev = new int[axis.Length];
+
+		axisLabels = new string[24
+			+ joystick.GetCurrentState().GetAccelerationSliders().Length
+			+ joystick.GetCurrentState().GetForceSliders().Length
+			+ joystick.GetCurrentState().GetSliders().Length
+			+ joystick.GetCurrentState().GetVelocitySliders().Length];
+
+		List<string> al = new List<string>() {
+			"ARx",	"ARy",	"ARz",
+			"AX",	"AY",	"AZ",
+			"FRx",	"FRy",	"FRz",
+			"FX",	"FY",	"FZ",
+			"RX",	"RY",	"RZ",
+			"VRx",	"VRy",	"VRz",
+			"VX",	"VY",	"VZ",
+			"X",	"Y",	"Z"};
+
+		//add sliders as axes
+		int[] sliders = joystick.GetCurrentState().GetAccelerationSliders();
+		for (int i = 0; i < sliders.Length; i++)
+		{
+			al.Add("Acceleration slider " + i);
+		}
+
+		//add sliders as axes
+		sliders = joystick.GetCurrentState().GetForceSliders();
+		for (int i = 0; i < sliders.Length; i++)
+		{
+			al.Add("Force slider " + i);
+		}
+
+		//add sliders as axes
+		sliders = joystick.GetCurrentState().GetVelocitySliders();
+		for (int i = 0; i < sliders.Length; i++)
+		{
+			al.Add("Velocity slider " + i);
+		}
+
+		//add sliders as axes
+		sliders = joystick.GetCurrentState().GetSliders();
+		for (int i = 0; i < sliders.Length; i++)
+		{
+			al.Add("Slider " + i);
+		}
+
+		axisLabels = al.ToArray();
+
+
+
+		button = new bool[joystick.GetCurrentState().GetButtons().Length
+			+ joystick.GetCurrentState().GetPointOfViewControllers().Length * 4];
+
+		buttonPrev = new bool[button.Length];
 
 		joystickNumber = JOYSTICKNUM++;
 	}
 
+
+
+	//TEMP
+	int[] aslidersPrev;
+	int[] fslidersPrev;
+	int[] povPrev;
+	int[] slidersPrev;
+	int[] vslidersPrev;
 
 
 	/// <summary>
@@ -114,6 +184,9 @@ public class TJoystick
 	{
 		//Get the state of the joystick
 		JoystickState state = joystick.GetCurrentState();
+
+		//Save prev values for autodetection of axis
+		Array.Copy(axis, axisPrev, axis.Length);
 
 		//Update axes values
 		axis[0] = state.AccelerationX; //Ax
@@ -141,8 +214,118 @@ public class TJoystick
 		axis[22] = state.Y; //y
 		axis[23] = state.Z; //z
 
+		int asl = state.GetAccelerationSliders().Length;
+		int fsl = state.GetForceSliders().Length;
+		int vsl = state.GetVelocitySliders().Length;
+		int sl = state.GetSliders().Length;
+
+		Array.Copy(state.GetAccelerationSliders(),	0, axis, 24,					asl);
+		Array.Copy(state.GetForceSliders(),			0, axis, 24 + asl,				fsl);
+		Array.Copy(state.GetVelocitySliders(),		0, axis, 24 + asl + fsl,		vsl);
+		Array.Copy(state.GetForceSliders(),			0, axis, 24 + asl + fsl + vsl,	sl);
+
+		//Save previous
+		Array.Copy(button, buttonPrev, button.Length);
+
+
+
 		//Update button values
-		button = state.GetButtons();
+
+		//first, convert powController into boolean array to represent them as buttons
+		int[] pov = state.GetPointOfViewControllers();
+		int povl = pov.Length;
+		bool[] povButton = new bool[povl * 4];
+		for (int i = 0; i < povl; i += 4)
+		{
+			int povValue = pov[i/4];
+			if (povValue == -1)
+			{
+				povButton[i + 0] = false;
+				povButton[i + 1] = false;
+				povButton[i + 2] = false;
+				povButton[i + 3] = false;
+				continue;
+			}
+
+			//north
+			if (povValue >= 31500 || povValue <= 4500)
+				povButton[i + 0] = true;
+
+			//east
+			if (povValue >= 4500 && povValue <= 13500)
+				povButton[i + 1] = true;
+
+			//south
+			if (povValue >= 13500 && povValue <= 22500)
+				povButton[i + 2] = true;
+
+			//west
+			if (povValue >= 22500 && povValue <= 31500)
+				povButton[i + 3] = true;
+
+		}
+
+		int bl = state.GetButtons().Length;
+		Array.Copy(state.GetButtons(), 0, button, 0, bl);
+		Array.Copy(povButton, 0, button, bl, povButton.Length);
+
+
+
+
+
+
+		//TEMP for debugging of joystick input
+		/*
+		if (povPrev == null)
+		{
+			aslidersPrev = state.GetAccelerationSliders();
+			fslidersPrev = state.GetForceSliders();
+			povPrev = state.GetPointOfViewControllers();
+			slidersPrev = state.GetSliders();
+			vslidersPrev = state.GetVelocitySliders();
+		}
+
+		int[] asliders = state.GetAccelerationSliders();
+		int[] fsliders = state.GetForceSliders();
+		int[] povC = state.GetPointOfViewControllers();
+		int[] sliders = state.GetSliders();
+		int[] vsliders = state.GetVelocitySliders();
+
+		for(int i = 0; i < asliders.Length; i++)
+		{
+			if (asliders[i] != aslidersPrev[i])
+				Console.WriteLine(asliders[i]);
+		}
+		aslidersPrev = asliders;
+
+		for (int i = 0; i < fsliders.Length; i++)
+		{
+			if (fsliders[i] != fslidersPrev[i])
+				Console.WriteLine(fsliders[i]);
+		}
+		fslidersPrev = fsliders;
+
+		for (int i = 0; i < pov.Length; i++)
+		{
+			if (povC[i] != povPrev[i])
+				Console.WriteLine(povC[i]);
+		}
+		povPrev = povC;
+
+		for (int i = 0; i < sliders.Length; i++)
+		{
+			if (sliders[i] != slidersPrev[i])
+				Console.WriteLine(sliders[i]);
+		}
+		slidersPrev = sliders;
+
+		for (int i = 0; i < vsliders.Length; i++)
+		{
+			if (vsliders[i] != vslidersPrev[i])
+				Console.WriteLine(vsliders[i]);
+		}
+		vslidersPrev = vsliders;
+		*/
 	}
 
 
