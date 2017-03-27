@@ -3,8 +3,9 @@
 - Make the ST_Register tick delay be reduced to max framerate, instead of adding it. 10 ms per tick shouldn't be 10 ms + send time, but rather minimum 10 ms including the send time.
 - Add a check to actually delete the control in GraphicToolbox.
 - Make the toolbox Sliders have a label with its name and its current value, and its value while moving the slider.
-- Make the FindNextAfterError() in ProgramSaverLoader, look for "<GraphicSettings>" and "<GraphicSettings img="%">".
+- Make the FindNextAfterError() in ProgramSaverLoader, look for "<GraphicSettings img="%">".
 - Make the general settings tab
 	- with dll importer/ path name
 	- with graphics importer/ path name
 	- with export of settings, as settings.export.xml, instead of just settings.xml
+		- maybe with load settings also, which will unload everything first
