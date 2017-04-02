@@ -23,10 +23,11 @@ public static class CommHandler
 
 	// Dll variables
 	private static bool loadedDll = false;
-	private const string dllpath = "./Translator.dll";
+	public static string dllpath = "./Translator.dll";
 	private static Assembly dll;
 	private static MethodInfo dllConvertCommands;
 	private static MethodInfo dllConvertData;
+	private const string dllimportlabtext = @"DLL iImport: .\";
 
 	// Try to load the ddl by path name, set loadedDll to true if succesful
 	public static void InitDllImport()
@@ -72,9 +73,11 @@ public static class CommHandler
 			}
 
 			loadedDll = true;
+			Program.windowStatus.lab_DLLimported.Text = dllimportlabtext + dllpath;
 		}
 		catch (Exception e)
 		{
+			Program.windowStatus.lab_DLLimported.Text = dllimportlabtext + "<null>";
 			loadedDll = false;
 			Console.WriteLine(e);
 		}

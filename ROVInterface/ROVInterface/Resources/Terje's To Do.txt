@@ -2,10 +2,5 @@
 
 - Add a check to actually delete the control in GraphicToolbox.
 - Make the toolbox Sliders have a label with its name and its current value, and its value while moving the slider.
-- Make the FindNextAfterError() in ProgramSaverLoader, look for "<GraphicSettings img="%">".
-- Make the general settings tab
-	- with dll importer/ path name
-	- with graphics importer/ path name
-	- maybe with load settings also, which will unload everything first
 
 raspivid -o - -t 0 -h 540 -w 960 -fps 25 -i record |nc -l 1235

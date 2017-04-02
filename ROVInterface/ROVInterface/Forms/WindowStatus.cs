@@ -1024,17 +1024,18 @@ public partial class WindowStatus : Form
 		return y;
 	}
 
-    private void btn_ExportSettings_Click(object sender, EventArgs e) {
-        try {
-            ProgramSaverLoader.Export();
-            Program.errors.Add("Successfully exported settings with \"" + ProgramSaverLoader.pathexport.Substring(2) + "\" file name.");
-        } catch {
-            Program.errors.Add("Failed to export settings.");
-        }
-    }
-
     private void btn_LoadSettings_Click(object sender, EventArgs e) {
         if (ProgramSaverLoader.Reload())
             Program.errors.Add("succ");
     }
+
+	private void btn_loaddll_Click(object sender, EventArgs e) {
+		CommHandler.dllpath = txtbox_dllimported.Text;
+		CommHandler.InitDllImport();
+	}
+
+	private void btn_graphicsloaded_Click(object sender, EventArgs e) {
+		graphicsCreator.Prototype.path = txtbox_graphicsloaded.Text;
+		graphicsCreator.Prototype.LoadImage();
+	}
 }

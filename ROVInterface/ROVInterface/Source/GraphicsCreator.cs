@@ -58,102 +58,9 @@ public class GraphicsCreator {
 		
 		for (int i = 0; i < prototype.indexes.Length; i++)
 			indexDialogForm.CreateNewIndexRow();
-
-		// Set up the form for showing the indexes
-		/*indexDialogForm = new Form();
-		indexDialogForm.Size = new Size(400, 400);
-		indexDialogForm.Text = "Set Graphic Index Settings";
-		indexDialogForm.BackColor = Color.FromArgb(32, 32, 32);
-		indexDialogForm.ForeColor = SystemColors.MenuHighlight;
-		indexDialogForm.Font = new Font(indexDialogForm.Font.FontFamily, 10);
-		indexDialogForm.FormBorderStyle = FormBorderStyle.FixedDialog;
-		indexDialogForm.ShowIcon = false;
-		indexDialogForm.ShowInTaskbar = false;
-		indexDialogForm.MaximizeBox = false;
-		indexDialogForm.MinimizeBox = false;
-
-		TableLayoutPanel table = new TableLayoutPanel();
-		indexDialogForm.Controls.Add(table);
-		table.SuspendLayout();
-		table.ColumnCount = 1;
-		table.RowCount = 3;
-		table.Dock = DockStyle.Fill;
-		table.RowStyles.Add(new RowStyle(SizeType.Absolute, 24));
-		table.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-		table.RowStyles.Add(new RowStyle(SizeType.Absolute, 36));
-		table.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-		table.ResumeLayout();
-
-		// TITLE FLOWLAYOUTPANEL
-		FlowLayoutPanel flowtitle = new FlowLayoutPanel();
-		table.Controls.Add(flowtitle, 0, 0);
-		flowtitle.Dock = DockStyle.Fill;
-
-		Label lab = new Label();
-		lab.Text = "Pos (x, y)";
-		flowtitle.Controls.Add(lab);
-
-		lab = new Label();
-		lab.Text = "Index";
-		flowtitle.Controls.Add(lab);
-
-		// BUTTONS FLOWLAYOUTPANEL
-		FlowLayoutPanel flowbuttons = new FlowLayoutPanel();
-		table.Controls.Add(flowbuttons, 0, 2);
-		flowbuttons.Dock = DockStyle.Fill;
-		flowbuttons.Margin = new Padding(0);
-		flowbuttons.FlowDirection = FlowDirection.RightToLeft;
-
-		Button btnaccept = new Button();
-		flowbuttons.Controls.Add(btnaccept);
-		btnaccept.Text = "Accept";
-		btnaccept.BackColor = Color.White;
-		btnaccept.ForeColor = Color.Black;
-		btnaccept.Height = 30;
-		btnaccept.Click += AcceptFormValues;
-
-		Button btncancel = new Button();
-		flowbuttons.Controls.Add(btncancel);
-		btncancel.Text = "Cancel";
-		btncancel.BackColor = Color.White;
-		btncancel.ForeColor = Color.Black;
-		btncancel.Height = 30;
-		btncancel.Click += CancelFormValues;
-
-		// ITEM COLLECTION FLOWLAYOUTPANEL
-		indexDialogItemContainer = new FlowLayoutPanel();
-		table.Controls.Add(indexDialogItemContainer, 0, 1);
-		indexDialogItemContainer.Dock = DockStyle.Fill;
-		indexDialogItemContainer.Margin = new Padding(0);
-		indexDialogItemContainer.FlowDirection = FlowDirection.LeftToRight;
-		indexDialogItemContainer.AutoScroll = true;
-		
-		foreach (graphicPrototype.prototypeIndex i in prototype.indexes) {
-			TableLayoutPanel pan = new TableLayoutPanel();
-			indexDialogItemContainer.Controls.Add(pan);
-			pan.Width = indexDialogItemContainer.Width - 24;
-			pan.Height = 25;
-			pan.ColumnCount = 2;
-			pan.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100));
-			pan.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-
-			NumericUpDown nud = new NumericUpDown();
-			pan.Controls.Add(nud, 0, 0);
-			nud.Minimum = 0;
-			nud.Maximum = int.MaxValue;
-
-			Label l = new Label();
-			pan.Controls.Add(l, 1, 0);
-			l.Text = "( " + i.posx + ", " + i.posy + " )";
-			l.AutoSize = true;
-			l.Margin = new Padding(2, 4, 2, 2);
-
-		}*/
 	}
 
 	public void UpdateValues() {
-		// TODO
-		// Go through every control in graphicPrototype and update its controls, or just update it through functions
 		prototype.UpdateControlsValuesForIdx();
 	}
 
@@ -187,18 +94,29 @@ public class GraphicsCreator {
 		public Bitmap image;
 		public prototypeIndex[] indexes;
 
+		private const string imagelabloaded = @"Image loaded: .\";
+
 		public graphicPrototype(string path, prototypeIndex[] indexes) {
 			this.path = path;
-			if (path == "")
+			this.indexes = indexes;
+
+			LoadImage();
+		}
+
+		public void LoadImage() {
+			if (path == "") {
 				hasImage = false;
-			else {
+				Program.windowStatus.lab_GraphicsLoaded.Text = imagelabloaded + "<null>";
+			} else {
 				try {
 					image = new Bitmap(Image.FromFile(path));
+					Program.windowStatus.lab_GraphicsLoaded.Text = imagelabloaded + path;
+					hasImage = true;
 				} catch {
 					hasImage = false;
+					Program.windowStatus.lab_GraphicsLoaded.Text = imagelabloaded + "<null>";
 				}
 			}
-			this.indexes = indexes;
 		}
 
 		public void UpdateIdxSettingReference() {
@@ -222,6 +140,10 @@ public class GraphicsCreator {
 		public void Dispose() {
 			for (int i = 0, j = indexes.Length; i < j; i++)
 				indexes[i].Dispose();
+
+			if (hasImage)
+				image.Dispose();
+			hasImage = false;
 		}
 
 		public class prototypeIndex {

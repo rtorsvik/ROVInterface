@@ -1,4 +1,8 @@
 <Settings>
+	<General>
+		<DllPath>./Translator.dll</DllPath>
+		<GraphicPath>Graphics\Aegir.png</GraphicPath>
+	</General>
 	<JoystickSettings>
 		<Setting>
 			<jindex>-1</jindex><aindex>22</aindex><reverse>True</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>8</max>
@@ -58,7 +62,7 @@
 		<Stats>13</Stats>
 		<Stats>17</Stats>
 	</IndexStats>
-	<GraphicSettings img="Aegir.png">
+	<GraphicSettings>
 		<Index>
 			<x>50</x>
 			<y>70</y>
