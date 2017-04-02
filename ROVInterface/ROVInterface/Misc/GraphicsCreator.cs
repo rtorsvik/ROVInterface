@@ -219,6 +219,11 @@ public class GraphicsCreator {
 				p.UpdateControlsValues();
 		}
 
+		public void Dispose() {
+			for (int i = 0, j = indexes.Length; i < j; i++)
+				indexes[i].Dispose();
+		}
+
 		public class prototypeIndex {
 			// Store settings for the indexes
 			public bool hidden { get { return _hidden; } }

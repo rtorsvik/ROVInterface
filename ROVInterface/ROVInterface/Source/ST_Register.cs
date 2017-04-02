@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /*
 	ST_Register
@@ -10,6 +11,7 @@ public static class ST_Register {
 
 	public static ST_Array status;
 	public static ST_Array commands;
+    private static Stopwatch stopwatch;
 
 	/// <summary>
 	/// 
@@ -17,6 +19,7 @@ public static class ST_Register {
 	public static void Init() {
 		status = new ST_Array();
 		commands = new ST_Array(new ST_Array());
+        stopwatch = new Stopwatch();
 	}
 
 	public static void SendCommands(object sender, EventArgs e) {
@@ -34,12 +37,19 @@ public static class ST_Register {
 
 		// Stop the timer for next update, to start again when finished with sending these commands
 		Program.windowStatus.tim_SendCommandsDelay.Stop();
+        stopwatch.Restart();
 
 		// Send commands
 		KeyValuePair<int, int>[] tosend = new KeyValuePair<int, int>[data.Length];
 		for (int i = 0, j = data.Length; i < j; i++)
 			tosend[i] = new KeyValuePair<int, int>(data[i].index, data[i].value);
 		CommHandler.Send(tosend);
+
+        // Set the delay to the next send of commands, based on time elapsed sending current commands and time till next frame
+        stopwatch.Stop();
+        int tick = (int)Program.windowStatus.nud_comm_transfreq.Value - (int)stopwatch.ElapsedMilliseconds;
+        tick = tick < 1 ? 1 : tick;
+        Program.windowStatus.tim_SendCommandsDelay.Interval = tick;
 		Program.windowStatus.tim_SendCommandsDelay.Start();
 
 		// Reset the command array

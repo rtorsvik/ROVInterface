@@ -14,6 +14,13 @@ public class IndexSettings {
 		allSettings = new List<Setting>();
 	}
 
+	public void Dispose() {
+		for (int i = 0, j = allSettings.Count; i < j; i++) {
+			allSettings[i].Delete(null, null);
+
+		}
+	}
+
 	public FlowLayoutPanel CreateElement() {
 		return CreateElement(0, "", 2, 12, System.Drawing.Color.White, 0, 0, 100, 100, "");
 	}
@@ -296,8 +303,30 @@ public class IndexStats {
 		CreateElement(-1);
 	}
 
-	public void CreateElement(int index) {
+	public void Dispose() {
+
+	}
+
+	public bool CreateElement(int index) {
+
 		Stats stats = new Stats(indexSettings);
+
+		if (index >= 0) {
+			IndexSettings.Setting found = null;
+			foreach (IndexSettings.Setting o in stats.index.Items) {
+				if (o.index.Value == index) {
+					found = o;
+					break;
+				}
+			}
+
+			if (found == null)
+				return false;
+
+			stats.index.SelectedItem = found;
+		}
+
+		
 		allStats.Add(stats);
 
 		FlowLayoutPanel panel = new FlowLayoutPanel();
@@ -329,16 +358,6 @@ public class IndexStats {
 		btn.Click += stats.Delete;
 
 		stats.Init();
-		if (index >= 0) {
-			IndexSettings.Setting found = null;
-			foreach (IndexSettings.Setting o in stats.index.Items) {
-				if (o.index.Value == index) {
-					found = o;
-					break;
-				}
-			}
-			stats.index.SelectedItem = found;
-		}
 
 		if (editMode) {
 			stats.index.Visible = true;
@@ -350,6 +369,8 @@ public class IndexStats {
 			stats.delete.Visible = false;
 			stats.name.Visible = true;
 		}
+
+		return true;
 	}
 
 	public class Stats {
