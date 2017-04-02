@@ -102,26 +102,26 @@
     <Compile Include="AvionicsInstrumentsControls\VerticalSpeedIndicatorInstrumentControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Misc\ErrorManager.cs" />
-    <Compile Include="Misc\GraphicsCreator.cs" />
-    <Compile Include="Misc\GraphicToolbox.cs" />
-    <Compile Include="Misc\IndexDialogForm.cs">
+    <Compile Include="Source\ErrorManager.cs" />
+    <Compile Include="Source\GraphicsCreator.cs" />
+    <Compile Include="Source\GraphicToolbox.cs" />
+    <Compile Include="Forms\IndexDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\IndexDialogForm.Designer.cs">
+    <Compile Include="Forms\IndexDialogForm.Designer.cs">
       <DependentUpon>IndexDialogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\ToolboxControlSettings.cs">
+    <Compile Include="Forms\ToolboxControlSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\ToolboxControlSettings.Designer.cs">
+    <Compile Include="Forms\ToolboxControlSettings.Designer.cs">
       <DependentUpon>ToolboxControlSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\Communication\CANPort.cs" />
     <Compile Include="Source\JoystickHandler.cs" />
     <Compile Include="Source\Communication\ComPort.cs" />
     <Compile Include="Source\Communication\EthernetPort.cs" />
-    <Compile Include="Misc\ST_Array.cs" />
+    <Compile Include="Source\ST_Array.cs" />
     <Compile Include="Source\IndexSettings.cs" />
     <Compile Include="Source\Communication\Port.cs" />
     <Compile Include="Source\JoystickSettings.cs" />
@@ -130,27 +130,27 @@
     <Compile Include="Source\Communication\CommHandler.cs" />
     <Compile Include="Source\Videostream\StreamHandler.cs" />
     <Compile Include="Source\Videostream\MPlayer.cs" />
-    <Compile Include="WindowCamera.cs">
+    <Compile Include="Forms\WindowCamera.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WindowCamera.Designer.cs">
+    <Compile Include="Forms\WindowCamera.Designer.cs">
       <DependentUpon>WindowCamera.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WindowStatus.cs">
+    <Compile Include="Forms\WindowStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WindowStatus.Designer.cs">
+    <Compile Include="Forms\WindowStatus.Designer.cs">
       <DependentUpon>WindowStatus.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AvionicsInstrumentsControls\AvionicsInstrumentsControlsRessources.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\IndexDialogForm.resx">
+    <EmbeddedResource Include="Forms\IndexDialogForm.resx">
       <DependentUpon>IndexDialogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\ToolboxControlSettings.resx">
+    <EmbeddedResource Include="Forms\ToolboxControlSettings.resx">
       <DependentUpon>ToolboxControlSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -163,10 +163,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="WindowCamera.resx">
+    <EmbeddedResource Include="Forms\WindowCamera.resx">
       <DependentUpon>WindowCamera.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WindowStatus.resx">
+    <EmbeddedResource Include="Forms\WindowStatus.resx">
       <DependentUpon>WindowStatus.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
@@ -276,21 +276,14 @@
     <Content Include="Graphics\Danger.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Graphics\Graphics.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Graphics\TempImage.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Graphics\Warning.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Aegir.png" />
-    <Content Include="Images\joystickrescale dark.jpg" />
-    <Content Include="Misc\Settings.xml">
+    <Content Include="Resources\Aegir.png" />
+    <Content Include="Resources\Settings.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Misc\Terje%27s To Do.txt" />
+    <Content Include="Resources\Terje%27s To Do.txt" />
     <Content Include="MPlayer\License.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
