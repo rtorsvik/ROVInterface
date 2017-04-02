@@ -26,7 +26,6 @@
     /// </summary>
     private void InitializeComponent()
     {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowCamera));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btn_debug_1 = new System.Windows.Forms.Button();
 			this.txt_debug_3 = new System.Windows.Forms.Label();
@@ -35,16 +34,29 @@
 			this.webBrowser1 = new System.Windows.Forms.WebBrowser();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
-			this.vlcPlayer = new AxAXVLC.AxVLCPlugin2();
-			this.btn_cam1 = new System.Windows.Forms.Button();
-			this.btnStart = new System.Windows.Forms.Button();
-			this.btnStop = new System.Windows.Forms.Button();
+			this.pnl_video1 = new System.Windows.Forms.Panel();
+			this.pnl_video2 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
+			this.pnl_video3 = new System.Windows.Forms.Panel();
+			this.label3 = new System.Windows.Forms.Label();
+			this.pnl_video4 = new System.Windows.Forms.Panel();
+			this.label4 = new System.Windows.Forms.Label();
+			this.bgw_video1 = new System.ComponentModel.BackgroundWorker();
+			this.bgw_video2 = new System.ComponentModel.BackgroundWorker();
+			this.bgw_video3 = new System.ComponentModel.BackgroundWorker();
+			this.bgw_video4 = new System.ComponentModel.BackgroundWorker();
+			this.btn_startCam2 = new System.Windows.Forms.Button();
+			this.btn_startCam1 = new System.Windows.Forms.Button();
+			this.btn_startCam3 = new System.Windows.Forms.Button();
+			this.btn_startCam4 = new System.Windows.Forms.Button();
+			this.label2 = new System.Windows.Forms.Label();
 			this.headingIndicatorInstrumentControl1 = new Avionics.HeadingIndicatorInstrumentControl();
 			this.turnCoordinatorInstrumentControl1 = new Avionics.TurnCoordinatorInstrumentControl();
 			this.attitudeIndicatorInstrumentControl1 = new Avionics.AttitudeIndicatorInstrumentControl();
-			this.aGauge2 = new AGaugeApp.AGauge();
 			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.vlcPlayer)).BeginInit();
+			this.pnl_video2.SuspendLayout();
+			this.pnl_video3.SuspendLayout();
+			this.pnl_video4.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -56,18 +68,21 @@
 			this.groupBox1.Controls.Add(this.txt_debug_2);
 			this.groupBox1.Controls.Add(this.txt_debug_1);
 			this.groupBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox1.Location = new System.Drawing.Point(14, 1375);
+			this.groupBox1.Location = new System.Drawing.Point(9, 1172);
+			this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(2112, 132);
+			this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+			this.groupBox1.Size = new System.Drawing.Size(1408, 86);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Debug";
 			// 
 			// btn_debug_1
 			// 
-			this.btn_debug_1.Location = new System.Drawing.Point(208, 32);
+			this.btn_debug_1.Location = new System.Drawing.Point(139, 21);
+			this.btn_debug_1.Margin = new System.Windows.Forms.Padding(2);
 			this.btn_debug_1.Name = "btn_debug_1";
-			this.btn_debug_1.Size = new System.Drawing.Size(117, 78);
+			this.btn_debug_1.Size = new System.Drawing.Size(78, 51);
 			this.btn_debug_1.TabIndex = 3;
 			this.btn_debug_1.Text = "Reconnect joystick";
 			this.btn_debug_1.UseVisualStyleBackColor = true;
@@ -76,254 +91,251 @@
 			// txt_debug_3
 			// 
 			this.txt_debug_3.AutoSize = true;
-			this.txt_debug_3.Location = new System.Drawing.Point(12, 89);
-			this.txt_debug_3.Margin = new System.Windows.Forms.Padding(9, 3, 9, 9);
+			this.txt_debug_3.Location = new System.Drawing.Point(8, 58);
+			this.txt_debug_3.Margin = new System.Windows.Forms.Padding(6, 2, 6, 6);
 			this.txt_debug_3.Name = "txt_debug_3";
-			this.txt_debug_3.Size = new System.Drawing.Size(98, 20);
+			this.txt_debug_3.Size = new System.Drawing.Size(66, 13);
 			this.txt_debug_3.TabIndex = 2;
 			this.txt_debug_3.Text = "txt_debug_3";
 			// 
 			// txt_debug_2
 			// 
 			this.txt_debug_2.AutoSize = true;
-			this.txt_debug_2.Location = new System.Drawing.Point(12, 62);
-			this.txt_debug_2.Margin = new System.Windows.Forms.Padding(9, 3, 9, 9);
+			this.txt_debug_2.Location = new System.Drawing.Point(8, 40);
+			this.txt_debug_2.Margin = new System.Windows.Forms.Padding(6, 2, 6, 6);
 			this.txt_debug_2.Name = "txt_debug_2";
-			this.txt_debug_2.Size = new System.Drawing.Size(98, 20);
+			this.txt_debug_2.Size = new System.Drawing.Size(66, 13);
 			this.txt_debug_2.TabIndex = 1;
 			this.txt_debug_2.Text = "txt_debug_2";
 			// 
 			// txt_debug_1
 			// 
 			this.txt_debug_1.AutoSize = true;
-			this.txt_debug_1.Location = new System.Drawing.Point(12, 32);
-			this.txt_debug_1.Margin = new System.Windows.Forms.Padding(9, 9, 3, 3);
+			this.txt_debug_1.Location = new System.Drawing.Point(8, 21);
+			this.txt_debug_1.Margin = new System.Windows.Forms.Padding(6, 6, 2, 2);
 			this.txt_debug_1.Name = "txt_debug_1";
-			this.txt_debug_1.Size = new System.Drawing.Size(98, 20);
+			this.txt_debug_1.Size = new System.Drawing.Size(66, 13);
 			this.txt_debug_1.TabIndex = 0;
 			this.txt_debug_1.Text = "txt_debug_1";
 			// 
 			// webBrowser1
 			// 
-			this.webBrowser1.Location = new System.Drawing.Point(1718, 15);
-			this.webBrowser1.MinimumSize = new System.Drawing.Size(22, 25);
+			this.webBrowser1.Location = new System.Drawing.Point(12, 12);
+			this.webBrowser1.Margin = new System.Windows.Forms.Padding(2);
+			this.webBrowser1.MinimumSize = new System.Drawing.Size(15, 16);
 			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(405, 426);
+			this.webBrowser1.Size = new System.Drawing.Size(1400, 690);
 			this.webBrowser1.TabIndex = 3;
 			this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
+			this.webBrowser1.Visible = false;
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(14, 1089);
+			this.button1.Location = new System.Drawing.Point(1171, 710);
+			this.button1.Margin = new System.Windows.Forms.Padding(2);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(188, 183);
+			this.button1.Size = new System.Drawing.Size(120, 119);
 			this.button1.TabIndex = 4;
-			this.button1.Text = "Cam 1";
+			this.button1.Text = "Demo 1";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(207, 1089);
+			this.button2.Location = new System.Drawing.Point(1295, 710);
+			this.button2.Margin = new System.Windows.Forms.Padding(2);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(180, 183);
+			this.button2.Size = new System.Drawing.Size(120, 119);
 			this.button2.TabIndex = 5;
-			this.button2.Text = "Cam 2";
+			this.button2.Text = "Demo 2";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
-			// vlcPlayer
+			// pnl_video1
 			// 
-			this.vlcPlayer.Enabled = true;
-			this.vlcPlayer.Location = new System.Drawing.Point(383, 287);
-			this.vlcPlayer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.vlcPlayer.Name = "vlcPlayer";
-			this.vlcPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("vlcPlayer.OcxState")));
-			this.vlcPlayer.Size = new System.Drawing.Size(339, 239);
-			this.vlcPlayer.TabIndex = 24;
+			this.pnl_video1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pnl_video1.Location = new System.Drawing.Point(12, 12);
+			this.pnl_video1.Name = "pnl_video1";
+			this.pnl_video1.Size = new System.Drawing.Size(1402, 692);
+			this.pnl_video1.TabIndex = 30;
+			this.pnl_video1.Click += new System.EventHandler(this.pnl_video1_Click);
 			// 
-			// btn_cam1
+			// pnl_video2
 			// 
-			this.btn_cam1.Location = new System.Drawing.Point(1935, 1092);
-			this.btn_cam1.Name = "btn_cam1";
-			this.btn_cam1.Size = new System.Drawing.Size(188, 183);
-			this.btn_cam1.TabIndex = 25;
-			this.btn_cam1.Text = "Cam 1";
-			this.btn_cam1.UseVisualStyleBackColor = true;
-			this.btn_cam1.Click += new System.EventHandler(this.btn_cam1_Click);
+			this.pnl_video2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pnl_video2.Controls.Add(this.label1);
+			this.pnl_video2.Location = new System.Drawing.Point(143, 710);
+			this.pnl_video2.Name = "pnl_video2";
+			this.pnl_video2.Size = new System.Drawing.Size(125, 90);
+			this.pnl_video2.TabIndex = 31;
+			this.pnl_video2.Click += new System.EventHandler(this.pnl_video2_Click);
 			// 
-			// btnStart
+			// label1
 			// 
-			this.btnStart.Location = new System.Drawing.Point(729, 287);
-			this.btnStart.Name = "btnStart";
-			this.btnStart.Size = new System.Drawing.Size(96, 41);
-			this.btnStart.TabIndex = 27;
-			this.btnStart.Text = "Start";
-			this.btnStart.UseVisualStyleBackColor = true;
-			this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.ForeColor = System.Drawing.Color.White;
+			this.label1.Location = new System.Drawing.Point(3, 3);
+			this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(28, 19);
+			this.label1.TabIndex = 37;
+			this.label1.Text = "F2";
 			// 
-			// btnStop
+			// pnl_video3
 			// 
-			this.btnStop.Location = new System.Drawing.Point(729, 334);
-			this.btnStop.Name = "btnStop";
-			this.btnStop.Size = new System.Drawing.Size(96, 41);
-			this.btnStop.TabIndex = 28;
-			this.btnStop.Text = "Stop";
-			this.btnStop.UseVisualStyleBackColor = true;
-			this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+			this.pnl_video3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pnl_video3.Controls.Add(this.label3);
+			this.pnl_video3.Location = new System.Drawing.Point(274, 710);
+			this.pnl_video3.Name = "pnl_video3";
+			this.pnl_video3.Size = new System.Drawing.Size(125, 90);
+			this.pnl_video3.TabIndex = 31;
+			this.pnl_video3.Click += new System.EventHandler(this.pnl_video3_Click);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label3.ForeColor = System.Drawing.Color.White;
+			this.label3.Location = new System.Drawing.Point(3, 3);
+			this.label3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(28, 19);
+			this.label3.TabIndex = 39;
+			this.label3.Text = "F3";
+			// 
+			// pnl_video4
+			// 
+			this.pnl_video4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pnl_video4.Controls.Add(this.label4);
+			this.pnl_video4.Location = new System.Drawing.Point(405, 710);
+			this.pnl_video4.Name = "pnl_video4";
+			this.pnl_video4.Size = new System.Drawing.Size(125, 90);
+			this.pnl_video4.TabIndex = 31;
+			this.pnl_video4.Click += new System.EventHandler(this.pnl_video4_Click);
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label4.ForeColor = System.Drawing.Color.White;
+			this.label4.Location = new System.Drawing.Point(3, 3);
+			this.label4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(28, 19);
+			this.label4.TabIndex = 40;
+			this.label4.Text = "F4";
+			// 
+			// bgw_video1
+			// 
+			this.bgw_video1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_video1_DoWork);
+			// 
+			// bgw_video2
+			// 
+			this.bgw_video2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_video2_DoWork);
+			// 
+			// bgw_video3
+			// 
+			this.bgw_video3.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_video3_DoWork);
+			// 
+			// btn_startCam2
+			// 
+			this.btn_startCam2.Location = new System.Drawing.Point(143, 806);
+			this.btn_startCam2.Name = "btn_startCam2";
+			this.btn_startCam2.Size = new System.Drawing.Size(125, 23);
+			this.btn_startCam2.TabIndex = 33;
+			this.btn_startCam2.Text = "Start Cam 2";
+			this.btn_startCam2.UseVisualStyleBackColor = true;
+			this.btn_startCam2.Click += new System.EventHandler(this.btn_startCam2_Click);
+			// 
+			// btn_startCam1
+			// 
+			this.btn_startCam1.Location = new System.Drawing.Point(12, 806);
+			this.btn_startCam1.Name = "btn_startCam1";
+			this.btn_startCam1.Size = new System.Drawing.Size(125, 23);
+			this.btn_startCam1.TabIndex = 34;
+			this.btn_startCam1.Text = "Start Cam 1";
+			this.btn_startCam1.UseVisualStyleBackColor = true;
+			this.btn_startCam1.Click += new System.EventHandler(this.btn_startCam1_Click);
+			// 
+			// btn_startCam3
+			// 
+			this.btn_startCam3.Location = new System.Drawing.Point(274, 806);
+			this.btn_startCam3.Name = "btn_startCam3";
+			this.btn_startCam3.Size = new System.Drawing.Size(125, 23);
+			this.btn_startCam3.TabIndex = 35;
+			this.btn_startCam3.Text = "Start Cam 3";
+			this.btn_startCam3.UseVisualStyleBackColor = true;
+			this.btn_startCam3.Click += new System.EventHandler(this.btn_startCam3_Click);
+			// 
+			// btn_startCam4
+			// 
+			this.btn_startCam4.Location = new System.Drawing.Point(405, 806);
+			this.btn_startCam4.Name = "btn_startCam4";
+			this.btn_startCam4.Size = new System.Drawing.Size(125, 23);
+			this.btn_startCam4.TabIndex = 36;
+			this.btn_startCam4.Text = "Start Cam 4";
+			this.btn_startCam4.UseVisualStyleBackColor = true;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.ForeColor = System.Drawing.Color.White;
+			this.label2.Location = new System.Drawing.Point(16, 714);
+			this.label2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(28, 19);
+			this.label2.TabIndex = 38;
+			this.label2.Text = "F1";
 			// 
 			// headingIndicatorInstrumentControl1
 			// 
-			this.headingIndicatorInstrumentControl1.Location = new System.Drawing.Point(1204, 1091);
-			this.headingIndicatorInstrumentControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.headingIndicatorInstrumentControl1.Location = new System.Drawing.Point(803, 709);
 			this.headingIndicatorInstrumentControl1.Name = "headingIndicatorInstrumentControl1";
-			this.headingIndicatorInstrumentControl1.Size = new System.Drawing.Size(180, 185);
+			this.headingIndicatorInstrumentControl1.Size = new System.Drawing.Size(120, 120);
 			this.headingIndicatorInstrumentControl1.TabIndex = 23;
 			this.headingIndicatorInstrumentControl1.Text = "headingIndicatorInstrumentControl1";
 			// 
 			// turnCoordinatorInstrumentControl1
 			// 
-			this.turnCoordinatorInstrumentControl1.Location = new System.Drawing.Point(826, 1091);
-			this.turnCoordinatorInstrumentControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.turnCoordinatorInstrumentControl1.Location = new System.Drawing.Point(551, 709);
 			this.turnCoordinatorInstrumentControl1.Name = "turnCoordinatorInstrumentControl1";
-			this.turnCoordinatorInstrumentControl1.Size = new System.Drawing.Size(180, 185);
+			this.turnCoordinatorInstrumentControl1.Size = new System.Drawing.Size(120, 120);
 			this.turnCoordinatorInstrumentControl1.TabIndex = 22;
 			this.turnCoordinatorInstrumentControl1.Text = "turnCoordinatorInstrumentControl1";
 			// 
 			// attitudeIndicatorInstrumentControl1
 			// 
-			this.attitudeIndicatorInstrumentControl1.Location = new System.Drawing.Point(1016, 1091);
-			this.attitudeIndicatorInstrumentControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.attitudeIndicatorInstrumentControl1.Location = new System.Drawing.Point(677, 709);
 			this.attitudeIndicatorInstrumentControl1.Name = "attitudeIndicatorInstrumentControl1";
-			this.attitudeIndicatorInstrumentControl1.Size = new System.Drawing.Size(180, 185);
+			this.attitudeIndicatorInstrumentControl1.Size = new System.Drawing.Size(120, 120);
 			this.attitudeIndicatorInstrumentControl1.TabIndex = 21;
 			this.attitudeIndicatorInstrumentControl1.Text = "attitudeIndicatorInstrumentControl1";
 			// 
-			// aGauge2
-			// 
-			this.aGauge2.BaseArcColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge2.BaseArcRadius = 80;
-			this.aGauge2.BaseArcStart = 180;
-			this.aGauge2.BaseArcSweep = 180;
-			this.aGauge2.BaseArcWidth = 5;
-			this.aGauge2.Cap_Idx = ((byte)(1));
-			this.aGauge2.CapColors = new System.Drawing.Color[] {
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black};
-			this.aGauge2.CapPosition = new System.Drawing.Point(10, 10);
-			this.aGauge2.CapsPosition = new System.Drawing.Point[] {
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10)};
-			this.aGauge2.CapsText = new string[] {
-        "",
-        "",
-        "",
-        "",
-        ""};
-			this.aGauge2.CapText = "";
-			this.aGauge2.Center = new System.Drawing.Point(100, 100);
-			this.aGauge2.Location = new System.Drawing.Point(394, 1089);
-			this.aGauge2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.aGauge2.MaxValue = 100F;
-			this.aGauge2.MinValue = 0F;
-			this.aGauge2.Name = "aGauge2";
-			this.aGauge2.NeedleColor1 = AGaugeApp.AGauge.NeedleColorEnum.Gray;
-			this.aGauge2.NeedleColor2 = System.Drawing.Color.DimGray;
-			this.aGauge2.NeedleRadius = 80;
-			this.aGauge2.NeedleType = 0;
-			this.aGauge2.NeedleWidth = 2;
-			this.aGauge2.Range_Idx = ((byte)(0));
-			this.aGauge2.RangeColor = System.Drawing.Color.Red;
-			this.aGauge2.RangeEnabled = true;
-			this.aGauge2.RangeEndValue = 20F;
-			this.aGauge2.RangeInnerRadius = 60;
-			this.aGauge2.RangeOuterRadius = 80;
-			this.aGauge2.RangesColor = new System.Drawing.Color[] {
-        System.Drawing.Color.Red,
-        System.Drawing.Color.LightGreen,
-        System.Drawing.SystemColors.Control,
-        System.Drawing.SystemColors.Control,
-        System.Drawing.SystemColors.Control};
-			this.aGauge2.RangesEnabled = new bool[] {
-        true,
-        true,
-        false,
-        false,
-        false};
-			this.aGauge2.RangesEndValue = new float[] {
-        20F,
-        100F,
-        0F,
-        0F,
-        0F};
-			this.aGauge2.RangesInnerRadius = new int[] {
-        60,
-        60,
-        60,
-        70,
-        70};
-			this.aGauge2.RangesOuterRadius = new int[] {
-        80,
-        80,
-        80,
-        80,
-        80};
-			this.aGauge2.RangesStartValue = new float[] {
-        0F,
-        20F,
-        0F,
-        0F,
-        0F};
-			this.aGauge2.RangeStartValue = 0F;
-			this.aGauge2.ScaleLinesInterColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge2.ScaleLinesInterInnerRadius = 70;
-			this.aGauge2.ScaleLinesInterOuterRadius = 80;
-			this.aGauge2.ScaleLinesInterWidth = 1;
-			this.aGauge2.ScaleLinesMajorColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge2.ScaleLinesMajorInnerRadius = 70;
-			this.aGauge2.ScaleLinesMajorOuterRadius = 80;
-			this.aGauge2.ScaleLinesMajorStepValue = 20F;
-			this.aGauge2.ScaleLinesMajorWidth = 4;
-			this.aGauge2.ScaleLinesMinorColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge2.ScaleLinesMinorInnerRadius = 75;
-			this.aGauge2.ScaleLinesMinorNumOf = 9;
-			this.aGauge2.ScaleLinesMinorOuterRadius = 80;
-			this.aGauge2.ScaleLinesMinorWidth = 1;
-			this.aGauge2.ScaleNumbersColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge2.ScaleNumbersFormat = null;
-			this.aGauge2.ScaleNumbersRadius = 95;
-			this.aGauge2.ScaleNumbersRotation = 0;
-			this.aGauge2.ScaleNumbersStartScaleLine = 0;
-			this.aGauge2.ScaleNumbersStepScaleLines = 1;
-			this.aGauge2.Size = new System.Drawing.Size(310, 183);
-			this.aGauge2.TabIndex = 19;
-			this.aGauge2.Text = "aGauge2";
-			this.aGauge2.Value = 20F;
-			// 
 			// WindowCamera
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-			this.ClientSize = new System.Drawing.Size(2139, 865);
-			this.Controls.Add(this.btnStop);
-			this.Controls.Add(this.btnStart);
-			this.Controls.Add(this.btn_cam1);
-			this.Controls.Add(this.vlcPlayer);
+			this.ClientSize = new System.Drawing.Size(1426, 840);
+			this.Controls.Add(this.webBrowser1);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.btn_startCam4);
+			this.Controls.Add(this.btn_startCam3);
+			this.Controls.Add(this.btn_startCam1);
+			this.Controls.Add(this.btn_startCam2);
+			this.Controls.Add(this.pnl_video4);
+			this.Controls.Add(this.pnl_video3);
+			this.Controls.Add(this.pnl_video2);
+			this.Controls.Add(this.pnl_video1);
 			this.Controls.Add(this.headingIndicatorInstrumentControl1);
 			this.Controls.Add(this.turnCoordinatorInstrumentControl1);
 			this.Controls.Add(this.attitudeIndicatorInstrumentControl1);
-			this.Controls.Add(this.aGauge2);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.webBrowser1);
 			this.Controls.Add(this.groupBox1);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "WindowCamera";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Camera";
@@ -331,8 +343,14 @@
 			this.Load += new System.EventHandler(this.WindowCamera_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.vlcPlayer)).EndInit();
+			this.pnl_video2.ResumeLayout(false);
+			this.pnl_video2.PerformLayout();
+			this.pnl_video3.ResumeLayout(false);
+			this.pnl_video3.PerformLayout();
+			this.pnl_video4.ResumeLayout(false);
+			this.pnl_video4.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
     }
 
@@ -345,14 +363,25 @@
 	private System.Windows.Forms.Button btn_debug_1;
 	private System.Windows.Forms.Button button1;
 	private System.Windows.Forms.Button button2;
-	private AGaugeApp.AGauge aGauge2;
 	private Avionics.AttitudeIndicatorInstrumentControl attitudeIndicatorInstrumentControl1;
 	private Avionics.TurnCoordinatorInstrumentControl turnCoordinatorInstrumentControl1;
 	private Avionics.HeadingIndicatorInstrumentControl headingIndicatorInstrumentControl1;
-	private AxAXVLC.AxVLCPlugin2 vlcPlayer;
-	private System.Windows.Forms.Button btn_cam1;
-	private System.Windows.Forms.Button btnStart;
-	private System.Windows.Forms.Button btnStop;
+	private System.Windows.Forms.Panel pnl_video1;
+	private System.Windows.Forms.Panel pnl_video2;
+	private System.Windows.Forms.Panel pnl_video3;
+	private System.Windows.Forms.Panel pnl_video4;
+	private System.ComponentModel.BackgroundWorker bgw_video1;
+	private System.ComponentModel.BackgroundWorker bgw_video2;
+	private System.ComponentModel.BackgroundWorker bgw_video3;
+	private System.ComponentModel.BackgroundWorker bgw_video4;
+	private System.Windows.Forms.Button btn_startCam2;
+	private System.Windows.Forms.Button btn_startCam1;
+	private System.Windows.Forms.Button btn_startCam3;
+	private System.Windows.Forms.Button btn_startCam4;
+	private System.Windows.Forms.Label label1;
+	private System.Windows.Forms.Label label3;
+	private System.Windows.Forms.Label label4;
+	private System.Windows.Forms.Label label2;
 }
 
 
