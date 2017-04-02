@@ -23,7 +23,7 @@ static class Program
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
 
-
+        Console.WriteLine(Application.StartupPath);
 
 		//Program handlers and classes
 		errors = new ErrorManager();

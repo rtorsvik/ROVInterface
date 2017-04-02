@@ -30,8 +30,6 @@ C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterf
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Graphics\Warning.png
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Graphics\Aegir.png
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Graphics\Aegir.png
-C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\SlimDX.pdb
-C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\SlimDX.xml
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Translator.dll
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Translator.pdb
 C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ToolboxControlSettings.resources
@@ -48,3 +46,12 @@ C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterf
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Renci.SshNet.dll
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Renci.SshNet.xml
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.csprojResolveAssemblyReference.cache
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\Interop.AXVLC.dll
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\AxInterop.AXVLC.dll
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.csproj.ResolveComReference.cache
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Renci.SshNet.dll
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Renci.SshNet.xml
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Interop.AXVLC.dll
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\bin\Debug\AxInterop.AXVLC.dll
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.AvionicsInstrumentsControls.AvionicsInstrumentsControlsRessources.resources
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\IndexDialogForm.resources

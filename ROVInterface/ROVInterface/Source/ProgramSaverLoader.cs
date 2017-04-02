@@ -7,7 +7,8 @@ public static class ProgramSaverLoader {
 
 	private static Reader reader;
 	private static DataHolder dataHolder;
-	private const string path = ".\\Settings.xml";
+	private const string path =       ".\\Settings.xml";
+    public  const string pathexport = ".\\Settings.export.xml";
 	private const string EOF = "\0";
 
 	public static void Init() {
@@ -20,8 +21,10 @@ public static class ProgramSaverLoader {
 		// Set up failproof values if the load fails
 		Program.windowStatus.graphicsCreator.SetPrototype(new GraphicsCreator.graphicPrototype("", new GraphicsCreator.graphicPrototype.prototypeIndex[0]));
 
-		try { _Load(); }
-		catch (Exception e) {
+		try {
+            _Load();
+            _InsertDataToProgram();
+        } catch (Exception e) {
 			Console.WriteLine(e);
 			Program.errors.Add("Failed to load settings.");
 		}
@@ -29,6 +32,40 @@ public static class ProgramSaverLoader {
 		dataHolder.Clear();
 		dataHolder = null;
 	}
+
+    public static bool Reload() {
+
+        bool succ = true;
+
+        try {
+            _Load();
+            
+            // Reset all the items to be reloaded, (not failed to load)
+            if (dataHolder.joystickSettings != null) {
+                // DUNNO, if needed to reset anything, need to ask Rein
+            }
+
+			if (dataHolder.cur_graphicSetting != null) {
+				Program.windowStatus.graphicsCreator.Prototype.Dispose();
+
+				if (dataHolder.indexSettings != null)
+					Program.windowStatus.indexSettings.Dispose();
+			}
+
+			if (dataHolder.indexStats != null) {
+				Program.windowStatus.indexStats.Dispose();
+			}
+
+            _InsertDataToProgram();
+
+			// Fix up some stuff, loose ends
+
+        } catch {
+            succ = false;
+        }
+
+        return succ;
+    }
 
 	private static void _Load() {
 		if (!reader.FindFileFromPath()) {
@@ -249,67 +286,70 @@ public static class ProgramSaverLoader {
 					break;
 			}
 		}
-
-		// If succesfully loaded joystickSettings
-		if (dataHolder.joystickSettings != null) {
-			JoystickSettings js = Program.windowStatus.joystickSettings;
-			JoystickSettings.AxisSetting[] axiss = js.axisSetting;
-			for (int i = 0, j = dataHolder.joystickSettings.Count; i < j; i++) {
-				DataHolder.joystickSettings_Setting d = dataHolder.joystickSettings[i];
-				axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, (decimal)d.expo, d.deadband, d.offset, d.max);
-			}
-		} else
-			Program.errors.Add("Failed to load <JoystickSettings>");
-
-		// If succesfully loaded graphicSettings
-		if (dataHolder.cur_graphicSetting != null) {
-			List<DataHolder.graphics_Object.graphics_ObjectIndex> d = dataHolder.cur_graphicSetting.indexes;
-			GraphicsCreator.graphicPrototype.prototypeIndex[] li = new GraphicsCreator.graphicPrototype.prototypeIndex[d.Count];
-			for (int i = 0, j = dataHolder.cur_graphicSetting.indexes.Count; i < j; i++)
-				li[i] = new GraphicsCreator.graphicPrototype.prototypeIndex(d[i].hidden, d[i].x, d[i].y, d[i].ll, d[i].l, d[i].h, d[i].hh, d[i].index);
-			Program.windowStatus.graphicsCreator.SetPrototype(new GraphicsCreator.graphicPrototype(dataHolder.cur_graphicSetting.image, li));
-			Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
-
-			// If succesfully loaded indexSettings
-			if (dataHolder.indexSettings != null) {
-				for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
-					DataHolder.indexSettings_Setting dd = dataHolder.indexSettings[i];
-					Program.windowStatus.indexSettings.CreateElement(dd.index, dd.name, dd.digit, dd.size, dd.color, dd.v1raw, dd.v1scaled, dd.v2raw, dd.v2scaled, dd.suffix);
-				}
-			} else
-				Program.errors.Add("Failed to load <IndexSettings>");
-		} else
-			Program.errors.Add("Failed to load <GraphicSettings>");
-
-		// If succesfully loaded indexStats
-		if (dataHolder.indexStats != null) {
-			for (int i = 0, j = dataHolder.indexStats.Count; i < j; i++) {
-				int e = dataHolder.indexStats[i];
-				Program.windowStatus.indexStats.CreateElement(e);
-			}
-		} else
-			Program.errors.Add("Failed to load <IndexStats>");
-
-		// If succesfully loaded toolboxSettings
-		if (dataHolder.toolboxSettings != null) {
-			for (int i = 0; i < dataHolder.toolboxSettings.Count; i++) {
-				DataHolder.toolboxSettings_Control d = dataHolder.toolboxSettings[i];
-				switch (d.type) {
-					case DataHolder.toolboxSettings_Control.controltype.SimpleButton:
-						Program.windowStatus.graphicToolbox.Create_SimpleButton(new GraphicToolbox.ToolboxSimpleButton(d.x, d.y, d.name, d.msg1_index, d.msg1_value));
-						break;
-					case DataHolder.toolboxSettings_Control.controltype.OnOffButton:
-						Program.windowStatus.graphicToolbox.Create_OnOffButton(new GraphicToolbox.ToolboxOnOffButton(d.x, d.y, d.name, d.msg1_index, d.msg1_value, d.pam, d.delayms, d.msg2_index, d.msg2_value));
-						break;
-					case DataHolder.toolboxSettings_Control.controltype.Slider:
-						Program.windowStatus.graphicToolbox.Create_Slider(d.delayms, new GraphicToolbox.ToolboxSlider(d.x, d.y, d.name, d.msg1_index, d.msg1_value, d.msg2_index, d.msg2_value, d.pam));
-						break;
-				}
-
-			}
-		} else
-			Program.errors.Add("Failed to load <ToolboxSettings>");
 	}
+
+    private static void _InsertDataToProgram() {
+
+        // If succesfully loaded joystickSettings
+        if (dataHolder.joystickSettings != null) {
+            JoystickSettings js = Program.windowStatus.joystickSettings;
+            JoystickSettings.AxisSetting[] axiss = js.axisSetting;
+            for (int i = 0, j = dataHolder.joystickSettings.Count; i < j; i++) {
+                DataHolder.joystickSettings_Setting d = dataHolder.joystickSettings[i];
+                axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, (decimal)d.expo, d.deadband, d.offset, d.max);
+            }
+        } else
+            Program.errors.Add("Failed to load <JoystickSettings>");
+
+        // If succesfully loaded graphicSettings
+        if (dataHolder.cur_graphicSetting != null) {
+            List<DataHolder.graphics_Object.graphics_ObjectIndex> d = dataHolder.cur_graphicSetting.indexes;
+            GraphicsCreator.graphicPrototype.prototypeIndex[] li = new GraphicsCreator.graphicPrototype.prototypeIndex[d.Count];
+            for (int i = 0, j = dataHolder.cur_graphicSetting.indexes.Count; i < j; i++)
+                li[i] = new GraphicsCreator.graphicPrototype.prototypeIndex(d[i].hidden, d[i].x, d[i].y, d[i].ll, d[i].l, d[i].h, d[i].hh, d[i].index);
+            Program.windowStatus.graphicsCreator.SetPrototype(new GraphicsCreator.graphicPrototype(dataHolder.cur_graphicSetting.image, li));
+            Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
+
+            // If succesfully loaded indexSettings
+            if (dataHolder.indexSettings != null) {
+                for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
+                    DataHolder.indexSettings_Setting dd = dataHolder.indexSettings[i];
+                    Program.windowStatus.indexSettings.CreateElement(dd.index, dd.name, dd.digit, dd.size, dd.color, dd.v1raw, dd.v1scaled, dd.v2raw, dd.v2scaled, dd.suffix);
+                }
+            } else
+                Program.errors.Add("Failed to load <IndexSettings>");
+        } else
+            Program.errors.Add("Failed to load <GraphicSettings>, thus can't load <IndexSettings>");
+
+        // If succesfully loaded indexStats
+        if (dataHolder.indexStats != null) {
+            for (int i = 0, j = dataHolder.indexStats.Count; i < j; i++) {
+                int e = dataHolder.indexStats[i];
+                Program.windowStatus.indexStats.CreateElement(e);
+            }
+        } else
+            Program.errors.Add("Failed to load <IndexStats>");
+
+        // If succesfully loaded toolboxSettings
+        if (dataHolder.toolboxSettings != null) {
+            for (int i = 0; i < dataHolder.toolboxSettings.Count; i++) {
+                DataHolder.toolboxSettings_Control d = dataHolder.toolboxSettings[i];
+                switch (d.type) {
+                    case DataHolder.toolboxSettings_Control.controltype.SimpleButton:
+                        Program.windowStatus.graphicToolbox.Create_SimpleButton(new GraphicToolbox.ToolboxSimpleButton(d.x, d.y, d.name, d.msg1_index, d.msg1_value));
+                        break;
+                    case DataHolder.toolboxSettings_Control.controltype.OnOffButton:
+                        Program.windowStatus.graphicToolbox.Create_OnOffButton(new GraphicToolbox.ToolboxOnOffButton(d.x, d.y, d.name, d.msg1_index, d.msg1_value, d.pam, d.delayms, d.msg2_index, d.msg2_value));
+                        break;
+                    case DataHolder.toolboxSettings_Control.controltype.Slider:
+                        Program.windowStatus.graphicToolbox.Create_Slider(d.delayms, new GraphicToolbox.ToolboxSlider(d.x, d.y, d.name, d.msg1_index, d.msg1_value, d.msg2_index, d.msg2_value, d.pam));
+                        break;
+                }
+
+            }
+        } else
+            Program.errors.Add("Failed to load <ToolboxSettings>");
+    }
 
 	private static LoadPosition FindNextAfterError(string next, out bool fin) {
 
@@ -349,93 +389,101 @@ public static class ProgramSaverLoader {
 	}
 
 	public static void Save(object sender, EventArgs e) {
-		string src = "";
-		src += "<Settings>\n";
-
-		// Loop through and add JoystickSettings
-		src += "\t<JoystickSettings>\n";
-		JoystickSettings js = Program.windowStatus.joystickSettings;
-		JoystickSettings.AxisSetting[] axiss = js.axisSetting;
-		for (int i = 0, j = 6; i < j; i++) {
-			src += "\t\t<Setting>\n";
-			src += "\t\t\t<jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><reverse>" + axiss[i].reverse.ToString() + "</reverse><expo>" + axiss[i].expo + 
-				"</expo><deadband>" + axiss[i].deadband + "</deadband><offset>" + axiss[i].offset + "</offset><max>" + axiss[i].max + "</max>\n";
-			src += "\t\t</Setting>\n";
-		}
-		src += "\t</JoystickSettings>\n";
-
-		// Loop through and add IndexSettings
-		src += "\t<IndexSettings>\n";
-		List<IndexSettings.Setting> li = Program.windowStatus.indexSettings.allSettings;
-		for (int i = 0, j = li.Count; i < j; i++) {
-			src += "\t\t<Setting>\n\t\t\t<index>" +
-				li[i].index.Value + "</index><name>" + li[i].name.Text + "</name><digit>" + li[i].digit.Value +
-				"</digit><size>" + li[i].size.Value + "</size><color>" + li[i].color.BackColor.ToArgb() + "</color><raw>" + li[i].val1raw.Value +
-				"</raw><scaled>" + li[i].val1scaled.Value + "</scaled><raw>" + li[i].val2raw.Value + "</raw><scaled>" + li[i].val2scaled.Value +
-				"</scaled><suffix>" + li[i].suffix.Text + "</suffix>\n\t\t</Setting>\n";
-		}
-		src += "\t</IndexSettings>\n";
-
-		// Loop through and add IndexStats
-		src += "	<IndexStats>\n";
-		List<IndexStats.Stats> ls = Program.windowStatus.indexStats.allStats;
-		for (int i = 0, j = ls.Count; i < j; i++) {
-			src += "		<Stats>" + ((IndexSettings.Setting)ls[i].index.SelectedItem).index.Value + "</Stats>\n";
-		}
-		src += "\t</IndexStats>\n";
-
-		// Loop through and add GraphicSettings
-		src += "\t<GraphicSettings img=\"" + Program.windowStatus.graphicsCreator.Prototype.path + "\">\n";
-		GraphicsCreator.graphicPrototype.prototypeIndex[] pi = Program.windowStatus.graphicsCreator.Prototype.indexes;
-		for (int i = 0; i < pi.Length; i++) {
-			src += "\t\t<Index" + (pi[i].hidden ? " hidden" : "") + ">\n\t\t\t<x>" + pi[i].posx + "</x>\n\t\t\t<y>" + pi[i].posy + "</y>\n";
-			if (pi[i].ll != null)
-				src += "\t\t\t<ll>" + pi[i].ll.Value + "</ll>\n";
-			if (pi[i].l != null)
-				src += "\t\t\t<l>" + pi[i].l.Value + "</l>\n";
-			if (pi[i].h != null)
-				src += "\t\t\t<h>" + pi[i].h.Value + "</h>\n";
-			if (pi[i].hh != null)
-				src += "\t\t\t<hh>" + pi[i].hh.Value + "</hh>\n";
-			src += "\t\t\t<index>" + pi[i]._idx + "</index>\n\t\t</Index>\n";
-		}
-		src += "\t</GraphicSettings>\n";
-		
-		// Loop through and add ToolboxSettings
-		src += "\t<ToolboxSettings>\n";
-		List< KeyValuePair<Control, GraphicToolbox.ToolboxControl> > at = Program.windowStatus.graphicToolbox.allControls;
-		for (int i = 0, j = at.Count; i < j; i++) {
-			if (at[i].Value.GetType() == typeof(GraphicToolbox.ToolboxSimpleButton)) {
-				// Save <SimpleButton>
-				GraphicToolbox.ToolboxSimpleButton o = (GraphicToolbox.ToolboxSimpleButton)at[i].Value;
-				src += "\t\t<SimpleButton>\n";
-				src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<msg1_index>" +
-						o.msg_index + "</msg1_index>\n\t\t\t<msg1_value>" + o.msg_value + "</msg1_value>\n";
-				src += "\t\t</SimpleButton>\n";
-			} else if (at[i].Value.GetType() == typeof(GraphicToolbox.ToolboxOnOffButton)) {
-				// Save <OnOffButton Delay>
-				GraphicToolbox.ToolboxOnOffButton o = (GraphicToolbox.ToolboxOnOffButton)at[i].Value;
-				src += "\t\t<OnOffButton" + (o.ifdelay ? " Delay" : "") + ">\n";
-				src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<msg1_index>" +
-						o.msg1_index + "</msg1_index>\n\t\t\t<msg1_value>" + o.msg1_value + "</msg1_value>\n\t\t\t<msg2_index>" +
-						o.msg2_index + "</msg2_index>\n\t\t\t<msg2_value>" + o.msg2_value + "</msg2_value>\n\t\t\t<delay>" + o.delayms + "</delay>\n";
-				src += "\t\t</OnOffButton>\n";
-			} else if (at[i].Value.GetType() == typeof(GraphicToolbox.ToolboxSlider)) {
-				// Save <Slider Cont>
-				GraphicToolbox.ToolboxSlider o = (GraphicToolbox.ToolboxSlider)at[i].Value;
-				src += "\t\t<Slider" + (o.ifcont ? " Cont" : "") + ">\n";
-				src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<index>" + o.index + "</index>\n\t\t\t<interval>" +
-						o.interval + "</interval>\n\t\t\t<min>" + o.min + "</min>\n\t\t\t<max>" + o.max + "</max>\n\t\t\t<curvalue>" + ((TrackBar)o.control).Value + "</curvalue>\n";
-				src += "\t\t</Slider>\n";
-			}
-		}
-		src += "\t</ToolboxSettings>\n";
-		
-
-		src += "</Settings>";
-
-		File.WriteAllText(path, src);
+        Save(path);
 	}
+
+    public static void Export() {
+        Save(pathexport);
+    }
+
+    private static void Save(string path) {
+        string src = "";
+        src += "<Settings>\n";
+
+        // Loop through and add JoystickSettings
+        src += "\t<JoystickSettings>\n";
+        JoystickSettings js = Program.windowStatus.joystickSettings;
+        JoystickSettings.AxisSetting[] axiss = js.axisSetting;
+        for (int i = 0, j = 6; i < j; i++) {
+            src += "\t\t<Setting>\n";
+            src += "\t\t\t<jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><reverse>" + axiss[i].reverse.ToString() + "</reverse><expo>" + axiss[i].expo +
+                "</expo><deadband>" + axiss[i].deadband + "</deadband><offset>" + axiss[i].offset + "</offset><max>" + axiss[i].max + "</max>\n";
+            src += "\t\t</Setting>\n";
+        }
+        src += "\t</JoystickSettings>\n";
+
+        // Loop through and add IndexSettings
+        src += "\t<IndexSettings>\n";
+        List<IndexSettings.Setting> li = Program.windowStatus.indexSettings.allSettings;
+        for (int i = 0, j = li.Count; i < j; i++) {
+            src += "\t\t<Setting>\n\t\t\t<index>" +
+                li[i].index.Value + "</index><name>" + li[i].name.Text + "</name><digit>" + li[i].digit.Value +
+                "</digit><size>" + li[i].size.Value + "</size><color>" + li[i].color.BackColor.ToArgb() + "</color><raw>" + li[i].val1raw.Value +
+                "</raw><scaled>" + li[i].val1scaled.Value + "</scaled><raw>" + li[i].val2raw.Value + "</raw><scaled>" + li[i].val2scaled.Value +
+                "</scaled><suffix>" + li[i].suffix.Text + "</suffix>\n\t\t</Setting>\n";
+        }
+        src += "\t</IndexSettings>\n";
+
+        // Loop through and add IndexStats
+        src += "	<IndexStats>\n";
+        List<IndexStats.Stats> ls = Program.windowStatus.indexStats.allStats;
+        for (int i = 0, j = ls.Count; i < j; i++) {
+            src += "		<Stats>" + ((IndexSettings.Setting)ls[i].index.SelectedItem).index.Value + "</Stats>\n";
+        }
+        src += "\t</IndexStats>\n";
+
+        // Loop through and add GraphicSettings
+        src += "\t<GraphicSettings img=\"" + Program.windowStatus.graphicsCreator.Prototype.path + "\">\n";
+        GraphicsCreator.graphicPrototype.prototypeIndex[] pi = Program.windowStatus.graphicsCreator.Prototype.indexes;
+        for (int i = 0; i < pi.Length; i++) {
+            src += "\t\t<Index" + (pi[i].hidden ? " hidden" : "") + ">\n\t\t\t<x>" + pi[i].posx + "</x>\n\t\t\t<y>" + pi[i].posy + "</y>\n";
+            if (pi[i].ll != null)
+                src += "\t\t\t<ll>" + pi[i].ll.Value + "</ll>\n";
+            if (pi[i].l != null)
+                src += "\t\t\t<l>" + pi[i].l.Value + "</l>\n";
+            if (pi[i].h != null)
+                src += "\t\t\t<h>" + pi[i].h.Value + "</h>\n";
+            if (pi[i].hh != null)
+                src += "\t\t\t<hh>" + pi[i].hh.Value + "</hh>\n";
+            src += "\t\t\t<index>" + pi[i]._idx + "</index>\n\t\t</Index>\n";
+        }
+        src += "\t</GraphicSettings>\n";
+
+        // Loop through and add ToolboxSettings
+        src += "\t<ToolboxSettings>\n";
+        List<KeyValuePair<Control, GraphicToolbox.ToolboxControl>> at = Program.windowStatus.graphicToolbox.allControls;
+        for (int i = 0, j = at.Count; i < j; i++) {
+            if (at[i].Value.GetType() == typeof(GraphicToolbox.ToolboxSimpleButton)) {
+                // Save <SimpleButton>
+                GraphicToolbox.ToolboxSimpleButton o = (GraphicToolbox.ToolboxSimpleButton)at[i].Value;
+                src += "\t\t<SimpleButton>\n";
+                src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<msg1_index>" +
+                        o.msg_index + "</msg1_index>\n\t\t\t<msg1_value>" + o.msg_value + "</msg1_value>\n";
+                src += "\t\t</SimpleButton>\n";
+            } else if (at[i].Value.GetType() == typeof(GraphicToolbox.ToolboxOnOffButton)) {
+                // Save <OnOffButton Delay>
+                GraphicToolbox.ToolboxOnOffButton o = (GraphicToolbox.ToolboxOnOffButton)at[i].Value;
+                src += "\t\t<OnOffButton" + (o.ifdelay ? " Delay" : "") + ">\n";
+                src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<msg1_index>" +
+                        o.msg1_index + "</msg1_index>\n\t\t\t<msg1_value>" + o.msg1_value + "</msg1_value>\n\t\t\t<msg2_index>" +
+                        o.msg2_index + "</msg2_index>\n\t\t\t<msg2_value>" + o.msg2_value + "</msg2_value>\n\t\t\t<delay>" + o.delayms + "</delay>\n";
+                src += "\t\t</OnOffButton>\n";
+            } else if (at[i].Value.GetType() == typeof(GraphicToolbox.ToolboxSlider)) {
+                // Save <Slider Cont>
+                GraphicToolbox.ToolboxSlider o = (GraphicToolbox.ToolboxSlider)at[i].Value;
+                src += "\t\t<Slider" + (o.ifcont ? " Cont" : "") + ">\n";
+                src += "\t\t\t<name>" + o.name + "</name>\n\t\t\t<x>" + o.posx + "</x>\n\t\t\t<y>" + o.posy + "</y>\n\t\t\t<index>" + o.index + "</index>\n\t\t\t<interval>" +
+                        o.interval + "</interval>\n\t\t\t<min>" + o.min + "</min>\n\t\t\t<max>" + o.max + "</max>\n\t\t\t<curvalue>" + ((TrackBar)o.control).Value + "</curvalue>\n";
+                src += "\t\t</Slider>\n";
+            }
+        }
+        src += "\t</ToolboxSettings>\n";
+
+
+        src += "</Settings>";
+
+        File.WriteAllText(path, src);
+    }
 
 	private class Reader {
 		private string path;
