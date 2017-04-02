@@ -311,7 +311,7 @@ public class IndexStats {
 
 		Stats stats = new Stats(indexSettings);
 
-		if (index >= 0) {
+		/*if (index >= 0) {
 			IndexSettings.Setting found = null;
 			foreach (IndexSettings.Setting o in stats.index.Items) {
 				if (o.index.Value == index) {
@@ -324,7 +324,7 @@ public class IndexStats {
 				return false;
 
 			stats.index.SelectedItem = found;
-		}
+		}*/
 
 		
 		allStats.Add(stats);
@@ -359,7 +359,22 @@ public class IndexStats {
 
 		stats.Init();
 
-		if (editMode) {
+        if (index >= 0) {
+            IndexSettings.Setting found = null;
+            foreach (IndexSettings.Setting o in stats.index.Items) {
+                if (o.index.Value == index) {
+                    found = o;
+                    break;
+                }
+            }
+
+            if (found == null)
+                return false;
+
+            stats.index.SelectedItem = found;
+        }
+
+        if (editMode) {
 			stats.index.Visible = true;
 			stats.delete.Visible = true;
 			stats.name.Visible = false;
