@@ -30,7 +30,9 @@ static class Program
 		JoystickHandler.Init();
 		ST_Register.Init();
 		ProgramSaverLoader.Init();
-		CommHandler.InitDllImport();
+		
+		// Will run when loading settings, or never if the settings load fails
+		//CommHandler.InitDllImport();
 
 
 
