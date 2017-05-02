@@ -394,102 +394,102 @@
             0,
             0,
             0});
-			// 
-			// textBox4
-			// 
-			this.textBox4.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox4.Location = new System.Drawing.Point(1150, 379);
-			this.textBox4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(152, 23);
-			this.textBox4.TabIndex = 11;
-			this.textBox4.Text = "Depth";
-			this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// textBox3
-			// 
-			this.textBox3.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox3.Location = new System.Drawing.Point(1150, 154);
-			this.textBox3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(152, 23);
-			this.textBox3.TabIndex = 10;
-			this.textBox3.Text = "Height";
-			this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// textBox2
-			// 
-			this.textBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox2.Location = new System.Drawing.Point(639, 3);
-			this.textBox2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(127, 23);
-			this.textBox2.TabIndex = 9;
-			this.textBox2.Text = "Heading";
-			this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// textBox1
-			// 
-			this.textBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox1.Location = new System.Drawing.Point(583, 170);
-			this.textBox1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(237, 23);
-			this.textBox1.TabIndex = 8;
-			this.textBox1.Text = "Attitude";
-			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// tabPage2
-			// 
-			this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.tabPage2.Controls.Add(this.pan_graphicsCreator);
-			this.tabPage2.Location = new System.Drawing.Point(4, 25);
-			this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tabPage2.Size = new System.Drawing.Size(1392, 600);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Robot status";
-			// 
-			// pan_graphicsCreator
-			// 
-			this.pan_graphicsCreator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-			this.pan_graphicsCreator.Controls.Add(this.groupBox12);
-			this.pan_graphicsCreator.Controls.Add(this.groupBox11);
-			this.pan_graphicsCreator.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pan_graphicsCreator.Location = new System.Drawing.Point(3, 2);
-			this.pan_graphicsCreator.Name = "pan_graphicsCreator";
-			this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
-			this.pan_graphicsCreator.TabIndex = 0;
-			this.pan_graphicsCreator.Paint += new System.Windows.Forms.PaintEventHandler(this.pan_graphicsCreator_Paint);
-			this.pan_graphicsCreator.DoubleClick += new System.EventHandler(this.pan_graphicsCreator_DoubleClick);
-			// 
-			// groupBox12
-			// 
-			this.groupBox12.Controls.Add(this.pan_graphicToolbox);
-			this.groupBox12.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.groupBox12.Location = new System.Drawing.Point(826, 3);
-			this.groupBox12.Name = "groupBox12";
-			this.groupBox12.Size = new System.Drawing.Size(200, 590);
-			this.groupBox12.TabIndex = 2;
-			this.groupBox12.TabStop = false;
-			this.groupBox12.Text = "Toolbox";
-			// 
-			// pan_graphicToolbox
-			// 
-			this.pan_graphicToolbox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pan_graphicToolbox.Location = new System.Drawing.Point(3, 19);
-			this.pan_graphicToolbox.Name = "pan_graphicToolbox";
-			this.pan_graphicToolbox.Size = new System.Drawing.Size(194, 568);
-			this.pan_graphicToolbox.TabIndex = 0;
-			// 
-			// groupBox11
-			// 
-			this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(1150, 379);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(152, 23);
+            this.textBox4.TabIndex = 11;
+            this.textBox4.Text = "Depth";
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(1150, 154);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(152, 23);
+            this.textBox3.TabIndex = 10;
+            this.textBox3.Text = "Height";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(639, 3);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(127, 23);
+            this.textBox2.TabIndex = 9;
+            this.textBox2.Text = "Heading";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(583, 170);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(237, 23);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.Text = "Attitude";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage2.Controls.Add(this.pan_graphicsCreator);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage2.Size = new System.Drawing.Size(1392, 600);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Robot status";
+            // 
+            // pan_graphicsCreator
+            // 
+            this.pan_graphicsCreator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.pan_graphicsCreator.Controls.Add(this.groupBox12);
+            this.pan_graphicsCreator.Controls.Add(this.groupBox11);
+            this.pan_graphicsCreator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pan_graphicsCreator.Location = new System.Drawing.Point(3, 2);
+            this.pan_graphicsCreator.Name = "pan_graphicsCreator";
+            this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
+            this.pan_graphicsCreator.TabIndex = 0;
+            this.pan_graphicsCreator.Paint += new System.Windows.Forms.PaintEventHandler(this.pan_graphicsCreator_Paint);
+            this.pan_graphicsCreator.DoubleClick += new System.EventHandler(this.pan_graphicsCreator_DoubleClick);
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.pan_graphicToolbox);
+            this.groupBox12.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.groupBox12.Location = new System.Drawing.Point(826, 3);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(200, 590);
+            this.groupBox12.TabIndex = 2;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Toolbox";
+            // 
+            // pan_graphicToolbox
+            // 
+            this.pan_graphicToolbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pan_graphicToolbox.Location = new System.Drawing.Point(3, 19);
+            this.pan_graphicToolbox.Name = "pan_graphicToolbox";
+            this.pan_graphicToolbox.Size = new System.Drawing.Size(194, 568);
+            this.pan_graphicToolbox.TabIndex = 0;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox11.Controls.Add(this.label44);
 			this.groupBox11.Controls.Add(this.nud_aegir_zerodepth);

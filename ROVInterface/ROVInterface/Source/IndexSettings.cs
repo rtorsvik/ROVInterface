@@ -17,7 +17,8 @@ public class IndexSettings {
 	public void Dispose() {
 		for (int i = 0, j = allSettings.Count; i < j; i++) {
 			allSettings[i].Delete(null, null);
-
+			i--;
+			j--;
 		}
 	}
 
@@ -224,8 +225,14 @@ public class IndexSettings {
 			delete.Dispose();
 			panel.Dispose();
 
-			for (int i = 0, j = linkedStats.Count; i < j; i++)
-				linkedStats[i].Delete(null, null);
+			// Only delete if the sender is not null
+			// when sender is null the command has been called from reload
+			if (sender != null) {
+				for (int i = 0, j = linkedStats.Count; i < j; i++)
+					linkedStats[i].Delete(null, null);
+
+				Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
+			}
 		}
 		
 		public void UpdateIndex(object sender, EventArgs e) {
@@ -303,29 +310,30 @@ public class IndexStats {
 		CreateElement(-1);
 	}
 
-	public void Dispose() {
+	public void CheckAllLinks() {
+		for (int i = 0, j = allStats.Count; i < j; i++) {
+			if (allStats[i].index.SelectedItem == null) {
+				allStats[i].Delete(null, null);
+				i--;
+				j--;
+			} else if(allStats[i].setting.index.Value != ((IndexSettings.Setting)allStats[i].index.SelectedItem).index.Value) {
+				allStats[i].Delete(null, null);
+				i--;
+				j--;
+			} // else okay
+		}
+	}
 
+	public void Dispose() {
+		for (int i = 0, j = allStats.Count; i < j; i++)
+			allStats[0].Delete(null, null);
+
+		allStats = new List<Stats>();
 	}
 
 	public bool CreateElement(int index) {
 
 		Stats stats = new Stats(indexSettings);
-
-		if (index >= 0) {
-			IndexSettings.Setting found = null;
-			foreach (IndexSettings.Setting o in stats.index.Items) {
-				if (o.index.Value == index) {
-					found = o;
-					break;
-				}
-			}
-
-			if (found == null)
-				return false;
-
-			stats.index.SelectedItem = found;
-		}
-
 		
 		allStats.Add(stats);
 
@@ -359,7 +367,25 @@ public class IndexStats {
 
 		stats.Init();
 
-		if (editMode) {
+        if (index >= 0) {
+            IndexSettings.Setting found = null;
+            foreach (IndexSettings.Setting o in stats.index.Items) {
+                if (o.index.Value == index) {
+                    found = o;
+                    break;
+                }
+            }
+
+			// If there is no indexsetting to link this to then never create it/delete it at creation
+            if (found == null) {
+				stats.Delete(null, null);
+				return false;
+            }
+
+            stats.index.SelectedItem = found;
+        }
+
+        if (editMode) {
 			stats.index.Visible = true;
 			stats.delete.Visible = true;
 			stats.name.Visible = false;

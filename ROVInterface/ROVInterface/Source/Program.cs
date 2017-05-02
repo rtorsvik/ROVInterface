@@ -30,7 +30,13 @@ static class Program
 		JoystickHandler.Init();
 		ST_Register.Init();
 		ProgramSaverLoader.Init();
-		CommHandler.InitDllImport();
+		//Database.Init();
+		
+		// TEST FUNCTION, only when here, normally ran from loading settings
+		//Database.Connect();
+		
+		// Will run when loading settings, or never if the settings load fails
+		//CommHandler.InitDllImport();
 
 
 
@@ -60,17 +66,27 @@ static class Program
 	private const int WM_SETREDRAW = 11;
 
 	public static void SuspendDrawing(Form form, bool shown) {
-		//pan_Main.SuspendLayout();
 		if (!shown)
 			return;
 		SendMessage(form.Handle, WM_SETREDRAW, false, 0);
 	}
 
 	public static void ResumeDrawing(Form form, bool shown) {
-		//pan_Main.ResumeLayout();
 		if (!shown)
 			return;
 		SendMessage(form.Handle, WM_SETREDRAW, true, 0);
 		form.Refresh();
+	}
+
+	public static void MutexLock(bool LOCK) {
+		while (LOCK) ;
+
+		LOCK = true;
+		return;
+	}
+
+	public static void MutexUnlock(bool LOCK) {
+		LOCK = false;
+		return;
 	}
 }

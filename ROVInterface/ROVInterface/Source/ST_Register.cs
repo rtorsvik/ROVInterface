@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 
 /*
@@ -11,33 +12,42 @@ public static class ST_Register {
 
 	public static ST_Array status;
 	public static ST_Array commands;
-    private static Stopwatch stopwatch;
-
-	/// <summary>
-	/// 
-	/// </summary>
+	private static Stopwatch stopwatch;
+	private static BackgroundWorker bgworker;
+	
 	public static void Init() {
 		status = new ST_Array();
 		commands = new ST_Array(new ST_Array());
-        stopwatch = new Stopwatch();
+		stopwatch = new Stopwatch();
+		bgworker = new BackgroundWorker();
+		bgworker.DoWork += _bgrSendCommands;
 	}
 
 	public static void SendCommands(object sender, EventArgs e) {
+		Program.windowStatus.tim_SendCommandsDelay.Stop();
+		bgworker.RunWorkerAsync();
+	}
+
+	private static void _bgrSendCommands(object sender, DoWorkEventArgs e) {
 		// Ignore this call if the port has not been assigned yet
 		if (CommHandler.port == null) {
 			commands.ResetArray();
+			Program.windowStatus.tim_SendCommandsDelay.Interval = (int)Program.windowStatus.nud_comm_transfreq.Value;
+			Program.windowStatus.tim_SendCommandsDelay.Start();
 			return;
 		}
 
-		ST_Array.arrelement[] data = commands.GetAllValues();
+		ST_Array.arrelement[] data = commands.GetAllValuesAndReset();
 
 		// Return if there are no elements to send
-		if (data.Length == 0)
+		if (data.Length == 0) {
+			Program.windowStatus.tim_SendCommandsDelay.Interval = (int)Program.windowStatus.nud_comm_transfreq.Value;
+			Program.windowStatus.tim_SendCommandsDelay.Start();
 			return;
+		}
 
 		// Stop the timer for next update, to start again when finished with sending these commands
-		Program.windowStatus.tim_SendCommandsDelay.Stop();
-        stopwatch.Restart();
+		stopwatch.Restart();
 
 		// Send commands
 		KeyValuePair<int, int>[] tosend = new KeyValuePair<int, int>[data.Length];
@@ -45,19 +55,11 @@ public static class ST_Register {
 			tosend[i] = new KeyValuePair<int, int>(data[i].index, data[i].value);
 		CommHandler.Send(tosend);
 
-        // Set the delay to the next send of commands, based on time elapsed sending current commands and time till next frame
-        stopwatch.Stop();
-        int tick = (int)Program.windowStatus.nud_comm_transfreq.Value - (int)stopwatch.ElapsedMilliseconds;
-        tick = tick < 1 ? 1 : tick;
-        Program.windowStatus.tim_SendCommandsDelay.Interval = tick;
+		// Set the delay to the next send of commands, based on time elapsed sending current commands and time till next frame
+		stopwatch.Stop();
+		int tick = (int)Program.windowStatus.nud_comm_transfreq.Value - (int)stopwatch.ElapsedMilliseconds;
+		tick = tick < 1 ? 1 : tick;
+		Program.windowStatus.tim_SendCommandsDelay.Interval = tick;
 		Program.windowStatus.tim_SendCommandsDelay.Start();
-
-		// Reset the command array
-		commands.ResetArray();
 	}
-
-	/* NOT IN USE
-	public static void SendSingleCommand(ST_Array.arrelement data) {
-		CommHandler.Send(data.index, data.value);
-	}*/
 }

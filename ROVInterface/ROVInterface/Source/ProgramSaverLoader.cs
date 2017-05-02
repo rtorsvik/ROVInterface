@@ -29,6 +29,9 @@ public static class ProgramSaverLoader {
 			Program.errors.Add("Failed to load settings.");
 		}
 
+		Program.windowStatus.txtbox_dllimported.Text = CommHandler.dllpath;
+		CommHandler.InitDllImport();
+
 		dataHolder.Clear();
 		dataHolder = null;
 	}
@@ -36,35 +39,39 @@ public static class ProgramSaverLoader {
     public static bool Reload() {
 
         bool succ = true;
+		dataHolder = new DataHolder();
+		reader.Restart();
 
         try {
             _Load();
             
             // Reset all the items to be reloaded, (not failed to load)
-            if (dataHolder.joystickSettings != null) {
-                // DUNNO, if needed to reset anything, need to ask Rein
-            }
-
-			if (dataHolder.cur_graphicSetting != null) {
+			if (dataHolder.cur_graphicSetting != null)
 				Program.windowStatus.graphicsCreator.Prototype.Dispose();
 
-				if (dataHolder.indexSettings != null)
-					Program.windowStatus.indexSettings.Dispose();
-			}
+			if (dataHolder.indexSettings != null)
+				Program.windowStatus.indexSettings.Dispose();
 
-			if (dataHolder.indexStats != null) {
+			if (dataHolder.indexStats != null)
 				Program.windowStatus.indexStats.Dispose();
-			}
 
             _InsertDataToProgram();
 
 			// Fix up some stuff, loose ends
+			Program.windowStatus.indexStats.CheckAllLinks();
+			Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
 
-        } catch {
+		} catch {
             succ = false;
         }
 
-        return succ;
+		Program.windowStatus.txtbox_dllimported.Text = CommHandler.dllpath;
+		CommHandler.InitDllImport();
+
+		dataHolder.Clear();
+		dataHolder = null;
+
+		return succ;
     }
 
 	private static void _Load() {
@@ -73,6 +80,7 @@ public static class ProgramSaverLoader {
 		}
 		LoadPosition pos = LoadPosition.Start;
 		bool fin = false;
+		bool temp = true;
 
 		// The file exists, read it and insert the read data into settings
 		while (!reader.IsEmpty() && !fin) {
@@ -87,6 +95,9 @@ public static class ProgramSaverLoader {
 					break;
 				case LoadPosition.Settings:
 					switch (next) {
+						case "<General>":
+							pos = LoadPosition.General;
+							break;
 						case "<JoystickSettings>":
 							pos = LoadPosition.JoystickSettings;
 							break;
@@ -111,17 +122,59 @@ public static class ProgramSaverLoader {
 							pos = LoadPosition.GraphicSettings;
 							dataHolder.cur_graphicSetting = new DataHolder.graphics_Object();
 
-							if (string.Compare(next, 0, "<GraphicSettings img=\"", 0, 22) == 0 && next[next.Length - 1] == '>' && next[next.Length - 2] == '"') { // If start with that string, and ends with '">'
+							/*if (string.Compare(next, 0, "<GraphicSettings img=\"", 0, 22) == 0 && next[next.Length - 1] == '>' && next[next.Length - 2] == '"') { // If start with that string, and ends with '">'
 								dataHolder.cur_graphicSetting.image = next.Substring(22, next.Length - 24);
 							} else {
 								dataHolder.cur_graphicSetting = null;
 								pos = FindNextAfterError(next, out fin);
-							}
+							}*/
 
 							break;
 					}
 					break;
-				case LoadPosition.JoystickSettings:
+				case LoadPosition.General:
+					switch (next) {
+						case "<DllPath>":
+							pos = LoadPosition.GeneralDllPath;
+							temp = true;
+							break;
+						case "<GraphicPath>":
+							pos = LoadPosition.GeneralGraphicPath;
+							temp = true;
+							break;
+                        case "</General>":
+                            pos = LoadPosition.Settings;
+                            break;
+						default:
+							FindNextAfterError(next, out fin);
+							break;
+					}
+					break;
+				case LoadPosition.GeneralDllPath:
+					if (next == "</DllPath>") {
+						pos = LoadPosition.General;
+						if (temp)
+							dataHolder.generalDllPath = "";
+					} else if (temp) {
+                        dataHolder.generalDllPath = next;
+                        temp = false;
+					} else {
+                        FindNextAfterError(next, out fin);
+					}
+					break;
+                case LoadPosition.GeneralGraphicPath:
+                    if (next == "</GraphicPath>") {
+                        pos = LoadPosition.General;
+                        if (temp)
+                            dataHolder.generalGraphicPath = "";
+                    } else if (temp) {
+                        dataHolder.generalGraphicPath = next;
+                        temp = false;
+                    } else {
+                        FindNextAfterError(next, out fin);
+                    }
+                    break;
+                case LoadPosition.JoystickSettings:
 					switch (next) {
 						case "</JoystickSettings>":
 							pos = LoadPosition.Settings;
@@ -301,28 +354,33 @@ public static class ProgramSaverLoader {
         } else
             Program.errors.Add("Failed to load <JoystickSettings>");
 
-        // If succesfully loaded graphicSettings
-        if (dataHolder.cur_graphicSetting != null) {
-            List<DataHolder.graphics_Object.graphics_ObjectIndex> d = dataHolder.cur_graphicSetting.indexes;
-            GraphicsCreator.graphicPrototype.prototypeIndex[] li = new GraphicsCreator.graphicPrototype.prototypeIndex[d.Count];
-            for (int i = 0, j = dataHolder.cur_graphicSetting.indexes.Count; i < j; i++)
-                li[i] = new GraphicsCreator.graphicPrototype.prototypeIndex(d[i].hidden, d[i].x, d[i].y, d[i].ll, d[i].l, d[i].h, d[i].hh, d[i].index);
-            Program.windowStatus.graphicsCreator.SetPrototype(new GraphicsCreator.graphicPrototype(dataHolder.cur_graphicSetting.image, li));
-            Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
+		// If succesfully loaded graphicSettings
+		if (dataHolder.cur_graphicSetting != null) {
+			List<DataHolder.graphics_Object.graphics_ObjectIndex> d = dataHolder.cur_graphicSetting.indexes;
+			GraphicsCreator.graphicPrototype.prototypeIndex[] li = new GraphicsCreator.graphicPrototype.prototypeIndex[d.Count];
+			for (int i = 0, j = dataHolder.cur_graphicSetting.indexes.Count; i < j; i++)
+				li[i] = new GraphicsCreator.graphicPrototype.prototypeIndex(d[i].hidden, d[i].x, d[i].y, d[i].ll, d[i].l, d[i].h, d[i].hh, d[i].index);
+			Program.windowStatus.graphicsCreator.SetPrototype(new GraphicsCreator.graphicPrototype(dataHolder.generalGraphicPath, li));
+			Program.windowStatus.graphicsCreator.Prototype.UpdateIdxSettingReference();
+			Program.windowStatus.txtbox_graphicsloaded.Text = dataHolder.generalGraphicPath;
+		} else {
+			// Create temp prototype if the prototype cannot be loaded
+			Program.windowStatus.graphicsCreator.SetPrototype(new GraphicsCreator.graphicPrototype(dataHolder.generalGraphicPath, new GraphicsCreator.graphicPrototype.prototypeIndex[0]));
+			Program.windowStatus.txtbox_graphicsloaded.Text = "";
+			Program.errors.Add("Failed to load <GraphicSettings>");
+		}
 
-            // If succesfully loaded indexSettings
-            if (dataHolder.indexSettings != null) {
-                for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
-                    DataHolder.indexSettings_Setting dd = dataHolder.indexSettings[i];
-                    Program.windowStatus.indexSettings.CreateElement(dd.index, dd.name, dd.digit, dd.size, dd.color, dd.v1raw, dd.v1scaled, dd.v2raw, dd.v2scaled, dd.suffix);
-                }
-            } else
-                Program.errors.Add("Failed to load <IndexSettings>");
-        } else
-            Program.errors.Add("Failed to load <GraphicSettings>, thus can't load <IndexSettings>");
+		// If succesfully loaded indexSettings
+		if (dataHolder.indexSettings != null) {
+			for (int i = 0, j = dataHolder.indexSettings.Count; i < j; i++) {
+				DataHolder.indexSettings_Setting dd = dataHolder.indexSettings[i];
+				Program.windowStatus.indexSettings.CreateElement(dd.index, dd.name, dd.digit, dd.size, dd.color, dd.v1raw, dd.v1scaled, dd.v2raw, dd.v2scaled, dd.suffix);
+			}
+		} else
+			Program.errors.Add("Failed to load <IndexSettings>");
 
-        // If succesfully loaded indexStats
-        if (dataHolder.indexStats != null) {
+		// If succesfully loaded indexStats
+		if (dataHolder.indexStats != null) {
             for (int i = 0, j = dataHolder.indexStats.Count; i < j; i++) {
                 int e = dataHolder.indexStats[i];
                 Program.windowStatus.indexStats.CreateElement(e);
@@ -349,6 +407,9 @@ public static class ProgramSaverLoader {
             }
         } else
             Program.errors.Add("Failed to load <ToolboxSettings>");
+
+        // Try to load dll
+        CommHandler.dllpath = dataHolder.generalDllPath;
     }
 
 	private static LoadPosition FindNextAfterError(string next, out bool fin) {
@@ -358,6 +419,9 @@ public static class ProgramSaverLoader {
 
 		while(next != EOF) {
 			switch (next) {
+				case "<General>":
+					pos = LoadPosition.General;
+					break;
 				case "<JoystickSettings>":
 					pos = LoadPosition.JoystickSettings;
 					break;
@@ -400,6 +464,9 @@ public static class ProgramSaverLoader {
         string src = "";
         src += "<Settings>\n";
 
+		// Add general settings
+		src += "\t<General>\n\t\t<DllPath>" + CommHandler.dllpath + "</DllPath>\n\t\t<GraphicPath>" + Program.windowStatus.graphicsCreator.Prototype.path + "</GraphicPath>\n\t</General>\n";
+
         // Loop through and add JoystickSettings
         src += "\t<JoystickSettings>\n";
         JoystickSettings js = Program.windowStatus.joystickSettings;
@@ -433,7 +500,7 @@ public static class ProgramSaverLoader {
         src += "\t</IndexStats>\n";
 
         // Loop through and add GraphicSettings
-        src += "\t<GraphicSettings img=\"" + Program.windowStatus.graphicsCreator.Prototype.path + "\">\n";
+        src += "\t<GraphicSettings>\n";
         GraphicsCreator.graphicPrototype.prototypeIndex[] pi = Program.windowStatus.graphicsCreator.Prototype.indexes;
         for (int i = 0; i < pi.Length; i++) {
             src += "\t\t<Index" + (pi[i].hidden ? " hidden" : "") + ">\n\t\t\t<x>" + pi[i].posx + "</x>\n\t\t\t<y>" + pi[i].posy + "</y>\n";
@@ -594,6 +661,10 @@ public static class ProgramSaverLoader {
 	}
 
 	private class DataHolder {
+
+		public string generalDllPath = "";
+		public string generalGraphicPath = "";
+
 		public graphics_Object cur_graphicSetting;
 		public List<joystickSettings_Setting> joystickSettings;
 		public joystickSettings_Setting cur_joystickSetting;
@@ -899,6 +970,9 @@ public static class ProgramSaverLoader {
 		GraphicSettings = 8,
 		GraphicSettingsChild = 9,
 		ToolboxSettings = 10,
-		ToolboxSettingsChild = 11
+		ToolboxSettingsChild = 11,
+		General,
+		GeneralDllPath,
+		GeneralGraphicPath,
 	}
 }
