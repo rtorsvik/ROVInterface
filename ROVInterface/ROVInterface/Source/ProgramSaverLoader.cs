@@ -349,8 +349,11 @@ public static class ProgramSaverLoader {
             JoystickSettings.AxisSetting[] axiss = js.axisSetting;
             for (int i = 0, j = dataHolder.joystickSettings.Count; i < j; i++) {
                 DataHolder.joystickSettings_Setting d = dataHolder.joystickSettings[i];
-                axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, d.expo, d.deadband, d.offset, d.max);
-            }
+				if (d.index == -1)
+	                axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, d.expo, d.deadband, d.offset, d.max);
+				else
+					axiss[i].SetSettings(d.index, d.jindex, d.aindex, d.reverse, d.expo, d.deadband, d.offset, d.max);
+			}
         } else
             Program.errors.Add("Failed to load <JoystickSettings>");
 
@@ -473,8 +476,8 @@ public static class ProgramSaverLoader {
         JoystickSettings.AxisSetting[] axiss = js.axisSetting;
         for (int i = 0, j = 6; i < j; i++) {
             src += "\t\t<Setting>\n";
-            src += "\t\t\t<jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><reverse>" + axiss[i].reverse.ToString() + "</reverse><expo>" + axiss[i].expo +
-                "</expo><deadband>" + axiss[i].deadband + "</deadband><offset>" + axiss[i].offset + "</offset><max>" + axiss[i].max + "</max>\n";
+            src += "\t\t\t<index>" + axiss[i].index + "</index><jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><reverse>" + axiss[i].reverse.ToString() +
+				"</reverse><expo>" + axiss[i].expo + "</expo><deadband>" + axiss[i].deadband + "</deadband><offset>" + axiss[i].offset + "</offset><max>" + axiss[i].max + "</max>\n";
             src += "\t\t</Setting>\n";
         }
         src += "\t</JoystickSettings>\n";
@@ -492,10 +495,10 @@ public static class ProgramSaverLoader {
         src += "\t</IndexSettings>\n";
 
         // Loop through and add IndexStats
-        src += "	<IndexStats>\n";
+        src += "\t<IndexStats>\n";
         List<IndexStats.Stats> ls = Program.windowStatus.indexStats.allStats;
         for (int i = 0, j = ls.Count; i < j; i++) {
-            src += "		<Stats>" + ((IndexSettings.Setting)ls[i].index.SelectedItem).index.Value + "</Stats>\n";
+            src += "\t\t<Stats>" + ((IndexSettings.Setting)ls[i].index.SelectedItem).index.Value + "</Stats>\n";
         }
         src += "\t</IndexStats>\n";
 
@@ -841,11 +844,12 @@ public static class ProgramSaverLoader {
 			public decimal deadband;
 			public decimal offset;
 			public decimal max;
+			public int index = -1;
 
 			private bool waitforval = false;
 			private int readindex = 0;
 			private static readonly string[] req = { "<jindex>", "</jindex>", "<aindex>", "</aindex>", "<reverse>", "</reverse>", "<expo>", "</expo>",
-											  "<deadband>", "</deadband>", "<offset>", "</offset>", "<max>", "</max>" };
+											  "<deadband>", "</deadband>", "<offset>", "</offset>", "<max>", "</max>", "<index>", "</index>"};
 
 			public string NextData() {
 				if (readindex == req.Length)
@@ -873,6 +877,7 @@ public static class ProgramSaverLoader {
 					case 9: deadband = decimal.Parse(s.Replace(',', '.')); break;
 					case 11: offset = decimal.Parse(s.Replace(',', '.')); break;
 					case 13: max = decimal.Parse(s.Replace(',', '.')); break;
+					case 15: index = int.Parse(s); break;
 				}
 			}
 		}
