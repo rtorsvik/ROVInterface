@@ -1,11 +1,11 @@
 <Settings>
 	<General>
-		<DllPath></DllPath>
+		<DllPath>Translator.dll</DllPath>
 		<GraphicPath></GraphicPath>
 	</General>
 	<JoystickSettings>
 		<Setting>
-			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1.3</expo><deadband>0.3</deadband><offset>0.2</offset><max>98.8</max>
 		</Setting>
 		<Setting>
 			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
@@ -24,6 +24,12 @@
 		</Setting>
 	</JoystickSettings>
 	<IndexSettings>
+		<Setting>
+			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
 	</IndexSettings>
 	<IndexStats>
 	</IndexStats>
