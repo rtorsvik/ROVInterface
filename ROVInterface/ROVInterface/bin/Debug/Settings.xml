@@ -1,187 +1,33 @@
 <Settings>
 	<General>
-		<DllPath>Translator.dll</DllPath>
-		<GraphicPath>Graphics\Aegir.png</GraphicPath>
+		<DllPath></DllPath>
+		<GraphicPath></GraphicPath>
 	</General>
 	<JoystickSettings>
 		<Setting>
-			<jindex>0</jindex><aindex>22</aindex><reverse>False</reverse><expo>2,9</expo><deadband>12</deadband><offset>0</offset><max>5</max>
+			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>18</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>21</aindex><reverse>False</reverse><expo>2</expo><deadband>10</deadband><offset>0</offset><max>1</max>
+			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 		<Setting>
-			<jindex>0</jindex><aindex>14</aindex><reverse>True</reverse><expo>3</expo><deadband>5</deadband><offset>0</offset><max>3</max>
+			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>21</aindex><reverse>True</reverse><expo>3</expo><deadband>0</deadband><offset>0</offset><max>3</max>
+			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>12</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>1</max>
+			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 		<Setting>
-			<jindex>-1</jindex><aindex>14</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>7</max>
+			<jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 	</JoystickSettings>
 	<IndexSettings>
-		<Setting>
-			<index>0</index><name>alive</name><digit>0</digit><size>16</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>37</index><name>heading</name><digit>0</digit><size>16</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>1000</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>50</index><name>Altitude</name><digit>2</digit><size>16</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>52</index><name>Depth</name><digit>2</digit><size>16</size><color>-65281</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>54</index><name>Temp</name><digit>2</digit><size>16</size><color>-65281</color><raw>0</raw><scaled>0</scaled><raw>1000</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>501</index><name>Pod temp</name><digit>2</digit><size>23</size><color>-65536</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix>⁰C</suffix>
-		</Setting>
-		<Setting>
-			<index>502</index><name>Water temp</name><digit>2</digit><size>23</size><color>-16711681</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix>⁰C</suffix>
-		</Setting>
-		<Setting>
-			<index>503</index><name>DCDC temp</name><digit>2</digit><size>23</size><color>-65536</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix>⁰C</suffix>
-		</Setting>
-		<Setting>
-			<index>62</index><name>Leakage alarm</name><digit>2</digit><size>16</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>801</index><name>depth SP</name><digit>2</digit><size>16</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
-		<Setting>
-			<index>0</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
-		</Setting>
 	</IndexSettings>
 	<IndexStats>
-		<Stats>0</Stats>
-		<Stats>37</Stats>
-		<Stats>50</Stats>
-		<Stats>52</Stats>
-		<Stats>54</Stats>
-		<Stats>501</Stats>
-		<Stats>502</Stats>
-		<Stats>503</Stats>
-		<Stats>62</Stats>
-		<Stats>801</Stats>
 	</IndexStats>
 	<GraphicSettings>
-		<Index>
-			<x>50</x>
-			<y>70</y>
-			<l>-39</l>
-			<h>39</h>
-			<index>101</index>
-		</Index>
-		<Index>
-			<x>50</x>
-			<y>500</y>
-			<l>-39</l>
-			<h>39</h>
-			<index>102</index>
-		</Index>
-		<Index>
-			<x>350</x>
-			<y>70</y>
-			<l>-39</l>
-			<h>39</h>
-			<index>103</index>
-		</Index>
-		<Index>
-			<x>350</x>
-			<y>500</y>
-			<l>-39</l>
-			<h>39</h>
-			<index>104</index>
-		</Index>
-		<Index>
-			<x>125</x>
-			<y>150</y>
-			<l>-39</l>
-			<h>39</h>
-			<index>105</index>
-		</Index>
-		<Index>
-			<x>125</x>
-			<y>425</y>
-			<l>-39</l>
-			<h>39</h>
-			<index>106</index>
-		</Index>
-		<Index>
-			<x>275</x>
-			<y>150</y>
-			<l>-39</l>
-			<h>39</h>
-			<index>107</index>
-		</Index>
-		<Index>
-			<x>275</x>
-			<y>425</y>
-			<l>-39</l>
-			<h>39</h>
-			<index>108</index>
-		</Index>
-		<Index>
-			<x>200</x>
-			<y>250</y>
-			<h>70</h>
-			<hh>80</hh>
-			<index>501</index>
-		</Index>
-		<Index>
-			<x>200</x>
-			<y>325</y>
-			<h>70</h>
-			<hh>80</hh>
-			<index>502</index>
-		</Index>
-		<Index>
-			<x>400</x>
-			<y>250</y>
-			<index>503</index>
-		</Index>
 	</GraphicSettings>
 	<ToolboxSettings>
 	</ToolboxSettings>

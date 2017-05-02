@@ -57,7 +57,7 @@ public class JoystickSettings
 
 			//TEMP: finn ut sammen med terje hvor disse egentlig skal kalles hen
 			if (axisSetting[i].outValue != prevOutA[i])
-				ST_Register.commands[i + 1] = axisSetting[i].outValue;
+				ST_Register.commands[axisSetting[i].index] = axisSetting[i].outValue;
 			prevOutA[i] = axisSetting[i].outValue;
 		}
 
@@ -207,6 +207,7 @@ public class JoystickSettings
 
 			c_deadband = new NumericUpDown();
 			c_deadband.Maximum = 100;
+			c_deadband.DecimalPlaces = 1;
 			c_deadband.Increment = 0.1m;
 			c_deadband.Size = new System.Drawing.Size(50, 22);
 			c_deadband.Margin = new Padding(8, 3, 8, 3);
@@ -214,6 +215,7 @@ public class JoystickSettings
 
 			c_offset = new NumericUpDown();
 			c_offset.Maximum = 100;
+			c_offset.DecimalPlaces = 1;
 			c_offset.Increment = 0.1m;
 			c_offset.Size = new System.Drawing.Size(50, 22);
 			c_offset.Margin = new Padding(8, 3, 8, 3);
@@ -222,6 +224,7 @@ public class JoystickSettings
 			c_max = new NumericUpDown();
 			c_max.Value = 100;
 			c_max.Maximum = 100;
+			c_max.DecimalPlaces = 1;
 			c_max.Increment = 0.1m;
 			c_max.Size = new System.Drawing.Size(50, 22);
 			c_max.Margin = new Padding(8, 3, 8, 3);
@@ -513,7 +516,7 @@ public class JoystickSettings
 		public void UpdateGraph(object sender, EventArgs e)
 		{
 			Update();
-			Program.windowStatus.DrawGraph(deadband, offset, max, expo, reverse);
+			Program.windowStatus.DrawGraph((int)deadband, (int)offset, (int)max, expo, reverse);
 		}
 
 		/// <summary>
