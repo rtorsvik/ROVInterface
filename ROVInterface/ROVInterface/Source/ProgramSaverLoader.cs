@@ -29,6 +29,7 @@ public static class ProgramSaverLoader {
 			Program.errors.Add("Failed to load settings.");
 		}
 
+		Program.windowStatus.txtbox_dllimported.Text = CommHandler.dllpath;
 		CommHandler.InitDllImport();
 
 		dataHolder.Clear();
@@ -64,6 +65,7 @@ public static class ProgramSaverLoader {
             succ = false;
         }
 
+		Program.windowStatus.txtbox_dllimported.Text = CommHandler.dllpath;
 		CommHandler.InitDllImport();
 
 		dataHolder.Clear();

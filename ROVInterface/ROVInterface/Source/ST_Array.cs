@@ -1,26 +1,23 @@
 ﻿using System;
 
 public class ST_Array {
+	
 	private arrelement[] arr;
 	private int sizemax;
 	private int sizecur;
 
 	private bool hashiddenarr = false;
 	private ST_Array hiddenarr;
+	private bool mutexlock = false;
 
 	public ST_Array() {
 		sizemax = 8;
 		sizecur = 0;
 		arr = new arrelement[sizemax];
 	}
-	public ST_Array(int sizemax) {
-		this.sizemax = sizemax;
-		sizecur = 0;
-		arr = new arrelement[sizemax];
-	}
-	public ST_Array(ST_Array hidden) : this() {
+	public ST_Array(ST_Array perm) : this() {
 		hashiddenarr = true;
-		hiddenarr = hidden;
+		hiddenarr = perm;
 	}
 
 	// Indexer, so this array instance can be used as a[i];
@@ -34,9 +31,17 @@ public class ST_Array {
 			return arr[i].value;
 		}
 		set {
-			SearchAndSet(i, value);
-			if (hashiddenarr)
+			if (hashiddenarr) {
+				// To make sure every value gets inserted into the commando register
+				Program.MutexLock(mutexlock);
+				SearchAndSet(i, value);
+				// To unlock the mutex
+				Program.MutexUnlock(mutexlock);
+
 				hiddenarr.SearchAndSet(i, value);
+			} else {
+				SearchAndSet(i, value);
+			}
 		}
 	}
 
@@ -88,10 +93,18 @@ public class ST_Array {
 		return BinarySearchAlgorithm(v, i, h);
 	}
 
-	public arrelement[] GetAllValues() {
+	public arrelement[] GetAllValuesAndReset() {
+		// Lock to make sure every value has been inserted
+		Program.MutexLock(mutexlock);
 		arrelement[] temp = new arrelement[sizecur];
 		for (int i = 0; i < sizecur; i++)
 			temp[i] = arr[i];
+
+		ResetArray();
+
+		// Unlocking the lock when the reseting is done
+		Program.MutexUnlock(mutexlock);
+
 		return temp;
 	}
 
@@ -99,6 +112,13 @@ public class ST_Array {
 		for (int i = 0; i < sizecur; i++)
 			arr[i] = null;
 		sizecur = 0;
+	}
+
+	public override string ToString() {
+		string s = "ST_Array: ";
+		foreach (arrelement o in arr)
+			s += o.ToString() + " ";
+		return s;
 	}
 
 	public class arrelement {

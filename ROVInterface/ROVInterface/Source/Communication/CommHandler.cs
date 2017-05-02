@@ -23,7 +23,7 @@ public static class CommHandler
 
 	// Dll variables
 	private static bool loadedDll = false;
-	public static string dllpath = "./Translator.dll";
+	public static string dllpath = "";
 	private static Assembly dll;
 	private static MethodInfo dllConvertCommands;
 	private static MethodInfo dllConvertData;
@@ -34,7 +34,7 @@ public static class CommHandler
 	{
 		try
 		{
-			dll = Assembly.LoadFrom(dllpath);
+			dll = Assembly.LoadFrom("./" + dllpath);
 			// Load the methods
 			dllConvertCommands = dll.GetTypes()[0].GetMethod("ConvertCommands");
 			dllConvertData = dll.GetTypes()[0].GetMethod("ConvertData");
