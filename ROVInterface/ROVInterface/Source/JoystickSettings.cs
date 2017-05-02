@@ -57,7 +57,7 @@ public class JoystickSettings
 
 			//TEMP: finn ut sammen med terje hvor disse egentlig skal kalles hen
 			if (axisSetting[i].outValue != prevOutA[i])
-				ST_Register.commands[axisSetting[i].index] = axisSetting[i].outValue;
+				ST_Register.commands[i + 1] = axisSetting[i].outValue;
 			prevOutA[i] = axisSetting[i].outValue;
 		}
 
@@ -168,7 +168,6 @@ public class JoystickSettings
 			c_index = new NumericUpDown();
 			c_index.Minimum = 0;
 			c_index.Maximum = 32767;
-			c_index.Value = SNUM;
 			c_index.Size = new System.Drawing.Size(50, 24);
 
 			c_joystick = new ComboBox();
