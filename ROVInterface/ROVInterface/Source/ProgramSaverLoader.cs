@@ -693,9 +693,12 @@ public static class ProgramSaverLoader {
 			cur_joystickSetting = null;
 			cur_indexSetting = null;
 
-			//joystickSettings.Clear();
-			indexSettings.Clear();
-			indexStats.Clear();
+			if (joystickSettings != null)
+				joystickSettings.Clear();
+			if (indexSettings != null)
+				indexSettings.Clear();
+			if (indexStats != null)
+				indexStats.Clear();
 			joystickSettings = null;
 			indexSettings = null;
 			indexStats = null;
