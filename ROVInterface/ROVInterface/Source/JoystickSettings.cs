@@ -21,12 +21,12 @@ public class JoystickSettings
 	private const int SOFF = 40;    //pixels, offset from top
 
 	public AxisSetting[] axisSetting;
-	public string[] axisLabels = new string[10] { "Forward/backward", "Left/right", "Up/Down", "Pitch", "Roll", "Yaw", "<spare>", "<spare>", "<spare>", "<spare>" };
-	public int[] prevOutA = new int[10];
+	public string[] axisLabels = new string[12] { "Forward/backward", "Left/right", "Up/Down", "Pitch", "Roll", "Yaw", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>" };
+	public int[] prevOutA = new int[12];
 
 	public ButtonSetting[] buttonSetting;
-	public string[] buttonLabels = new string[8] { "Arm motors", "Lights on/off", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>"};
-	public bool[] prevOutB = new bool[8];
+	public string[] buttonLabels = new string[15] { "Arm motors", "pitch", "pitch", "roll", "roll", "grab", "release", "rot cw", "rot ccw", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>" };
+	public bool[] prevOutB = new bool[15];
 
 
 
@@ -126,6 +126,7 @@ public class JoystickSettings
 		private NumericUpDown c_deadband;
 		private NumericUpDown c_offset;
 		private NumericUpDown c_max;
+		private NumericUpDown c_trim;
 
 		private ProgressBar c_outValue_bar;
 		private TextBox c_outValue;
@@ -140,7 +141,8 @@ public class JoystickSettings
 		public float expo;		//curvature of outValue
 		public int deadband;	//how much does inValue have to travel from midpoint before outValue starts to change [%]
 		public int offset;      //offset, at which value does outValue start when inValue exceeds deadband [%]
-		public int max;			//maximum value of output [%]
+		public int max;         //maximum value of output [%]
+		public int trim;         //maximum value of output [%]
 
 		public int outValue;	//calculated output value  
 
@@ -152,9 +154,9 @@ public class JoystickSettings
 		public AxisSetting(string descr)
 		{
 			c_container = new FlowLayoutPanel();
-			c_container.Size = new System.Drawing.Size(1500, 30);
+			c_container.Size = new System.Drawing.Size(1300, 30);
 			c_container.Font = new System.Drawing.Font("Microsoft Sans Serif", 8);
-			c_container.Location = new System.Drawing.Point(20, SNUM * SSPACE + SOFF);
+			//c_container.Location = new System.Drawing.Point(20, SNUM * SSPACE + SOFF);
 
 			c_description = new Label();
 			c_description.Text = descr;
@@ -180,7 +182,7 @@ public class JoystickSettings
 
 			c_inValue_bar = new ProgressBar();
 			c_inValue_bar.Maximum = 65535;
-			c_inValue_bar.Size = new System.Drawing.Size(100, 20);
+			c_inValue_bar.Size = new System.Drawing.Size(80, 20);
 			c_inValue_bar.Margin = new Padding(30, 3, 3, 3);
 
 			c_inValue = new TextBox();
@@ -220,9 +222,16 @@ public class JoystickSettings
 			c_max.Margin = new Padding(8, 3, 8, 3);
 			c_max.ValueChanged += this.UpdateGraph;
 
+			c_trim = new NumericUpDown();
+			c_trim.Value = 0;
+			c_trim.Minimum = -32767;
+			c_trim.Maximum = 32767;
+			c_trim.Size = new System.Drawing.Size(50, 22);
+			c_trim.Margin = new Padding(8, 3, 8, 3);
+
 			c_outValue_bar = new ProgressBar();
 			c_outValue_bar.Maximum = 65535;
-			c_outValue_bar.Size = new System.Drawing.Size(100, 20);
+			c_outValue_bar.Size = new System.Drawing.Size(80, 20);
 			c_outValue_bar.Margin = new Padding(30, 3, 3, 3);
 
 			c_outValue = new TextBox();
@@ -262,13 +271,15 @@ public class JoystickSettings
 			c_container.Controls.Add(c_deadband);
 			c_container.Controls.Add(c_offset);
 			c_container.Controls.Add(c_max);
+			c_container.Controls.Add(c_trim);
 
 			c_container.Controls.Add(c_outValue_bar);
 			c_container.Controls.Add(c_outValue);
 
-			
 
-			page.Controls.Add(c_container);
+
+			//page.Controls.Add(c_container);
+			window.flp_joysticksetting_axis.Controls.Add(c_container);
 		}
 
 		/// <summary>
@@ -286,6 +297,7 @@ public class JoystickSettings
 				deadband = (int)c_deadband.Value;
 				offset = (int)c_offset.Value;
 				max = (int)c_max.Value;
+				trim = (int)c_trim.Value;
 
 				if (offset > max)   //offset can't be greater than max
 				{
@@ -324,6 +336,8 @@ public class JoystickSettings
 
 			double e = expo;
 
+			double t = trim;
+
 			int r = reverse ? -1 : 1;
 
 			//in the "dead" zone of the deadband, y = 0, else, calculate y value
@@ -343,7 +357,7 @@ public class JoystickSettings
 			if (x < 0)
 				y = -y;
 			
-			return y;
+			return y + t;
 		}
 
 		/// <summary>
@@ -556,9 +570,9 @@ public class JoystickSettings
 		public ButtonSetting(string descr)
 		{
 			c_container = new FlowLayoutPanel();
-			c_container.Size = new System.Drawing.Size(1500, 30);
+			c_container.Size = new System.Drawing.Size(1300, 30);
 			c_container.Font = new System.Drawing.Font("Microsoft Sans Serif", 8);
-			c_container.Location = new System.Drawing.Point(20, SNUM * SSPACE + SOFF);
+			//c_container.Location = new System.Drawing.Point(20, SNUM * SSPACE + SOFF);
 
 			c_description = new Label();
 			c_description.Text = descr;
@@ -653,7 +667,8 @@ public class JoystickSettings
 
 			c_container.Controls.Add(c_outValue);
 
-			page.Controls.Add(c_container);
+			//page.Controls.Add(c_container);
+			window.flp_joysticksetting_buttons.Controls.Add(c_container);
 		}
 
 		/// <summary>

@@ -276,6 +276,9 @@
     <Content Include="Graphics\Danger.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Graphics\video_cctv.png" />
+    <Content Include="Graphics\video_full.png" />
+    <Content Include="Graphics\video_split.png" />
     <Content Include="Graphics\Warning.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

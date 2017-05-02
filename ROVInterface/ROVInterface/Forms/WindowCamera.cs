@@ -102,13 +102,13 @@ public partial class WindowCamera : Form
 	private void btn_startCam1_Click(object sender, EventArgs e)
 	{
 		//TEMP ip and port of raspberry pi camera
-		string ipAddress1 = "10.0.0.12";
+		string ipAddress1 = "10.0.0.14";
 		int port1 = 1235;
 
 		streamHandler1 = new StreamHandler(ipAddress1, port1);
 		video1 = new MPlayer(streamHandler1.GetPipeName(), pnl_video1);
 
-		streamHandler1.StartRaspividStream2(960, 540, 270);
+		//streamHandler1.StartRaspividStream("pi", "raspberry", 1440, 900, 0);
 		video1.Start();
 		if (!bgw_video1.IsBusy)
 			bgw_video1.RunWorkerAsync();
@@ -119,13 +119,13 @@ public partial class WindowCamera : Form
 	private void btn_startCam2_Click(object sender, EventArgs e)
 	{
 		//TEMP ip and port of raspberry pi camera
-		string ipAddress2 = "10.0.0.13";
+		string ipAddress2 = "10.0.0.12";
 		int port2 = 1236;
 
 		streamHandler2 = new StreamHandler(ipAddress2, port2);
 		video2 = new MPlayer(streamHandler2.GetPipeName(), pnl_video2);
 
-		streamHandler2.StartRaspividStream2(960, 540, 90);
+		streamHandler2.StartRaspividStream("pi", "", 960, 540, 270);
 		video2.Start();
 		if (!bgw_video2.IsBusy)
 			bgw_video2.RunWorkerAsync();
@@ -136,16 +136,33 @@ public partial class WindowCamera : Form
 	private void btn_startCam3_Click(object sender, EventArgs e)
 	{
 		//TEMP ip and port of raspberry pi USB webcamera
-		string ipAddress3 = "10.0.0.12";
+		string ipAddress3 = "10.0.0.13";
 		int port3 = 1237;
 
 		streamHandler3 = new StreamHandler(ipAddress3, port3);
 		video3 = new MPlayer(streamHandler3.GetPipeName(), pnl_video3, true);
 
-		streamHandler3.StartRaspividStream2(960, 540, 0);
+		streamHandler3.StartRaspividStream("pi", "", 960, 540, 90);
 		video3.Start();
 		if (!bgw_video3.IsBusy)
 			bgw_video3.RunWorkerAsync();
+	}
+
+	StreamHandler streamHandler4;
+	MPlayer video4;
+	private void btn_startCam4_Click(object sender, EventArgs e)
+	{
+		//TEMP ip and port of raspberry pi USB webcamera
+		string ipAddress4 = "192.168.1.36";
+		int port4 = 1238;
+
+		streamHandler4 = new StreamHandler(ipAddress4, port4);
+		video4 = new MPlayer(streamHandler4.GetPipeName(), pnl_video4, true);
+
+		streamHandler4.StartRaspividStream("pi", "", 960, 540, 0);
+		video4.Start();
+		if (!bgw_video4.IsBusy)
+			bgw_video4.RunWorkerAsync();
 	}
 
 	private void bgw_video1_DoWork(object sender, DoWorkEventArgs e)
@@ -262,6 +279,19 @@ public partial class WindowCamera : Form
 		
 	}
 
-	
+	private void button3_Click(object sender, EventArgs e)
+	{
+
+	}
+
+	private void button4_Click(object sender, EventArgs e)
+	{
+
+	}
+
+	private void button5_Click(object sender, EventArgs e)
+	{
+
+	}
 }
 

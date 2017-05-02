@@ -79,10 +79,12 @@ public partial class WindowStatus : Form
 		//load local IP address into communication tabs ethernet server settings
 		txt_comm_serverip.Text = GetLocalIPAddress();
 		txt_comm_serverport.Text = "80";
+
+		
 	}
 
 
-
+	
 
 
 	//tick updates all the elements in the window
@@ -115,11 +117,7 @@ public partial class WindowStatus : Form
 		else
 			pbr_heartBeat.Value = 0;
 
-		//TEMP request values from Ægir
-		if (CommHandler.connectionType == CommHandler.ConnectionType.CANbus && transmit)
-		{
-			CommHandler.port.Request(ADFwebRequest++ % 72);
-		}
+		
 
 		#region navigation window updates
 
@@ -233,7 +231,10 @@ public partial class WindowStatus : Form
 				CommHandler.newMessage = false;
 			}
 
+
+
 			
+
 
 		}
 
@@ -300,6 +301,10 @@ public partial class WindowStatus : Form
 		{
 			Console.Write("No connection for heartbeat");
 		}
+
+
+
+		
 
 	}
 
@@ -389,6 +394,8 @@ public partial class WindowStatus : Form
 	bool transmit;
 	private void btn_startTransmission_Click(object sender, EventArgs e)
 	{
+		AegirMessageRequest.RunWorkerAsync();
+
 		tim_SendCommandsDelay.Interval = (int)(1000 / (float)nud_comm_transfreq.Value);
 
 		if (tim_SendCommandsDelay.Enabled)
@@ -1037,4 +1044,96 @@ public partial class WindowStatus : Form
         if (ProgramSaverLoader.Reload())
             Program.errors.Add("succ");
     }
+
+	private void AegirMessageRequest_DoWork(object sender, DoWorkEventArgs e)
+	{
+		//TEMP request values from Ægir
+		while (true)
+		{
+			if (CommHandler.connectionType == CommHandler.ConnectionType.CANbus && transmit)
+			{
+				for (int i = 0; i < 72; i++)
+				{
+					CommHandler.port.Request(i);
+				}
+
+			}
+		}
+	}
+
+	private void nud_aegir_zerodepth_ValueChanged(object sender, EventArgs e)
+	{ 
+		ST_Register.commands[53] = (int)nud_aegir_zerodepth.Value;
+	}
+
+	private void nud_aegir_trans_p_ValueChanged(object sender, EventArgs e)
+	{
+		ST_Register.commands[804] = (int)nud_aegir_trans_p.Value;
+	}
+
+	private void nud_aegir_trans_i_ValueChanged(object sender, EventArgs e)
+	{
+		ST_Register.commands[805] = (int)nud_aegir_trans_i.Value;
+	}
+
+	private void nud_aegir_trans_d_ValueChanged(object sender, EventArgs e)
+	{
+		ST_Register.commands[806] = (int)nud_aegir_trans_d.Value;
+	}
+
+	private void nud_aegir_rot_p_ValueChanged(object sender, EventArgs e)
+	{
+		ST_Register.commands[813] = (int)nud_aegir_rot_p.Value;
+	}
+
+	private void nud_aegir_rot_i_ValueChanged(object sender, EventArgs e)
+	{
+		ST_Register.commands[814] = (int)nud_aegir_rot_i.Value;
+	}
+
+	private void nud_aegir_rot_d_ValueChanged(object sender, EventArgs e)
+	{
+		ST_Register.commands[815] = (int)nud_aegir_rot_d.Value;
+	}
+
+	bool puls = false;
+	private void tim_puls_Tick(object sender, EventArgs e)
+	{
+		if (JoystickHandler.joystick[0].button[5])
+		{
+			ST_Register.commands[98] = 32;
+		}
+
+		else if (JoystickHandler.joystick[0].button[4])
+		{
+			ST_Register.commands[98] = 0;
+		}
+
+		else if (!puls)
+		{
+			ST_Register.commands[98] = 32;
+			tim_puls.Interval = (int)nud_puls_on.Value;
+			puls = false;
+		}
+
+		else
+		{
+			ST_Register.commands[98] = 0;
+			tim_puls.Interval = (int)nud_puls_off.Value;
+			puls = true;
+		}
+
+		puls = !puls;
+	}
+
+	private void button1_Click(object sender, EventArgs e)
+	{
+		tim_puls.Enabled = !tim_puls.Enabled;
+		tim_puls.Interval = (int)nud_puls_on.Value;
+	}
+
+	private void nud_puls_interval_ValueChanged(object sender, EventArgs e)
+	{
+		tim_puls.Interval = (int)nud_puls_on.Value;
+	}
 }

@@ -23,7 +23,7 @@ class MPlayer
 		mplayer.StartInfo.UseShellExecute = false;
 		mplayer.StartInfo.RedirectStandardInput = true;
 		mplayer.StartInfo.CreateNoWindow = true;
-		mplayer.StartInfo.FileName = Application.StartupPath + "/MPlayer/mplayer.exe";
+		mplayer.StartInfo.FileName = Application.StartupPath + "\\MPlayer\\mplayer.exe";
 
 		args = @"\\.\pipe\" + pipeName + " -demuxer +h264es -fps 120 -nosound -cache 512";
 		args += " -nofs -noquiet -identify -slave ";

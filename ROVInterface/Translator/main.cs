@@ -154,6 +154,18 @@ namespace Translator
 							message[TOP_SENS_CTRL] = TOP_SENS_CTRL_cache;
 						message[TOP_SENS_CTRL][1] = TOP_SENS_CTRL_cache[1] = (byte)p.Value;
 						break;
+					case 98: //TEMP pulse rotate left/right and regulate depth
+						if (!message.ContainsKey(TOP_XBOX_AXES))
+							message[TOP_XBOX_AXES] = TOP_XBOX_AXES_cache;
+						message[TOP_XBOX_AXES][4] = TOP_XBOX_AXES_cache[4] = (byte)p.Value;
+						//message[TOP_XBOX_AXES][4] = TOP_XBOX_AXES_cache[4] = (byte)(TOP_XBOX_AXES_cache[4] & ~0xDF | p.Value);
+						break;
+					case 99: //TEMP control arm, close, open, rotate
+						if (!message.ContainsKey(TOP_XBOX_AXES_2))
+							message[TOP_XBOX_AXES_2] = TOP_XBOX_AXES_2_cache;
+						message[TOP_XBOX_AXES_2][4] = TOP_XBOX_AXES_2_cache[4] = (byte)p.Value;
+						message[TOP_XBOX_AXES_2][5] = TOP_XBOX_AXES_2_cache[5] = (byte)(p.Value >> 8);
+						break;
 					case 100: //Set motors and coolingfan in auto or manual mode (turn them on or off)
 						if (!message.ContainsKey(TOP_POWR_CTRL))
 							message[TOP_POWR_CTRL] = TOP_POWR_CTRL_cache;
@@ -195,6 +207,24 @@ namespace Translator
 							message[TOP_REG_PARAM1] = TOP_REG_PARAM1_cache;
 						message[TOP_REG_PARAM1][4] = TOP_REG_PARAM1_cache[4] = (byte)p.Value;
 						message[TOP_REG_PARAM1][5] = TOP_REG_PARAM1_cache[5] = (byte)(p.Value >> 8);
+						break;
+					case 813: //regparam P (x10) Rot
+						if (!message.ContainsKey(TOP_REG_PARAM2))
+							message[TOP_REG_PARAM2] = TOP_REG_PARAM2_cache;
+						message[TOP_REG_PARAM2][0] = TOP_REG_PARAM2_cache[0] = (byte)p.Value;
+						message[TOP_REG_PARAM2][1] = TOP_REG_PARAM2_cache[1] = (byte)(p.Value >> 8);
+						break;
+					case 814: //regparam I (x10) Rot
+						if (!message.ContainsKey(TOP_REG_PARAM2))
+							message[TOP_REG_PARAM2] = TOP_REG_PARAM2_cache;
+						message[TOP_REG_PARAM2][2] = TOP_REG_PARAM2_cache[2] = (byte)p.Value;
+						message[TOP_REG_PARAM2][3] = TOP_REG_PARAM2_cache[3] = (byte)(p.Value >> 8);
+						break;
+					case 815: //regparam D (x10) Rot
+						if (!message.ContainsKey(TOP_REG_PARAM2))
+							message[TOP_REG_PARAM2] = TOP_REG_PARAM2_cache;
+						message[TOP_REG_PARAM2][4] = TOP_REG_PARAM2_cache[4] = (byte)p.Value;
+						message[TOP_REG_PARAM2][5] = TOP_REG_PARAM2_cache[5] = (byte)(p.Value >> 8);
 						break;
 					default: //unknown data should not be sendt
 						break;

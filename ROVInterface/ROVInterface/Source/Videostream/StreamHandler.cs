@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 class StreamHandler
 {
 	private static int STREAMNUM = 0; //Number of stream handlers constructed
+	private int streamID;
 
 	private string streamerIpAddress;
 	private int streamerPort;
@@ -28,13 +29,16 @@ class StreamHandler
 	/// <param name="port">On which port the stram is sendt</param>
 	public StreamHandler(string ipAddress, int port)
 	{
+		streamID = STREAMNUM;
+		STREAMNUM++;
+
 		pipeName = "pipe" + STREAMNUM;
 		pipe = new NamedPipeServerStream(pipeName);
 
 		streamerIpAddress = ipAddress;
 		streamerPort = port;
 
-		STREAMNUM++;
+		streamer = new TcpClient();
 	}
 
 	/// <summary>
@@ -46,38 +50,13 @@ class StreamHandler
 		return pipeName;
 	}
 
-	/// <summary>
-	/// write summary
-	/// </summary>
-	public void StartRaspividStream(int width, int height, int imageRotation)
-	{
-		string username = "pi";
-		string password = "";
-		streamerCMD = new SshClient(streamerIpAddress, username, password);
-		streamerCMD.Connect();
-
-		if (imageRotation < 0 || imageRotation > 359)
-			throw new ArgumentOutOfRangeException(imageRotation + " was not a valid input for imagreRotation, value should be from 0...359");
-
-		string command = "raspivid -o - -t 0";
-		command += " -w " + width;
-		command += " -h " + height;
-		command += " -rot " + imageRotation;
-		command += " -fps 25 | nc -l " + streamerPort; //+ " &";
-
-		System.Threading.Thread.Sleep(1000);
-		streamerCMD.RunCommand(command);
-		streamerCMD.Disconnect();
-	}
-
+	
 	//TEMP
-	public void StartRaspividStream2(int width, int height, int imageRotation)
+	public void StartRaspividStream(string sshUser, string sshPass, int width, int height, int imageRotation)
 	{
 		Action runCommand = () =>
 		{
-			string username = "pi";
-			string password = "";
-			SshClient client = new SshClient(streamerIpAddress, username, password);
+			SshClient client = new SshClient(streamerIpAddress, sshUser, sshPass);
 			try
 			{
 				client.Connect();
@@ -139,10 +118,9 @@ class StreamHandler
 	public void StartPiping()
 	{
 		pipe.WaitForConnection();
-		StreamWriter sw = new StreamWriter(pipe);
-		sw.AutoFlush = true;
+		StreamWriter streamWriter = new StreamWriter(pipe);
+		streamWriter.AutoFlush = true;
 
-		streamer = new TcpClient();
 		streamer.Connect(streamerIpAddress, streamerPort);
 		NetworkStream stream = streamer.GetStream();
 
@@ -150,9 +128,13 @@ class StreamHandler
 		byte[] bytes = new byte[streamer.ReceiveBufferSize];
 		while (streamer.Connected)
 		{
-			read = stream.Read(bytes, 0, streamer.ReceiveBufferSize);
-			if (read > 0)
-				pipe.Write(bytes, 0, read);
+			try
+			{
+				read = stream.Read(bytes, 0, streamer.ReceiveBufferSize);
+				if (read > 0)
+					pipe.Write(bytes, 0, read);
+			}
+			catch { }
 		}
 	}
 

@@ -499,6 +499,8 @@ public static class CommHandler
 	private static byte[] TOP_REG_PARAM1_cache = new byte[7];
 	private static byte[] TOP_REG_PARAM2_cache = new byte[6];
 	private static byte[] TOP_SENS_CTRL_cache = new byte[6];
+	private static byte[] TOP_XBOX_CTRLS_2_cache = new byte[8];
+	private static byte[] TOP_XBOX_AXES_2_cache = new byte[8];
 
 
 
@@ -583,6 +585,12 @@ public static class CommHandler
 					if (!message.ContainsKey(TOP_SENS_CTRL))
 						message[TOP_SENS_CTRL] = TOP_SENS_CTRL_cache;
 					message[TOP_SENS_CTRL][1] = TOP_SENS_CTRL_cache[1] = (byte)p.Value;
+					break;
+				case 99: //TEMP control arm, close, open, rotate
+					if (!message.ContainsKey(TOP_XBOX_AXES_2))
+						message[TOP_XBOX_AXES_2] = TOP_XBOX_AXES_2_cache;
+					message[TOP_XBOX_AXES_2][4] = TOP_XBOX_AXES_2_cache[4] = (byte)p.Value;
+					message[TOP_XBOX_AXES_2][5] = TOP_XBOX_AXES_2_cache[5] = (byte)(p.Value >> 8);
 					break;
 				case 100: //Set motors and coolingfan in auto or manual mode (turn them on or off)
 					if (!message.ContainsKey(TOP_POWR_CTRL))
@@ -783,9 +791,9 @@ public static class CommHandler
 				message.Add(new KeyValuePair<int, int>(108, (sbyte)data[7]));
 				break;
 			case SENSOR_DEPTH_SETPOINT: // [mm]
-				int depth_SP;
+				Int16 depth_SP;
 				depth_SP = data[0];
-				depth_SP |= data[1] << 8;
+				depth_SP |= (Int16)(data[1] << 8);
 				message.Add(new KeyValuePair<int, int>(801, depth_SP));
 				break;
 			/*
