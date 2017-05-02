@@ -132,6 +132,8 @@ public class JoystickSettings
 		private TextBox c_outValue;
 
 		//Settings
+		public int index;		//index of the command to control with the axis
+
 		public int joystick;	//index of the selected joystick
 		public int axis;        //index of the selected axis
 
@@ -289,6 +291,8 @@ public class JoystickSettings
 		{
 			try
 			{
+				index = (int)c_index.Value;
+
 				joystick = c_joystick.SelectedIndex;
 				axis = c_axis.SelectedIndex;
 
@@ -386,6 +390,23 @@ public class JoystickSettings
 			c_deadband.Value = deadband;
 			c_offset.Value = offset;
 			c_max.Value = max;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="index"></param>
+		/// <param name="joystickIndex"></param>
+		/// <param name="axisIndex"></param>
+		/// <param name="reverse">true when reversed</param>
+		/// <param name="expo">1,0...3,0</param>
+		/// <param name="deadband">0...100</param>
+		/// <param name="offset">0...100</param>
+		/// <param name="max">0...100</param>
+		public void SetSettings(int index, int joystickIndex, int axisIndex, bool reverse, decimal expo, int deadband, int offset, int max)
+		{
+			SetSettings(joystickIndex, axisIndex, reverse, expo, deadband, offset, max);
+			this.index = index;
 		}
 
 		/// <summary>
@@ -669,6 +690,38 @@ public class JoystickSettings
 
 			//page.Controls.Add(c_container);
 			window.flp_joysticksetting_buttons.Controls.Add(c_container);
+		}
+
+		/// <summary>
+		/// Set settings on startup
+		/// </summary>
+		/// <param name="index"></param>
+		/// <param name="bitnr"></param>
+		/// <param name="joystick_idx"></param>
+		/// <param name="button_idx"></param>
+		/// <param name="toggle_push"></param>
+		/// <param name="offValue"></param>
+		/// <param name="onValue"></param>
+		public void SetSetting(int index, int bitnr, int joystick_idx, int button_idx, bool toggle_push, int offValue, int onValue)
+		{
+			c_index.Value = index;
+			c_bitnr.Value = bitnr;
+
+			try
+			{
+				c_joystick.SelectedIndex = joystick_idx;
+			}
+			catch
+			{
+				c_joystick.SelectedIndex = -1;
+			}
+			c_button.Value = button_idx;
+
+			c_toggle.Checked = toggle_push;
+			c_push.Checked = !toggle_push;
+
+			c_offValue.Value = offValue;
+			c_onValue.Value = onValue;
 		}
 
 		/// <summary>

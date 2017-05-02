@@ -59,7 +59,11 @@ class StreamHandler
 			SshClient client = new SshClient(streamerIpAddress, sshUser, sshPass);
 			try
 			{
-				client.Connect();
+				try
+				{
+					client.Connect();
+				}
+				catch { }
 
 				string command = "raspivid -o - -t 0";
 				command += " -w " + width;

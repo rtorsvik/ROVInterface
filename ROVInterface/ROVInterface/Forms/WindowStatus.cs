@@ -387,7 +387,7 @@ public partial class WindowStatus : Form
 	{
 		AegirMessageRequest.RunWorkerAsync();
 
-		tim_SendCommandsDelay.Interval = (int)(1000 / (float)nud_comm_transfreq.Value);
+		tim_SendCommandsDelay.Interval = (int)nud_comm_transfreq.Value;
 
 		if (tim_SendCommandsDelay.Enabled)
 		{
@@ -403,7 +403,7 @@ public partial class WindowStatus : Form
 			tim_SendCommandsDelay.Enabled = true;
 			tim_heartBeat.Enabled = true;
 			btn_startTransmission.BackColor = System.Drawing.Color.SpringGreen;
-			//tim_SendCommandsDelay.Start();
+			tim_SendCommandsDelay.Start();
 		}
 	}
 
@@ -861,6 +861,7 @@ public partial class WindowStatus : Form
 			}
 		}
 		*/
+		
 	}
 
 	// Function to open the edit indexes for the graphic tab
@@ -1032,11 +1033,6 @@ public partial class WindowStatus : Form
 		CommHandler.InitDllImport();
 	}
 
-    private void btn_LoadSettings_Click(object sender, EventArgs e) {
-        if (ProgramSaverLoader.Reload())
-            Program.errors.Add("succ");
-    }
-
 	private void AegirMessageRequest_DoWork(object sender, DoWorkEventArgs e)
 	{
 		//TEMP request values from Ægir
@@ -1127,5 +1123,11 @@ public partial class WindowStatus : Form
 	private void nud_puls_interval_ValueChanged(object sender, EventArgs e)
 	{
 		tim_puls.Interval = (int)nud_puls_on.Value;
+	}
+
+	private void btn_graphicsloaded_Click(object sender, EventArgs e)
+	{
+		graphicsCreator.Prototype.path = txtbox_graphicsloaded.Text;
+		graphicsCreator.Prototype.LoadImage();
 	}
 }

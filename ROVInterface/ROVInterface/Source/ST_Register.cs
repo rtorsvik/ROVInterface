@@ -20,12 +20,13 @@ public static class ST_Register {
 		commands = new ST_Array(new ST_Array());
 		stopwatch = new Stopwatch();
 		bgworker = new BackgroundWorker();
-		bgworker.DoWork += _bgrSendCommands;
+		bgworker.DoWork += new DoWorkEventHandler(_bgrSendCommands);
 	}
 
 	public static void SendCommands(object sender, EventArgs e) {
 		Program.windowStatus.tim_SendCommandsDelay.Stop();
-		bgworker.RunWorkerAsync();
+		//bgworker.RunWorkerAsync();
+		_bgrSendCommands(null, null);
 	}
 
 	private static void _bgrSendCommands(object sender, DoWorkEventArgs e) {

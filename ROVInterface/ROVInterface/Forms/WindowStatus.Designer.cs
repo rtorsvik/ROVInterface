@@ -189,6 +189,13 @@
 			this.btn_MenuDeleteControl = new System.Windows.Forms.ToolStripMenuItem();
 			this.AegirMessageRequest = new System.ComponentModel.BackgroundWorker();
 			this.tim_puls = new System.Windows.Forms.Timer(this.components);
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.lab_DLLimported = new System.Windows.Forms.Label();
+			this.lab_GraphicsLoaded = new System.Windows.Forms.Label();
+			this.btn_loaddll = new System.Windows.Forms.Button();
+			this.btn_graphicsloaded = new System.Windows.Forms.Button();
+			this.txtbox_dllimported = new System.Windows.Forms.TextBox();
+			this.txtbox_graphicsloaded = new System.Windows.Forms.TextBox();
 			this.aGauge2 = new AGaugeApp.AGauge();
 			this.aGauge1 = new AGaugeApp.AGauge();
 			this.ali_navigation_depth_instrument = new Avionics.AltimeterInstrumentControl();
@@ -250,6 +257,7 @@
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
 			this.rightclickMenu.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -394,102 +402,102 @@
             0,
             0,
             0});
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(1150, 379);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(152, 23);
-            this.textBox4.TabIndex = 11;
-            this.textBox4.Text = "Depth";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(1150, 154);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(152, 23);
-            this.textBox3.TabIndex = 10;
-            this.textBox3.Text = "Height";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(639, 3);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(127, 23);
-            this.textBox2.TabIndex = 9;
-            this.textBox2.Text = "Heading";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(583, 170);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(237, 23);
-            this.textBox1.TabIndex = 8;
-            this.textBox1.Text = "Attitude";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabPage2.Controls.Add(this.pan_graphicsCreator);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(1392, 600);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Robot status";
-            // 
-            // pan_graphicsCreator
-            // 
-            this.pan_graphicsCreator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.pan_graphicsCreator.Controls.Add(this.groupBox12);
-            this.pan_graphicsCreator.Controls.Add(this.groupBox11);
-            this.pan_graphicsCreator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pan_graphicsCreator.Location = new System.Drawing.Point(3, 2);
-            this.pan_graphicsCreator.Name = "pan_graphicsCreator";
-            this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
-            this.pan_graphicsCreator.TabIndex = 0;
-            this.pan_graphicsCreator.Paint += new System.Windows.Forms.PaintEventHandler(this.pan_graphicsCreator_Paint);
-            this.pan_graphicsCreator.DoubleClick += new System.EventHandler(this.pan_graphicsCreator_DoubleClick);
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.pan_graphicToolbox);
-            this.groupBox12.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.groupBox12.Location = new System.Drawing.Point(826, 3);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(200, 590);
-            this.groupBox12.TabIndex = 2;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Toolbox";
-            // 
-            // pan_graphicToolbox
-            // 
-            this.pan_graphicToolbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pan_graphicToolbox.Location = new System.Drawing.Point(3, 19);
-            this.pan_graphicToolbox.Name = "pan_graphicToolbox";
-            this.pan_graphicToolbox.Size = new System.Drawing.Size(194, 568);
-            this.pan_graphicToolbox.TabIndex = 0;
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			// 
+			// textBox4
+			// 
+			this.textBox4.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox4.Location = new System.Drawing.Point(1150, 379);
+			this.textBox4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(152, 23);
+			this.textBox4.TabIndex = 11;
+			this.textBox4.Text = "Depth";
+			this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// textBox3
+			// 
+			this.textBox3.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox3.Location = new System.Drawing.Point(1150, 154);
+			this.textBox3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+			this.textBox3.Name = "textBox3";
+			this.textBox3.Size = new System.Drawing.Size(152, 23);
+			this.textBox3.TabIndex = 10;
+			this.textBox3.Text = "Height";
+			this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// textBox2
+			// 
+			this.textBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox2.Location = new System.Drawing.Point(639, 3);
+			this.textBox2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+			this.textBox2.Name = "textBox2";
+			this.textBox2.Size = new System.Drawing.Size(127, 23);
+			this.textBox2.TabIndex = 9;
+			this.textBox2.Text = "Heading";
+			this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// textBox1
+			// 
+			this.textBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox1.Location = new System.Drawing.Point(583, 170);
+			this.textBox1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(237, 23);
+			this.textBox1.TabIndex = 8;
+			this.textBox1.Text = "Attitude";
+			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.tabPage2.Controls.Add(this.pan_graphicsCreator);
+			this.tabPage2.Location = new System.Drawing.Point(4, 25);
+			this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.tabPage2.Size = new System.Drawing.Size(1392, 600);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "Robot status";
+			// 
+			// pan_graphicsCreator
+			// 
+			this.pan_graphicsCreator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+			this.pan_graphicsCreator.Controls.Add(this.groupBox12);
+			this.pan_graphicsCreator.Controls.Add(this.groupBox11);
+			this.pan_graphicsCreator.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pan_graphicsCreator.Location = new System.Drawing.Point(3, 2);
+			this.pan_graphicsCreator.Name = "pan_graphicsCreator";
+			this.pan_graphicsCreator.Size = new System.Drawing.Size(1386, 596);
+			this.pan_graphicsCreator.TabIndex = 0;
+			this.pan_graphicsCreator.Paint += new System.Windows.Forms.PaintEventHandler(this.pan_graphicsCreator_Paint);
+			this.pan_graphicsCreator.DoubleClick += new System.EventHandler(this.pan_graphicsCreator_DoubleClick);
+			// 
+			// groupBox12
+			// 
+			this.groupBox12.Controls.Add(this.pan_graphicToolbox);
+			this.groupBox12.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+			this.groupBox12.Location = new System.Drawing.Point(826, 3);
+			this.groupBox12.Name = "groupBox12";
+			this.groupBox12.Size = new System.Drawing.Size(200, 590);
+			this.groupBox12.TabIndex = 2;
+			this.groupBox12.TabStop = false;
+			this.groupBox12.Text = "Toolbox";
+			// 
+			// pan_graphicToolbox
+			// 
+			this.pan_graphicToolbox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pan_graphicToolbox.Location = new System.Drawing.Point(3, 19);
+			this.pan_graphicToolbox.Name = "pan_graphicToolbox";
+			this.pan_graphicToolbox.Size = new System.Drawing.Size(194, 568);
+			this.pan_graphicToolbox.TabIndex = 0;
+			// 
+			// groupBox11
+			// 
+			this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox11.Controls.Add(this.label44);
 			this.groupBox11.Controls.Add(this.nud_aegir_zerodepth);
@@ -2002,8 +2010,7 @@
 			// tabPage6
 			// 
 			this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-			this.tabPage6.Controls.Add(this.btn_LoadSettings);
-			this.tabPage6.Controls.Add(this.btn_ExportSettings);
+			this.tabPage6.Controls.Add(this.panel1);
 			this.tabPage6.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.tabPage6.Location = new System.Drawing.Point(4, 25);
 			this.tabPage6.Name = "tabPage6";
@@ -2013,9 +2020,9 @@
 			// 
 			// btn_LoadSettings
 			// 
-			this.btn_LoadSettings.Location = new System.Drawing.Point(166, 49);
+			this.btn_LoadSettings.Location = new System.Drawing.Point(13, 13);
 			this.btn_LoadSettings.Name = "btn_LoadSettings";
-			this.btn_LoadSettings.Size = new System.Drawing.Size(75, 23);
+			this.btn_LoadSettings.Size = new System.Drawing.Size(147, 37);
 			this.btn_LoadSettings.TabIndex = 1;
 			this.btn_LoadSettings.Text = "Load Settings";
 			this.btn_LoadSettings.UseVisualStyleBackColor = true;
@@ -2023,13 +2030,12 @@
 			// 
 			// btn_ExportSettings
 			// 
-			this.btn_ExportSettings.Location = new System.Drawing.Point(85, 49);
+			this.btn_ExportSettings.Location = new System.Drawing.Point(13, 56);
 			this.btn_ExportSettings.Name = "btn_ExportSettings";
-			this.btn_ExportSettings.Size = new System.Drawing.Size(75, 23);
+			this.btn_ExportSettings.Size = new System.Drawing.Size(147, 37);
 			this.btn_ExportSettings.TabIndex = 0;
 			this.btn_ExportSettings.Text = "Export Settings";
 			this.btn_ExportSettings.UseVisualStyleBackColor = true;
-			this.btn_ExportSettings.Click += new System.EventHandler(this.btn_ExportSettings_Click);
 			// 
 			// tim_10ms_update
 			// 
@@ -2242,6 +2248,72 @@
 			// tim_puls
 			// 
 			this.tim_puls.Tick += new System.EventHandler(this.tim_puls_Tick);
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.txtbox_graphicsloaded);
+			this.panel1.Controls.Add(this.txtbox_dllimported);
+			this.panel1.Controls.Add(this.btn_graphicsloaded);
+			this.panel1.Controls.Add(this.btn_loaddll);
+			this.panel1.Controls.Add(this.lab_GraphicsLoaded);
+			this.panel1.Controls.Add(this.lab_DLLimported);
+			this.panel1.Controls.Add(this.btn_LoadSettings);
+			this.panel1.Controls.Add(this.btn_ExportSettings);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel1.Location = new System.Drawing.Point(0, 0);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(1392, 600);
+			this.panel1.TabIndex = 2;
+			// 
+			// lab_DLLimported
+			// 
+			this.lab_DLLimported.AutoSize = true;
+			this.lab_DLLimported.Location = new System.Drawing.Point(10, 152);
+			this.lab_DLLimported.Name = "lab_DLLimported";
+			this.lab_DLLimported.Size = new System.Drawing.Size(152, 17);
+			this.lab_DLLimported.TabIndex = 2;
+			this.lab_DLLimported.Text = "DLL imported: <name>";
+			// 
+			// lab_GraphicsLoaded
+			// 
+			this.lab_GraphicsLoaded.AutoSize = true;
+			this.lab_GraphicsLoaded.Location = new System.Drawing.Point(10, 222);
+			this.lab_GraphicsLoaded.Name = "lab_GraphicsLoaded";
+			this.lab_GraphicsLoaded.Size = new System.Drawing.Size(171, 17);
+			this.lab_GraphicsLoaded.TabIndex = 3;
+			this.lab_GraphicsLoaded.Text = "Graphics loaded: <name>";
+			// 
+			// btn_loaddll
+			// 
+			this.btn_loaddll.Location = new System.Drawing.Point(269, 126);
+			this.btn_loaddll.Name = "btn_loaddll";
+			this.btn_loaddll.Size = new System.Drawing.Size(75, 23);
+			this.btn_loaddll.TabIndex = 4;
+			this.btn_loaddll.Text = "load";
+			this.btn_loaddll.UseVisualStyleBackColor = true;
+			// 
+			// btn_graphicsloaded
+			// 
+			this.btn_graphicsloaded.Location = new System.Drawing.Point(269, 196);
+			this.btn_graphicsloaded.Name = "btn_graphicsloaded";
+			this.btn_graphicsloaded.Size = new System.Drawing.Size(75, 23);
+			this.btn_graphicsloaded.TabIndex = 5;
+			this.btn_graphicsloaded.Text = "load";
+			this.btn_graphicsloaded.UseVisualStyleBackColor = true;
+			// 
+			// txtbox_dllimported
+			// 
+			this.txtbox_dllimported.Location = new System.Drawing.Point(13, 126);
+			this.txtbox_dllimported.Name = "txtbox_dllimported";
+			this.txtbox_dllimported.Size = new System.Drawing.Size(250, 23);
+			this.txtbox_dllimported.TabIndex = 6;
+			// 
+			// txtbox_graphicsloaded
+			// 
+			this.txtbox_graphicsloaded.Location = new System.Drawing.Point(13, 196);
+			this.txtbox_graphicsloaded.Name = "txtbox_graphicsloaded";
+			this.txtbox_graphicsloaded.Size = new System.Drawing.Size(250, 23);
+			this.txtbox_graphicsloaded.TabIndex = 7;
 			// 
 			// aGauge2
 			// 
@@ -2588,6 +2660,8 @@
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.rightclickMenu.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2763,4 +2837,11 @@
 	private System.Windows.Forms.Label label45;
 	public System.Windows.Forms.FlowLayoutPanel flp_joysticksetting_axis;
 	public System.Windows.Forms.FlowLayoutPanel flp_joysticksetting_buttons;
+	private System.Windows.Forms.Panel panel1;
+	private System.Windows.Forms.Button btn_graphicsloaded;
+	private System.Windows.Forms.Button btn_loaddll;
+	public System.Windows.Forms.Label lab_GraphicsLoaded;
+	public System.Windows.Forms.Label lab_DLLimported;
+	public System.Windows.Forms.TextBox txtbox_graphicsloaded;
+	public System.Windows.Forms.TextBox txtbox_dllimported;
 }
