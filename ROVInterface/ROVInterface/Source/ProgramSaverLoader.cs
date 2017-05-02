@@ -693,9 +693,12 @@ public static class ProgramSaverLoader {
 			cur_joystickSetting = null;
 			cur_indexSetting = null;
 
-			joystickSettings.Clear();
-			indexSettings.Clear();
-			indexStats.Clear();
+			if (joystickSettings != null)
+				joystickSettings.Clear();
+			if (indexSettings != null)
+				indexSettings.Clear();
+			if (indexStats != null)
+				indexStats.Clear();
 			joystickSettings = null;
 			indexSettings = null;
 			indexStats = null;
@@ -848,8 +851,8 @@ public static class ProgramSaverLoader {
 
 			private bool waitforval = false;
 			private int readindex = 0;
-			private static readonly string[] req = { "<jindex>", "</jindex>", "<aindex>", "</aindex>", "<reverse>", "</reverse>", "<expo>", "</expo>",
-											  "<deadband>", "</deadband>", "<offset>", "</offset>", "<max>", "</max>", "<index>", "</index>"};
+			private static readonly string[] req = { "<index>", "</index>", "<jindex>", "</jindex>", "<aindex>", "</aindex>", "<reverse>", "</reverse>", "<expo>", "</expo>",
+											  "<deadband>", "</deadband>", "<offset>", "</offset>", "<max>", "</max>"};
 
 			public string NextData() {
 				if (readindex == req.Length)
@@ -870,14 +873,15 @@ public static class ProgramSaverLoader {
 				}
 
 				switch (readindex) {
-					case 1: jindex = int.Parse(s); break;
-					case 3: aindex = int.Parse(s); break;
-					case 5: reverse = bool.Parse(s); break;
-					case 7: expo = decimal.Parse(s.Replace(',', '.')); break;
-					case 9: deadband = decimal.Parse(s.Replace(',', '.')); break;
-					case 11: offset = decimal.Parse(s.Replace(',', '.')); break;
-					case 13: max = decimal.Parse(s.Replace(',', '.')); break;
-					case 15: index = int.Parse(s); break;
+					case 1: index = int.Parse(s); break;
+					case 3: jindex = int.Parse(s); break;
+					case 5: aindex = int.Parse(s); break;
+					case 7: reverse = bool.Parse(s); break;
+					case 9: expo = decimal.Parse(s.Replace(',', '.')); break;
+					case 11: deadband = decimal.Parse(s.Replace(',', '.')); break;
+					case 13: offset = decimal.Parse(s.Replace(',', '.')); break;
+					case 15: max = decimal.Parse(s.Replace(',', '.')); break;
+					
 				}
 			}
 		}
