@@ -349,7 +349,7 @@ public static class ProgramSaverLoader {
             JoystickSettings.AxisSetting[] axiss = js.axisSetting;
             for (int i = 0, j = dataHolder.joystickSettings.Count; i < j; i++) {
                 DataHolder.joystickSettings_Setting d = dataHolder.joystickSettings[i];
-                axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, (decimal)d.expo, d.deadband, d.offset, d.max);
+                axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, d.expo, d.deadband, d.offset, d.max);
             }
         } else
             Program.errors.Add("Failed to load <JoystickSettings>");
@@ -837,10 +837,10 @@ public static class ProgramSaverLoader {
 			public int jindex;
 			public int aindex;
 			public bool reverse;
-			public float expo;
-			public int deadband;
-			public int offset;
-			public int max;
+			public decimal expo;
+			public decimal deadband;
+			public decimal offset;
+			public decimal max;
 
 			private bool waitforval = false;
 			private int readindex = 0;
@@ -869,10 +869,10 @@ public static class ProgramSaverLoader {
 					case 1: jindex = int.Parse(s); break;
 					case 3: aindex = int.Parse(s); break;
 					case 5: reverse = bool.Parse(s); break;
-					case 7: expo = float.Parse(s); break;
-					case 9: deadband = int.Parse(s); break;
-					case 11: offset = int.Parse(s); break;
-					case 13: max = int.Parse(s); break;
+					case 7: expo = decimal.Parse(s.Replace(',', '.')); break;
+					case 9: deadband = decimal.Parse(s.Replace(',', '.')); break;
+					case 11: offset = decimal.Parse(s.Replace(',', '.')); break;
+					case 13: max = decimal.Parse(s.Replace(',', '.')); break;
 				}
 			}
 		}
