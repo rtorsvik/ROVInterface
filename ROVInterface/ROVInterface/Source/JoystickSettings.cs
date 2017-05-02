@@ -513,7 +513,7 @@ public class JoystickSettings
 		public void UpdateGraph(object sender, EventArgs e)
 		{
 			Update();
-			Program.windowStatus.DrawGraph(deadband, offset, max, expo, reverse);
+			Program.windowStatus.DrawGraph((int)deadband, (int)offset, (int)max, expo, reverse);
 		}
 
 		/// <summary>
