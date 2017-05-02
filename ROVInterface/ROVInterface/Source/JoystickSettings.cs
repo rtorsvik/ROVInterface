@@ -25,8 +25,8 @@ public class JoystickSettings
 	public int[] prevOutA = new int[12];
 
 	public ButtonSetting[] buttonSetting;
-	public string[] buttonLabels = new string[15] { "Arm motors", "pitch", "pitch", "roll", "roll", "grab", "release", "rot cw", "rot ccw", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>" };
-	public bool[] prevOutB = new bool[15];
+	public string[] buttonLabels = new string[16] { "Arm motors", "man/auto", "pitch", "pitch", "roll", "roll", "grab", "release", "rot cw", "rot ccw", "grab 2", "release 2", "rot cw 2", "rot ccw 2", "heave up", "heave down" };
+	public bool[] prevOutB = new bool[16];
 
 
 
@@ -141,9 +141,9 @@ public class JoystickSettings
 
 		public bool reverse;    //outValue reversed when true
 		public float expo;		//curvature of outValue
-		public int deadband;	//how much does inValue have to travel from midpoint before outValue starts to change [%]
-		public int offset;      //offset, at which value does outValue start when inValue exceeds deadband [%]
-		public int max;         //maximum value of output [%]
+		public float deadband;	//how much does inValue have to travel from midpoint before outValue starts to change [%]
+		public float offset;      //offset, at which value does outValue start when inValue exceeds deadband [%]
+		public float max;         //maximum value of output [%]
 		public int trim;         //maximum value of output [%]
 
 		public int outValue;	//calculated output value  
@@ -200,19 +200,21 @@ public class JoystickSettings
 			c_expo.DecimalPlaces = 1;
 			c_expo.Increment = 0.1m;
 			c_expo.Minimum = 1;
-			c_expo.Maximum = 3;
+			c_expo.Maximum = 5;
 			c_expo.Size = new System.Drawing.Size(40, 22);
 			c_expo.Margin = new Padding(8, 3, 8, 3);
 			c_expo.ValueChanged += this.UpdateGraph;
 
 			c_deadband = new NumericUpDown();
 			c_deadband.Maximum = 100;
+			c_deadband.Increment = 0.1m;
 			c_deadband.Size = new System.Drawing.Size(50, 22);
 			c_deadband.Margin = new Padding(8, 3, 8, 3);
 			c_deadband.ValueChanged += this.UpdateGraph;
 
 			c_offset = new NumericUpDown();
 			c_offset.Maximum = 100;
+			c_offset.Increment = 0.1m;
 			c_offset.Size = new System.Drawing.Size(50, 22);
 			c_offset.Margin = new Padding(8, 3, 8, 3);
 			c_offset.ValueChanged += this.UpdateGraph;
@@ -220,6 +222,7 @@ public class JoystickSettings
 			c_max = new NumericUpDown();
 			c_max.Value = 100;
 			c_max.Maximum = 100;
+			c_max.Increment = 0.1m;
 			c_max.Size = new System.Drawing.Size(50, 22);
 			c_max.Margin = new Padding(8, 3, 8, 3);
 			c_max.ValueChanged += this.UpdateGraph;
@@ -374,7 +377,7 @@ public class JoystickSettings
 		/// <param name="deadband">0...100</param>
 		/// <param name="offset">0...100</param>
 		/// <param name="max">0...100</param>
-		public void SetSettings(int joystickIndex, int axisIndex, bool reverse, decimal expo, int deadband, int offset, int max)
+		public void SetSettings(int joystickIndex, int axisIndex, bool reverse, decimal expo, decimal deadband, decimal offset, decimal max)
 		{
 			try {
 				c_joystick.SelectedIndex = joystickIndex;
@@ -403,7 +406,7 @@ public class JoystickSettings
 		/// <param name="deadband">0...100</param>
 		/// <param name="offset">0...100</param>
 		/// <param name="max">0...100</param>
-		public void SetSettings(int index, int joystickIndex, int axisIndex, bool reverse, decimal expo, int deadband, int offset, int max)
+		public void SetSettings(int index, int joystickIndex, int axisIndex, bool reverse, decimal expo, decimal deadband, decimal offset, decimal max)
 		{
 			SetSettings(joystickIndex, axisIndex, reverse, expo, deadband, offset, max);
 			this.index = index;
