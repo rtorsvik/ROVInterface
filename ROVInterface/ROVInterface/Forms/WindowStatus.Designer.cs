@@ -2291,6 +2291,7 @@
 			this.btn_loaddll.TabIndex = 4;
 			this.btn_loaddll.Text = "load";
 			this.btn_loaddll.UseVisualStyleBackColor = true;
+			this.btn_loaddll.Click += new System.EventHandler(this.btn_loaddll_Click);
 			// 
 			// btn_graphicsloaded
 			// 

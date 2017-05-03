@@ -1,17 +1,17 @@
 <Settings>
 	<General>
-		<DllPath></DllPath>
-		<GraphicPath></GraphicPath>
+		<DllPath>Translator.dll</DllPath>
+		<GraphicPath>Aegir.png</GraphicPath>
 	</General>
 	<JoystickSettings>
 		<Setting>
-			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<index>0</index><jindex>-1</jindex><aindex>22</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>2</max>
 		</Setting>
 		<Setting>
-			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<index>0</index><jindex>-1</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>2</max>
 		</Setting>
 		<Setting>
-			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+			<index>0</index><jindex>-1</jindex><aindex>14</aindex><reverse>True</reverse><expo>5</expo><deadband>0</deadband><offset>0</offset><max>2</max>
 		</Setting>
 		<Setting>
 			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
@@ -24,8 +24,48 @@
 		</Setting>
 	</JoystickSettings>
 	<IndexSettings>
+		<Setting>
+			<index>0</index><name>live</name><digit>2</digit><size>13</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>37</index><name>heading</name><digit>2</digit><size>13</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>52</index><name>depth</name><digit>0</digit><size>18</size><color>-16711681</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>mm</suffix>
+		</Setting>
+		<Setting>
+			<index>54</index><name></name><digit>2</digit><size>13</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>62</index><name></name><digit>2</digit><size>13</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>64</index><name></name><digit>2</digit><size>12</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>501</index><name>POD temp</name><digit>2</digit><size>23</size><color>-65536</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix>°C</suffix>
+		</Setting>
+		<Setting>
+			<index>502</index><name>Water temp</name><digit>2</digit><size>23</size><color>-16744193</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>503</index><name>DCDC temp</name><digit>2</digit><size>23</size><color>-65408</color><raw>0</raw><scaled>0</scaled><raw>10000</raw><scaled>100</scaled><suffix></suffix>
+		</Setting>
+		<Setting>
+			<index>801</index><name>depth SP</name><digit>0</digit><size>18</size><color>-16711681</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix>mm</suffix>
+		</Setting>
 	</IndexSettings>
 	<IndexStats>
+		<Stats>0</Stats>
+		<Stats>37</Stats>
+		<Stats>52</Stats>
+		<Stats>54</Stats>
+		<Stats>62</Stats>
+		<Stats>64</Stats>
+		<Stats>501</Stats>
+		<Stats>502</Stats>
+		<Stats>503</Stats>
+		<Stats>801</Stats>
 	</IndexStats>
 	<GraphicSettings>
 	</GraphicSettings>
