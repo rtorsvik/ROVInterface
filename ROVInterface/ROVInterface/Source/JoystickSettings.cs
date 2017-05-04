@@ -379,8 +379,10 @@ public class JoystickSettings
 		/// <param name="deadband">0...100</param>
 		/// <param name="offset">0...100</param>
 		/// <param name="max">0...100</param>
-		public void SetSettings(int joystickIndex, int axisIndex, bool reverse, decimal expo, decimal deadband, decimal offset, decimal max)
+		public void SetSettings(int index, int joystickIndex, int axisIndex, bool reverse, decimal expo, decimal deadband, decimal offset, decimal max)
 		{
+			c_index.Value = index;
+
 			try {
 				c_joystick.SelectedIndex = joystickIndex;
 			} catch {
@@ -395,23 +397,6 @@ public class JoystickSettings
 			c_deadband.Value = deadband;
 			c_offset.Value = offset;
 			c_max.Value = max;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="index"></param>
-		/// <param name="joystickIndex"></param>
-		/// <param name="axisIndex"></param>
-		/// <param name="reverse">true when reversed</param>
-		/// <param name="expo">1,0...3,0</param>
-		/// <param name="deadband">0...100</param>
-		/// <param name="offset">0...100</param>
-		/// <param name="max">0...100</param>
-		public void SetSettings(int index, int joystickIndex, int axisIndex, bool reverse, decimal expo, decimal deadband, decimal offset, decimal max)
-		{
-			SetSettings(joystickIndex, axisIndex, reverse, expo, deadband, offset, max);
-			this.index = index;
 		}
 
 		/// <summary>
@@ -744,16 +729,16 @@ public class JoystickSettings
 				joystick_idx = c_joystick.SelectedIndex;
 				button_idx = (int)c_button.Value;
 
+				toggle_push = c_toggle.Checked;
+
+				offValue = (int)c_offValue.Value;
+				onValue = (int)c_onValue.Value;
+
 				if (joystick_idx == -1 || button_idx == -1)
 					return;
 
 				inValue = jh.joystick[joystick_idx].button[button_idx];
 				c_inValue.Checked = inValue;
-
-				toggle_push = c_toggle.Checked;
-
-				offValue = (int)c_offValue.Value;
-				onValue = (int)c_onValue.Value;
 
 				if (toggle_push)
 				{

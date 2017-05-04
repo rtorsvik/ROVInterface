@@ -5,13 +5,31 @@
 	</General>
 	<JoystickSettings>
 		<Setting>
-			<index>0</index><jindex>-1</jindex><aindex>22</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>2</max>
+			<index>3</index><jindex>0</jindex><aindex>21</aindex><reverse>False</reverse><expo>2,8</expo><deadband>9,2</deadband><offset>0,7</offset><max>1,2</max>
 		</Setting>
 		<Setting>
-			<index>0</index><jindex>-1</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>10</deadband><offset>0</offset><max>2</max>
+			<index>0</index><jindex>0</jindex><aindex>12</aindex><reverse>False</reverse><expo>2,6</expo><deadband>8,2</deadband><offset>0</offset><max>2,3</max>
 		</Setting>
 		<Setting>
-			<index>0</index><jindex>-1</jindex><aindex>14</aindex><reverse>True</reverse><expo>5</expo><deadband>0</deadband><offset>0</offset><max>2</max>
+			<index>2</index><jindex>-1</jindex><aindex>14</aindex><reverse>True</reverse><expo>4,7</expo><deadband>0</deadband><offset>0,3</offset><max>2</max>
+		</Setting>
+		<Setting>
+			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+		</Setting>
+		<Setting>
+			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+		</Setting>
+		<Setting>
+			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+		</Setting>
+		<Setting>
+			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+		</Setting>
+		<Setting>
+			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
+		</Setting>
+		<Setting>
+			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 		<Setting>
 			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
@@ -23,7 +41,56 @@
 			<index>0</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>1</expo><deadband>0</deadband><offset>0</offset><max>100</max>
 		</Setting>
 	</JoystickSettings>
-	<IndexSettings>
+	<JoystickButtonSettings>
+		<Setting>
+			<index>1</index><bitnr>0</bitnr><jindex>0</jindex><bindex>2</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>1</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>True</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>1</bindex><togglepush>True</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>1</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>2</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+		<Setting>
+			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+		</Setting>
+	</JoystickButtonSettings>	<IndexSettings>
 		<Setting>
 			<index>0</index><name>live</name><digit>2</digit><size>13</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>

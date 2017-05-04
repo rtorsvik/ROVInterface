@@ -101,6 +101,9 @@ public static class ProgramSaverLoader {
 						case "<JoystickSettings>":
 							pos = LoadPosition.JoystickSettings;
 							break;
+						case "<JoystickButtonSettings>":
+							pos = LoadPosition.JoystickButtonSettings;
+							break;
 						case "<IndexSettings>":
 							pos = LoadPosition.IndexSettings;
 							break;
@@ -121,14 +124,6 @@ public static class ProgramSaverLoader {
 						default:
 							pos = LoadPosition.GraphicSettings;
 							dataHolder.cur_graphicSetting = new DataHolder.graphics_Object();
-
-							/*if (string.Compare(next, 0, "<GraphicSettings img=\"", 0, 22) == 0 && next[next.Length - 1] == '>' && next[next.Length - 2] == '"') { // If start with that string, and ends with '">'
-								dataHolder.cur_graphicSetting.image = next.Substring(22, next.Length - 24);
-							} else {
-								dataHolder.cur_graphicSetting = null;
-								pos = FindNextAfterError(next, out fin);
-							}*/
-
 							break;
 					}
 					break;
@@ -203,6 +198,46 @@ public static class ProgramSaverLoader {
 						// If a tag is needed to be compared
 						if (sj != next) {
 							dataHolder.joystickSettings = null;
+							pos = FindNextAfterError(next, out fin);
+						}
+					}
+					break;
+				case LoadPosition.JoystickButtonSettings:
+					switch (next)
+					{
+						case "</JoystickButtonSettings>":
+							pos = LoadPosition.Settings;
+							break;
+						case "<Setting>":
+							pos = LoadPosition.JoystickButtonSettingsChild;
+							dataHolder.cur_joystickButtonSetting = new DataHolder.joystickButtonSettings_Setting();
+							break;
+						default:
+							dataHolder.joystickButtonSettings = null;
+							pos = FindNextAfterError(next, out fin);
+							break;
+					}
+					break;
+				case LoadPosition.JoystickButtonSettingsChild:
+					string sb = dataHolder.cur_joystickButtonSetting.NextData();
+					if (sb == EOF)
+					{
+						// If a new object needs to be created
+						dataHolder.joystickButtonSettings.Add(dataHolder.cur_joystickButtonSetting);
+						//dataHolder.cur_indexSetting = null;
+						pos = LoadPosition.JoystickButtonSettings;
+					}
+					else if (sb == "")
+					{
+						// If a value needs to be inserted into dataholder
+						dataHolder.cur_joystickButtonSetting.Insert(next);
+					}
+					else
+					{
+						// If a tag is needed to be compared
+						if (sb != next)
+						{
+							dataHolder.joystickButtonSettings = null;
 							pos = FindNextAfterError(next, out fin);
 						}
 					}
@@ -345,17 +380,23 @@ public static class ProgramSaverLoader {
 
         // If succesfully loaded joystickSettings
         if (dataHolder.joystickSettings != null) {
-            JoystickSettings js = Program.windowStatus.joystickSettings;
-            JoystickSettings.AxisSetting[] axiss = js.axisSetting;
+            JoystickSettings.AxisSetting[] axiss = Program.windowStatus.joystickSettings.axisSetting;
             for (int i = 0, j = dataHolder.joystickSettings.Count; i < j; i++) {
                 DataHolder.joystickSettings_Setting d = dataHolder.joystickSettings[i];
-				if (d.index == -1)
-	                axiss[i].SetSettings(d.jindex, d.aindex, d.reverse, d.expo, d.deadband, d.offset, d.max);
-				else
-					axiss[i].SetSettings(d.index, d.jindex, d.aindex, d.reverse, d.expo, d.deadband, d.offset, d.max);
+				axiss[i].SetSettings(d.index, d.jindex, d.aindex, d.reverse, d.expo, d.deadband, d.offset, d.max);
 			}
         } else
             Program.errors.Add("Failed to load <JoystickSettings>");
+
+		// if succesfully loaded joystickButtonSettings
+		if (dataHolder.joystickButtonSettings != null) {
+			JoystickSettings.ButtonSetting[] btns = Program.windowStatus.joystickSettings.buttonSetting;
+			for (int i = 0, j = dataHolder.joystickButtonSettings.Count; i < j; i++) {
+				DataHolder.joystickButtonSettings_Setting d = dataHolder.joystickButtonSettings[i];
+				btns[i].SetSetting(d.index, d.bitnr, d.joystick_idx, d.button_idx, d.togglePush, d.offValue, d.onValue);
+			}
+		} else
+			Program.errors.Add("Failed to load <JoystickButtonSettings>");
 
 		// If succesfully loaded graphicSettings
 		if (dataHolder.cur_graphicSetting != null) {
@@ -428,6 +469,9 @@ public static class ProgramSaverLoader {
 				case "<JoystickSettings>":
 					pos = LoadPosition.JoystickSettings;
 					break;
+				case "<JoystickButtonSettings>":
+					pos = LoadPosition.JoystickButtonSettings;
+					break;
 				case "<IndexSettings>":
 					pos = LoadPosition.IndexSettings;
 					break;
@@ -472,15 +516,25 @@ public static class ProgramSaverLoader {
 
         // Loop through and add JoystickSettings
         src += "\t<JoystickSettings>\n";
-        JoystickSettings js = Program.windowStatus.joystickSettings;
-        JoystickSettings.AxisSetting[] axiss = js.axisSetting;
-        for (int i = 0, j = 6; i < j; i++) {
+        JoystickSettings.AxisSetting[] axiss = Program.windowStatus.joystickSettings.axisSetting;
+        for (int i = 0, j = axiss.Length; i < j; i++) {
             src += "\t\t<Setting>\n";
             src += "\t\t\t<index>" + axiss[i].index + "</index><jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><reverse>" + axiss[i].reverse.ToString() +
 				"</reverse><expo>" + axiss[i].expo + "</expo><deadband>" + axiss[i].deadband + "</deadband><offset>" + axiss[i].offset + "</offset><max>" + axiss[i].max + "</max>\n";
             src += "\t\t</Setting>\n";
         }
         src += "\t</JoystickSettings>\n";
+
+		// Loop through and add JoystickButtonSettings
+		src += "\t<JoystickButtonSettings>\n";
+		JoystickSettings.ButtonSetting[] btns = Program.windowStatus.joystickSettings.buttonSetting;
+		for (int i = 0, j = btns.Length; i < j; i++) {
+			src += "\t\t<Setting>\n";
+			src += "\t\t\t<index>" + btns[i].index + "</index><bitnr>" + btns[i].bitnr + "</bitnr><jindex>" + btns[i].joystick_idx + "</jindex><bindex>" + btns[i].button_idx +
+				"</bindex><togglepush>" + btns[i].toggle_push + "</togglepush><offvalue>" + btns[i].offValue + "</offvalue><onvalue>" + btns[i].onValue + "</onvalue>\n";
+			src += "\t\t</Setting>\n";
+		}
+		src += "\t</JoystickButtonSettings>";
 
         // Loop through and add IndexSettings
         src += "\t<IndexSettings>\n";
@@ -671,6 +725,8 @@ public static class ProgramSaverLoader {
 		public graphics_Object cur_graphicSetting;
 		public List<joystickSettings_Setting> joystickSettings;
 		public joystickSettings_Setting cur_joystickSetting;
+		public List<joystickButtonSettings_Setting> joystickButtonSettings;
+		public joystickButtonSettings_Setting cur_joystickButtonSetting;
 		public List<indexSettings_Setting> indexSettings;
 		public indexSettings_Setting cur_indexSetting;
 		public List<int> indexStats;
@@ -681,6 +737,8 @@ public static class ProgramSaverLoader {
 			cur_graphicSetting = new graphics_Object();
 			cur_joystickSetting = new joystickSettings_Setting();
 			joystickSettings = new List<joystickSettings_Setting>();
+			cur_joystickButtonSetting = new joystickButtonSettings_Setting();
+			joystickButtonSettings = new List<joystickButtonSettings_Setting>();
 			cur_indexSetting = new indexSettings_Setting();
 			indexSettings = new List<indexSettings_Setting>();
 			indexStats = new List<int>();
@@ -691,15 +749,19 @@ public static class ProgramSaverLoader {
 			// Clear all data
 			cur_graphicSetting = null;
 			cur_joystickSetting = null;
+			cur_joystickButtonSetting = null;
 			cur_indexSetting = null;
 
 			if (joystickSettings != null)
 				joystickSettings.Clear();
+			if (joystickButtonSettings != null)
+				joystickButtonSettings.Clear();
 			if (indexSettings != null)
 				indexSettings.Clear();
 			if (indexStats != null)
 				indexStats.Clear();
 			joystickSettings = null;
+			joystickButtonSettings = null;
 			indexSettings = null;
 			indexStats = null;
 		}
@@ -877,11 +939,65 @@ public static class ProgramSaverLoader {
 					case 3: jindex = int.Parse(s); break;
 					case 5: aindex = int.Parse(s); break;
 					case 7: reverse = bool.Parse(s); break;
-					case 9: expo = decimal.Parse(s.Replace(',', '.')); break;
-					case 11: deadband = decimal.Parse(s.Replace(',', '.')); break;
-					case 13: offset = decimal.Parse(s.Replace(',', '.')); break;
-					case 15: max = decimal.Parse(s.Replace(',', '.')); break;
+					case 9: expo = decimal.Parse(s.Replace('.', ',')); break;
+					case 11: deadband = decimal.Parse(s.Replace('.', ',')); break;
+					case 13: offset = decimal.Parse(s.Replace('.', ',')); break;
+					case 15: max = decimal.Parse(s.Replace('.', ',')); break;
 					
+				}
+			}
+		}
+
+		public class joystickButtonSettings_Setting : DataHolderTemplate
+		{
+			public int index;
+			public int bitnr;
+
+			public int joystick_idx;
+			public int button_idx;
+
+			public bool togglePush;
+
+			public int offValue;
+			public int onValue;
+
+			private bool waitforval = false;
+			private int readindex = 0;
+			private static readonly string[] req = { "<index>", "</index>", "<bitnr>", "</bitnr>", "<jindex>", "</jindex>",
+				"<bindex>", "</bindex>", "<togglepush>", "</togglepush>", "<offvalue>", "</offvalue>", "<onvalue>", "</onvalue>" };
+
+			public string NextData()
+			{
+				if (readindex == req.Length)
+					return EOF;
+
+				if (waitforval)
+				{
+					waitforval = false;
+					return "";
+				}
+				waitforval = (readindex % 2 == 0 ? true : false);
+				return req[readindex++];
+			}
+
+			public void Insert(string s)
+			{
+				if (s == req[readindex])
+				{
+					NextData();
+					return;
+				}
+
+				switch (readindex)
+				{
+					case 1: index = int.Parse(s); break;
+					case 3: bitnr = int.Parse(s); break;
+					case 5: joystick_idx = int.Parse(s); break;
+					case 7: button_idx = int.Parse(s); break;
+					case 9: togglePush = bool.Parse(s); break;
+					case 11: offValue = int.Parse(s); break;
+					case 13: onValue = int.Parse(s); break;
+
 				}
 			}
 		}
@@ -972,6 +1088,8 @@ public static class ProgramSaverLoader {
 		Settings = 1,
 		JoystickSettings = 2,
 		JoystickSettingsChild = 3,
+		JoystickButtonSettings = 15,
+		JoystickButtonSettingsChild = 16,
 		IndexSettings = 4,
 		IndexSettingsChild = 5,
 		IndexStats = 6,
@@ -980,8 +1098,8 @@ public static class ProgramSaverLoader {
 		GraphicSettingsChild = 9,
 		ToolboxSettings = 10,
 		ToolboxSettingsChild = 11,
-		General,
-		GeneralDllPath,
-		GeneralGraphicPath,
+		General = 12,
+		GeneralDllPath = 13,
+		GeneralGraphicPath = 14,
 	}
 }
