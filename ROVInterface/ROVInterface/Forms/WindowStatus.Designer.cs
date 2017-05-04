@@ -162,6 +162,13 @@
 			this.label18 = new System.Windows.Forms.Label();
 			this.label17 = new System.Windows.Forms.Label();
 			this.tabPage6 = new System.Windows.Forms.TabPage();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.txtbox_graphicsloaded = new System.Windows.Forms.TextBox();
+			this.txtbox_dllimported = new System.Windows.Forms.TextBox();
+			this.btn_graphicsloaded = new System.Windows.Forms.Button();
+			this.btn_loaddll = new System.Windows.Forms.Button();
+			this.lab_GraphicsLoaded = new System.Windows.Forms.Label();
+			this.lab_DLLimported = new System.Windows.Forms.Label();
 			this.btn_LoadSettings = new System.Windows.Forms.Button();
 			this.btn_ExportSettings = new System.Windows.Forms.Button();
 			this.tim_10ms_update = new System.Windows.Forms.Timer(this.components);
@@ -189,13 +196,6 @@
 			this.btn_MenuDeleteControl = new System.Windows.Forms.ToolStripMenuItem();
 			this.AegirMessageRequest = new System.ComponentModel.BackgroundWorker();
 			this.tim_puls = new System.Windows.Forms.Timer(this.components);
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.lab_DLLimported = new System.Windows.Forms.Label();
-			this.lab_GraphicsLoaded = new System.Windows.Forms.Label();
-			this.btn_loaddll = new System.Windows.Forms.Button();
-			this.btn_graphicsloaded = new System.Windows.Forms.Button();
-			this.txtbox_dllimported = new System.Windows.Forms.TextBox();
-			this.txtbox_graphicsloaded = new System.Windows.Forms.TextBox();
 			this.aGauge2 = new AGaugeApp.AGauge();
 			this.aGauge1 = new AGaugeApp.AGauge();
 			this.ali_navigation_depth_instrument = new Avionics.AltimeterInstrumentControl();
@@ -251,13 +251,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.flowLayoutPanel5.SuspendLayout();
 			this.tabPage6.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nud_puls_on)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nud_puls_off)).BeginInit();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
 			this.rightclickMenu.SuspendLayout();
-			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -2018,6 +2018,73 @@
 			this.tabPage6.TabIndex = 6;
 			this.tabPage6.Text = "General Settings";
 			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.txtbox_graphicsloaded);
+			this.panel1.Controls.Add(this.txtbox_dllimported);
+			this.panel1.Controls.Add(this.btn_graphicsloaded);
+			this.panel1.Controls.Add(this.btn_loaddll);
+			this.panel1.Controls.Add(this.lab_GraphicsLoaded);
+			this.panel1.Controls.Add(this.lab_DLLimported);
+			this.panel1.Controls.Add(this.btn_LoadSettings);
+			this.panel1.Controls.Add(this.btn_ExportSettings);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel1.Location = new System.Drawing.Point(0, 0);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(1392, 600);
+			this.panel1.TabIndex = 2;
+			// 
+			// txtbox_graphicsloaded
+			// 
+			this.txtbox_graphicsloaded.Location = new System.Drawing.Point(13, 196);
+			this.txtbox_graphicsloaded.Name = "txtbox_graphicsloaded";
+			this.txtbox_graphicsloaded.Size = new System.Drawing.Size(250, 23);
+			this.txtbox_graphicsloaded.TabIndex = 7;
+			// 
+			// txtbox_dllimported
+			// 
+			this.txtbox_dllimported.Location = new System.Drawing.Point(13, 126);
+			this.txtbox_dllimported.Name = "txtbox_dllimported";
+			this.txtbox_dllimported.Size = new System.Drawing.Size(250, 23);
+			this.txtbox_dllimported.TabIndex = 6;
+			// 
+			// btn_graphicsloaded
+			// 
+			this.btn_graphicsloaded.Location = new System.Drawing.Point(269, 196);
+			this.btn_graphicsloaded.Name = "btn_graphicsloaded";
+			this.btn_graphicsloaded.Size = new System.Drawing.Size(75, 23);
+			this.btn_graphicsloaded.TabIndex = 5;
+			this.btn_graphicsloaded.Text = "load";
+			this.btn_graphicsloaded.UseVisualStyleBackColor = true;
+			// 
+			// btn_loaddll
+			// 
+			this.btn_loaddll.Location = new System.Drawing.Point(269, 126);
+			this.btn_loaddll.Name = "btn_loaddll";
+			this.btn_loaddll.Size = new System.Drawing.Size(75, 23);
+			this.btn_loaddll.TabIndex = 4;
+			this.btn_loaddll.Text = "load";
+			this.btn_loaddll.UseVisualStyleBackColor = true;
+			this.btn_loaddll.Click += new System.EventHandler(this.btn_loaddll_Click);
+			// 
+			// lab_GraphicsLoaded
+			// 
+			this.lab_GraphicsLoaded.AutoSize = true;
+			this.lab_GraphicsLoaded.Location = new System.Drawing.Point(10, 222);
+			this.lab_GraphicsLoaded.Name = "lab_GraphicsLoaded";
+			this.lab_GraphicsLoaded.Size = new System.Drawing.Size(171, 17);
+			this.lab_GraphicsLoaded.TabIndex = 3;
+			this.lab_GraphicsLoaded.Text = "Graphics loaded: <name>";
+			// 
+			// lab_DLLimported
+			// 
+			this.lab_DLLimported.AutoSize = true;
+			this.lab_DLLimported.Location = new System.Drawing.Point(10, 152);
+			this.lab_DLLimported.Name = "lab_DLLimported";
+			this.lab_DLLimported.Size = new System.Drawing.Size(152, 17);
+			this.lab_DLLimported.TabIndex = 2;
+			this.lab_DLLimported.Text = "DLL imported: <name>";
+			// 
 			// btn_LoadSettings
 			// 
 			this.btn_LoadSettings.Location = new System.Drawing.Point(13, 13);
@@ -2291,7 +2358,6 @@
 			this.btn_loaddll.TabIndex = 4;
 			this.btn_loaddll.Text = "load";
 			this.btn_loaddll.UseVisualStyleBackColor = true;
-			this.btn_loaddll.Click += new System.EventHandler(this.btn_loaddll_Click);
 			// 
 			// btn_graphicsloaded
 			// 
@@ -2655,14 +2721,14 @@
 			this.flowLayoutPanel5.ResumeLayout(false);
 			this.flowLayoutPanel5.PerformLayout();
 			this.tabPage6.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.flowLayoutPanel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.nud_puls_on)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nud_puls_off)).EndInit();
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.rightclickMenu.ResumeLayout(false);
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

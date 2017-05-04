@@ -140,10 +140,10 @@ public class JoystickSettings
 		public int inValue;     //Value of the axis on the joystick
 
 		public bool reverse;    //outValue reversed when true
-		public float expo;		//curvature of outValue
-		public float deadband;	//how much does inValue have to travel from midpoint before outValue starts to change [%]
-		public float offset;      //offset, at which value does outValue start when inValue exceeds deadband [%]
-		public float max;         //maximum value of output [%]
+		public decimal expo;		//curvature of outValue
+		public decimal deadband;	//how much does inValue have to travel from midpoint before outValue starts to change [%]
+		public decimal offset;      //offset, at which value does outValue start when inValue exceeds deadband [%]
+		public decimal max;         //maximum value of output [%]
 		public int trim;         //maximum value of output [%]
 
 		public int outValue;	//calculated output value  
@@ -302,10 +302,10 @@ public class JoystickSettings
 				axis = c_axis.SelectedIndex;
 
 				reverse = c_reverse.Checked;
-				expo = (float)c_expo.Value;
-				deadband = (int)c_deadband.Value;
-				offset = (int)c_offset.Value;
-				max = (int)c_max.Value;
+				expo = c_expo.Value;
+				deadband = c_deadband.Value;
+				offset = c_offset.Value;
+				max = c_max.Value;
 				trim = (int)c_trim.Value;
 
 				if (offset > max)   //offset can't be greater than max
@@ -337,13 +337,13 @@ public class JoystickSettings
 		public double Rescale(double x)
 		{
 			//Do math
-			double x0 = 32767 * (deadband / 100d);
-			double y0 = 32767 * (offset / 100d);
+			double x0 = 32767 * ((float)deadband / 100d);
+			double y0 = 32767 * ((float)offset / 100d);
 
 			double x1 = 32767;
-			double y1 = 32767 * (max / 100d);
+			double y1 = 32767 * ((float)max / 100d);
 
-			double e = expo;
+			double e = (double)expo;
 
 			double t = trim;
 
@@ -515,7 +515,7 @@ public class JoystickSettings
 		public void UpdateGraph(object sender, EventArgs e)
 		{
 			Update();
-			Program.windowStatus.DrawGraph((int)deadband, (int)offset, (int)max, expo, reverse);
+			Program.windowStatus.DrawGraph((int)deadband, (int)offset, (int)max, (double)expo, reverse);
 		}
 
 		/// <summary>
