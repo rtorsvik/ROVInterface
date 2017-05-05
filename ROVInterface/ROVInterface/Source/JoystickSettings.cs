@@ -712,6 +712,7 @@ public class JoystickSettings
 
 			c_offValue.Value = offValue;
 			c_onValue.Value = onValue;
+
 		}
 
 		/// <summary>

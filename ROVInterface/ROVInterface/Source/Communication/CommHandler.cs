@@ -168,7 +168,7 @@ public static class CommHandler
 	{
 		// Packet to be sent forward
 		byte[] packet = new byte[0];
-		bool fail = true;
+		bool messageTranslated = false;
 
 		if (loadedDll)
 		{
@@ -178,17 +178,17 @@ public static class CommHandler
 				object[] o = new object[1];
 				o[0] = commands;
 				packet = dllConvertCommands.Invoke(null, o) as byte[];
-				fail = false;
+				messageTranslated = true;
 			}
-			catch
+			catch (Exception e)
 			{
-				fail = true;
+				messageTranslated = false;
+				Program.errors.Add("Failed to convert commands in translation .dll file");
+				Console.WriteLine(e);
 			}
 		}
 
-
-
-		if (fail)
+		if (!messageTranslated)
 		{
 			packet = new byte[commands.Length * 6];
 			for (int i = 0, j = commands.Length, cur; i < j; i++)
