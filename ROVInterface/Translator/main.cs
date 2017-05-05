@@ -190,6 +190,12 @@ namespace Translator
 							message[TOP_REG_PARAM1] = TOP_REG_PARAM1_cache;
 						message[TOP_REG_PARAM1][6] = TOP_REG_PARAM1_cache[6] = (byte)(p.Value & 0x1);
 						break;
+					case 801: //manual depth SP
+						if (!message.ContainsKey(TOP_XBOX_AXES))
+							message[TOP_XBOX_AXES] = TOP_XBOX_AXES_cache;
+						message[TOP_XBOX_AXES][6] = TOP_XBOX_AXES_cache[6] = (byte)(p.Value);
+						message[TOP_XBOX_AXES][7] = TOP_XBOX_AXES_cache[7] = (byte)(p.Value >> 8);
+						break;
 					case 804: //regparam P (x10) Trans
 						if (!message.ContainsKey(TOP_REG_PARAM1))
 							message[TOP_REG_PARAM1] = TOP_REG_PARAM1_cache;

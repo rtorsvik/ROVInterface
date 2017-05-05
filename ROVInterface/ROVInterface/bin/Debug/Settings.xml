@@ -5,10 +5,10 @@
 	</General>
 	<JoystickSettings>
 		<Setting>
-			<index>0</index><jindex>0</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>5</deadband><offset>0</offset><max>3</max>
+			<index>0</index><jindex>-1</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>5</deadband><offset>0</offset><max>3</max>
 		</Setting>
 		<Setting>
-			<index>1</index><jindex>0</jindex><aindex>12</aindex><reverse>False</reverse><expo>3</expo><deadband>5</deadband><offset>0</offset><max>3</max>
+			<index>1</index><jindex>-1</jindex><aindex>12</aindex><reverse>False</reverse><expo>3</expo><deadband>5</deadband><offset>0</offset><max>3</max>
 		</Setting>
 		<Setting>
 			<index>2</index><jindex>-1</jindex><aindex>14</aindex><reverse>True</reverse><expo>3</expo><deadband>5</deadband><offset>0</offset><max>3</max>
@@ -23,7 +23,7 @@
 			<index>5</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>3</expo><deadband>5</deadband><offset>0</offset><max>3</max>
 		</Setting>
 		<Setting>
-			<index>0</index><jindex>0</jindex><aindex>22</aindex><reverse>False</reverse><expo>3,0</expo><deadband>9</deadband><offset>0</offset><max>6,0</max>
+			<index>0</index><jindex>-1</jindex><aindex>22</aindex><reverse>False</reverse><expo>3,0</expo><deadband>9</deadband><offset>0</offset><max>6,0</max>
 		</Setting>
 		<Setting>
 			<index>1</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>3</expo><deadband>9</deadband><offset>0</offset><max>6,0</max>
@@ -43,10 +43,10 @@
 	</JoystickSettings>
 	<JoystickButtonSettings>
 		<Setting>
-			<index>100</index><bitnr>0</bitnr><jindex>0</jindex><bindex>2</bindex><togglepush>True</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+			<index>100</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>2</bindex><togglepush>True</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
 		</Setting>
 		<Setting>
-			<index>800</index><bitnr>0</bitnr><jindex>0</jindex><bindex>0</bindex><togglepush>True</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+			<index>800</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>True</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
 		</Setting>
 		<Setting>
 			<index>0</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>1</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
@@ -76,7 +76,7 @@
 			<index>99</index><bitnr>0</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
 		</Setting>
 		<Setting>
-			<index>99</index><bitnr>1</bitnr><jindex>0</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
+			<index>99</index><bitnr>1</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>
 		</Setting>
 		<Setting>
 			<index>99</index><bitnr>11</bitnr><jindex>-1</jindex><bindex>0</bindex><togglepush>False</togglepush><offvalue>0</offvalue><onvalue>1</onvalue>

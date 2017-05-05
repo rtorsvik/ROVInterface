@@ -1140,4 +1140,9 @@ public partial class WindowStatus : Form
 		ST_Register.commands[53] = 1;
 
 	}
+
+	private void nud_man_depth_SP_ValueChanged(object sender, EventArgs e)
+	{
+		ST_Register.commands[53] = (int)nud_aegir_man_depth_SP.Value;
+	}
 }
