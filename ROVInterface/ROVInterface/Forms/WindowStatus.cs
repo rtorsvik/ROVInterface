@@ -229,7 +229,11 @@ public partial class WindowStatus : Form
 				CommHandler.newMessage = false;
 			}
 
-			
+
+			//TEMP reset zero depth click
+			ST_Register.commands[53] = 0;
+
+
 
 		}
 
@@ -1129,5 +1133,11 @@ public partial class WindowStatus : Form
 	{
 		graphicsCreator.Prototype.path = txtbox_graphicsloaded.Text;
 		graphicsCreator.Prototype.LoadImage();
+	}
+
+	private void btn_zerodepth_Click(object sender, EventArgs e)
+	{
+		ST_Register.commands[53] = 1;
+
 	}
 }
