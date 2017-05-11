@@ -9,7 +9,7 @@ public static class CommHandler
 	public enum ConnectionStatus { NotConnected, Connected, Disconnected }
 	public enum ConnectionType { None, Serial, Ethernet, CANbus }
 
-	public static Port port;
+	public static Connection port;
 	public static ConnectionType connectionType = ConnectionType.None;
 	public static bool initialized;
 
@@ -98,7 +98,7 @@ public static class CommHandler
 	//initialise an ethernet connection
 	public static void InitEthernet(IPAddress ipAddress, Int32 ipPort)
 	{
-		port = new EthernetPort(ipAddress, ipPort);
+		port = new EthernetConnection(ipAddress, ipPort);
 
 		connectionType = ConnectionType.Ethernet;
 		initialized = true;
@@ -109,7 +109,7 @@ public static class CommHandler
 	//initialise an ethernet connection
 	public static void InitCAN(string ipAddress, int ipPort)
 	{
-		port = new CANPort(ipAddress, ipPort);
+		port = new CANConnection(ipAddress, ipPort);
 
 		connectionType = ConnectionType.CANbus;
 		initialized = true;

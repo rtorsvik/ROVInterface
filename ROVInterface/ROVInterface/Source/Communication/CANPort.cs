@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Windows.Forms;
 
 //ref.: https://msdn.microsoft.com/en-us/library/ctd56yay(v=vs.110).aspx
-public class CANPort : Port
+public class CANConnection : Connection
 {
 
 	private TcpClient client;
@@ -23,7 +23,7 @@ public class CANPort : Port
 	/// </summary>
 	/// <param name="ipAddress"></param>
 	/// <param name="ipPort"></param>
-	public CANPort(string hostname, int port)
+	public CANConnection(string hostname, int port)
 	{
 		_hostname = hostname;
 		_port = port;
