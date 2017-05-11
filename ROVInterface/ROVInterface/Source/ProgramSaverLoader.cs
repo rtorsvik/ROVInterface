@@ -939,10 +939,10 @@ public static class ProgramSaverLoader {
 					case 3: jindex = int.Parse(s); break;
 					case 5: aindex = int.Parse(s); break;
 					case 7: reverse = bool.Parse(s); break;
-					case 9: expo = decimal.Parse(s.Replace('.', ',')); break;
-					case 11: deadband = decimal.Parse(s.Replace('.', ',')); break;
-					case 13: offset = decimal.Parse(s.Replace('.', ',')); break;
-					case 15: max = decimal.Parse(s.Replace('.', ',')); break;
+					case 9: expo = decimal.Parse(s.Replace(',', '.')); break;
+					case 11: deadband = decimal.Parse(s.Replace(',', '.')); break;
+					case 13: offset = decimal.Parse(s.Replace(',', '.')); break;
+					case 15: max = decimal.Parse(s.Replace(',', '.')); break;
 					
 				}
 			}
