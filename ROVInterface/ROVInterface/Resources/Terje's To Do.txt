@@ -2,10 +2,17 @@
 
 - Add a check to actually delete the control in GraphicToolbox.
 - Make the toolbox Sliders have a label with its name and its current value, and its value while moving the slider.
-- Make database connection and transfer
-- Make all joysticks which is set up, send to commands register when the connection to ROV happens.
-- Lage til slik at verdi/tekst/bakgrunnsfarge på knapper, slidere og NUD kan knyttes mot verdier i kommandoregisteret. 
+- Add toolbox tools, nud, toggle button(on OnOffButton)
+- Lage til slik at verdi/tekst/bakgrunnsfarge på knapper, slidere og NUD kan knyttes mot verdier i kommandoregisteret. Always keeping updated
+- Fix export settings button click event's target.
 
 
+raspivid -o - -t 0 -h 540 -w 960 -fps 25 -i record |nc -l 1235
 
-raspivid -o - -t 0 -w 1440 -h 900 -fps 25 -rot 180 |nc -l 1235
+ X  5.2 Valg av utviklingsverktøy og programmeringsspråk
+ X  5.5 Innlasting og lagring av brukerinnstillinger - Lagring og loading
+ X  6.3 Innledning for ST_Register
+ X  6.6 Mellomlagring av meldinger til og fra den tilkoblede enheten i ST-registeret - ST_Register og ST_Array
+6.4 Oversetting av meldinger mellom operasjonssentralen og andre system
+6.6 Lagring av kommando og statuser i database - database tilkobling
+9   Fremvisning av sensordata og status - Skal stå om Index Setting, Index Stats og grafikk vinduet inkludert toolbox 
