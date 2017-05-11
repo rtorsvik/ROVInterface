@@ -293,5 +293,28 @@ public partial class WindowCamera : Form
 	{
 
 	}
+
+	private void timer1_Tick_1(object sender, EventArgs e)
+	{
+		double pitch = Convert.ToDouble(ST_Register.status[4]);
+		double roll = Convert.ToDouble(ST_Register.status[5]);
+
+		if (pitch == null)
+			pitch = 0;
+		if (roll == null)
+			roll = 0;
+
+		attitudeIndicatorInstrumentControl1.SetAttitudeIndicatorParameters(pitch / 10, roll / 10);
+
+
+
+		int heading = Convert.ToInt32(ST_Register.status[37]);
+
+		if (heading == null)
+			heading = 0;
+
+		headingIndicatorInstrumentControl1.SetHeadingIndicatorParameters(heading / 10);
+
+	}
 }
 

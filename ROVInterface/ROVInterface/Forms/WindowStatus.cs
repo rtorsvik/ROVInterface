@@ -154,7 +154,7 @@ public partial class WindowStatus : Form
 		if (heading == null)
 			heading = 0;
 
-		hdi_navigation_heading_instrument.SetHeadingIndicatorParameters(heading);
+		hdi_navigation_heading_instrument.SetHeadingIndicatorParameters(heading / 10);
 
 		#endregion
 
@@ -231,7 +231,7 @@ public partial class WindowStatus : Form
 
 
 			//TEMP reset zero depth click
-			ST_Register.commands[53] = 0;
+			//ST_Register.commands[801] = 0;
 
 
 
@@ -1137,12 +1137,27 @@ public partial class WindowStatus : Form
 
 	private void btn_zerodepth_Click(object sender, EventArgs e)
 	{
-		ST_Register.commands[53] = 1;
+		//ST_Register.commands[53] = 1;
 
 	}
 
 	private void nud_man_depth_SP_ValueChanged(object sender, EventArgs e)
 	{
-		ST_Register.commands[53] = (int)nud_aegir_man_depth_SP.Value;
+		//ST_Register.commands[801] = (int)nud_aegir_man_depth_SP.Value;
+	}
+
+	private void nud_aegir_gyro_calibration_ValueChanged(object sender, EventArgs e)
+	{
+		ST_Register.commands[69] = (int)nud_aegir_gyro_calibration.Value; ;
+
+		int busy;
+
+
+		//relevant comments
+	}
+
+	private void label19_Click(object sender, EventArgs e)
+	{
+
 	}
 }

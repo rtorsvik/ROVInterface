@@ -54,6 +54,10 @@
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
 			this.pan_graphicToolbox = new System.Windows.Forms.FlowLayoutPanel();
 			this.groupBox11 = new System.Windows.Forms.GroupBox();
+			this.label47 = new System.Windows.Forms.Label();
+			this.nud_aegir_gyro_calibration = new System.Windows.Forms.NumericUpDown();
+			this.label46 = new System.Windows.Forms.Label();
+			this.nud_aegir_man_depth_SP = new System.Windows.Forms.NumericUpDown();
 			this.label44 = new System.Windows.Forms.Label();
 			this.nud_aegir_zerodepth = new System.Windows.Forms.NumericUpDown();
 			this.label43 = new System.Windows.Forms.Label();
@@ -204,8 +208,6 @@
 			this.btn_MenuDeleteControl = new System.Windows.Forms.ToolStripMenuItem();
 			this.AegirMessageRequest = new System.ComponentModel.BackgroundWorker();
 			this.tim_puls = new System.Windows.Forms.Timer(this.components);
-			this.label46 = new System.Windows.Forms.Label();
-			this.nud_aegir_man_depth_SP = new System.Windows.Forms.NumericUpDown();
 			this.connectionTab.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_attitude_rolldiv)).BeginInit();
@@ -219,6 +221,8 @@
 			this.pan_graphicsCreator.SuspendLayout();
 			this.groupBox12.SuspendLayout();
 			this.groupBox11.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_gyro_calibration)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_man_depth_SP)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_zerodepth)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_rot_p)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_rot_i)).BeginInit();
@@ -260,7 +264,6 @@
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
 			this.rightclickMenu.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_man_depth_SP)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -762,6 +765,8 @@
 			// 
 			this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox11.Controls.Add(this.label47);
+			this.groupBox11.Controls.Add(this.nud_aegir_gyro_calibration);
 			this.groupBox11.Controls.Add(this.label46);
 			this.groupBox11.Controls.Add(this.nud_aegir_man_depth_SP);
 			this.groupBox11.Controls.Add(this.label44);
@@ -790,6 +795,62 @@
 			this.groupBox11.TabIndex = 0;
 			this.groupBox11.TabStop = false;
 			this.groupBox11.Text = "Ægir TEMP";
+			// 
+			// label47
+			// 
+			this.label47.AutoSize = true;
+			this.label47.Location = new System.Drawing.Point(18, 480);
+			this.label47.Name = "label47";
+			this.label47.Size = new System.Drawing.Size(108, 17);
+			this.label47.TabIndex = 22;
+			this.label47.Text = "Gyro calibration";
+			// 
+			// nud_aegir_gyro_calibration
+			// 
+			this.nud_aegir_gyro_calibration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.nud_aegir_gyro_calibration.Location = new System.Drawing.Point(284, 478);
+			this.nud_aegir_gyro_calibration.Maximum = new decimal(new int[] {
+            32000,
+            0,
+            0,
+            0});
+			this.nud_aegir_gyro_calibration.Minimum = new decimal(new int[] {
+            32000,
+            0,
+            0,
+            -2147483648});
+			this.nud_aegir_gyro_calibration.Name = "nud_aegir_gyro_calibration";
+			this.nud_aegir_gyro_calibration.Size = new System.Drawing.Size(50, 23);
+			this.nud_aegir_gyro_calibration.TabIndex = 21;
+			this.nud_aegir_gyro_calibration.ValueChanged += new System.EventHandler(this.nud_aegir_gyro_calibration_ValueChanged);
+			// 
+			// label46
+			// 
+			this.label46.AutoSize = true;
+			this.label46.Location = new System.Drawing.Point(16, 402);
+			this.label46.Name = "label46";
+			this.label46.Size = new System.Drawing.Size(229, 17);
+			this.label46.TabIndex = 20;
+			this.label46.Text = "Depth SP (0: auto SP, >0: man SP)";
+			// 
+			// nud_aegir_man_depth_SP
+			// 
+			this.nud_aegir_man_depth_SP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.nud_aegir_man_depth_SP.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.nud_aegir_man_depth_SP.Location = new System.Drawing.Point(282, 400);
+			this.nud_aegir_man_depth_SP.Maximum = new decimal(new int[] {
+            32767,
+            0,
+            0,
+            0});
+			this.nud_aegir_man_depth_SP.Name = "nud_aegir_man_depth_SP";
+			this.nud_aegir_man_depth_SP.Size = new System.Drawing.Size(50, 23);
+			this.nud_aegir_man_depth_SP.TabIndex = 19;
+			this.nud_aegir_man_depth_SP.ValueChanged += new System.EventHandler(this.nud_man_depth_SP_ValueChanged);
 			// 
 			// label44
 			// 
@@ -862,18 +923,17 @@
 			// nud_aegir_rot_p
 			// 
 			this.nud_aegir_rot_p.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.nud_aegir_rot_p.DecimalPlaces = 1;
-			this.nud_aegir_rot_p.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
 			this.nud_aegir_rot_p.Location = new System.Drawing.Point(171, 370);
 			this.nud_aegir_rot_p.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
+			this.nud_aegir_rot_p.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
 			this.nud_aegir_rot_p.Name = "nud_aegir_rot_p";
 			this.nud_aegir_rot_p.Size = new System.Drawing.Size(50, 23);
 			this.nud_aegir_rot_p.TabIndex = 11;
@@ -887,18 +947,17 @@
 			// nud_aegir_rot_i
 			// 
 			this.nud_aegir_rot_i.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.nud_aegir_rot_i.DecimalPlaces = 1;
-			this.nud_aegir_rot_i.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
 			this.nud_aegir_rot_i.Location = new System.Drawing.Point(227, 370);
 			this.nud_aegir_rot_i.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
+			this.nud_aegir_rot_i.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
 			this.nud_aegir_rot_i.Name = "nud_aegir_rot_i";
 			this.nud_aegir_rot_i.Size = new System.Drawing.Size(50, 23);
 			this.nud_aegir_rot_i.TabIndex = 10;
@@ -912,18 +971,17 @@
 			// nud_aegir_rot_d
 			// 
 			this.nud_aegir_rot_d.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.nud_aegir_rot_d.DecimalPlaces = 1;
-			this.nud_aegir_rot_d.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
 			this.nud_aegir_rot_d.Location = new System.Drawing.Point(283, 370);
 			this.nud_aegir_rot_d.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
+			this.nud_aegir_rot_d.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
 			this.nud_aegir_rot_d.Name = "nud_aegir_rot_d";
 			this.nud_aegir_rot_d.Size = new System.Drawing.Size(50, 23);
 			this.nud_aegir_rot_d.TabIndex = 9;
@@ -937,18 +995,17 @@
 			// nud_aegir_trans_p
 			// 
 			this.nud_aegir_trans_p.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.nud_aegir_trans_p.DecimalPlaces = 1;
-			this.nud_aegir_trans_p.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
 			this.nud_aegir_trans_p.Location = new System.Drawing.Point(171, 341);
 			this.nud_aegir_trans_p.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
+			this.nud_aegir_trans_p.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
 			this.nud_aegir_trans_p.Name = "nud_aegir_trans_p";
 			this.nud_aegir_trans_p.Size = new System.Drawing.Size(50, 23);
 			this.nud_aegir_trans_p.TabIndex = 8;
@@ -962,18 +1019,17 @@
 			// nud_aegir_trans_i
 			// 
 			this.nud_aegir_trans_i.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.nud_aegir_trans_i.DecimalPlaces = 1;
-			this.nud_aegir_trans_i.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
 			this.nud_aegir_trans_i.Location = new System.Drawing.Point(227, 341);
 			this.nud_aegir_trans_i.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
+			this.nud_aegir_trans_i.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
 			this.nud_aegir_trans_i.Name = "nud_aegir_trans_i";
 			this.nud_aegir_trans_i.Size = new System.Drawing.Size(50, 23);
 			this.nud_aegir_trans_i.TabIndex = 7;
@@ -987,18 +1043,17 @@
 			// nud_aegir_trans_d
 			// 
 			this.nud_aegir_trans_d.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.nud_aegir_trans_d.DecimalPlaces = 1;
-			this.nud_aegir_trans_d.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
 			this.nud_aegir_trans_d.Location = new System.Drawing.Point(283, 341);
 			this.nud_aegir_trans_d.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
+			this.nud_aegir_trans_d.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
 			this.nud_aegir_trans_d.Name = "nud_aegir_trans_d";
 			this.nud_aegir_trans_d.Size = new System.Drawing.Size(50, 23);
 			this.nud_aegir_trans_d.TabIndex = 6;
@@ -1212,6 +1267,7 @@
 			this.label19.Size = new System.Drawing.Size(71, 17);
 			this.label19.TabIndex = 18;
 			this.label19.Text = "Heartbeat";
+			this.label19.Click += new System.EventHandler(this.label19_Click);
 			// 
 			// pbr_heartBeat
 			// 
@@ -1597,6 +1653,7 @@
 			this.groupBox9.TabIndex = 50;
 			this.groupBox9.TabStop = false;
 			this.groupBox9.Text = "Server";
+			this.groupBox9.Visible = false;
 			// 
 			// txt_comm_serverport
 			// 
@@ -2581,34 +2638,6 @@
 			// 
 			this.tim_puls.Tick += new System.EventHandler(this.tim_puls_Tick);
 			// 
-			// label46
-			// 
-			this.label46.AutoSize = true;
-			this.label46.Location = new System.Drawing.Point(16, 402);
-			this.label46.Name = "label46";
-			this.label46.Size = new System.Drawing.Size(229, 17);
-			this.label46.TabIndex = 20;
-			this.label46.Text = "Depth SP (0: auto SP, >0: man SP)";
-			// 
-			// nud_aegir_man_depth_SP
-			// 
-			this.nud_aegir_man_depth_SP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.nud_aegir_man_depth_SP.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-			this.nud_aegir_man_depth_SP.Location = new System.Drawing.Point(282, 400);
-			this.nud_aegir_man_depth_SP.Maximum = new decimal(new int[] {
-            32767,
-            0,
-            0,
-            0});
-			this.nud_aegir_man_depth_SP.Name = "nud_aegir_man_depth_SP";
-			this.nud_aegir_man_depth_SP.Size = new System.Drawing.Size(50, 23);
-			this.nud_aegir_man_depth_SP.TabIndex = 19;
-			this.nud_aegir_man_depth_SP.ValueChanged += new System.EventHandler(this.nud_man_depth_SP_ValueChanged);
-			// 
 			// WindowStatus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2640,6 +2669,8 @@
 			this.groupBox12.ResumeLayout(false);
 			this.groupBox11.ResumeLayout(false);
 			this.groupBox11.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_gyro_calibration)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_man_depth_SP)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_zerodepth)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_rot_p)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_rot_i)).EndInit();
@@ -2696,7 +2727,6 @@
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.rightclickMenu.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.nud_aegir_man_depth_SP)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2881,4 +2911,6 @@
 	public System.Windows.Forms.TextBox txtbox_dllimported;
 	private System.Windows.Forms.Label label46;
 	private System.Windows.Forms.NumericUpDown nud_aegir_man_depth_SP;
+	private System.Windows.Forms.Label label47;
+	private System.Windows.Forms.NumericUpDown nud_aegir_gyro_calibration;
 }
