@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 
-public class EthernetPort : Port
+public class EthernetConnection : Connection
 {
 
 
@@ -10,7 +10,7 @@ public class EthernetPort : Port
 
 
 
-	public EthernetPort(IPAddress ipAddress, Int32 ipPort)
+	public EthernetConnection(IPAddress ipAddress, Int32 ipPort)
 	{
 		try
 		{

@@ -1,6 +1,6 @@
 ﻿using System.IO.Ports;
 
-public interface Port
+public interface Connection
 {
 
 	void Send(int index, int value);
@@ -9,10 +9,11 @@ public interface Port
 	void Recieve(byte[] packet);
 	void Request(int index);
 
-	bool IsOpen();
+	
 	bool Open();
 	bool Close();
 
+	bool IsOpen();
 	CommHandler.ConnectionStatus GetConnectionStatus();
 
 }

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 using st_reg = ST_Register;
 
-class SerialConnection : Port
+class SerialConnection : Connection
 {
 
     private SerialPort port;
