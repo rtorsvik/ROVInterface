@@ -758,7 +758,7 @@ public partial class WindowStatus : Form
 
 		byte[] package = bytesToSend.ToArray();
 
-		CommHandler.port.Send(package);
+		CommHandler.connection.Send(package);
 	}
 
 
@@ -1046,7 +1046,7 @@ public partial class WindowStatus : Form
 			{
 				for (int i = 0; i < 72; i++)
 				{
-					CommHandler.port.Request(i);
+					CommHandler.connection.Request(i);
 				}
 
 			}

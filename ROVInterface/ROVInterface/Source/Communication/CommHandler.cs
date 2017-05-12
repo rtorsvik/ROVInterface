@@ -9,7 +9,7 @@ public static class CommHandler
 	public enum ConnectionStatus { NotConnected, Connected, Disconnected }
 	public enum ConnectionType { None, Serial, Ethernet, CANbus }
 
-	public static Connection port;
+	public static Connection connection;
 	public static ConnectionType connectionType = ConnectionType.None;
 	public static bool initialized;
 
@@ -87,7 +87,7 @@ public static class CommHandler
 	//initialise a serial connection
 	public static void InitSerial(string comPort, int baudRate)
 	{
-		port = new SerialConnection(comPort, baudRate);
+		connection = new SerialConnection(comPort, baudRate);
 
 		connectionType = ConnectionType.Serial;
 		initialized = true;
@@ -98,7 +98,7 @@ public static class CommHandler
 	//initialise an ethernet connection
 	public static void InitEthernet(IPAddress ipAddress, Int32 ipPort)
 	{
-		port = new EthernetConnection(ipAddress, ipPort);
+		connection = new EthernetConnection(ipAddress, ipPort);
 
 		connectionType = ConnectionType.Ethernet;
 		initialized = true;
@@ -109,7 +109,7 @@ public static class CommHandler
 	//initialise an ethernet connection
 	public static void InitCAN(string ipAddress, int ipPort)
 	{
-		port = new CANConnection(ipAddress, ipPort);
+		connection = new CANConnection(ipAddress, ipPort);
 
 		connectionType = ConnectionType.CANbus;
 		initialized = true;
@@ -209,7 +209,7 @@ public static class CommHandler
 
 
 
-		port.Send(packet);
+		connection.Send(packet);
 
 	}
 
@@ -229,7 +229,7 @@ public static class CommHandler
 	/// <param name="index"></param>
 	private static void Rquest(int index)
 	{
-		port.Request(index);
+		connection.Request(index);
 	}
 
 
@@ -242,7 +242,7 @@ public static class CommHandler
 	/// <returns></returns>
 	public static bool Open()
 	{
-		return port.Open();
+		return connection.Open();
 	}
 
 	/// <summary>
@@ -251,18 +251,18 @@ public static class CommHandler
 	/// <returns></returns>
 	public static bool Close()
 	{
-		return port.Close();
+		return connection.Close();
 	}
 
 
 	public static bool IsOpen()
 	{
-		return port.IsOpen();
+		return connection.IsOpen();
 	}
 
 	public static ConnectionStatus GetConnectionStatus()
 	{
-		return port.GetConnectionStatus();
+		return connection.GetConnectionStatus();
 	}
 
 

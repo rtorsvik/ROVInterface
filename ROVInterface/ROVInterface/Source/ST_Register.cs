@@ -31,7 +31,7 @@ public static class ST_Register {
 
 	private static void _bgrSendCommands(object sender, DoWorkEventArgs e) {
 		// Ignore this call if the port has not been assigned yet
-		if (CommHandler.port == null) {
+		if (CommHandler.connection == null) {
 			commands.ResetArray();
 			Program.windowStatus.tim_SendCommandsDelay.Interval = (int)Program.windowStatus.nud_comm_transfreq.Value;
 			Program.windowStatus.tim_SendCommandsDelay.Start();
