@@ -188,9 +188,6 @@
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.btn_EditMode = new System.Windows.Forms.Button();
 			this.btn_AddIndexStat = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
-			this.nud_puls_on = new System.Windows.Forms.NumericUpDown();
-			this.nud_puls_off = new System.Windows.Forms.NumericUpDown();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.tim_heartBeat = new System.Windows.Forms.Timer(this.components);
@@ -259,8 +256,6 @@
 			this.tabPage6.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.nud_puls_on)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.nud_puls_off)).BeginInit();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
 			this.rightclickMenu.SuspendLayout();
@@ -2447,9 +2442,6 @@
 			// 
 			this.flowLayoutPanel1.Controls.Add(this.btn_EditMode);
 			this.flowLayoutPanel1.Controls.Add(this.btn_AddIndexStat);
-			this.flowLayoutPanel1.Controls.Add(this.button1);
-			this.flowLayoutPanel1.Controls.Add(this.nud_puls_on);
-			this.flowLayoutPanel1.Controls.Add(this.nud_puls_off);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 4);
@@ -2476,56 +2468,11 @@
 			this.btn_AddIndexStat.Location = new System.Drawing.Point(4, 39);
 			this.btn_AddIndexStat.Margin = new System.Windows.Forms.Padding(4);
 			this.btn_AddIndexStat.Name = "btn_AddIndexStat";
-			this.btn_AddIndexStat.Size = new System.Drawing.Size(147, 23);
+			this.btn_AddIndexStat.Size = new System.Drawing.Size(147, 27);
 			this.btn_AddIndexStat.TabIndex = 1;
 			this.btn_AddIndexStat.Text = "New";
 			this.btn_AddIndexStat.UseVisualStyleBackColor = true;
 			this.btn_AddIndexStat.Click += new System.EventHandler(this.btn_AddIndexStat_Click);
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(3, 69);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "Pulse";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// nud_puls_on
-			// 
-			this.nud_puls_on.Location = new System.Drawing.Point(3, 98);
-			this.nud_puls_on.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-			this.nud_puls_on.Name = "nud_puls_on";
-			this.nud_puls_on.Size = new System.Drawing.Size(75, 23);
-			this.nud_puls_on.TabIndex = 3;
-			this.nud_puls_on.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-			this.nud_puls_on.ValueChanged += new System.EventHandler(this.nud_puls_interval_ValueChanged);
-			// 
-			// nud_puls_off
-			// 
-			this.nud_puls_off.Location = new System.Drawing.Point(3, 127);
-			this.nud_puls_off.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-			this.nud_puls_off.Name = "nud_puls_off";
-			this.nud_puls_off.Size = new System.Drawing.Size(75, 23);
-			this.nud_puls_off.TabIndex = 4;
-			this.nud_puls_off.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
 			// 
 			// groupBox4
 			// 
@@ -2722,8 +2669,6 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.flowLayoutPanel1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.nud_puls_on)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.nud_puls_off)).EndInit();
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.rightclickMenu.ResumeLayout(false);
@@ -2896,9 +2841,6 @@
 	private System.Windows.Forms.Label label40;
 	private System.Windows.Forms.Label label39;
 	private System.Windows.Forms.Timer tim_puls;
-	private System.Windows.Forms.Button button1;
-	private System.Windows.Forms.NumericUpDown nud_puls_on;
-	private System.Windows.Forms.NumericUpDown nud_puls_off;
 	private System.Windows.Forms.Label label45;
 	public System.Windows.Forms.FlowLayoutPanel flp_joysticksetting_axis;
 	public System.Windows.Forms.FlowLayoutPanel flp_joysticksetting_buttons;

@@ -1091,7 +1091,7 @@ public partial class WindowStatus : Form
 	bool puls = false;
 	private void tim_puls_Tick(object sender, EventArgs e)
 	{
-		if (JoystickHandler.joystick[0].button[5])
+		/*if (JoystickHandler.joystick[0].button[5])
 		{
 			ST_Register.commands[98] = 32;
 		}
@@ -1115,18 +1115,18 @@ public partial class WindowStatus : Form
 			puls = true;
 		}
 
-		puls = !puls;
+		puls = !puls;*/
 	}
 
 	private void button1_Click(object sender, EventArgs e)
 	{
-		tim_puls.Enabled = !tim_puls.Enabled;
-		tim_puls.Interval = (int)nud_puls_on.Value;
+		//tim_puls.Enabled = !tim_puls.Enabled;
+		//tim_puls.Interval = (int)nud_puls_on.Value;
 	}
 
 	private void nud_puls_interval_ValueChanged(object sender, EventArgs e)
 	{
-		tim_puls.Interval = (int)nud_puls_on.Value;
+		//tim_puls.Interval = (int)nud_puls_on.Value;
 	}
 
 	private void btn_graphicsloaded_Click(object sender, EventArgs e)
