@@ -5,34 +5,34 @@
 	</General>
 	<JoystickSettings>
 		<Setting>
-			<index>0</index><jindex>-1</jindex><aindex>22</aindex><reverse>False</reverse><expo>3</expo><deadband>5</deadband><offset>0.2</offset><max>1.9</max>
+			<index>0</index><jindex>-1</jindex><aindex>22</aindex><reverse>False</reverse><expo>3</expo><deadband>5</deadband><offset>1</offset><max>2</max>
 		</Setting>
 		<Setting>
 			<index>1</index><jindex>-1</jindex><aindex>13</aindex><reverse>False</reverse><expo>3</expo><deadband>5</deadband><offset>0</offset><max>2</max>
 		</Setting>
 		<Setting>
-			<index>2</index><jindex>-1</jindex><aindex>12</aindex><reverse>True</reverse><expo>5</expo><deadband>5</deadband><offset>0</offset><max>1.0</max>
+			<index>2</index><jindex>-1</jindex><aindex>12</aindex><reverse>True</reverse><expo>5</expo><deadband>5</deadband><offset>0</offset><max>1</max>
 		</Setting>
 		<Setting>
 			<index>3</index><jindex>-1</jindex><aindex>21</aindex><reverse>False</reverse><expo>3</expo><deadband>5</deadband><offset>0</offset><max>3</max>
 		</Setting>
 		<Setting>
-			<index>4</index><jindex>-1</jindex><aindex>0</aindex><reverse>False</reverse><expo>3.0</expo><deadband>5</deadband><offset>0</offset><max>3</max>
+			<index>4</index><jindex>-1</jindex><aindex>0</aindex><reverse>False</reverse><expo>3</expo><deadband>5</deadband><offset>0</offset><max>3</max>
 		</Setting>
 		<Setting>
 			<index>5</index><jindex>-1</jindex><aindex>23</aindex><reverse>False</reverse><expo>5</expo><deadband>5</deadband><offset>0</offset><max>3</max>
 		</Setting>
 		<Setting>
-			<index>6</index><jindex>-1</jindex><aindex>2</aindex><reverse>False</reverse><expo>3.0</expo><deadband>9</deadband><offset>0</offset><max>6.0</max>
+			<index>6</index><jindex>-1</jindex><aindex>2</aindex><reverse>False</reverse><expo>3</expo><deadband>9</deadband><offset>0</offset><max>6</max>
 		</Setting>
 		<Setting>
-			<index>999</index><jindex>-1</jindex><aindex>2</aindex><reverse>False</reverse><expo>3</expo><deadband>9</deadband><offset>0</offset><max>6.0</max>
+			<index>999</index><jindex>-1</jindex><aindex>2</aindex><reverse>False</reverse><expo>3</expo><deadband>9</deadband><offset>0</offset><max>6</max>
 		</Setting>
 		<Setting>
-			<index>999</index><jindex>-1</jindex><aindex>2</aindex><reverse>False</reverse><expo>3</expo><deadband>9</deadband><offset>0</offset><max>6.0</max>
+			<index>999</index><jindex>-1</jindex><aindex>2</aindex><reverse>False</reverse><expo>3</expo><deadband>9</deadband><offset>0</offset><max>6</max>
 		</Setting>
 		<Setting>
-			<index>999</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>3</expo><deadband>9</deadband><offset>0</offset><max>6.0</max>
+			<index>999</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>3</expo><deadband>9</deadband><offset>0</offset><max>6</max>
 		</Setting>
 		<Setting>
 			<index>999</index><jindex>-1</jindex><aindex>-1</aindex><reverse>False</reverse><expo>3</expo><deadband>9</deadband><offset>0</offset><max>6</max>
@@ -92,7 +92,7 @@
 		</Setting>
 	</JoystickButtonSettings>	<IndexSettings>
 		<Setting>
-			<index>0</index><name>live</name><digit>2</digit><size>14</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
+			<index>0</index><name>live</name><digit>0</digit><size>14</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>100</raw><scaled>100</scaled><suffix></suffix>
 		</Setting>
 		<Setting>
 			<index>37</index><name>heading</name><digit>0</digit><size>14</size><color>-1</color><raw>0</raw><scaled>0</scaled><raw>1000</raw><scaled>100</scaled><suffix></suffix>
@@ -213,5 +213,32 @@
 		</Index>
 	</GraphicSettings>
 	<ToolboxSettings>
+		<SimpleButton>
+			<name>Simple Button</name>
+			<x>499</x>
+			<y>49</y>
+			<msg1_index>0</msg1_index>
+			<msg1_value>0</msg1_value>
+		</SimpleButton>
+		<Slider Cont>
+			<name>Slider</name>
+			<x>500</x>
+			<y>164</y>
+			<index>0</index>
+			<interval>1</interval>
+			<min>-100</min>
+			<max>100</max>
+			<curvalue>0</curvalue>
+		</Slider>
+		<OnOffButton Delay>
+			<name>OnOff Button</name>
+			<x>499</x>
+			<y>104</y>
+			<msg1_index>0</msg1_index>
+			<msg1_value>0</msg1_value>
+			<msg2_index>0</msg2_index>
+			<msg2_value>0</msg2_value>
+			<delay>100</delay>
+		</OnOffButton>
 	</ToolboxSettings>
 </Settings>
