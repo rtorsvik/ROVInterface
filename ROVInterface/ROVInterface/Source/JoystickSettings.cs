@@ -57,7 +57,7 @@ public class JoystickSettings
 
 			//TEMP: finn ut sammen med terje hvor disse egentlig skal kalles hen
 			if (axisSetting[i].outValue != prevOutA[i])
-				ST_Register.commands[i + 1] = axisSetting[i].outValue;
+				ST_Register.commands[axisSetting[i].index] = axisSetting[i].outValue;
 			prevOutA[i] = axisSetting[i].outValue;
 		}
 
