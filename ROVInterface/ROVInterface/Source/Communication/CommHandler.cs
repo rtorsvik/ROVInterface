@@ -22,7 +22,7 @@ public static class CommHandler
 	public static bool newMessage = false;
 
 	// Dll variables
-	private static bool loadedDll = false;
+	private static bool dllFileLoaded = false;
 	public static string dllpath = "";
 	private static Assembly dll;
 	private static MethodInfo dllConvertCommands;
@@ -72,13 +72,13 @@ public static class CommHandler
 				Program.errors.Add("Successfully loaded " + dll.GetTypes()[0].Module.Name);
 			}
 
-			loadedDll = true;
+			dllFileLoaded = true;
 			Program.windowStatus.lab_DLLimported.Text = dllimportlabtext + dllpath;
 		}
 		catch (Exception e)
 		{
 			Program.windowStatus.lab_DLLimported.Text = dllimportlabtext + "<null>";
-			loadedDll = false;
+			dllFileLoaded = false;
 			Console.WriteLine(e);
 		}
 	}
@@ -170,11 +170,11 @@ public static class CommHandler
 		byte[] packet = new byte[0];
 		bool messageTranslated = false;
 
-		if (loadedDll)
+		if (dllFileLoaded)
 		{
 			try
 			{
-				// Use the loaded dll file here if needed
+				// Use the loaded .dll trasnlator file
 				object[] o = new object[1];
 				o[0] = commands;
 				packet = dllConvertCommands.Invoke(null, o) as byte[];

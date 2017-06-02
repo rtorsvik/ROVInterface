@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Translator
 {
 	/*
-	 * Class needs two functions and a name:
+	 * Class needs to implement two functions and a name:
 	 * 
 	 * public static byte[] ConvertCommands(KeyValuePair<int, int>[]);	Converts a set of commands into the right format before sending
 	 * public static Pair<int,int>[] ConvertData(byte[]);				Converts a set of recieved data to the right format before accepting them  
