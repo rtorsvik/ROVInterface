@@ -32,6 +32,8 @@
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.nud_navigation_attitude_rolldiv = new System.Windows.Forms.NumericUpDown();
 			this.nud_navigation_attitude_pitchdiv = new System.Windows.Forms.NumericUpDown();
+			this.aGauge2 = new AGaugeApp.AGauge();
+			this.aGauge1 = new AGaugeApp.AGauge();
 			this.nud_navigation_attitude_rollindex = new System.Windows.Forms.NumericUpDown();
 			this.nud_navigation_heading_index = new System.Windows.Forms.NumericUpDown();
 			this.nud_navigation_attitude_pitchindex = new System.Windows.Forms.NumericUpDown();
@@ -41,6 +43,12 @@
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.ali_navigation_depth_instrument = new Avionics.AltimeterInstrumentControl();
+			this.airSpeedIndicatorInstrumentControl1 = new Avionics.AirSpeedIndicatorInstrumentControl();
+			this.verticalSpeedIndicatorInstrumentControl1 = new Avionics.VerticalSpeedIndicatorInstrumentControl();
+			this.aii_navigation_attitude_instrument = new Avionics.AttitudeIndicatorInstrumentControl();
+			this.ali_navigation_height_instrument = new Avionics.AltimeterInstrumentControl();
+			this.hdi_navigation_heading_instrument = new Avionics.HeadingIndicatorInstrumentControl();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.pan_graphicsCreator = new System.Windows.Forms.Panel();
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
@@ -145,6 +153,17 @@
 			this.label24 = new System.Windows.Forms.Label();
 			this.label25 = new System.Windows.Forms.Label();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
+			this.label48 = new System.Windows.Forms.Label();
+			this.label49 = new System.Windows.Forms.Label();
+			this.label50 = new System.Windows.Forms.Label();
+			this.label51 = new System.Windows.Forms.Label();
+			this.label52 = new System.Windows.Forms.Label();
+			this.label53 = new System.Windows.Forms.Label();
+			this.label54 = new System.Windows.Forms.Label();
+			this.label55 = new System.Windows.Forms.Label();
+			this.label56 = new System.Windows.Forms.Label();
+			this.label59 = new System.Windows.Forms.Label();
 			this.picGraph = new System.Windows.Forms.PictureBox();
 			this.flp_joysticksetting_buttons = new System.Windows.Forms.FlowLayoutPanel();
 			this.flp_joysticksetting_axis = new System.Windows.Forms.FlowLayoutPanel();
@@ -197,25 +216,7 @@
 			this.btn_MenuDeleteControl = new System.Windows.Forms.ToolStripMenuItem();
 			this.AegirMessageRequest = new System.ComponentModel.BackgroundWorker();
 			this.tim_puls = new System.Windows.Forms.Timer(this.components);
-			this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
-			this.label48 = new System.Windows.Forms.Label();
-			this.label49 = new System.Windows.Forms.Label();
-			this.label50 = new System.Windows.Forms.Label();
-			this.label51 = new System.Windows.Forms.Label();
-			this.label52 = new System.Windows.Forms.Label();
-			this.label53 = new System.Windows.Forms.Label();
-			this.label54 = new System.Windows.Forms.Label();
-			this.label55 = new System.Windows.Forms.Label();
-			this.label56 = new System.Windows.Forms.Label();
-			this.label59 = new System.Windows.Forms.Label();
-			this.aGauge2 = new AGaugeApp.AGauge();
-			this.aGauge1 = new AGaugeApp.AGauge();
-			this.ali_navigation_depth_instrument = new Avionics.AltimeterInstrumentControl();
-			this.airSpeedIndicatorInstrumentControl1 = new Avionics.AirSpeedIndicatorInstrumentControl();
-			this.verticalSpeedIndicatorInstrumentControl1 = new Avionics.VerticalSpeedIndicatorInstrumentControl();
-			this.aii_navigation_attitude_instrument = new Avionics.AttitudeIndicatorInstrumentControl();
-			this.ali_navigation_height_instrument = new Avionics.AltimeterInstrumentControl();
-			this.hdi_navigation_heading_instrument = new Avionics.HeadingIndicatorInstrumentControl();
+			this.btnCreateSerialConnection = new System.Windows.Forms.Button();
 			this.connectionTab.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_attitude_rolldiv)).BeginInit();
@@ -260,6 +261,7 @@
 			this.flowLayoutPanel2.SuspendLayout();
 			this.flowLayoutPanel3.SuspendLayout();
 			this.tabPage5.SuspendLayout();
+			this.flowLayoutPanel6.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picGraph)).BeginInit();
 			this.grp_JoystickInstructions.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -270,7 +272,6 @@
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
 			this.rightclickMenu.SuspendLayout();
-			this.flowLayoutPanel6.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// connectionTab
@@ -355,6 +356,218 @@
             0,
             0,
             0});
+			// 
+			// aGauge2
+			// 
+			this.aGauge2.BaseArcColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge2.BaseArcRadius = 80;
+			this.aGauge2.BaseArcStart = 180;
+			this.aGauge2.BaseArcSweep = 180;
+			this.aGauge2.BaseArcWidth = 5;
+			this.aGauge2.Cap_Idx = ((byte)(1));
+			this.aGauge2.CapColors = new System.Drawing.Color[] {
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black};
+			this.aGauge2.CapPosition = new System.Drawing.Point(10, 10);
+			this.aGauge2.CapsPosition = new System.Drawing.Point[] {
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10)};
+			this.aGauge2.CapsText = new string[] {
+        "",
+        "",
+        "",
+        "",
+        ""};
+			this.aGauge2.CapText = "";
+			this.aGauge2.Center = new System.Drawing.Point(100, 100);
+			this.aGauge2.Location = new System.Drawing.Point(493, 460);
+			this.aGauge2.MaxValue = 100F;
+			this.aGauge2.MinValue = 0F;
+			this.aGauge2.Name = "aGauge2";
+			this.aGauge2.NeedleColor1 = AGaugeApp.AGauge.NeedleColorEnum.Gray;
+			this.aGauge2.NeedleColor2 = System.Drawing.Color.DimGray;
+			this.aGauge2.NeedleRadius = 80;
+			this.aGauge2.NeedleType = 0;
+			this.aGauge2.NeedleWidth = 2;
+			this.aGauge2.Range_Idx = ((byte)(0));
+			this.aGauge2.RangeColor = System.Drawing.Color.Red;
+			this.aGauge2.RangeEnabled = true;
+			this.aGauge2.RangeEndValue = 20F;
+			this.aGauge2.RangeInnerRadius = 60;
+			this.aGauge2.RangeOuterRadius = 80;
+			this.aGauge2.RangesColor = new System.Drawing.Color[] {
+        System.Drawing.Color.Red,
+        System.Drawing.Color.LightGreen,
+        System.Drawing.SystemColors.Control,
+        System.Drawing.SystemColors.Control,
+        System.Drawing.SystemColors.Control};
+			this.aGauge2.RangesEnabled = new bool[] {
+        true,
+        true,
+        false,
+        false,
+        false};
+			this.aGauge2.RangesEndValue = new float[] {
+        20F,
+        100F,
+        0F,
+        0F,
+        0F};
+			this.aGauge2.RangesInnerRadius = new int[] {
+        60,
+        60,
+        60,
+        70,
+        70};
+			this.aGauge2.RangesOuterRadius = new int[] {
+        80,
+        80,
+        80,
+        80,
+        80};
+			this.aGauge2.RangesStartValue = new float[] {
+        0F,
+        20F,
+        0F,
+        0F,
+        0F};
+			this.aGauge2.RangeStartValue = 0F;
+			this.aGauge2.ScaleLinesInterColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge2.ScaleLinesInterInnerRadius = 70;
+			this.aGauge2.ScaleLinesInterOuterRadius = 80;
+			this.aGauge2.ScaleLinesInterWidth = 1;
+			this.aGauge2.ScaleLinesMajorColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge2.ScaleLinesMajorInnerRadius = 70;
+			this.aGauge2.ScaleLinesMajorOuterRadius = 80;
+			this.aGauge2.ScaleLinesMajorStepValue = 20F;
+			this.aGauge2.ScaleLinesMajorWidth = 4;
+			this.aGauge2.ScaleLinesMinorColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge2.ScaleLinesMinorInnerRadius = 75;
+			this.aGauge2.ScaleLinesMinorNumOf = 9;
+			this.aGauge2.ScaleLinesMinorOuterRadius = 80;
+			this.aGauge2.ScaleLinesMinorWidth = 1;
+			this.aGauge2.ScaleNumbersColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge2.ScaleNumbersFormat = null;
+			this.aGauge2.ScaleNumbersRadius = 95;
+			this.aGauge2.ScaleNumbersRotation = 0;
+			this.aGauge2.ScaleNumbersStartScaleLine = 0;
+			this.aGauge2.ScaleNumbersStepScaleLines = 1;
+			this.aGauge2.Size = new System.Drawing.Size(214, 127);
+			this.aGauge2.TabIndex = 18;
+			this.aGauge2.Text = "aGauge2";
+			this.aGauge2.Value = 20F;
+			// 
+			// aGauge1
+			// 
+			this.aGauge1.BaseArcColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge1.BaseArcRadius = 80;
+			this.aGauge1.BaseArcStart = 180;
+			this.aGauge1.BaseArcSweep = 180;
+			this.aGauge1.BaseArcWidth = 5;
+			this.aGauge1.Cap_Idx = ((byte)(1));
+			this.aGauge1.CapColors = new System.Drawing.Color[] {
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black};
+			this.aGauge1.CapPosition = new System.Drawing.Point(10, 10);
+			this.aGauge1.CapsPosition = new System.Drawing.Point[] {
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10)};
+			this.aGauge1.CapsText = new string[] {
+        "",
+        "",
+        "",
+        "",
+        ""};
+			this.aGauge1.CapText = "";
+			this.aGauge1.Center = new System.Drawing.Point(100, 100);
+			this.aGauge1.Location = new System.Drawing.Point(733, 460);
+			this.aGauge1.MaxValue = 100F;
+			this.aGauge1.MinValue = 0F;
+			this.aGauge1.Name = "aGauge1";
+			this.aGauge1.NeedleColor1 = AGaugeApp.AGauge.NeedleColorEnum.Gray;
+			this.aGauge1.NeedleColor2 = System.Drawing.Color.DimGray;
+			this.aGauge1.NeedleRadius = 80;
+			this.aGauge1.NeedleType = 0;
+			this.aGauge1.NeedleWidth = 2;
+			this.aGauge1.Range_Idx = ((byte)(0));
+			this.aGauge1.RangeColor = System.Drawing.Color.Red;
+			this.aGauge1.RangeEnabled = true;
+			this.aGauge1.RangeEndValue = 20F;
+			this.aGauge1.RangeInnerRadius = 60;
+			this.aGauge1.RangeOuterRadius = 80;
+			this.aGauge1.RangesColor = new System.Drawing.Color[] {
+        System.Drawing.Color.Red,
+        System.Drawing.Color.LightGreen,
+        System.Drawing.SystemColors.Control,
+        System.Drawing.SystemColors.Control,
+        System.Drawing.SystemColors.Control};
+			this.aGauge1.RangesEnabled = new bool[] {
+        true,
+        true,
+        false,
+        false,
+        false};
+			this.aGauge1.RangesEndValue = new float[] {
+        20F,
+        100F,
+        0F,
+        0F,
+        0F};
+			this.aGauge1.RangesInnerRadius = new int[] {
+        60,
+        60,
+        60,
+        70,
+        70};
+			this.aGauge1.RangesOuterRadius = new int[] {
+        80,
+        80,
+        80,
+        80,
+        80};
+			this.aGauge1.RangesStartValue = new float[] {
+        0F,
+        20F,
+        0F,
+        0F,
+        0F};
+			this.aGauge1.RangeStartValue = 0F;
+			this.aGauge1.ScaleLinesInterColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge1.ScaleLinesInterInnerRadius = 70;
+			this.aGauge1.ScaleLinesInterOuterRadius = 80;
+			this.aGauge1.ScaleLinesInterWidth = 1;
+			this.aGauge1.ScaleLinesMajorColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge1.ScaleLinesMajorInnerRadius = 70;
+			this.aGauge1.ScaleLinesMajorOuterRadius = 80;
+			this.aGauge1.ScaleLinesMajorStepValue = 20F;
+			this.aGauge1.ScaleLinesMajorWidth = 4;
+			this.aGauge1.ScaleLinesMinorColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge1.ScaleLinesMinorInnerRadius = 75;
+			this.aGauge1.ScaleLinesMinorNumOf = 9;
+			this.aGauge1.ScaleLinesMinorOuterRadius = 80;
+			this.aGauge1.ScaleLinesMinorWidth = 1;
+			this.aGauge1.ScaleNumbersColor = System.Drawing.SystemColors.MenuHighlight;
+			this.aGauge1.ScaleNumbersFormat = null;
+			this.aGauge1.ScaleNumbersRadius = 95;
+			this.aGauge1.ScaleNumbersRotation = 0;
+			this.aGauge1.ScaleNumbersStartScaleLine = 0;
+			this.aGauge1.ScaleNumbersStepScaleLines = 1;
+			this.aGauge1.Size = new System.Drawing.Size(214, 127);
+			this.aGauge1.TabIndex = 17;
+			this.aGauge1.Text = "aGauge1";
+			this.aGauge1.Value = 20F;
 			// 
 			// nud_navigation_attitude_rollindex
 			// 
@@ -463,6 +676,54 @@
 			this.textBox1.TabIndex = 8;
 			this.textBox1.Text = "Attitude";
 			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// ali_navigation_depth_instrument
+			// 
+			this.ali_navigation_depth_instrument.Location = new System.Drawing.Point(1150, 406);
+			this.ali_navigation_depth_instrument.Name = "ali_navigation_depth_instrument";
+			this.ali_navigation_depth_instrument.Size = new System.Drawing.Size(152, 154);
+			this.ali_navigation_depth_instrument.TabIndex = 7;
+			this.ali_navigation_depth_instrument.Text = "altimeterInstrumentControl2";
+			// 
+			// airSpeedIndicatorInstrumentControl1
+			// 
+			this.airSpeedIndicatorInstrumentControl1.Location = new System.Drawing.Point(80, 351);
+			this.airSpeedIndicatorInstrumentControl1.Name = "airSpeedIndicatorInstrumentControl1";
+			this.airSpeedIndicatorInstrumentControl1.Size = new System.Drawing.Size(208, 209);
+			this.airSpeedIndicatorInstrumentControl1.TabIndex = 6;
+			this.airSpeedIndicatorInstrumentControl1.Text = "airSpeedIndicatorInstrumentControl1";
+			// 
+			// verticalSpeedIndicatorInstrumentControl1
+			// 
+			this.verticalSpeedIndicatorInstrumentControl1.Location = new System.Drawing.Point(107, 188);
+			this.verticalSpeedIndicatorInstrumentControl1.Name = "verticalSpeedIndicatorInstrumentControl1";
+			this.verticalSpeedIndicatorInstrumentControl1.Size = new System.Drawing.Size(152, 157);
+			this.verticalSpeedIndicatorInstrumentControl1.TabIndex = 5;
+			this.verticalSpeedIndicatorInstrumentControl1.Text = "verticalSpeedIndicatorInstrumentControl1";
+			// 
+			// aii_navigation_attitude_instrument
+			// 
+			this.aii_navigation_attitude_instrument.Location = new System.Drawing.Point(583, 196);
+			this.aii_navigation_attitude_instrument.Name = "aii_navigation_attitude_instrument";
+			this.aii_navigation_attitude_instrument.Size = new System.Drawing.Size(237, 240);
+			this.aii_navigation_attitude_instrument.TabIndex = 1;
+			this.aii_navigation_attitude_instrument.Text = "aii_navigation_attitude_instrument";
+			// 
+			// ali_navigation_height_instrument
+			// 
+			this.ali_navigation_height_instrument.Location = new System.Drawing.Point(1150, 181);
+			this.ali_navigation_height_instrument.Name = "ali_navigation_height_instrument";
+			this.ali_navigation_height_instrument.Size = new System.Drawing.Size(152, 154);
+			this.ali_navigation_height_instrument.TabIndex = 0;
+			this.ali_navigation_height_instrument.Text = "altimeterInstrumentControl1";
+			// 
+			// hdi_navigation_heading_instrument
+			// 
+			this.hdi_navigation_heading_instrument.Location = new System.Drawing.Point(639, 30);
+			this.hdi_navigation_heading_instrument.Name = "hdi_navigation_heading_instrument";
+			this.hdi_navigation_heading_instrument.Size = new System.Drawing.Size(127, 134);
+			this.hdi_navigation_heading_instrument.TabIndex = 3;
+			this.hdi_navigation_heading_instrument.Text = "headingIndicatorInstrumentControl1";
 			// 
 			// tabPage2
 			// 
@@ -1089,6 +1350,7 @@
 			this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox8.Controls.Add(this.btnCreateSerialConnection);
 			this.groupBox8.Controls.Add(this.groupBox1);
 			this.groupBox8.Controls.Add(this.groupBox2);
 			this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1845,6 +2107,133 @@
 			this.tabPage5.TabIndex = 4;
 			this.tabPage5.Text = "Joystick Settings";
 			// 
+			// flowLayoutPanel6
+			// 
+			this.flowLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.flowLayoutPanel6.Controls.Add(this.label48);
+			this.flowLayoutPanel6.Controls.Add(this.label49);
+			this.flowLayoutPanel6.Controls.Add(this.label50);
+			this.flowLayoutPanel6.Controls.Add(this.label51);
+			this.flowLayoutPanel6.Controls.Add(this.label52);
+			this.flowLayoutPanel6.Controls.Add(this.label53);
+			this.flowLayoutPanel6.Controls.Add(this.label54);
+			this.flowLayoutPanel6.Controls.Add(this.label55);
+			this.flowLayoutPanel6.Controls.Add(this.label56);
+			this.flowLayoutPanel6.Controls.Add(this.label59);
+			this.flowLayoutPanel6.Location = new System.Drawing.Point(8, 291);
+			this.flowLayoutPanel6.Name = "flowLayoutPanel6";
+			this.flowLayoutPanel6.Size = new System.Drawing.Size(1374, 19);
+			this.flowLayoutPanel6.TabIndex = 27;
+			// 
+			// label48
+			// 
+			this.label48.AutoSize = true;
+			this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label48.Location = new System.Drawing.Point(15, 0);
+			this.label48.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
+			this.label48.Name = "label48";
+			this.label48.Size = new System.Drawing.Size(80, 17);
+			this.label48.TabIndex = 18;
+			this.label48.Text = "Index/descr";
+			// 
+			// label49
+			// 
+			this.label49.AutoSize = true;
+			this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label49.Location = new System.Drawing.Point(140, 0);
+			this.label49.Margin = new System.Windows.Forms.Padding(42, 0, 0, 0);
+			this.label49.Name = "label49";
+			this.label49.Size = new System.Drawing.Size(108, 17);
+			this.label49.TabIndex = 19;
+			this.label49.Text = "Command Bitnr.";
+			// 
+			// label50
+			// 
+			this.label50.AutoSize = true;
+			this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label50.Location = new System.Drawing.Point(253, 0);
+			this.label50.Margin = new System.Windows.Forms.Padding(5, 0, 3, 0);
+			this.label50.Name = "label50";
+			this.label50.Size = new System.Drawing.Size(58, 17);
+			this.label50.TabIndex = 3;
+			this.label50.Text = "Joystick";
+			// 
+			// label51
+			// 
+			this.label51.AutoSize = true;
+			this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label51.Location = new System.Drawing.Point(329, 0);
+			this.label51.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
+			this.label51.Name = "label51";
+			this.label51.Size = new System.Drawing.Size(49, 17);
+			this.label51.TabIndex = 4;
+			this.label51.Text = "Button";
+			// 
+			// label52
+			// 
+			this.label52.AutoSize = true;
+			this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label52.Location = new System.Drawing.Point(411, 0);
+			this.label52.Margin = new System.Windows.Forms.Padding(30, 0, 3, 0);
+			this.label52.Name = "label52";
+			this.label52.Size = new System.Drawing.Size(59, 17);
+			this.label52.TabIndex = 7;
+			this.label52.Text = "Value in";
+			// 
+			// label53
+			// 
+			this.label53.AutoSize = true;
+			this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label53.Location = new System.Drawing.Point(673, 0);
+			this.label53.Margin = new System.Windows.Forms.Padding(200, 0, 0, 0);
+			this.label53.Name = "label53";
+			this.label53.Size = new System.Drawing.Size(40, 17);
+			this.label53.TabIndex = 9;
+			this.label53.Text = "Push";
+			// 
+			// label54
+			// 
+			this.label54.AutoSize = true;
+			this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label54.Location = new System.Drawing.Point(723, 0);
+			this.label54.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
+			this.label54.Name = "label54";
+			this.label54.Size = new System.Drawing.Size(52, 17);
+			this.label54.TabIndex = 13;
+			this.label54.Text = "Toggle";
+			// 
+			// label55
+			// 
+			this.label55.AutoSize = true;
+			this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label55.Location = new System.Drawing.Point(781, 0);
+			this.label55.Name = "label55";
+			this.label55.Size = new System.Drawing.Size(63, 17);
+			this.label55.TabIndex = 11;
+			this.label55.Text = "OnValue";
+			// 
+			// label56
+			// 
+			this.label56.AutoSize = true;
+			this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label56.Location = new System.Drawing.Point(850, 0);
+			this.label56.Name = "label56";
+			this.label56.Size = new System.Drawing.Size(63, 17);
+			this.label56.TabIndex = 10;
+			this.label56.Text = "OffValue";
+			// 
+			// label59
+			// 
+			this.label59.AutoSize = true;
+			this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label59.Location = new System.Drawing.Point(996, 0);
+			this.label59.Margin = new System.Windows.Forms.Padding(80, 0, 3, 0);
+			this.label59.Name = "label59";
+			this.label59.Size = new System.Drawing.Size(68, 17);
+			this.label59.TabIndex = 17;
+			this.label59.Text = "Value out";
+			// 
 			// picGraph
 			// 
 			this.picGraph.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2338,392 +2727,17 @@
 			// 
 			this.tim_puls.Tick += new System.EventHandler(this.tim_puls_Tick);
 			// 
-			// flowLayoutPanel6
+			// btnCreateSerialConnection
 			// 
-			this.flowLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.flowLayoutPanel6.Controls.Add(this.label48);
-			this.flowLayoutPanel6.Controls.Add(this.label49);
-			this.flowLayoutPanel6.Controls.Add(this.label50);
-			this.flowLayoutPanel6.Controls.Add(this.label51);
-			this.flowLayoutPanel6.Controls.Add(this.label52);
-			this.flowLayoutPanel6.Controls.Add(this.label53);
-			this.flowLayoutPanel6.Controls.Add(this.label54);
-			this.flowLayoutPanel6.Controls.Add(this.label55);
-			this.flowLayoutPanel6.Controls.Add(this.label56);
-			this.flowLayoutPanel6.Controls.Add(this.label59);
-			this.flowLayoutPanel6.Location = new System.Drawing.Point(8, 291);
-			this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-			this.flowLayoutPanel6.Size = new System.Drawing.Size(1374, 19);
-			this.flowLayoutPanel6.TabIndex = 27;
-			// 
-			// label48
-			// 
-			this.label48.AutoSize = true;
-			this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label48.Location = new System.Drawing.Point(15, 0);
-			this.label48.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
-			this.label48.Name = "label48";
-			this.label48.Size = new System.Drawing.Size(80, 17);
-			this.label48.TabIndex = 18;
-			this.label48.Text = "Index/descr";
-			// 
-			// label49
-			// 
-			this.label49.AutoSize = true;
-			this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label49.Location = new System.Drawing.Point(140, 0);
-			this.label49.Margin = new System.Windows.Forms.Padding(42, 0, 0, 0);
-			this.label49.Name = "label49";
-			this.label49.Size = new System.Drawing.Size(108, 17);
-			this.label49.TabIndex = 19;
-			this.label49.Text = "Command Bitnr.";
-			// 
-			// label50
-			// 
-			this.label50.AutoSize = true;
-			this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label50.Location = new System.Drawing.Point(253, 0);
-			this.label50.Margin = new System.Windows.Forms.Padding(5, 0, 3, 0);
-			this.label50.Name = "label50";
-			this.label50.Size = new System.Drawing.Size(58, 17);
-			this.label50.TabIndex = 3;
-			this.label50.Text = "Joystick";
-			// 
-			// label51
-			// 
-			this.label51.AutoSize = true;
-			this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label51.Location = new System.Drawing.Point(329, 0);
-			this.label51.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
-			this.label51.Name = "label51";
-			this.label51.Size = new System.Drawing.Size(49, 17);
-			this.label51.TabIndex = 4;
-			this.label51.Text = "Button";
-			// 
-			// label52
-			// 
-			this.label52.AutoSize = true;
-			this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label52.Location = new System.Drawing.Point(411, 0);
-			this.label52.Margin = new System.Windows.Forms.Padding(30, 0, 3, 0);
-			this.label52.Name = "label52";
-			this.label52.Size = new System.Drawing.Size(59, 17);
-			this.label52.TabIndex = 7;
-			this.label52.Text = "Value in";
-			// 
-			// label53
-			// 
-			this.label53.AutoSize = true;
-			this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label53.Location = new System.Drawing.Point(673, 0);
-			this.label53.Margin = new System.Windows.Forms.Padding(200, 0, 0, 0);
-			this.label53.Name = "label53";
-			this.label53.Size = new System.Drawing.Size(40, 17);
-			this.label53.TabIndex = 9;
-			this.label53.Text = "Push";
-			// 
-			// label54
-			// 
-			this.label54.AutoSize = true;
-			this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label54.Location = new System.Drawing.Point(723, 0);
-			this.label54.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
-			this.label54.Name = "label54";
-			this.label54.Size = new System.Drawing.Size(52, 17);
-			this.label54.TabIndex = 13;
-			this.label54.Text = "Toggle";
-			// 
-			// label55
-			// 
-			this.label55.AutoSize = true;
-			this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label55.Location = new System.Drawing.Point(781, 0);
-			this.label55.Name = "label55";
-			this.label55.Size = new System.Drawing.Size(63, 17);
-			this.label55.TabIndex = 11;
-			this.label55.Text = "OnValue";
-			// 
-			// label56
-			// 
-			this.label56.AutoSize = true;
-			this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label56.Location = new System.Drawing.Point(850, 0);
-			this.label56.Name = "label56";
-			this.label56.Size = new System.Drawing.Size(63, 17);
-			this.label56.TabIndex = 10;
-			this.label56.Text = "OffValue";
-			// 
-			// label59
-			// 
-			this.label59.AutoSize = true;
-			this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label59.Location = new System.Drawing.Point(996, 0);
-			this.label59.Margin = new System.Windows.Forms.Padding(80, 0, 3, 0);
-			this.label59.Name = "label59";
-			this.label59.Size = new System.Drawing.Size(68, 17);
-			this.label59.TabIndex = 17;
-			this.label59.Text = "Value out";
-			// 
-			// aGauge2
-			// 
-			this.aGauge2.BaseArcColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge2.BaseArcRadius = 80;
-			this.aGauge2.BaseArcStart = 180;
-			this.aGauge2.BaseArcSweep = 180;
-			this.aGauge2.BaseArcWidth = 5;
-			this.aGauge2.Cap_Idx = ((byte)(1));
-			this.aGauge2.CapColors = new System.Drawing.Color[] {
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black};
-			this.aGauge2.CapPosition = new System.Drawing.Point(10, 10);
-			this.aGauge2.CapsPosition = new System.Drawing.Point[] {
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10)};
-			this.aGauge2.CapsText = new string[] {
-        "",
-        "",
-        "",
-        "",
-        ""};
-			this.aGauge2.CapText = "";
-			this.aGauge2.Center = new System.Drawing.Point(100, 100);
-			this.aGauge2.Location = new System.Drawing.Point(493, 460);
-			this.aGauge2.MaxValue = 100F;
-			this.aGauge2.MinValue = 0F;
-			this.aGauge2.Name = "aGauge2";
-			this.aGauge2.NeedleColor1 = AGaugeApp.AGauge.NeedleColorEnum.Gray;
-			this.aGauge2.NeedleColor2 = System.Drawing.Color.DimGray;
-			this.aGauge2.NeedleRadius = 80;
-			this.aGauge2.NeedleType = 0;
-			this.aGauge2.NeedleWidth = 2;
-			this.aGauge2.Range_Idx = ((byte)(0));
-			this.aGauge2.RangeColor = System.Drawing.Color.Red;
-			this.aGauge2.RangeEnabled = true;
-			this.aGauge2.RangeEndValue = 20F;
-			this.aGauge2.RangeInnerRadius = 60;
-			this.aGauge2.RangeOuterRadius = 80;
-			this.aGauge2.RangesColor = new System.Drawing.Color[] {
-        System.Drawing.Color.Red,
-        System.Drawing.Color.LightGreen,
-        System.Drawing.SystemColors.Control,
-        System.Drawing.SystemColors.Control,
-        System.Drawing.SystemColors.Control};
-			this.aGauge2.RangesEnabled = new bool[] {
-        true,
-        true,
-        false,
-        false,
-        false};
-			this.aGauge2.RangesEndValue = new float[] {
-        20F,
-        100F,
-        0F,
-        0F,
-        0F};
-			this.aGauge2.RangesInnerRadius = new int[] {
-        60,
-        60,
-        60,
-        70,
-        70};
-			this.aGauge2.RangesOuterRadius = new int[] {
-        80,
-        80,
-        80,
-        80,
-        80};
-			this.aGauge2.RangesStartValue = new float[] {
-        0F,
-        20F,
-        0F,
-        0F,
-        0F};
-			this.aGauge2.RangeStartValue = 0F;
-			this.aGauge2.ScaleLinesInterColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge2.ScaleLinesInterInnerRadius = 70;
-			this.aGauge2.ScaleLinesInterOuterRadius = 80;
-			this.aGauge2.ScaleLinesInterWidth = 1;
-			this.aGauge2.ScaleLinesMajorColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge2.ScaleLinesMajorInnerRadius = 70;
-			this.aGauge2.ScaleLinesMajorOuterRadius = 80;
-			this.aGauge2.ScaleLinesMajorStepValue = 20F;
-			this.aGauge2.ScaleLinesMajorWidth = 4;
-			this.aGauge2.ScaleLinesMinorColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge2.ScaleLinesMinorInnerRadius = 75;
-			this.aGauge2.ScaleLinesMinorNumOf = 9;
-			this.aGauge2.ScaleLinesMinorOuterRadius = 80;
-			this.aGauge2.ScaleLinesMinorWidth = 1;
-			this.aGauge2.ScaleNumbersColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge2.ScaleNumbersFormat = null;
-			this.aGauge2.ScaleNumbersRadius = 95;
-			this.aGauge2.ScaleNumbersRotation = 0;
-			this.aGauge2.ScaleNumbersStartScaleLine = 0;
-			this.aGauge2.ScaleNumbersStepScaleLines = 1;
-			this.aGauge2.Size = new System.Drawing.Size(214, 127);
-			this.aGauge2.TabIndex = 18;
-			this.aGauge2.Text = "aGauge2";
-			this.aGauge2.Value = 20F;
-			// 
-			// aGauge1
-			// 
-			this.aGauge1.BaseArcColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge1.BaseArcRadius = 80;
-			this.aGauge1.BaseArcStart = 180;
-			this.aGauge1.BaseArcSweep = 180;
-			this.aGauge1.BaseArcWidth = 5;
-			this.aGauge1.Cap_Idx = ((byte)(1));
-			this.aGauge1.CapColors = new System.Drawing.Color[] {
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black,
-        System.Drawing.Color.Black};
-			this.aGauge1.CapPosition = new System.Drawing.Point(10, 10);
-			this.aGauge1.CapsPosition = new System.Drawing.Point[] {
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10),
-        new System.Drawing.Point(10, 10)};
-			this.aGauge1.CapsText = new string[] {
-        "",
-        "",
-        "",
-        "",
-        ""};
-			this.aGauge1.CapText = "";
-			this.aGauge1.Center = new System.Drawing.Point(100, 100);
-			this.aGauge1.Location = new System.Drawing.Point(733, 460);
-			this.aGauge1.MaxValue = 100F;
-			this.aGauge1.MinValue = 0F;
-			this.aGauge1.Name = "aGauge1";
-			this.aGauge1.NeedleColor1 = AGaugeApp.AGauge.NeedleColorEnum.Gray;
-			this.aGauge1.NeedleColor2 = System.Drawing.Color.DimGray;
-			this.aGauge1.NeedleRadius = 80;
-			this.aGauge1.NeedleType = 0;
-			this.aGauge1.NeedleWidth = 2;
-			this.aGauge1.Range_Idx = ((byte)(0));
-			this.aGauge1.RangeColor = System.Drawing.Color.Red;
-			this.aGauge1.RangeEnabled = true;
-			this.aGauge1.RangeEndValue = 20F;
-			this.aGauge1.RangeInnerRadius = 60;
-			this.aGauge1.RangeOuterRadius = 80;
-			this.aGauge1.RangesColor = new System.Drawing.Color[] {
-        System.Drawing.Color.Red,
-        System.Drawing.Color.LightGreen,
-        System.Drawing.SystemColors.Control,
-        System.Drawing.SystemColors.Control,
-        System.Drawing.SystemColors.Control};
-			this.aGauge1.RangesEnabled = new bool[] {
-        true,
-        true,
-        false,
-        false,
-        false};
-			this.aGauge1.RangesEndValue = new float[] {
-        20F,
-        100F,
-        0F,
-        0F,
-        0F};
-			this.aGauge1.RangesInnerRadius = new int[] {
-        60,
-        60,
-        60,
-        70,
-        70};
-			this.aGauge1.RangesOuterRadius = new int[] {
-        80,
-        80,
-        80,
-        80,
-        80};
-			this.aGauge1.RangesStartValue = new float[] {
-        0F,
-        20F,
-        0F,
-        0F,
-        0F};
-			this.aGauge1.RangeStartValue = 0F;
-			this.aGauge1.ScaleLinesInterColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge1.ScaleLinesInterInnerRadius = 70;
-			this.aGauge1.ScaleLinesInterOuterRadius = 80;
-			this.aGauge1.ScaleLinesInterWidth = 1;
-			this.aGauge1.ScaleLinesMajorColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge1.ScaleLinesMajorInnerRadius = 70;
-			this.aGauge1.ScaleLinesMajorOuterRadius = 80;
-			this.aGauge1.ScaleLinesMajorStepValue = 20F;
-			this.aGauge1.ScaleLinesMajorWidth = 4;
-			this.aGauge1.ScaleLinesMinorColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge1.ScaleLinesMinorInnerRadius = 75;
-			this.aGauge1.ScaleLinesMinorNumOf = 9;
-			this.aGauge1.ScaleLinesMinorOuterRadius = 80;
-			this.aGauge1.ScaleLinesMinorWidth = 1;
-			this.aGauge1.ScaleNumbersColor = System.Drawing.SystemColors.MenuHighlight;
-			this.aGauge1.ScaleNumbersFormat = null;
-			this.aGauge1.ScaleNumbersRadius = 95;
-			this.aGauge1.ScaleNumbersRotation = 0;
-			this.aGauge1.ScaleNumbersStartScaleLine = 0;
-			this.aGauge1.ScaleNumbersStepScaleLines = 1;
-			this.aGauge1.Size = new System.Drawing.Size(214, 127);
-			this.aGauge1.TabIndex = 17;
-			this.aGauge1.Text = "aGauge1";
-			this.aGauge1.Value = 20F;
-			// 
-			// ali_navigation_depth_instrument
-			// 
-			this.ali_navigation_depth_instrument.Location = new System.Drawing.Point(1150, 406);
-			this.ali_navigation_depth_instrument.Name = "ali_navigation_depth_instrument";
-			this.ali_navigation_depth_instrument.Size = new System.Drawing.Size(152, 154);
-			this.ali_navigation_depth_instrument.TabIndex = 7;
-			this.ali_navigation_depth_instrument.Text = "altimeterInstrumentControl2";
-			// 
-			// airSpeedIndicatorInstrumentControl1
-			// 
-			this.airSpeedIndicatorInstrumentControl1.Location = new System.Drawing.Point(80, 351);
-			this.airSpeedIndicatorInstrumentControl1.Name = "airSpeedIndicatorInstrumentControl1";
-			this.airSpeedIndicatorInstrumentControl1.Size = new System.Drawing.Size(208, 209);
-			this.airSpeedIndicatorInstrumentControl1.TabIndex = 6;
-			this.airSpeedIndicatorInstrumentControl1.Text = "airSpeedIndicatorInstrumentControl1";
-			// 
-			// verticalSpeedIndicatorInstrumentControl1
-			// 
-			this.verticalSpeedIndicatorInstrumentControl1.Location = new System.Drawing.Point(107, 188);
-			this.verticalSpeedIndicatorInstrumentControl1.Name = "verticalSpeedIndicatorInstrumentControl1";
-			this.verticalSpeedIndicatorInstrumentControl1.Size = new System.Drawing.Size(152, 157);
-			this.verticalSpeedIndicatorInstrumentControl1.TabIndex = 5;
-			this.verticalSpeedIndicatorInstrumentControl1.Text = "verticalSpeedIndicatorInstrumentControl1";
-			// 
-			// aii_navigation_attitude_instrument
-			// 
-			this.aii_navigation_attitude_instrument.Location = new System.Drawing.Point(583, 196);
-			this.aii_navigation_attitude_instrument.Name = "aii_navigation_attitude_instrument";
-			this.aii_navigation_attitude_instrument.Size = new System.Drawing.Size(237, 240);
-			this.aii_navigation_attitude_instrument.TabIndex = 1;
-			this.aii_navigation_attitude_instrument.Text = "aii_navigation_attitude_instrument";
-			// 
-			// ali_navigation_height_instrument
-			// 
-			this.ali_navigation_height_instrument.Location = new System.Drawing.Point(1150, 181);
-			this.ali_navigation_height_instrument.Name = "ali_navigation_height_instrument";
-			this.ali_navigation_height_instrument.Size = new System.Drawing.Size(152, 154);
-			this.ali_navigation_height_instrument.TabIndex = 0;
-			this.ali_navigation_height_instrument.Text = "altimeterInstrumentControl1";
-			// 
-			// hdi_navigation_heading_instrument
-			// 
-			this.hdi_navigation_heading_instrument.Location = new System.Drawing.Point(639, 30);
-			this.hdi_navigation_heading_instrument.Name = "hdi_navigation_heading_instrument";
-			this.hdi_navigation_heading_instrument.Size = new System.Drawing.Size(127, 134);
-			this.hdi_navigation_heading_instrument.TabIndex = 3;
-			this.hdi_navigation_heading_instrument.Text = "headingIndicatorInstrumentControl1";
+			this.btnCreateSerialConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.btnCreateSerialConnection.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.btnCreateSerialConnection.Location = new System.Drawing.Point(17, 40);
+			this.btnCreateSerialConnection.Name = "btnCreateSerialConnection";
+			this.btnCreateSerialConnection.Size = new System.Drawing.Size(208, 42);
+			this.btnCreateSerialConnection.TabIndex = 12;
+			this.btnCreateSerialConnection.Text = "New serial connection";
+			this.btnCreateSerialConnection.UseVisualStyleBackColor = true;
+			this.btnCreateSerialConnection.Click += new System.EventHandler(this.btnCreateSerialConnection_Click);
 			// 
 			// WindowStatus
 			// 
@@ -2800,6 +2814,8 @@
 			this.flowLayoutPanel3.PerformLayout();
 			this.tabPage5.ResumeLayout(false);
 			this.tabPage5.PerformLayout();
+			this.flowLayoutPanel6.ResumeLayout(false);
+			this.flowLayoutPanel6.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picGraph)).EndInit();
 			this.grp_JoystickInstructions.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -2812,8 +2828,6 @@
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.rightclickMenu.ResumeLayout(false);
-			this.flowLayoutPanel6.ResumeLayout(false);
-			this.flowLayoutPanel6.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -3008,4 +3022,5 @@
 	private System.Windows.Forms.Label label55;
 	private System.Windows.Forms.Label label56;
 	private System.Windows.Forms.Label label59;
+	private System.Windows.Forms.Button btnCreateSerialConnection;
 }

@@ -102,6 +102,12 @@
     <Compile Include="AvionicsInstrumentsControls\VerticalSpeedIndicatorInstrumentControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\FormSerialConnection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSerialConnection.Designer.cs">
+      <DependentUpon>FormSerialConnection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\DatabaseDeprecated.cs" />
     <Compile Include="Source\ErrorManager.cs" />
     <Compile Include="Source\GraphicsCreator.cs" />
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\IndexDialogForm.resx">
       <DependentUpon>IndexDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSerialConnection.resx">
+      <DependentUpon>FormSerialConnection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ToolboxControlSettings.resx">
       <DependentUpon>ToolboxControlSettings.cs</DependentUpon>

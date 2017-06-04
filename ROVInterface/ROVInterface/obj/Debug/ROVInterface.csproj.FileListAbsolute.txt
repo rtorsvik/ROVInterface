@@ -193,3 +193,4 @@ C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Translator.dll
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\bin\Debug\Translator.pdb
 C:\Users\reint\OneDrive\Skole\DATBAC Bacheloroppgave\Kode\ROVInterface\ROVInterface\ROVInterface\obj\Debug\ROVInterface.csprojResolveAssemblyReference.cache
+C:\Users\Terje\OneDrive\Github\ROVInterface\ROVInterface\ROVInterface\obj\Debug\FormSerialConnection.resources
