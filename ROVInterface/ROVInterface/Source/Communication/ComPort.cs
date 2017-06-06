@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Ports;
 using System.Text;
@@ -16,6 +17,7 @@ class SerialConnection : Connection
 
 	private byte[] buffer;
 	private int idx = 0;
+	private FormSerialConnection form;
 
 
 	//Returns a list of all the available com ports with their names
@@ -47,12 +49,29 @@ class SerialConnection : Connection
 		buffer = new byte[6];
     }
 
+	//Initialize a new serial connection with the given port number and baud rate, and given to return values to instance
+	//ref.: https://msdn.microsoft.com/en-us/library/system.io.ports.serialport(v=vs.110).aspx?cs-save-lang=1&cs-lang=csharp#code-snippet-1
+	public SerialConnection(string portName, int baudRate, FormSerialConnection form) {
+		this.form = form;
+
+		try {
+			port = new SerialPort(portName, baudRate);
+			port.DataReceived += new SerialDataReceivedEventHandler(Recieve);
+		} catch (Exception e) {
+			//ref.: https://msdn.microsoft.com/en-us/library/8bt1b81c(v=vs.110).aspx
+			MessageBox.Show("The specified port could not be found or opened", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			Program.errors.Add("The specified port could not be found or opened");
+		}
+
+		buffer = new byte[6];
+	}
+
 
 
 	/// <summary>
 	/// Open the serial connection
 	/// </summary>
-    public bool Open()
+	public bool Open()
     {
 		try
 		{
@@ -183,6 +202,12 @@ class SerialConnection : Connection
 	//ref.: https://code.msdn.microsoft.com/windowsdesktop/SerialPort-brief-Example-ac0d5004
 	public void Recieve<SerialDataReceivedEventArgs>(object sender, SerialDataReceivedEventArgs e)
     {
+		// If for an instance
+		if (form != null) {
+			RecieveDataForInstance();
+			return;
+		}
+
 		//Initialize a buffer to hold the received data 
 		byte[] packet = new byte[port.ReadBufferSize];
 		//byte[] packet = new byte[6];
@@ -191,24 +216,21 @@ class SerialConnection : Connection
 		//unless you check the return from the Read method 
 		int bytesRead = port.Read(packet, 0, packet.Length);
 
-		//add read bytes to buffer
-		for (int i = 0; i < bytesRead; i++)
-		{
-			if (idx > 6) { idx = 0; Console.WriteLine("A - error in packet index"); return; }
-			try
-			{
-				buffer[idx++] = packet[i];
+		
+
+			//add read bytes to buffer
+			for (int i = 0; i < bytesRead; i++) {
+				if (idx > 6) { idx = 0; Console.WriteLine("A - error in packet index"); return; }
+				try {
+					buffer[idx++] = packet[i];
+				} catch (IndexOutOfRangeException) {
+					Program.errors.Add("Serial recieve index error");
+					Console.WriteLine("B - error in packet index");
+				}
 			}
-			catch (IndexOutOfRangeException)
-			{
-				Program.errors.Add("Serial recieve index error");
-				Console.WriteLine("B - error in packet index");
-			}
-		}
 
 		//if all the bytes are read
-		if (idx >= 6)
-		{
+		if (idx >= 6) {
 			idx = 0;
 
 			//Save the recieved value to st_register
@@ -229,8 +251,20 @@ class SerialConnection : Connection
 			//save latest message that was sendt
 			CommHandler.messageRecieved = buffer;
 
+
 		}
 
+	}
+
+	// Reads all bytes and sends it forward to the form instance
+	private void RecieveDataForInstance() {
+		List<byte> data = new List<byte>();
+		
+		while (port.BytesToRead > 0) {
+			data.Add((byte)port.ReadByte());
+		}
+
+		form.ConvertAndLog(data.ToArray());
 	}
 
 	public void Recieve(byte[] packet)

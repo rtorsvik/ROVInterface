@@ -29,15 +29,17 @@ public partial class FormSerialConnection : Form {
 	private void btn_Connect_Click(object sender, EventArgs e) {
 		if (port == null) {
 			// Port is closed
-			btn_Connect.BackColor = colorOpen;
+			
 			int baudrate = -1;
 			try {
 				baudrate = int.Parse(cmb_baudRate.Text);
 			} catch { }
 
 			if (baudrate < 0) {
+				btn_Connect.BackColor = colorClosed;
 				Program.errors.Add("Faulty baud rate.");
 			} else {
+				btn_Connect.BackColor = colorOpen;
 				port = new SerialConnection(cmb_port.Text, baudrate);
 				port.Open();
 			}
@@ -76,7 +78,7 @@ public partial class FormSerialConnection : Form {
 		}
 
 		// Send out through the serial port
-		txt_output.Text += s;
+		//txt_output.Text += s;
 
 		if (port != null && port.IsOpen()) {
 			// Character size
@@ -94,7 +96,7 @@ public partial class FormSerialConnection : Form {
 	}
 
 	// This converts a byte array from the serial connection and sends it to the logger
-	private void ConvertAndLog(byte[] b) {
+	public void ConvertAndLog(byte[] b) {
 		string s = "";
 		for (int i = 0, j = b.Length; i < j; i++)
 			s += (char)b[i];
