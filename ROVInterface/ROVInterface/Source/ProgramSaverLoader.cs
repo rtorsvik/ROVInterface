@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
@@ -939,13 +940,18 @@ public static class ProgramSaverLoader {
 					case 3: jindex = int.Parse(s); break;
 					case 5: aindex = int.Parse(s); break;
 					case 7: reverse = bool.Parse(s); break;
-					case 9: expo = decimal.Parse(s.Replace(',', '.')); break;
-					case 11: deadband = decimal.Parse(s.Replace(',', '.')); break;
-					case 13: offset = decimal.Parse(s.Replace(',', '.')); break;
-					case 15: max = decimal.Parse(s.Replace(',', '.')); break;
-					
+					case 9: expo = ParseDecimalFromString(s); break;
+					case 11: deadband = ParseDecimalFromString(s); break;
+					case 13: offset = ParseDecimalFromString(s); break;
+					case 15: max = ParseDecimalFromString(s); break;
+
 				}
 			}
+		}
+
+		private static decimal ParseDecimalFromString(string s)
+		{
+			return decimal.Parse(s.Replace(',', '.'), CultureInfo.InvariantCulture);
 		}
 
 		public class joystickButtonSettings_Setting : DataHolderTemplate

@@ -38,12 +38,15 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.txt_output = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+			this.chb_autoScroll = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
+			this.tableLayoutPanel4.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -128,27 +131,27 @@
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
+			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 2);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
 			this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 2;
+			this.tableLayoutPanel1.RowCount = 3;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(349, 200);
 			this.tableLayoutPanel1.TabIndex = 4;
 			// 
 			// tableLayoutPanel2
 			// 
-			this.tableLayoutPanel2.ColumnCount = 4;
+			this.tableLayoutPanel2.ColumnCount = 3;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 77F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 77F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
 			this.tableLayoutPanel2.Controls.Add(this.btn_send, 2, 0);
 			this.tableLayoutPanel2.Controls.Add(this.cmb_endline, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.txt_message, 0, 0);
-			this.tableLayoutPanel2.Controls.Add(this.btn_clear, 3, 0);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -162,7 +165,7 @@
 			// 
 			this.btn_send.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btn_send.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.btn_send.Location = new System.Drawing.Point(193, 3);
+			this.btn_send.Location = new System.Drawing.Point(275, 3);
 			this.btn_send.Name = "btn_send";
 			this.btn_send.Size = new System.Drawing.Size(71, 25);
 			this.btn_send.TabIndex = 3;
@@ -179,7 +182,7 @@
             "\\r",
             "\\n",
             "\\r\\n"});
-			this.cmb_endline.Location = new System.Drawing.Point(116, 3);
+			this.cmb_endline.Location = new System.Drawing.Point(198, 3);
 			this.cmb_endline.Name = "cmb_endline";
 			this.cmb_endline.Size = new System.Drawing.Size(71, 24);
 			this.cmb_endline.TabIndex = 2;
@@ -189,7 +192,7 @@
 			this.txt_message.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.txt_message.Location = new System.Drawing.Point(3, 3);
 			this.txt_message.Name = "txt_message";
-			this.txt_message.Size = new System.Drawing.Size(107, 23);
+			this.txt_message.Size = new System.Drawing.Size(189, 23);
 			this.txt_message.TabIndex = 1;
 			this.txt_message.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_message_KeyDown);
 			// 
@@ -197,9 +200,9 @@
 			// 
 			this.btn_clear.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btn_clear.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.btn_clear.Location = new System.Drawing.Point(270, 3);
+			this.btn_clear.Location = new System.Drawing.Point(3, 3);
 			this.btn_clear.Name = "btn_clear";
-			this.btn_clear.Size = new System.Drawing.Size(76, 25);
+			this.btn_clear.Size = new System.Drawing.Size(71, 25);
 			this.btn_clear.TabIndex = 4;
 			this.btn_clear.Text = "Clear";
 			this.btn_clear.UseVisualStyleBackColor = true;
@@ -212,7 +215,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(3, 34);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(343, 163);
+			this.panel1.Size = new System.Drawing.Size(343, 132);
 			this.panel1.TabIndex = 1;
 			// 
 			// txt_output
@@ -223,7 +226,7 @@
 			this.txt_output.Name = "txt_output";
 			this.txt_output.ReadOnly = true;
 			this.txt_output.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txt_output.Size = new System.Drawing.Size(343, 163);
+			this.txt_output.Size = new System.Drawing.Size(343, 132);
 			this.txt_output.TabIndex = 0;
 			// 
 			// tableLayoutPanel3
@@ -240,6 +243,35 @@
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel3.Size = new System.Drawing.Size(361, 338);
 			this.tableLayoutPanel3.TabIndex = 4;
+			// 
+			// tableLayoutPanel4
+			// 
+			this.tableLayoutPanel4.ColumnCount = 2;
+			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 77F));
+			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel4.Controls.Add(this.btn_clear, 0, 0);
+			this.tableLayoutPanel4.Controls.Add(this.chb_autoScroll, 1, 0);
+			this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 169);
+			this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+			this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+			this.tableLayoutPanel4.RowCount = 1;
+			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel4.Size = new System.Drawing.Size(349, 31);
+			this.tableLayoutPanel4.TabIndex = 2;
+			// 
+			// chb_autoScroll
+			// 
+			this.chb_autoScroll.AutoSize = true;
+			this.chb_autoScroll.Checked = true;
+			this.chb_autoScroll.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chb_autoScroll.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.chb_autoScroll.Location = new System.Drawing.Point(80, 3);
+			this.chb_autoScroll.Name = "chb_autoScroll";
+			this.chb_autoScroll.Size = new System.Drawing.Size(266, 25);
+			this.chb_autoScroll.TabIndex = 5;
+			this.chb_autoScroll.Text = "Auto Scroll";
+			this.chb_autoScroll.UseVisualStyleBackColor = true;
 			// 
 			// FormSerialConnection
 			// 
@@ -267,6 +299,8 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.tableLayoutPanel3.ResumeLayout(false);
+			this.tableLayoutPanel4.ResumeLayout(false);
+			this.tableLayoutPanel4.PerformLayout();
 			this.ResumeLayout(false);
 
 	}
@@ -289,4 +323,6 @@
 	private System.Windows.Forms.Panel panel1;
 	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
 	private System.Windows.Forms.Button btn_clear;
+	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+	private System.Windows.Forms.CheckBox chb_autoScroll;
 }

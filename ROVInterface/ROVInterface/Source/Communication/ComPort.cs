@@ -57,6 +57,7 @@ class SerialConnection : Connection
 		try {
 			port = new SerialPort(portName, baudRate);
 			port.DataReceived += new SerialDataReceivedEventHandler(Recieve);
+			port.RtsEnable = true;
 		} catch (Exception e) {
 			//ref.: https://msdn.microsoft.com/en-us/library/8bt1b81c(v=vs.110).aspx
 			MessageBox.Show("The specified port could not be found or opened", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -66,6 +67,10 @@ class SerialConnection : Connection
 		buffer = new byte[6];
 	}
 
+	public SerialPort GetSerialPort()
+	{
+		return port;
+	}
 
 
 	/// <summary>
@@ -188,7 +193,8 @@ class SerialConnection : Connection
 		port.Write(packet, 0 , packet.Length);
 
 		//save latest message that was sendt
-		CommHandler.messageSendt = packet;
+		if (form == null)
+			CommHandler.messageSendt = packet;
 	}
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,12 +19,39 @@ public partial class FormSerialConnection : Form {
 
 		cmb_endline.SelectedIndex = 0;
 		btn_Connect.BackColor = colorClosed;
+
+		timerbuffer = new Timer();
+		timerbuffer.Tick += Timerbuffer_Tick;
+		timerbuffer.Interval = 100;
+	}
+
+	private void Timerbuffer_Tick(object sender, EventArgs e)
+	{
+		if (havebuffer)
+		{
+			if (chb_autoScroll.Checked)
+				txt_output.AppendText(buffer);
+			else
+			{
+				int i = txt_output.SelectionStart;
+				txt_output.Text += buffer;
+				txt_output.SelectionStart = i;
+				txt_output.ScrollToCaret();
+			}
+
+			buffer = "";
+			havebuffer = false;
+		}
 	}
 
 	private SerialConnection port;
 
 	private Color colorOpen = Color.Green;
 	private Color colorClosed = Color.White;
+
+	private Timer timerbuffer;
+	private bool havebuffer = false;
+	private string buffer = "";
 
 	// Connect to the serial port
 	private void btn_Connect_Click(object sender, EventArgs e) {
@@ -40,15 +68,16 @@ public partial class FormSerialConnection : Form {
 				Program.errors.Add("Faulty baud rate.");
 			} else {
 				btn_Connect.BackColor = colorOpen;
-				port = new SerialConnection(cmb_port.Text, baudrate);
+				port = new SerialConnection(cmb_port.Text, baudrate, this);
 				port.Open();
+				timerbuffer.Start();
 			}
 		} else {
 			// Port is open
 			btn_Connect.BackColor = colorClosed;
 			if (port.IsOpen())
 				port.Close();
-			port = null;
+			timerbuffer.Stop();
 		}
 	}
 
@@ -101,7 +130,8 @@ public partial class FormSerialConnection : Form {
 		for (int i = 0, j = b.Length; i < j; i++)
 			s += (char)b[i];
 
-		txt_output.Text += s;
+		buffer += s;
+		havebuffer = true;
 	}
 
 	private void txt_message_KeyDown(object sender, KeyEventArgs e) {
