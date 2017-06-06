@@ -1160,4 +1160,8 @@ public partial class WindowStatus : Form
 	{
 
 	}
+
+	private void btnCreateSerialConnection_Click(object sender, EventArgs e) {
+		new FormSerialConnection().Show();
+	}
 }
