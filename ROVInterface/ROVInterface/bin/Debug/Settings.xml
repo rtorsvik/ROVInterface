@@ -1,11 +1,11 @@
 <Settings>
 	<General>
-		<DllPath>gTranslator.dll</DllPath>
+		<DllPath>Translator.dll</DllPath>
 		<GraphicPath>Aegir.png</GraphicPath>
 	</General>
 	<JoystickSettings>
 		<Setting>
-			<index>0</index><jindex>-1</jindex><aindex>22</aindex><reverse>False</reverse><expo>2,8</expo><deadband>5</deadband><offset>1</offset><max>80,0</max>
+			<index>0</index><jindex>-1</jindex><aindex>22</aindex><reverse>False</reverse><expo>2.8</expo><deadband>5</deadband><offset>1</offset><max>80.0</max>
 		</Setting>
 		<Setting>
 			<index>1</index><jindex>-1</jindex><aindex>13</aindex><reverse>False</reverse><expo>3</expo><deadband>5</deadband><offset>0</offset><max>2</max>

@@ -29,14 +29,23 @@ class StreamHandler
 	/// <param name="port">On which port the stram is sendt</param>
 	public StreamHandler(string ipAddress, int port)
 	{
+		streamerIpAddress = ipAddress;
+		streamerPort = port;
+
+		// TESTING STUFF
+
+		// Send command to kill raspivid command
+		SSHInitRaspivid("pi", "raspberry");
+
+		// TESTING STUFF
+
 		streamID = STREAMNUM;
 		STREAMNUM++;
 
 		pipeName = "pipe" + STREAMNUM;
 		pipe = new NamedPipeServerStream(pipeName);
 
-		streamerIpAddress = ipAddress;
-		streamerPort = port;
+		
 
 		streamer = new TcpClient();
 	}
@@ -50,7 +59,25 @@ class StreamHandler
 		return pipeName;
 	}
 
-	
+	private void SSHInitRaspivid(string sshUser, string sshPass) {
+		SshClient client = new SshClient(streamerIpAddress, sshUser, sshPass);
+		bool connected = false;
+		try {
+			client.Connect();
+			connected = true;
+		} catch (Exception e) { Console.WriteLine(e); }
+
+		if (connected) {
+
+			var terminalFindProcess = client.RunCommand("pgrep raspivid");
+			if (terminalFindProcess.Result.CompareTo("") != 0) {
+				var terminalKillProcess = client.RunCommand("pkill raspivid");
+			}
+			client.Disconnect();
+		}
+		client.Dispose();
+	}
+
 	//TEMP
 	public void StartRaspividStream(string sshUser, string sshPass, int width, int height, int imageRotation)
 	{
@@ -59,21 +86,34 @@ class StreamHandler
 			SshClient client = new SshClient(streamerIpAddress, sshUser, sshPass);
 			try
 			{
+				bool connected = false;
 				try
 				{
 					client.Connect();
+					connected = true;
 				}
 				catch { }
 
-				string command = "raspivid -o - -t 0";
-				command += " -w " + width;
-				command += " -h " + height;
-				command += " -rot " + imageRotation;
-				command += " -fps 25 | nc -l " + streamerPort; //+ " &";
+				if (connected) {
 
-				var terminal = client.RunCommand(command);
+					// Command to reset/fix rasperyvid
+					//string command = "pkill raspivid";
+					string command = "pgrep raspivid";
+					command = "kill -s SIGUSR2 " + client.RunCommand(command).Result;
+					var terminalpkill = client.RunCommand(command);
 
-				//txtResult.Text = terminal.Result;
+					// Command to start video stream
+					command = "raspivid -o - -t 0";
+					command += " -w " + width;
+					command += " -h " + height;
+					command += " -rot " + imageRotation;
+					command += " -fps 25 | nc -l " + streamerPort; //+ " &";
+
+					var terminal = client.RunCommand(command);
+					//Program.errors.Add("Result: " + terminal.Result);
+
+					//txtResult.Text = terminal.Result;
+				}
 			}
 			finally
 			{

@@ -16,6 +16,7 @@ pkill raspivid
 // SIGUSR1 ???
 
 // https://raspberrypi.stackexchange.com/questions/10151/is-there-a-way-to-stop-pause-an-actively-recording-on-raspi-camera/10153#10153
+// https://www.raspberrypi.org/forums/viewtopic.php?t=112532&p=770900
 
 /*	
 	Try using the -k (keypress) option: Cycle between capture and pause on ENTER.

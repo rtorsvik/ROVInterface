@@ -108,7 +108,7 @@ public partial class WindowCamera : Form
 		streamHandler1 = new StreamHandler(ipAddress1, port1);
 		video1 = new MPlayer(streamHandler1.GetPipeName(), pnl_video1);
 
-		//streamHandler1.StartRaspividStream("pi", "raspberry", 1440, 900, 0);
+		streamHandler1.StartRaspividStream("pi", "raspberry", 1440, 900, 0);
 		video1.Start();
 		if (!bgw_video1.IsBusy)
 			bgw_video1.RunWorkerAsync();
