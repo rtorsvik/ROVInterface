@@ -94,6 +94,7 @@
 			this.txt_con_messageRecieved = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBox8 = new System.Windows.Forms.GroupBox();
+			this.btnCreateSerialConnection = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.nud_con_serial_value = new System.Windows.Forms.NumericUpDown();
 			this.nud_con_serial_index = new System.Windows.Forms.NumericUpDown();
@@ -167,8 +168,6 @@
 			this.picGraph = new System.Windows.Forms.PictureBox();
 			this.flp_joysticksetting_buttons = new System.Windows.Forms.FlowLayoutPanel();
 			this.flp_joysticksetting_axis = new System.Windows.Forms.FlowLayoutPanel();
-			this.grp_JoystickInstructions = new System.Windows.Forms.GroupBox();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.btn_joystick_instruction = new System.Windows.Forms.Button();
 			this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label27 = new System.Windows.Forms.Label();
@@ -216,7 +215,6 @@
 			this.btn_MenuDeleteControl = new System.Windows.Forms.ToolStripMenuItem();
 			this.AegirMessageRequest = new System.ComponentModel.BackgroundWorker();
 			this.tim_puls = new System.Windows.Forms.Timer(this.components);
-			this.btnCreateSerialConnection = new System.Windows.Forms.Button();
 			this.connectionTab.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nud_navigation_attitude_rolldiv)).BeginInit();
@@ -263,8 +261,6 @@
 			this.tabPage5.SuspendLayout();
 			this.flowLayoutPanel6.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picGraph)).BeginInit();
-			this.grp_JoystickInstructions.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.flowLayoutPanel5.SuspendLayout();
 			this.tabPage6.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -1364,6 +1360,18 @@
 			this.groupBox8.TabStop = false;
 			this.groupBox8.Text = "Serial connection";
 			// 
+			// btnCreateSerialConnection
+			// 
+			this.btnCreateSerialConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.btnCreateSerialConnection.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.btnCreateSerialConnection.Location = new System.Drawing.Point(17, 40);
+			this.btnCreateSerialConnection.Name = "btnCreateSerialConnection";
+			this.btnCreateSerialConnection.Size = new System.Drawing.Size(208, 42);
+			this.btnCreateSerialConnection.TabIndex = 12;
+			this.btnCreateSerialConnection.Text = "New serial connection";
+			this.btnCreateSerialConnection.UseVisualStyleBackColor = true;
+			this.btnCreateSerialConnection.Click += new System.EventHandler(this.btnCreateSerialConnection_Click);
+			// 
 			// groupBox1
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -2094,7 +2102,6 @@
 			this.tabPage5.Controls.Add(this.picGraph);
 			this.tabPage5.Controls.Add(this.flp_joysticksetting_buttons);
 			this.tabPage5.Controls.Add(this.flp_joysticksetting_axis);
-			this.tabPage5.Controls.Add(this.grp_JoystickInstructions);
 			this.tabPage5.Controls.Add(this.btn_joystick_instruction);
 			this.tabPage5.Controls.Add(this.flowLayoutPanel5);
 			this.tabPage5.Controls.Add(this.label17);
@@ -2265,42 +2272,16 @@
 			this.flp_joysticksetting_axis.Size = new System.Drawing.Size(1374, 225);
 			this.flp_joysticksetting_axis.TabIndex = 25;
 			// 
-			// grp_JoystickInstructions
-			// 
-			this.grp_JoystickInstructions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.grp_JoystickInstructions.Controls.Add(this.pictureBox2);
-			this.grp_JoystickInstructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.grp_JoystickInstructions.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.grp_JoystickInstructions.Location = new System.Drawing.Point(8, 574);
-			this.grp_JoystickInstructions.Name = "grp_JoystickInstructions";
-			this.grp_JoystickInstructions.Size = new System.Drawing.Size(1240, 22);
-			this.grp_JoystickInstructions.TabIndex = 20;
-			this.grp_JoystickInstructions.TabStop = false;
-			this.grp_JoystickInstructions.Text = "Instructions";
-			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pictureBox2.Image = global::ROVInterface.Properties.Resources.joystickscale_dark_test;
-			this.pictureBox2.Location = new System.Drawing.Point(492, 49);
-			this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 10, 4);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(369, 357);
-			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox2.TabIndex = 19;
-			this.pictureBox2.TabStop = false;
-			// 
 			// btn_joystick_instruction
 			// 
 			this.btn_joystick_instruction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_joystick_instruction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_joystick_instruction.Location = new System.Drawing.Point(1255, 564);
+			this.btn_joystick_instruction.Location = new System.Drawing.Point(1280, 564);
 			this.btn_joystick_instruction.Margin = new System.Windows.Forms.Padding(4);
 			this.btn_joystick_instruction.Name = "btn_joystick_instruction";
-			this.btn_joystick_instruction.Size = new System.Drawing.Size(133, 32);
+			this.btn_joystick_instruction.Size = new System.Drawing.Size(102, 32);
 			this.btn_joystick_instruction.TabIndex = 23;
-			this.btn_joystick_instruction.Text = "Instructions";
+			this.btn_joystick_instruction.Text = "Relad Sticks";
 			this.btn_joystick_instruction.UseVisualStyleBackColor = true;
 			this.btn_joystick_instruction.Click += new System.EventHandler(this.grp_JoystickInstructions_Enter);
 			// 
@@ -2727,18 +2708,6 @@
 			// 
 			this.tim_puls.Tick += new System.EventHandler(this.tim_puls_Tick);
 			// 
-			// btnCreateSerialConnection
-			// 
-			this.btnCreateSerialConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-			this.btnCreateSerialConnection.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.btnCreateSerialConnection.Location = new System.Drawing.Point(17, 40);
-			this.btnCreateSerialConnection.Name = "btnCreateSerialConnection";
-			this.btnCreateSerialConnection.Size = new System.Drawing.Size(208, 42);
-			this.btnCreateSerialConnection.TabIndex = 12;
-			this.btnCreateSerialConnection.Text = "New serial connection";
-			this.btnCreateSerialConnection.UseVisualStyleBackColor = true;
-			this.btnCreateSerialConnection.Click += new System.EventHandler(this.btnCreateSerialConnection_Click);
-			// 
 			// WindowStatus
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2817,8 +2786,6 @@
 			this.flowLayoutPanel6.ResumeLayout(false);
 			this.flowLayoutPanel6.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picGraph)).EndInit();
-			this.grp_JoystickInstructions.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.flowLayoutPanel5.ResumeLayout(false);
 			this.flowLayoutPanel5.PerformLayout();
 			this.tabPage6.ResumeLayout(false);
@@ -2900,7 +2867,6 @@
 	private System.Windows.Forms.Label label25;
 	private System.Windows.Forms.Button btn_startTransmission;
 	private System.Windows.Forms.Timer tim_100ms_update;
-	private System.Windows.Forms.GroupBox grp_JoystickInstructions;
 	private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
 	private System.Windows.Forms.Label label27;
 	public System.Windows.Forms.Timer tim_SendCommandsDelay;
@@ -2912,7 +2878,6 @@
 	private System.Windows.Forms.NumericUpDown nud_con_serial_value;
 	private System.Windows.Forms.Panel pan_graphicsCreator;
 	private System.Windows.Forms.Button btn_joystick_instruction;
-	private System.Windows.Forms.PictureBox pictureBox2;
 	private System.Windows.Forms.GroupBox groupBox5;
 	public System.Windows.Forms.TextBox txt_comm_clientip;
 	private System.Windows.Forms.Label label29;

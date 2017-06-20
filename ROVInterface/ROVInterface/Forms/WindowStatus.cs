@@ -370,19 +370,52 @@ public partial class WindowStatus : Form
 		}
 	}
 
-	private bool shownJoystickInstructions = false;
 	private void grp_JoystickInstructions_Enter(object sender, EventArgs e)
 	{
-		shownJoystickInstructions = !shownJoystickInstructions;
+		joystickSettings.LoadConnectedJoysticks();
 
-		if (shownJoystickInstructions)
+		// Check if the loadedjoysticks should be reset now
+		for (int i = 0, j = joystickSettings.axisSetting.Length; i < j; i++)
 		{
-			grp_JoystickInstructions.AutoSize = true;
+			JoystickSettings.AxisSetting a = joystickSettings.axisSetting[i];
+			if (a.joystick == -1 && a.joystickloaded != -1)
+			{
+				try
+				{
+					a.c_joystick.SelectedIndex = a.joystickloaded;
+				}
+				catch { }
+			}
+			else
+			{
+				try
+				{
+					a.c_joystick.SelectedIndex = a.joystick;
+				}
+				catch { }
+			}
 		}
-		else
+
+		// Check if the loadedjoystickbuttons should be reset now
+		for (int i = 0, j = joystickSettings.axisSetting.Length; i < j; i++)
 		{
-			grp_JoystickInstructions.AutoSize = false;
-			grp_JoystickInstructions.Height = 22;
+			JoystickSettings.ButtonSetting a = joystickSettings.buttonSetting[i];
+			if (a.joystick_idx == -1 && a.joystickloaded_idx != -1)
+			{
+				try
+				{
+					a.c_joystick.SelectedIndex = a.joystickloaded_idx;
+				}
+				catch { }
+			}
+			else
+			{
+				try
+				{
+					a.c_joystick.SelectedIndex = a.joystick_idx;
+				}
+				catch { }
+			}
 		}
 	}
 

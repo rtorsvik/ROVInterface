@@ -100,7 +100,7 @@ class StreamHandler
 					//string command = "pkill raspivid";
 					string command = "pgrep raspivid";
 					command = "kill -s SIGUSR2 " + client.RunCommand(command).Result;
-					var terminalpkill = client.RunCommand(command);
+					//var terminalpkill = client.RunCommand(command);
 
 					// Command to start video stream
 					command = "raspivid -o - -t 0";

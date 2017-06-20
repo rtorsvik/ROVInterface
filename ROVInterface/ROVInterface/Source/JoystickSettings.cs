@@ -25,8 +25,8 @@ public class JoystickSettings
 	public int[] prevOutA = new int[12];
 
 	public ButtonSetting[] buttonSetting;
-	public string[] buttonLabels = new string[16] { "Arm motors", "man/auto", "pitch", "pitch", "roll", "roll", "grab", "release", "rot cw", "rot ccw", "grab 2", "release 2", "rot cw 2", "rot ccw 2", "heave up", "heave down" };
-	public bool[] prevOutB = new bool[16];
+	public string[] buttonLabels = new string[24] { "Arm motors", "man/auto", "pitch", "pitch", "roll", "roll", "grab", "release", "rot cw", "rot ccw", "grab 2", "release 2", "rot cw 2", "rot ccw 2", "heave up", "heave down", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>", "<spare>" };
+	public bool[] prevOutB = new bool[24];
 
 
 
@@ -113,7 +113,8 @@ public class JoystickSettings
 
 		private NumericUpDown c_index;
 
-		private ComboBox c_joystick;
+		// Need this public to change it when reloading the joysticks
+		public ComboBox c_joystick;
 		private ComboBox c_axis;
 
 		private Button c_autoDetect;
@@ -132,8 +133,9 @@ public class JoystickSettings
 		private TextBox c_outValue;
 
 		//Settings
-		public int index;		//index of the command to control with the axis
+		public int index;       //index of the command to control with the axis
 
+		public int joystickloaded = -1; // The loaded index of a joystick from last time
 		public int joystick;	//index of the selected joystick
 		public int axis;        //index of the selected axis
 
@@ -382,6 +384,7 @@ public class JoystickSettings
 		public void SetSettings(int index, int joystickIndex, int axisIndex, bool reverse, decimal expo, decimal deadband, decimal offset, decimal max)
 		{
 			c_index.Value = index;
+			joystickloaded = joystickIndex;
 
 			try {
 				c_joystick.SelectedIndex = joystickIndex;
@@ -508,6 +511,7 @@ public class JoystickSettings
 		/// </summary>
 		public void LoadConnectedJoysticks()
 		{
+			JoystickHandler.Init();
 			c_joystick.Items.Clear();
 			c_joystick.Items.AddRange(JoystickHandler.GetSticks());
 		}
@@ -542,7 +546,7 @@ public class JoystickSettings
 		private NumericUpDown c_index;
 		private NumericUpDown c_bitnr;
 
-		private ComboBox c_joystick;
+		public ComboBox c_joystick;
 		private NumericUpDown c_button;
 
 		private Button c_autoDetect;
@@ -559,8 +563,9 @@ public class JoystickSettings
 
 		//Settings
 		public int index;			//ST_Register command index
-		public int bitnr;			//Which bit to set/reset
+		public int bitnr;           //Which bit to set/reset
 
+		public int joystickloaded_idx;
 		public int joystick_idx;	//index of the selected joystick
 		public int button_idx;      //index of the selected axis
 
@@ -696,6 +701,8 @@ public class JoystickSettings
 		{
 			c_index.Value = index;
 			c_bitnr.Value = bitnr;
+
+			joystickloaded_idx = joystick_idx;
 
 			try
 			{

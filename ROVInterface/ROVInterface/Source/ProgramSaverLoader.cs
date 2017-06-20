@@ -520,7 +520,7 @@ public static class ProgramSaverLoader {
         JoystickSettings.AxisSetting[] axiss = Program.windowStatus.joystickSettings.axisSetting;
         for (int i = 0, j = axiss.Length; i < j; i++) {
             src += "\t\t<Setting>\n";
-            src += "\t\t\t<index>" + axiss[i].index + "</index><jindex>" + axiss[i].joystick + "</jindex><aindex>" + axiss[i].axis + "</aindex><reverse>" + axiss[i].reverse.ToString() +
+            src += "\t\t\t<index>" + axiss[i].index + "</index><jindex>" + (axiss[i].joystick == -1 ? axiss[i].joystickloaded : axiss[i].joystick) + "</jindex><aindex>" + axiss[i].axis + "</aindex><reverse>" + axiss[i].reverse.ToString() +
 				"</reverse><expo>" + axiss[i].expo + "</expo><deadband>" + axiss[i].deadband + "</deadband><offset>" + axiss[i].offset + "</offset><max>" + axiss[i].max + "</max>\n";
             src += "\t\t</Setting>\n";
         }
@@ -531,7 +531,7 @@ public static class ProgramSaverLoader {
 		JoystickSettings.ButtonSetting[] btns = Program.windowStatus.joystickSettings.buttonSetting;
 		for (int i = 0, j = btns.Length; i < j; i++) {
 			src += "\t\t<Setting>\n";
-			src += "\t\t\t<index>" + btns[i].index + "</index><bitnr>" + btns[i].bitnr + "</bitnr><jindex>" + btns[i].joystick_idx + "</jindex><bindex>" + btns[i].button_idx +
+			src += "\t\t\t<index>" + btns[i].index + "</index><bitnr>" + btns[i].bitnr + "</bitnr><jindex>" + (btns[i].joystick_idx == -1 ? btns[i].joystickloaded_idx : btns[i].joystick_idx) + "</jindex><bindex>" + btns[i].button_idx +
 				"</bindex><togglepush>" + btns[i].toggle_push + "</togglepush><offvalue>" + btns[i].offValue + "</offvalue><onvalue>" + btns[i].onValue + "</onvalue>\n";
 			src += "\t\t</Setting>\n";
 		}
